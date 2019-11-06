@@ -13,9 +13,15 @@ public class Envase {
     private ArrayList<tipoMaterial> tiposDeMateriales;
 
     public Envase(String nombre, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales) {
-        this.nombre = nombre;
-        this.pesoMaximoSoportado = pesoMaximoSoportado;
-        this.tiposDeMateriales = tiposDeMateriales;
+        this.setNombre(nombre);
+        this.setPesoMaximoSoportado(pesoMaximoSoportado);
+        this.setTiposDeMateriales(tiposDeMateriales);
+    }
+
+    public Envase(){
+        this.setNombre("");
+        this.setPesoMaximoSoportado(-1);
+        this.setTiposDeMateriales(new ArrayList<tipoMaterial>());
     }
 
     public String getNombre() {
@@ -41,6 +47,5 @@ public class Envase {
     public void setTiposDeMateriales(ArrayList<tipoMaterial> tiposDeMateriales) {
         this.tiposDeMateriales = tiposDeMateriales;
     }
-
 
 }

@@ -2,27 +2,27 @@ package Dominio;
 
 public class Persona {
     //Atributos:
-    String nombre;
-    Integer edad;
-    String domicilio;
-    String rutComprador;
+    private String nombre;
+    private Integer edad;
+    private String domicilio;
+    private String rutComprador;
 
     //Constructor
     public Persona(){
         //Cuando se crea una persona sin parametros lo que hacemos es capturar la excepcion NULL pointer exception asi no rompe el obligatorio
-        this.domicilio=null;
-        this.edad= null ;
-        this.nombre=null;
-        this.rutComprador=null;
+        this.setDomicilio("");
+        this.setEdad(-1);
+        this.setNombre("");
+        this.setRutComprador("");
     }
 
 
 
     public Persona(String nombre, int edad, String domicilio, String rutComprador) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.domicilio = domicilio;
-        this.rutComprador = rutComprador;
+        this.setDomicilio(nombre);
+        this.setEdad(edad);
+        this.setNombre(domicilio);
+        this.setRutComprador(rutComprador);
     }
 
     //Get´s && Set´s

@@ -15,37 +15,37 @@ enum tipoOrigen{
 public class Producto {
 
     //Atributos:
-    ArrayList<tipoOrigen> listaDeOrigenes;
-    String descripcionDelProducto;
-    int pesoDelProducto;
-    ArrayList<Envase> posiblesEnvasesRecomendados;
-    double precio;
-    int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales
-    ArrayList<tipoMaterial> listaDeMateriales;
-    int cantidadVendidos; 
+    private ArrayList<tipoOrigen> listaDeOrigenes;
+    private String descripcionDelProducto;
+    private int pesoDelProducto;
+    private ArrayList<Envase> posiblesEnvasesRecomendados;
+    private double precio;
+    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales
+    private ArrayList<tipoMaterial> listaDeMateriales;
+    private int cantidadVendidos;
     
     //Constructores:
 
     public Producto() {
-        this.listaDeOrigenes= new ArrayList<tipoOrigen>();
-        this.descripcionDelProducto= "";
-        this.pesoDelProducto=0;
-        this.posiblesEnvasesRecomendados= new ArrayList<Envase>();
-        this.precio=0;
-        this.codigoIdentificador= 0;
-        this.listaDeMateriales= new ArrayList<tipoMaterial>();
-        this.cantidadVendidos= 0; 
+        this.setListaDeOrigenes(new ArrayList<tipoOrigen>());
+        this.setDescripcionDelProducto("");
+        this.setPesoDelProducto(0);
+        this.setPosiblesEnvasesRecomendados(new ArrayList<Envase>());
+        this.setPrecio(0);
+        this.setCodigoIdentificador(0);
+        this.setListaDeMateriales(new ArrayList<tipoMaterial>());
+        this.setCantidadVendidos(0);
     }
 
     public Producto(ArrayList<tipoOrigen> listaDeOrigenes, String descripcionDelProducto, int pesoDelProducto, ArrayList<Envase> posiblesEnvasesRecomendados, double precio, int codigoIdentificador, ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos) {
-        this.listaDeOrigenes = listaDeOrigenes;
-        this.descripcionDelProducto = descripcionDelProducto;
-        this.pesoDelProducto = pesoDelProducto;
-        this.posiblesEnvasesRecomendados = posiblesEnvasesRecomendados;
-        this.precio = precio;
-        this.codigoIdentificador = codigoIdentificador;
-        this.listaDeMateriales = listaDeMateriales;
-        this.cantidadVendidos=cantVendidos; 
+        this.setListaDeOrigenes(listaDeOrigenes);
+        this.setDescripcionDelProducto(descripcionDelProducto);
+        this.setPesoDelProducto(pesoDelProducto);
+        this.setPosiblesEnvasesRecomendados(posiblesEnvasesRecomendados);
+        this.setPrecio(precio);
+        this.setCodigoIdentificador(codigoIdentificador);
+        this.setListaDeMateriales(listaDeMateriales);
+        this.setCantidadVendidos(cantVendidos);
     }
 
     //Get´s && Set´s

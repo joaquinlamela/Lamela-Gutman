@@ -5,15 +5,15 @@ import java.util.ArrayList;
 public class Sistema {
 
     //Atributos:
-    ArrayList<Venta> listaDeVentasDelSistema;
-    ArrayList<PreVenta> listaDePreventas;
-    Tienda echoShop;
+    private ArrayList<Venta> listaDeVentasDelSistema;
+    private ArrayList<PreVenta> listaDePreventas;
+    private Tienda echoShop;
 
     //Constructor:
     public Sistema(ArrayList<Venta> listaDeVentasDelSitema, ArrayList<PreVenta> listaDePreventas, Tienda listaDeEchoShop) {
-        this.listaDeVentasDelSistema = listaDeVentasDelSitema;
-        this.listaDePreventas = listaDePreventas;
-        this.echoShop = listaDeEchoShop;
+        this.setListaDeVentasDelSitema(listaDeVentasDelSitema);
+        this.setListaDePreventas(listaDePreventas);
+        this.setEchToShop(listaDeEchoShop);
     }
 
     //Get´s && Set´s
@@ -42,23 +42,24 @@ public class Sistema {
     }
 
     //Metodos:
-    public void agregarTienda(Tienda echoShopNuevo) {
-        if (this.echoShop.equals(echoShopNuevo)) {
-            System.out.println("Ya existe esta tienda");
-        } else {
-            this.echoShop = echoShopNuevo;
-        }
+    public void agregarSucursal(Tienda.Sucursal nueva) {
+//TODO metodo para que se vea en el mapa
+        this.echoShop.getSucursales().add(nueva);
+        this.echoShop.setNumeroSucursal(this.echoShop.getNumeroSucursal()+1);
         
     }
     
-    public void eliminarTienda(Tienda echoShop) {
-        if (this.echoShop.equals(echoShop)) {
-            this.echoShop = null;
+    public void eliminarSucursal(Tienda.Sucursal aEliminar) {
+//TODO metodo para que se deje de ver en el mapa
+        for (int i = 0; i < this.echoShop.getSucursales().size(); i++) {
+            if (this.echoShop.getSucursales().get(i).getNumeroSucursal() == aEliminar.getNumeroSucursal()){
+                this.echoShop.getSucursales().remove(i);
+            }
         }
     }
     
     public void agregarVenta(Venta venta) {
-        
+//TODO agregar Ticket electronico
         if (!this.listaDeVentasDelSistema.contains(venta)) {
             this.listaDeVentasDelSistema.add(venta);
             ArrayList<Producto> listaProductosParaVender = venta.getListaDeProductosAVender();            
@@ -73,16 +74,23 @@ public class Sistema {
     public void eliminarVenta(Venta venta) {
         
         if (this.listaDeVentasDelSistema.contains(venta)) {
-            
+
+            Venta elim = new Venta();
+
             for (int i = 0; i < this.listaDeVentasDelSistema.size(); i++) {
+                if (this.listaDeVentasDelSistema.get(i).equals(venta)){
+                    elim = this.listaDeVentasDelSistema.get(i);
+                }
                 Venta v = this.listaDeVentasDelSistema.get(i);
-                venta.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size() - 1);
+                v.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size() - 1);
             }
-            this.listaDeVentasDelSistema.remove(venta);
+            this.listaDeVentasDelSistema.remove(elim);
         }
     }
     
     public void agregarPreVenta(PreVenta preCompra) {
+
+//TODO falta calendario
         int contador = 0;
         if (!this.listaDePreventas.contains(preCompra)) {
             contador++;
@@ -92,16 +100,12 @@ public class Sistema {
     }
     
     public void cancelarPreVenta(PreVenta preCompra) {
-        
+//TODO eliminar del calendario
         if (this.listaDePreventas.contains(preCompra)) {
             this.listaDePreventas.remove(preCompra);
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < this.listaDePreventas.size(); i++) {
                 PreVenta preVen = this.listaDePreventas.get(i);
-                try {
-                    preVen.setIdentificadorDePreventa(preVen.getIdentificadorDePreventa() - 1);
-                } catch (NullPointerException e) {
-                    System.out.println("Ya no hay mas ventas en el sistema");
-                }
+                preVen.setIdentificadorDePreventa(preVen.getIdentificadorDePreventa() - 1);
             }
         }
         

@@ -4,34 +4,35 @@ import java.util.*;
 
 public class Tienda {
 
-    String direccion;
-    int numeroLocal;
-    long telefono;
-    Date horario;
-    ArrayList<Producto> listaDeProductosEnStock;
-    int [] stockDeProductoPorId; //tipo funcion hash;
-    String paginaWeb;
+    private String direccion;
+    private int numeroSucursal;
+    private ArrayList<Sucursal> sucursales;
+    private long telefono;
+    private Date horario;
+    private ArrayList<Producto> listaDeProductosEnStock;
+    private int [] stockDeProductoPorId; //tipo funcion hash;
+    private String paginaWeb;
 
-    public Tienda(String direccion, int numeroLocal, long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock, int [] stockDeProductoPorId, String paginaWeb) {
-        this.direccion = direccion;
-        this.numeroLocal = numeroLocal;
-        this.telefono = telefono;
-        this.horario = horario;
-        this.listaDeProductosEnStock = listaDeProductosEnStock;
-        this.stockDeProductoPorId = stockDeProductoPorId;
-        this.paginaWeb = paginaWeb;
-
+    public Tienda(int numeroSucursal, String direccion, ArrayList<Sucursal> sucursales, long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock, int [] stockDeProductoPorId, String paginaWeb) {
+        this.setNumeroSucursal(numeroSucursal);
+        this.setDireccion(direccion);
+        this.setSucursales(sucursales);
+        this.setTelefono(telefono);
+        this.setHorario(horario);
+        this.setListaDeProductosEnStock(listaDeProductosEnStock);
+        this.setStockDeProductoPorId(stockDeProductoPorId);
+        this.setPaginaWeb(paginaWeb);
     }
 
     public Tienda() {
-        this.direccion = "";
-        this.numeroLocal = 0;
-        this.telefono = -1;
-        this.horario = new Date();
-        this.listaDeProductosEnStock = new ArrayList<Producto>();
-        this.stockDeProductoPorId = new int [10];
-        this.paginaWeb = "";
-
+        this.setNumeroSucursal(0);
+        this.setDireccion("");
+        this.setSucursales(new ArrayList<Sucursal>());
+        this.setTelefono(-1);
+        this.setHorario(new Date());
+        this.setListaDeProductosEnStock(new ArrayList<Producto>());
+        this.setStockDeProductoPorId(new int [10]);
+        this.setPaginaWeb("");
     }
 
     //Get´s && Set´s
@@ -44,12 +45,12 @@ public class Tienda {
         this.direccion = direccion;
     }
 
-    public int getNumeroLocal() {
-        return numeroLocal;
+    public ArrayList<Sucursal> getNumeroLocal() {
+        return sucursales;
     }
 
-    public void setNumeroLocal(int numeroLocal) {
-        this.numeroLocal = numeroLocal;
+    public void setSucursales(ArrayList<Sucursal> sucursales) {
+        this.sucursales = sucursales;
     }
 
     public long getTelefono() {
@@ -92,6 +93,17 @@ public class Tienda {
         this.paginaWeb = paginaWeb;
     }
 
+    public int getNumeroSucursal() {
+        return numeroSucursal;
+    }
+
+    public void setNumeroSucursal(int numeroSucursal) {
+        this.numeroSucursal = numeroSucursal;
+    }
+
+    public ArrayList<Sucursal> getSucursales() {
+        return sucursales;
+    }
 
     //Metodos:
     public void agregarProducto(Producto producto){
@@ -112,6 +124,38 @@ public class Tienda {
         return  this.getNumeroLocal()==tienda.getNumeroLocal();
     }
 
+
+    public class Sucursal{
+        private int numeroSucursal;
+        private String direccion;
+
+        public int getNumeroSucursal() {
+            return numeroSucursal;
+        }
+
+        public void setNumeroSucursal(int numeroSucursal) {
+            this.numeroSucursal = numeroSucursal;
+        }
+
+        public String getDireccion() {
+            return direccion;
+        }
+
+        public void setDireccion(String direccion) {
+            this.direccion = direccion;
+        }
+
+        public Sucursal(int numeroSucursal, String direccion) {
+            this.setNumeroSucursal(numeroSucursal);
+            this.setDireccion(direccion);
+        }
+
+        public Sucursal() {
+            this.setNumeroSucursal(0);
+            this.setDireccion("");
+        }
+
+    }
 
 
 

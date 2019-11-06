@@ -6,44 +6,45 @@ public class Venta {
 
     //En este caso vamos a utilizar la venta como si fuera ya la venta instantenea en el momento, de tal manera que se le agrega dicha funcionalidad al sistema de poder hacer una venta
     //Atributos:
-    ArrayList<Producto> listaDeProductosAVender;
-    int precioTotal;
-    int[] cantidadesPorProducto; //Para acceder a la posicion del producto le pasamos el codigo identificador;
-    Date fechaDeCompra;
-    Persona comprador; //En este caso seria la clase cliente, de manera que tiene clientes frecuentes
-    tipoPago tipoDePago;  //Segun el numero que ponga la persona lo que vamos a hacer es mostrar las pantallas (ejemplo 1 tarjeta debito y ponemos una interfaz diferente para cada uno)
-    Tienda echoShop;
-    ArrayList<Envase> listaDeEnvasesUtilizados;
-    int codigoIdentificadorDeVenta;
-    String direccionAEnviar; 
+    private ArrayList<Producto> listaDeProductosAVender;
+    private int precioTotal;
+    private int[] cantidadesPorProducto; //Para acceder a la posicion del producto le pasamos el codigo identificador;
+    private Date fechaDeCompra;
+    private Persona comprador; //En este caso seria la clase cliente, de manera que tiene clientes frecuentes
+    private tipoPago tipoDePago;  //Segun el numero que ponga la persona lo que vamos a hacer es mostrar las pantallas (ejemplo 1 tarjeta debito y ponemos una interfaz diferente para cada uno)
+    private Tienda echoShop;
+    private ArrayList<Envase> listaDeEnvasesUtilizados;
+    private int codigoIdentificadorDeVenta;
+    private String direccionAEnviar;
+    private int mes;
 
     //Constructor:
-    public Venta(ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, tipoPago tipoDePago, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
-        this.listaDeProductosAVender = listaDeProductosAVender;
-        this.precioTotal = precioTotal;
-        this.cantidadesPorProducto = cantidadesPorProducto;
-        this.fechaDeCompra = fechaDeCompra;
-        this.comprador = comprador;
-        this.tipoDePago = tipoDePago;
-        this.echoShop = tienda;
-        this.listaDeEnvasesUtilizados = listaDeEnvases;
-        this.codigoIdentificadorDeVenta = 0;
-        this.direccionAEnviar=direccion; 
-
+    public Venta(int mes, ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, tipoPago tipoDePago, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
+        this.setListaDeProductosAVender(listaDeProductosAVender);
+        this.setPrecioTotal(precioTotal);
+        this.setCantidadesPorProducto(cantidadesPorProducto);
+        this.setFechaDeCompra(fechaDeCompra);
+        this.setComprador(comprador);
+        this.setTipoDePago(tipoDePago);
+        this.setEchoShop(tienda);
+        this.setListaDeEnvasesUtilizados(listaDeEnvases);
+        this.setCodigoIdentificadorDeVenta(codigoIdentificador);
+        this.setDireccionAEnviar(direccion);
+        this.setMes(mes);
     }
 
     public Venta() {
-        this.listaDeProductosAVender = new ArrayList<Producto>();
-        this.precioTotal = 0;
-        this.cantidadesPorProducto = new int[10];
-        this.fechaDeCompra = new Date();
-        this.comprador = new Persona();
-        this.tipoDePago = tipoPago.Indefinido;
-        this.echoShop = new Tienda();
-        this.listaDeEnvasesUtilizados = new ArrayList<Envase>();
-        this.codigoIdentificadorDeVenta = 0;
-        this.direccionAEnviar=""; 
-
+        this.setListaDeProductosAVender(new ArrayList<Producto>());
+        this.setPrecioTotal(0);
+        this.setCantidadesPorProducto(new int[10]);
+        this.setFechaDeCompra(new Date());
+        this.setComprador(new Persona());
+        this.setTipoDePago(tipoPago.Indefinido);
+        this.setEchoShop(new Tienda());
+        this.setListaDeEnvasesUtilizados(new ArrayList<Envase>());
+        this.setCodigoIdentificadorDeVenta(0);
+        this.setDireccionAEnviar("");
+        this.setMes(0);
     }
 
     //Get´s && set´s
@@ -127,8 +128,13 @@ public class Venta {
         this.direccionAEnviar = direccionAEnviar;
     }
 
-    
-    
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
 
     //Metodos
     public void agregarProductosALaVenta(Producto producto) {

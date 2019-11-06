@@ -5,6 +5,11 @@
  */
 package Interfaz2;
 
+import Dominio.PreVenta;
+import Dominio.Sistema;
+import Dominio.Tienda;
+import Dominio.Venta;
+import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +36,11 @@ public class ObligatorioIngenieriaSoftware extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        ArrayList<Venta> ventas = new ArrayList<>();
+        ArrayList<PreVenta> preVentas = new ArrayList<>();
+        Tienda echoShop = new Tienda();
+        Sistema s = new Sistema(ventas, preVentas, echoShop);
+        
         launch(args);
     }
     
