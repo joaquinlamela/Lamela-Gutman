@@ -5,7 +5,6 @@
  */
 package Interfaz2;
 
-
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -25,40 +24,34 @@ import javafx.stage.Stage;
  *
  * @author user
  */
-public class VendedorController implements Initializable {
+public class MenuController implements Initializable {
 
     @FXML
     private JFXButton btnAgregarProducto;
     @FXML
-    private JFXButton btnAgregarTienda;
+    private JFXButton btnAgregarSucursal;
     @FXML
     private JFXButton btnAgregarEnvase;
     @FXML
     private JFXButton btnEliminarProducto;
     @FXML
-    private JFXButton btnTopVentas;
+    private JFXButton btnVolverAVendedor;
     @FXML
-    private JFXButton btnVentasPorMes;
-    @FXML
-    private JFXButton btnEstadisticas;
-    @FXML
-    private JFXButton btnMenu;
-    @FXML
-    private JFXButton btnInicio;
+    private JFXButton btnAgregarProducto1;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
     }    
 
     @FXML
     private void agregarProducto(ActionEvent event) {
         
-         
-        try {
+         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarProducto.fxml"));
 
             Parent root = loader.load();
@@ -80,14 +73,10 @@ public class VendedorController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-       
-        
     }
 
     @FXML
-    private void agregarTienda(ActionEvent event) {
-       
+    private void agregarSucursal(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregadoSucursal.fxml"));
 
@@ -110,15 +99,10 @@ public class VendedorController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        
-        
-        
     }
 
     @FXML
     private void agregarEnvase(ActionEvent event) {
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarEnvase.fxml"));
 
@@ -142,16 +126,11 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-       
-
-        
         
     }
 
     @FXML
     private void eliminarProducto(ActionEvent event) {
-        
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EliminarProducto.fxml"));
 
@@ -175,135 +154,10 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        
-        
-        
     }
 
     @FXML
-    private void topVentas(ActionEvent event) {
-      
-       
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("TopVentas.fxml"));
-
-            Parent root = loader.load();
-
-            TopVentasController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-    
-    
-    }
-
-    @FXML
-    private void ventasPorMes(ActionEvent event) {
-         
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("VentaPorMes.fxml"));
-            
-            Parent root = loader.load();
-
-            VentaPorMesController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        
-    }
-
-    @FXML
-    private void obtenerEstadisticas(ActionEvent event) {
-          
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Estadisticas.fxml"));
-            
-            Parent root = loader.load();
-
-            EstadisticasController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-        
-        
-        
-    }
-
-    @FXML
-    private void irAMenu(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-
-            Parent root = loader.load();
-
-            MenuController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
-    }
-
-    @FXML
-    private void tocoBotonInicio(ActionEvent event) {
+    private void volverInicio(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
 
@@ -328,35 +182,5 @@ public class VendedorController implements Initializable {
         }
         
     }
-    
-    
-    
-    
-    public void cerrarVentana() {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
-
-            Parent root = loader.load();
-            
-            InicioController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            Stage myStage = (Stage) this.btnEliminarProducto.getScene().getWindow();
-            myStage.close();
-
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-    
     
 }
