@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz2.ClienteController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Cliente.png" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="scrollPane" layoutX="10.0" layoutY="81.0" prefHeight="292.0" prefWidth="344.0">
+         <content>
+            <VBox fx:id="vBox" prefHeight="257.0" prefWidth="342.0" />
+         </content>
+      </ScrollPane>
+      <JFXButton fx:id="btnCarrito" layoutX="21.0" layoutY="458.0" onAction="#irAlCarrito" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMapa" layoutX="104.0" layoutY="458.0" onAction="#irAlMapa" prefHeight="78.0" prefWidth="72.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMercado" layoutX="182.0" layoutY="458.0" onAction="#irAlMercado" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnTopVentas" layoutX="260.0" layoutY="458.0" onAction="#topVentas" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMenu" layoutX="10.0" layoutY="27.0" onAction="#irAlMenu" prefHeight="30.0" prefWidth="32.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnIrAInicio" layoutX="-5.0" layoutY="589.0" onAction="#irAInicio" prefHeight="53.0" prefWidth="366.0" text="&#10;" />
+   </children>
+</Pane>

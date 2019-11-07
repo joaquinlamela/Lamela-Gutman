@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="137.0" prefWidth="345.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="137.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/bottom.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imagen" fitHeight="85.0" fitWidth="103.0" layoutX="36.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
+      <JFXTextField fx:id="txtPrecio" layoutX="245.0" layoutY="46.0" onAction="#obtenerPrecio" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #ffffff; -fx-background-radius: 18 18 18 18;" />
+      <Label layoutX="158.0" layoutY="51.0" text="Precio:" textFill="WHITE" />
+      <JFXTextField fx:id="txtIdentificador" layoutX="245.0" layoutY="89.0" onAction="#obtenerIdentificador" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #ffffff; -fx-background-radius: 18 18 18 18;" />
+      <Label layoutX="151.0" layoutY="94.0" text="Identificador" textFill="WHITE" />
+      <JFXTextField layoutX="151.0" layoutY="7.0" style="-fx-background-radius: 18 18 18 18; -fx-prompt-text-fill: #FFFFFF; -fx-text-fill: #FFFFFF;" />
+   </children>
+</Pane>

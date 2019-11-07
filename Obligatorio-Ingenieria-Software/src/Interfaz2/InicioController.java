@@ -84,6 +84,33 @@ public class InicioController implements Initializable {
 
     @FXML
     private void tocoBotonCliente(ActionEvent event) {
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+            Parent root = loader.load();
+
+            ClienteController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+            
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnVendedor.getScene().getWindow();
+            myStage.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
