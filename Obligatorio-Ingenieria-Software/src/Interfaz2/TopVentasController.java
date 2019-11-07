@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -34,17 +35,19 @@ public class TopVentasController implements Initializable {
     @FXML
     private JFXButton btnInicio;
 
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -59,45 +62,19 @@ public class TopVentasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
+            controlador.setSistema(sistema);
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
 
     @FXML
     private void volverInicio(ActionEvent event) {
-                try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
-            Parent root = loader.load();
-
-            VendedorController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-            
-            
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    
-    public void cerrarVentana(){
-        
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -112,6 +89,34 @@ public class TopVentasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+
+            controlador.setSistema(sistema);
+
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void cerrarVentana() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
+
+            Parent root = loader.load();
+
+            VendedorController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
@@ -120,9 +125,15 @@ public class TopVentasController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
+
     }
-    
-    
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
 }

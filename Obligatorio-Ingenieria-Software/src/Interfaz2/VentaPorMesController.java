@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -35,18 +36,20 @@ public class VentaPorMesController implements Initializable {
     @FXML
     private TableView<?> tablaDeProductosPorFecha;
 
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void volverAInicio(ActionEvent event) {
-        
-                try {
+
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
@@ -60,10 +63,12 @@ public class VentaPorMesController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
+            controlador.setSistema(sistema);
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
+
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -71,7 +76,7 @@ public class VentaPorMesController implements Initializable {
 
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
-         try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
@@ -85,8 +90,9 @@ public class VentaPorMesController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
+            controlador.setSistema(sistema);
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -97,14 +103,12 @@ public class VentaPorMesController implements Initializable {
     @FXML
     private void productosPorFecha(SortEvent<?> event) {
     }
-    
-    
-    public void cerrarVentana(){
-        
-       
+
+    public void cerrarVentana() {
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-            
+
             Parent root = loader.load();
 
             VendedorController controlador = loader.getController();
@@ -117,6 +121,8 @@ public class VentaPorMesController implements Initializable {
 
             stage.show();
 
+            controlador.setSistema(sistema);
+
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.tablaDeProductosPorFecha.getScene().getWindow();
@@ -124,9 +130,18 @@ public class VentaPorMesController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(VentaPorMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-            
-        
+
+    }
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
     }
     
+    
+    
+
 }

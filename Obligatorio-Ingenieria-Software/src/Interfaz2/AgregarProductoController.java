@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
@@ -46,16 +47,19 @@ public class AgregarProductoController implements Initializable {
     @FXML
     private JFXButton btnInicio;
 
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+
+    }
 
     @FXML
     private void obtenerNombre(ActionEvent event) {
+
     }
 
     @FXML
@@ -76,7 +80,7 @@ public class AgregarProductoController implements Initializable {
 
     @FXML
     private void volverInicio(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -91,20 +95,22 @@ public class AgregarProductoController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-              stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-            
+
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void irAInicio(ActionEvent event) {
-         try {
+        try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
@@ -118,18 +124,18 @@ public class AgregarProductoController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
-              stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-              
+
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
+
     public void cerrarVentana() {
 
         try {
@@ -147,6 +153,8 @@ public class AgregarProductoController implements Initializable {
 
             stage.show();
 
+            controlador.setSistema(sistema);
+
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
@@ -157,6 +165,13 @@ public class AgregarProductoController implements Initializable {
         }
 
     }
-    
-    
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
 }

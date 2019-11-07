@@ -6,6 +6,7 @@
 package Interfaz2;
 
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -33,6 +34,12 @@ public class InicioController implements Initializable {
     private JFXButton btnCliente;
     @FXML
     private JFXButton btnVolverInicio;
+    
+    private Sistema sistema;
+
+    
+
+    
 
     /**
      * Initializes the controller class.
@@ -59,6 +66,8 @@ public class InicioController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
@@ -81,5 +90,16 @@ public class InicioController implements Initializable {
     private void tocoBotonInicio(ActionEvent event) {
 
     }
+    
+    
+    public Sistema getSistema() {
+        return sistema ;
+    }
+
+    public void setSistema(Sistema s) {
+        this.sistema = s;
+    }
+    
+    
 
 }

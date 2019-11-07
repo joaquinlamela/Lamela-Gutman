@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
@@ -37,13 +38,15 @@ public class EliminarProductoController implements Initializable {
     @FXML
     private TableView<?> tablaDeProductos;
 
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void eliminarProductoSeleccionado(ActionEvent event) {
@@ -51,7 +54,7 @@ public class EliminarProductoController implements Initializable {
 
     @FXML
     private void volverAInicio(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -66,8 +69,9 @@ public class EliminarProductoController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
+            controlador.setSistema(sistema);
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -79,11 +83,9 @@ public class EliminarProductoController implements Initializable {
     @FXML
     private void seleccionarElementoAEliminar(SortEvent<?> event) {
     }
-    
-    
+
     public void cerrarVentana() {
 
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -99,6 +101,8 @@ public class EliminarProductoController implements Initializable {
 
             stage.show();
 
+            controlador.setSistema(sistema);
+
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnEliminar.getScene().getWindow();
@@ -107,9 +111,14 @@ public class EliminarProductoController implements Initializable {
             Logger.getLogger(EliminarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-
     }
-    
-    
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
 }

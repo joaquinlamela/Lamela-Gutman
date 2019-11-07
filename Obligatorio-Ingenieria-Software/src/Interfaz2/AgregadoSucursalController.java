@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
@@ -46,13 +47,15 @@ public class AgregadoSucursalController implements Initializable {
     @FXML
     private JFXTimePicker dateFinalizacion;
 
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void obtenerNumeroSucursal(ActionEvent event) {
@@ -72,7 +75,7 @@ public class AgregadoSucursalController implements Initializable {
 
     @FXML
     private void volverAVendedor(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -87,16 +90,13 @@ public class AgregadoSucursalController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
-        
     }
 
     @FXML
@@ -115,8 +115,7 @@ public class AgregadoSucursalController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
-            
+
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -132,11 +131,9 @@ public class AgregadoSucursalController implements Initializable {
     @FXML
     private void obtenerHoraFinalizacion(ActionEvent event) {
     }
-    
-    
+
     public void cerrarVentana() {
 
-       
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -153,13 +150,25 @@ public class AgregadoSucursalController implements Initializable {
             stage.show();
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-            
+
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
+    }
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
     }
     
+    
+    
+    
+
 }
