@@ -10,10 +10,10 @@ public class Persona {
     //Constructor
     public Persona(){
         //Cuando se crea una persona sin parametros lo que hacemos es capturar la excepcion NULL pointer exception asi no rompe el obligatorio
-        this.setDomicilio("");
-        this.setEdad(-1);
-        this.setNombre("");
-        this.setRutComprador("");
+        this.setDomicilio("Domicilio");
+        this.setEdad(1);
+        this.setNombre("Nombre");
+        this.setRutComprador("Rut");
     }
 
 
@@ -32,7 +32,11 @@ public class Persona {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (!nombre.trim().equals("")) {
+            this.nombre = nombre;
+        }else{
+            throw new RuntimeException("NombreNoVacio");
+        }
     }
 
     public int getEdad() {
@@ -40,6 +44,11 @@ public class Persona {
     }
 
     public void setEdad(int edad) {
+        if (edad >=0 && edad<=100) {
+            this.edad = edad;
+        }else{
+            throw new RuntimeException("EdadEntre0y100");
+        }
         this.edad = edad;
     }
 
@@ -48,7 +57,11 @@ public class Persona {
     }
 
     public void setDomicilio(String domicilio) {
-        this.domicilio = domicilio;
+        if (!domicilio.trim().equals("")) {
+            this.domicilio = domicilio;
+        }else{
+            throw new RuntimeException("DomicilioNoVacio");
+        }
     }
 
     public String getRutComprador() {
@@ -56,7 +69,12 @@ public class Persona {
     }
 
     public void setRutComprador(String rutComprador) {
-        this.rutComprador = rutComprador;
+        if (!rutComprador.trim().equals("")) {
+            this.rutComprador = rutComprador;
+        }else{
+            throw new RuntimeException("RutNoVacio");
+        }
+        
     }
 
     //Metodos si tiene:

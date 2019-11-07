@@ -19,8 +19,8 @@ public class Envase {
     }
 
     public Envase(){
-        this.setNombre("");
-        this.setPesoMaximoSoportado(-1);
+        this.setNombre("Nombre");
+        this.setPesoMaximoSoportado(1);
         this.setTiposDeMateriales(new ArrayList<tipoMaterial>());
     }
 
@@ -29,7 +29,13 @@ public class Envase {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        //assert();
+        if (!nombre.trim().equals("")) {
+            this.nombre = nombre;
+        }else{
+            throw new RuntimeException("NombreNoVacio");
+        }
+        
     }
 
     public int getPesoMaximoSoportado() {
@@ -37,7 +43,11 @@ public class Envase {
     }
 
     public void setPesoMaximoSoportado(int pesoMaximoSoportado) {
-        this.pesoMaximoSoportado = pesoMaximoSoportado;
+        if (pesoMaximoSoportado >=1 && pesoMaximoSoportado<=100) {
+            this.pesoMaximoSoportado = pesoMaximoSoportado;
+        }else{
+            throw new RuntimeException("PesoEntre1y100");
+        }
     }
 
     public ArrayList<tipoMaterial> getTiposDeMateriales() {
@@ -46,6 +56,18 @@ public class Envase {
 
     public void setTiposDeMateriales(ArrayList<tipoMaterial> tiposDeMateriales) {
         this.tiposDeMateriales = tiposDeMateriales;
+    }
+    
+    public void agregarMateriales(tipoMaterial t){
+        if (!this.tiposDeMateriales.contains(t)) {
+            this.tiposDeMateriales.add(t);
+        }
+    }
+    
+    public void eliminarMaterial(tipoMaterial t){
+        if (this.tiposDeMateriales.contains(t)) {
+            this.tiposDeMateriales.remove(t);
+        }
     }
 
 }
