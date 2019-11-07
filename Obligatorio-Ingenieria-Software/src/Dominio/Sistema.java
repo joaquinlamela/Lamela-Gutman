@@ -10,10 +10,10 @@ public class Sistema {
     private Tienda echoShop;
 
     //Constructor:
-    public Sistema(ArrayList<Venta> listaDeVentasDelSitema, ArrayList<PreVenta> listaDePreventas, Tienda listaDeEchoShop) {
-        this.setListaDeVentasDelSitema(listaDeVentasDelSitema);
-        this.setListaDePreventas(listaDePreventas);
-        this.setEchToShop(listaDeEchoShop);
+    public Sistema() {
+        this.listaDePreventas= new ArrayList<PreVenta>(); 
+        this.listaDeVentasDelSistema= new ArrayList<Venta>(); 
+        this.echoShop= new Tienda(); 
     }
 
     //Get´s && Set´s

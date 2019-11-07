@@ -29,10 +29,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
     public void start(Stage stage) throws Exception {
 
         try {
-            ArrayList<Venta> ventas = new ArrayList<>();
-            ArrayList<PreVenta> preVentas = new ArrayList<>();
-            Tienda echoShop = new Tienda();
-            Sistema sistema = new Sistema(ventas, preVentas, echoShop);
+            
+            Sistema sistema = new Sistema();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
 
