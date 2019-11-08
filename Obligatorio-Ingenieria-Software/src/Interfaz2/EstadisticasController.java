@@ -62,6 +62,12 @@ public class EstadisticasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -90,6 +96,12 @@ public class EstadisticasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -117,6 +129,12 @@ public class EstadisticasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 

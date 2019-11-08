@@ -2,43 +2,41 @@ package Dominio;
 
 import java.util.*;
 
-enum tipoOrigen{
-    Vegetal,
-    Mineral,
-    Animal,
-    Fosil,
-    Indefinido
-}
 
-
-
-public class Producto {
+public class Producto  {
 
     //Atributos:
-    private ArrayList<tipoOrigen> listaDeOrigenes;
-    private String descripcionDelProducto;
-    private int pesoDelProducto;
-    private ArrayList<Envase> posiblesEnvasesRecomendados;
-    private double precio;
-    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales
-    private ArrayList<tipoMaterial> listaDeMateriales;
-    private int cantidadVendidos;
+    private String nombre; //Esta
+    private tipoOrigen origen; //Esta
+    private String descripcionDelProducto; //Esta
+    private int pesoDelProducto;  //Esta
+    private double precio; //Esta
+    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales //Se marca por backend
+    private ArrayList<Envase> posiblesEnvasesRecomendados; // Esta
+    private ArrayList<tipoMaterial> listaDeMateriales; //Falta
+    private int cantidadVendidos; //No se muestra a la hora de agregar productos
     
-    //Constructores:
+    
 
+    //Constructores:
     public Producto() {
-        this.setListaDeOrigenes(new ArrayList<tipoOrigen>());
+        this.setNombre("Nombre");
+        this.setOrigen(tipoOrigen.Indefinido);
         this.setDescripcionDelProducto("");
         this.setPesoDelProducto(0);
         this.setPosiblesEnvasesRecomendados(new ArrayList<Envase>());
-        this.setPrecio(0);
+        this.setPrecio(2);
         this.setCodigoIdentificador(0);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
     }
 
-    public Producto(ArrayList<tipoOrigen> listaDeOrigenes, String descripcionDelProducto, int pesoDelProducto, ArrayList<Envase> posiblesEnvasesRecomendados, double precio, int codigoIdentificador, ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos) {
-        this.setListaDeOrigenes(listaDeOrigenes);
+    public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,
+            int pesoDelProducto, int precio, int codigoIdentificador,
+            ArrayList<Envase> posiblesEnvasesRecomendados,
+            ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos) {
+        this.setNombre(nombre);
+        this.setOrigen(origen);
         this.setDescripcionDelProducto(descripcionDelProducto);
         this.setPesoDelProducto(pesoDelProducto);
         this.setPosiblesEnvasesRecomendados(posiblesEnvasesRecomendados);
@@ -49,13 +47,12 @@ public class Producto {
     }
 
     //Get´s && Set´s
-
-    public ArrayList<tipoOrigen> getListaDeOrigenes() {
-        return listaDeOrigenes;
+    public tipoOrigen getOrigen() {
+        return origen;
     }
 
-    public void setListaDeOrigenes(ArrayList<tipoOrigen> listaDeOrigenes) {
-        this.listaDeOrigenes = listaDeOrigenes;
+    public void setOrigen(tipoOrigen origen) {
+        this.origen = origen;
     }
 
     public String getDescripcionDelProducto() {
@@ -113,14 +110,22 @@ public class Producto {
     public void setCantidadVendidos(int cantidadVendidos) {
         this.cantidadVendidos = cantidadVendidos;
     }
-    
 
-    
-@Override
-    public boolean equals(Object o){
-        Producto p= (Producto)o;
-        return  this.getCodigoIdentificador()== p.getCodigoIdentificador();
+    public String getNombre() {
+        return nombre;
     }
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Producto p = (Producto) o;
+        return this.getCodigoIdentificador() == p.getCodigoIdentificador();
+    }
+    
+    
+    
 
 }

@@ -73,6 +73,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -103,6 +109,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -133,6 +145,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -163,6 +181,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -193,6 +217,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -223,6 +253,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -253,6 +289,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -282,6 +324,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
@@ -310,7 +358,13 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
 
+            stage.setResizable(false);
+            
             controlador.setSistema(sistema);
 
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
@@ -338,6 +392,12 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
 
             controlador.setSistema(sistema);
 

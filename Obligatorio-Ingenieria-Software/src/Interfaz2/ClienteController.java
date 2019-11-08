@@ -103,6 +103,12 @@ public class ClienteController implements Initializable {
 
             stage.show();
             
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
+            
             controlador.setSistema(sistema);
 
             Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();

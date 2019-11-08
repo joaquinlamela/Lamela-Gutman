@@ -42,14 +42,14 @@ public class Sistema {
     }
 
     //Metodos:
-    public void agregarSucursal(Tienda.Sucursal nueva) {
+    public void agregarSucursal(Sucursal nueva) {
 //TODO metodo para que se vea en el mapa
         this.echoShop.getSucursales().add(nueva);
         this.echoShop.setNumeroSucursal(this.echoShop.getNumeroSucursal()+1);
         
     }
     
-    public void eliminarSucursal(Tienda.Sucursal aEliminar) {
+    public void eliminarSucursal(Sucursal aEliminar) {
 //TODO metodo para que se deje de ver en el mapa
         for (int i = 0; i < this.echoShop.getSucursales().size(); i++) {
             if (this.echoShop.getSucursales().get(i).getNumeroSucursal() == aEliminar.getNumeroSucursal()){
@@ -120,5 +120,12 @@ public class Sistema {
         }
                 
     }
+    
+    public int ponerIdentificadorAProducto(){
+        int cantidadDeElementos= this.echoShop.getListaDeProductosEnStock().size(); 
+        return cantidadDeElementos++; 
+    } 
+    
+    
     
 }

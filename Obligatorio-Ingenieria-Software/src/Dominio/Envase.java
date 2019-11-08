@@ -12,8 +12,9 @@ public class Envase {
     private int pesoMaximoSoportado;
     private ArrayList<tipoMaterial> tiposDeMateriales;
 
-    public Envase(String nombre, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales) {
+    public Envase(String nombre,int id, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales) {
         this.setNombre(nombre);
+        this.setIdIdentificador(id);
         this.setPesoMaximoSoportado(pesoMaximoSoportado);
         this.setTiposDeMateriales(tiposDeMateriales);
     }
@@ -69,5 +70,15 @@ public class Envase {
             this.tiposDeMateriales.remove(t);
         }
     }
+
+    public int getIdIdentificador() {
+        return idIdentificador;
+    }
+
+    public void setIdIdentificador(int idIdentificador) {
+        this.idIdentificador = idIdentificador;
+    }
+    
+    
 
 }

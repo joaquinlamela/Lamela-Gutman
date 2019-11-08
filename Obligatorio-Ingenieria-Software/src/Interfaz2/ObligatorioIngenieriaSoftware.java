@@ -6,9 +6,11 @@
 package Interfaz2;
 
 import Dominio.PreVenta;
+import Dominio.Producto;
 import Dominio.Sistema;
 import Dominio.Tienda;
 import Dominio.Venta;
+import Dominio.tipoOrigen;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -43,7 +45,13 @@ public class ObligatorioIngenieriaSoftware extends Application {
             stage.setScene(escena);
 
             stage.show();
-
+            
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
+            
             controlador.setSistema(sistema);
 
         } catch (IOException ex) {

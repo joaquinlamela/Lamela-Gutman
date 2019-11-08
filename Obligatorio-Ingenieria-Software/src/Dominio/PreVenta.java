@@ -30,12 +30,12 @@ public class PreVenta {
 
     public PreVenta() {
         this.setComprador(new Persona());
-        this.setPrecioDePreVenta(-1);
+        this.setPrecioDePreVenta(1);
         this.setListaDeProductos(new ArrayList<Producto>());
         this.setLugarARetirar(new Tienda());
         this.setTipoDePagoDefinido(tipoPago.Indefinido);
         this.setListaDeEnvase(new ArrayList<Envase>());
-        this.setIdentificadorDePreventa(-1);
+        this.setIdentificadorDePreventa(1);
     }
 
     //Get´s && Set´s
@@ -52,7 +52,11 @@ public class PreVenta {
     }
 
     public void setPrecioDePreVenta(int precioDePreVenta) {
-        this.precioDePreVenta = precioDePreVenta;
+        if (precioDePreVenta >=1) {
+            this.precioDePreVenta = precioDePreVenta;
+        }else{
+            throw new RuntimeException("PrecioMayorA0");
+        }
     }
 
     public ArrayList<Producto> getListaDeProductos() {
@@ -92,7 +96,35 @@ public class PreVenta {
     }
 
     public void setIdentificadorDePreventa(int identificadorDePreventa) {
-        this.identificadorDePreventa = identificadorDePreventa;
+         if (identificadorDePreventa >=1) {
+            this.identificadorDePreventa = identificadorDePreventa;
+        }else{
+            throw new RuntimeException("IdentificadorMayorA1");
+        }
+    }
+    
+    public void agregarProducto(Producto p){
+        if (!this.listaDeProductos.contains(p)) {
+            this.listaDeProductos.add(p);
+        }
+    }
+    
+    public void agregarEnvase(Envase e){
+        if (!this.listaDeEnvase.contains(e)) {
+            this.listaDeEnvase.add(e);
+        }
+    }
+    
+    public void eliminarEnvase(Envase e){
+        if (this.listaDeEnvase.contains(e)) {
+            this.listaDeEnvase.remove(e);
+        }
+    }
+    
+    public void eliminarProducto(Producto e){
+        if (this.listaDeProductos.contains(e)) {
+            this.listaDeProductos.remove(e);
+        }
     }
     
     @Override

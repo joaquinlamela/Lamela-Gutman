@@ -5,7 +5,6 @@
  */
 package Interfaz2;
 
-
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -34,12 +33,8 @@ public class InicioController implements Initializable {
     private JFXButton btnCliente;
     @FXML
     private JFXButton btnVolverInicio;
-    
+
     private Sistema sistema;
-
-    
-
-    
 
     /**
      * Initializes the controller class.
@@ -51,7 +46,7 @@ public class InicioController implements Initializable {
 
     @FXML
     private void tocoBotonVendedor(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioVendedor.fxml"));
 
@@ -66,25 +61,29 @@ public class InicioController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+
+            stage.setHeight(675);
             
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
+
             controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnVendedor.getScene().getWindow();
             myStage.close();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-      
 
     }
 
     @FXML
     private void tocoBotonCliente(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -100,33 +99,36 @@ public class InicioController implements Initializable {
 
             stage.show();
             
+            stage.setHeight(675);
+            
+            stage.setWidth(366);
+            
+            stage.setResizable(false);
+
             controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnVendedor.getScene().getWindow();
             myStage.close();
-            
+
         } catch (IOException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void tocoBotonInicio(ActionEvent event) {
 
     }
-    
-    
+
     public Sistema getSistema() {
-        return sistema ;
+        return sistema;
     }
 
     public void setSistema(Sistema s) {
         this.sistema = s;
     }
-    
-    
 
 }
