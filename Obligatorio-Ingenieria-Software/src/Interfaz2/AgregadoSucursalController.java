@@ -153,6 +153,7 @@ public class AgregadoSucursalController implements Initializable {
         }
 
         //Parte de hora de inicio 
+        
         LocalTime horaInicio = this.dateInicio.getValue();
 
         //Parte de hora de finalizacion

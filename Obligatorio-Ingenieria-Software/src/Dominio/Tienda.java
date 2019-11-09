@@ -11,14 +11,14 @@ public class Tienda {
     private long telefono;
     private ArrayList<Producto> listaDeProductosEnStock;
     private int[] stockDeProductoPorId; //tipo funcion hash;
-
+    private ArrayList<Envase> todosLosEnvasesDisponibles; 
     private LocalTime horaInicio;
     private LocalTime horaFinalizacion;
 
     public Tienda(int numeroSucursal, String direccion, ArrayList<Sucursal> sucursales,
             long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock,
             int[] stockDeProductoPorId, String paginaWeb, LocalTime horaI,
-            LocalTime horaF) {
+            LocalTime horaF, ArrayList<Envase> envases) {
         this.setNumeroSucursal(numeroSucursal);
         this.setDireccion(direccion);
         this.setSucursales(sucursales);
@@ -26,7 +26,7 @@ public class Tienda {
 
         this.setListaDeProductosEnStock(listaDeProductosEnStock);
         this.setStockDeProductoPorId(stockDeProductoPorId);
-
+        this.setTodosLosEnvasesDisponibles(envases);
         this.setHoraInicio(horaI);
         this.setHoraFinalizacion(horaF);
 
@@ -37,10 +37,10 @@ public class Tienda {
         this.setDireccion("Direccion");
         this.setSucursales(new ArrayList<Sucursal>());
         this.setTelefono(1);
-
+      
         this.setListaDeProductosEnStock(new ArrayList<Producto>());
         this.setStockDeProductoPorId(new int[10]);
-
+        this.setTodosLosEnvasesDisponibles(new ArrayList<Envase>());
         this.setHoraInicio(LocalTime.parse("10:00"));
         this.setHoraFinalizacion(LocalTime.parse("18:00"));
     }
@@ -118,6 +118,19 @@ public class Tienda {
         this.horaFinalizacion = horaFinalizacion;
     }
 
+    public ArrayList<Envase> getTodosLosEnvasesDisponibles() {
+        return todosLosEnvasesDisponibles;
+    }
+
+    public void setTodosLosEnvasesDisponibles(ArrayList<Envase> todosLosEnvasesDisponibles) {
+        this.todosLosEnvasesDisponibles = todosLosEnvasesDisponibles;
+    }
+    
+    
+    
+    
+    
+
     //Metodos:
     public void agregarProducto(Producto producto) {
         if (!this.listaDeProductosEnStock.contains(producto)) {
@@ -146,6 +159,14 @@ public class Tienda {
             this.sucursales.remove(s);
         }
     }
+    
+    public void agregarEnvase(Envase e) {
+        if (!this.todosLosEnvasesDisponibles.contains(e)) {
+            this.todosLosEnvasesDisponibles.add(e);
+        }
+        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
+    }
+    
 
     @Override
     public boolean equals(Object o) {

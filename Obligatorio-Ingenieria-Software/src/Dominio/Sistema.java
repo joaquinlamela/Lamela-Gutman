@@ -137,5 +137,11 @@ public class Sistema {
         int cantidadDeElementos = this.echoShop.getListaDeProductosEnStock().size();
         return cantidadDeElementos++;
     }
+    
+    
+    public int ponerIdentificadorAEnvase(){
+        int cantidadDeElementos = this.echoShop.getTodosLosEnvasesDisponibles().size(); 
+        return cantidadDeElementos++;
+    }
 
 }
