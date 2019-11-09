@@ -126,14 +126,5 @@ public class PreVenta {
             this.listaDeProductos.remove(e);
         }
     }
-    
-    @Override
-    public boolean equals(Object o){
-        PreVenta pre= (PreVenta)o;
-        return  this.getIdentificadorDePreventa()== pre.getIdentificadorDePreventa(); 
-    }
-    
-    
-
 
 }

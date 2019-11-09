@@ -76,7 +76,11 @@ public class Envase {
     }
 
     public void setIdIdentificador(int idIdentificador) {
-        this.idIdentificador = idIdentificador;
+         if (idIdentificador >=1) {
+            this.idIdentificador = idIdentificador;
+        }else{
+            throw new RuntimeException("IdentificadorMayorA1");
+        }
     }
     
     

@@ -22,11 +22,11 @@ public class Producto  {
     public Producto() {
         this.setNombre("Nombre");
         this.setOrigen(tipoOrigen.Indefinido);
-        this.setDescripcionDelProducto("");
-        this.setPesoDelProducto(0);
+        this.setDescripcionDelProducto("Descripcion");
+        this.setPesoDelProducto(1);
         this.setPosiblesEnvasesRecomendados(new ArrayList<Envase>());
         this.setPrecio(2);
-        this.setCodigoIdentificador(0);
+        this.setCodigoIdentificador(1);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
     }
@@ -60,7 +60,11 @@ public class Producto  {
     }
 
     public void setDescripcionDelProducto(String descripcionDelProducto) {
-        this.descripcionDelProducto = descripcionDelProducto;
+        if (!descripcionDelProducto.trim().equals("")) {
+            this.descripcionDelProducto = descripcionDelProducto;
+        }else{
+            throw new RuntimeException("DescripcionNoVacia");
+        }
     }
 
     public int getPesoDelProducto() {
@@ -68,7 +72,11 @@ public class Producto  {
     }
 
     public void setPesoDelProducto(int pesoDelProducto) {
-        this.pesoDelProducto = pesoDelProducto;
+        if (pesoDelProducto >=1) {
+            this.pesoDelProducto = pesoDelProducto;
+        }else{
+            throw new RuntimeException("PesoMayorA0");
+        }
     }
 
     public ArrayList<Envase> getPosiblesEnvasesRecomendados() {
@@ -84,7 +92,11 @@ public class Producto  {
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        if (precio >=1) {
+            this.precio = precio;
+        }else{
+            throw new RuntimeException("PrecioMayorA0");
+        }
     }
 
     public int getCodigoIdentificador() {
@@ -92,7 +104,11 @@ public class Producto  {
     }
 
     public void setCodigoIdentificador(int codigoIdentificador) {
-        this.codigoIdentificador = codigoIdentificador;
+        if (codigoIdentificador >=1) {
+            this.codigoIdentificador = codigoIdentificador;
+        }else{
+            throw new RuntimeException("IdentificadorMayorA0");
+        }
     }
 
     public ArrayList<tipoMaterial> getListaDeMateriales() {
@@ -108,7 +124,11 @@ public class Producto  {
     }
 
     public void setCantidadVendidos(int cantidadVendidos) {
-        this.cantidadVendidos = cantidadVendidos;
+        if (cantidadVendidos >=0) {
+            this.cantidadVendidos = cantidadVendidos;
+        }else{
+            throw new RuntimeException("cantidadVendidosPositivo");
+        }
     }
 
     public String getNombre() {
@@ -116,9 +136,37 @@ public class Producto  {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (!nombre.trim().equals("")) {
+            this.nombre = nombre;
+        }else{
+            throw new RuntimeException("NombreNoVacio");
+        }
     }
 
+    public void agregarEnvase(Envase e){
+        if (!this.posiblesEnvasesRecomendados.contains(e)) {
+            this.posiblesEnvasesRecomendados.add(e);
+        }
+    }
+    
+    public void eliminarEnvase(Envase e){
+        if (this.posiblesEnvasesRecomendados.contains(e)) {
+            this.posiblesEnvasesRecomendados.remove(e);
+        }
+    }
+    
+    public void agregarMateriales(tipoMaterial t){
+        if (!this.listaDeMateriales.contains(t)) {
+            this.listaDeMateriales.add(t);
+        }
+    }
+    
+    public void eliminarMaterial(tipoMaterial t){
+        if (this.listaDeMateriales.contains(t)) {
+            this.listaDeMateriales.remove(t);
+        }
+    }
+    
     @Override
     public boolean equals(Object o) {
         Producto p = (Producto) o;

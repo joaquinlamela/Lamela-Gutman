@@ -20,7 +20,11 @@ public class Sucursal {
     }
 
     public void setNumeroSucursal(int numeroSucursal) {
-        this.numeroSucursal = numeroSucursal;
+        if (numeroSucursal >=1) {
+            this.numeroSucursal = numeroSucursal;
+        }else{
+            throw new RuntimeException("numeroSucursalMayorA0");
+        }
     }
 
     public String getDireccion() {
@@ -28,7 +32,11 @@ public class Sucursal {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        if (!direccion.trim().equals("")) {
+            this.direccion = direccion;
+        }else{
+            throw new RuntimeException("direccionNoVacia");
+        }
     }
 
     public long getTelefono() {
@@ -36,7 +44,11 @@ public class Sucursal {
     }
 
     public void setTelefono(long telefono) {
-        this.telefono = telefono;
+        if (telefono >=1) {
+            this.telefono = telefono;
+        }else{
+            throw new RuntimeException("telefonoMayorA0");
+        }
     }
     
     
@@ -49,9 +61,9 @@ public class Sucursal {
     }
 
     public Sucursal() {
-        this.setNumeroSucursal(0);
-        this.setDireccion("");
-        this.setTelefono(911);
+        this.setNumeroSucursal(1);
+        this.setDireccion("Direccion");
+        this.setTelefono(1);
     }
 
 }

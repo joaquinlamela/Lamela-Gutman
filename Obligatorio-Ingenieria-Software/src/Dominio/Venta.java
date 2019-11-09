@@ -137,7 +137,7 @@ public class Venta {
     }
 
     //Metodos
-    public void agregarProductosALaVenta(Producto producto) {
+    public void agregarProducto(Producto producto) {
         this.listaDeProductosAVender.add(producto);
         int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
         while (tamañoDeListaDeEnvases >= 0) {
@@ -152,7 +152,7 @@ public class Venta {
 
     }
 
-    public void eliminarProductosDeLaVenta(Producto producto) {
+    public void eliminarProducto(Producto producto) {
         this.listaDeProductosAVender.remove(producto);
         int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
         while (tamañoDeListaDeEnvases >= 0) {

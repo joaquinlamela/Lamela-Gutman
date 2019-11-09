@@ -33,10 +33,10 @@ public class Tienda {
     }
 
     public Tienda() {
-        this.setNumeroSucursal(0);
-        this.setDireccion("");
+        this.setNumeroSucursal(1);
+        this.setDireccion("Direccion");
         this.setSucursales(new ArrayList<Sucursal>());
-        this.setTelefono(-1);
+        this.setTelefono(1);
 
         this.setListaDeProductosEnStock(new ArrayList<Producto>());
         this.setStockDeProductoPorId(new int[10]);
@@ -51,11 +51,11 @@ public class Tienda {
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public ArrayList<Sucursal> getNumeroLocal() {
-        return sucursales;
+        if (!direccion.trim().equals("")) {
+            this.direccion = direccion;
+        }else{
+            throw new RuntimeException("direccionNoVacia");
+        }
     }
 
     public void setSucursales(ArrayList<Sucursal> sucursales) {
@@ -67,7 +67,11 @@ public class Tienda {
     }
 
     public void setTelefono(long telefono) {
-        this.telefono = telefono;
+        if (telefono >=1) {
+            this.telefono = telefono;
+        }else{
+            throw new RuntimeException("telefonoMayorA0");
+        }
     }
 
     public ArrayList<Producto> getListaDeProductosEnStock() {
@@ -128,11 +132,25 @@ public class Tienda {
             this.listaDeProductosEnStock.remove(producto);
         }
     }
+    
+    public void agregarSucursal(Sucursal s) {
+        if (!this.sucursales.contains(s)) {
+
+            this.sucursales.add(s);
+        }
+        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
+    }
+
+    public void eliminarSucursal(Sucursal s) {
+        if (this.sucursales.contains(s)) {
+            this.sucursales.remove(s);
+        }
+    }
 
     @Override
     public boolean equals(Object o) {
         Tienda tienda = (Tienda) o;
-        return this.getNumeroLocal() == tienda.getNumeroLocal();
+        return this.getNumeroSucursal() == tienda.getNumeroSucursal();
     }
 
 }
