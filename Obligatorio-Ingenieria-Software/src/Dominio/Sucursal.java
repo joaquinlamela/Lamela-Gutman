@@ -66,4 +66,13 @@ public class Sucursal {
         this.setTelefono(1);
     }
 
+    @Override
+    public String toString() {
+        return "Sucursal{" + "numeroSucursal=" + numeroSucursal + ", direccion=" +
+                direccion + ", telefono=" + telefono + '}';
+    }
+    
+    
+    
+
 }

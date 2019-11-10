@@ -148,7 +148,7 @@ public class Venta {
         this.precioTotal += producto.getPrecio();
         // TODO: 27/10/2019 HACER QUE CUANDO EN LA INTERFAZ AGREGUE CANTIDAD DE ELEMENTOS, SUME EN LA CANTIDAD DE PRODUCTOS
 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]+1;
+        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] + 1;
 
     }
 
@@ -162,8 +162,23 @@ public class Venta {
         }
         this.precioTotal -= producto.getPrecio();
         // TODO: 27/10/2019  ACTUALIZAR EN EL GET LA CANTIDAD DE ELEMENTOS 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]-1;
+        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] - 1;
 
     }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "listaDeProductosAVender=" + listaDeProductosAVender +
+                ", precioTotal=" + precioTotal + ", cantidadesPorProducto=" +
+                cantidadesPorProducto + ", fechaDeCompra=" + fechaDeCompra +
+                ", comprador=" + comprador + ", tipoDePago=" + tipoDePago + 
+                ", echoShop=" + echoShop + ", listaDeEnvasesUtilizados=" + 
+                listaDeEnvasesUtilizados + ", codigoIdentificadorDeVenta=" + 
+                codigoIdentificadorDeVenta + ", direccionAEnviar=" + 
+                direccionAEnviar + ", mes=" + mes + '}';
+    }
+    
+    
+    
 
 }

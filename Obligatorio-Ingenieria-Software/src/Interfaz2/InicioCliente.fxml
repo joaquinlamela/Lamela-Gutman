@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz2.InicioClienteController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Cliente%20inicio.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnContinuar" layoutX="20.0" layoutY="503.0" onAction="#continuar" prefHeight="38.0" prefWidth="337.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <Label layoutX="150.0" layoutY="220.0" prefHeight="27.0" prefWidth="61.0" text="Usuario" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

@@ -329,7 +329,8 @@ public class AgregarProductoController implements Initializable {
             Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, null, array, cantVendidos);
             this.sistema.getEchoShop().agregarProducto(productoACrear);
         }
-        //System.out.println(this.sistema.getEchoShop().getListaDeProductosEnStock().size());
+        System.out.println(this.sistema.getEchoShop().getListaDeProductosEnStock().size());
+        
 
     }
 

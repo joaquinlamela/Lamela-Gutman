@@ -170,8 +170,20 @@ public class Producto  {
     @Override
     public boolean equals(Object o) {
         Producto p = (Producto) o;
-        return this.getCodigoIdentificador() == p.getCodigoIdentificador();
+        return this.getCodigoIdentificador() == p.getCodigoIdentificador() && this.getNombre().equals(p.getNombre());
     }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", origen=" + origen + 
+                ", descripcionDelProducto=" + descripcionDelProducto + 
+                ", pesoDelProducto=" + pesoDelProducto + ", precio=" + precio +
+                ", codigoIdentificador=" + codigoIdentificador + ", posiblesEnvasesRecomendados=" +
+                posiblesEnvasesRecomendados + ", listaDeMateriales=" + listaDeMateriales 
+                + ", cantidadVendidos=" + cantidadVendidos + '}';
+    }
+    
+    
     
     
     

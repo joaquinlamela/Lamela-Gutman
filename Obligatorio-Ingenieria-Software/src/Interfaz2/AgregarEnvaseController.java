@@ -161,6 +161,13 @@ public class AgregarEnvaseController implements Initializable {
         }
         
         
+        for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
+            System.out.println(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
+        }
+
+       
+        
+        
         
 
     }
@@ -177,7 +184,7 @@ public class AgregarEnvaseController implements Initializable {
 
             Scene escena = new Scene(root);
 
-            Stage stage = new Stage();
+            Stage stage = new Stage(); 
 
             stage.setScene(escena);
 

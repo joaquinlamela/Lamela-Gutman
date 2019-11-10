@@ -1,5 +1,7 @@
 package Dominio;
 
+import java.util.Objects;
+
 public class Persona {
     //Atributos:
     private String nombre;
@@ -79,7 +81,25 @@ public class Persona {
 
     //Metodos si tiene:
 
+    @Override
+    public String toString() {
+        return "Persona{" + "nombre=" + nombre + ", edad=" + edad + ", domicilio=" + domicilio + ", rutComprador=" + rutComprador + '}';
+    }
+    
+    
+    @Override
+    public boolean equals(Object o) {
+        Persona persona = (Persona) o;
+        return this.getNombre().equalsIgnoreCase(persona.getNombre()) && 
+                this.getEdad()==persona.getEdad()&& 
+                this.getDomicilio().equalsIgnoreCase(persona.getDomicilio());
+    }
 
+   
+    
+    
+
+    
 
 
 }

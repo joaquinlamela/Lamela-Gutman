@@ -11,7 +11,7 @@ public class Tienda {
     private long telefono;
     private ArrayList<Producto> listaDeProductosEnStock;
     private int[] stockDeProductoPorId; //tipo funcion hash;
-    private ArrayList<Envase> todosLosEnvasesDisponibles; 
+    private ArrayList<Envase> todosLosEnvasesDisponibles;
     private LocalTime horaInicio;
     private LocalTime horaFinalizacion;
 
@@ -37,7 +37,7 @@ public class Tienda {
         this.setDireccion("Direccion");
         this.setSucursales(new ArrayList<Sucursal>());
         this.setTelefono(1);
-      
+
         this.setListaDeProductosEnStock(new ArrayList<Producto>());
         this.setStockDeProductoPorId(new int[10]);
         this.setTodosLosEnvasesDisponibles(new ArrayList<Envase>());
@@ -53,7 +53,7 @@ public class Tienda {
     public void setDireccion(String direccion) {
         if (!direccion.trim().equals("")) {
             this.direccion = direccion;
-        }else{
+        } else {
             throw new RuntimeException("direccionNoVacia");
         }
     }
@@ -67,9 +67,9 @@ public class Tienda {
     }
 
     public void setTelefono(long telefono) {
-        if (telefono >=1) {
+        if (telefono >= 1) {
             this.telefono = telefono;
-        }else{
+        } else {
             throw new RuntimeException("telefonoMayorA0");
         }
     }
@@ -125,11 +125,6 @@ public class Tienda {
     public void setTodosLosEnvasesDisponibles(ArrayList<Envase> todosLosEnvasesDisponibles) {
         this.todosLosEnvasesDisponibles = todosLosEnvasesDisponibles;
     }
-    
-    
-    
-    
-    
 
     //Metodos:
     public void agregarProducto(Producto producto) {
@@ -145,7 +140,13 @@ public class Tienda {
             this.listaDeProductosEnStock.remove(producto);
         }
     }
-    
+
+    public void eliminarProductoSinImportarStock(Producto prod) {
+        if (this.getListaDeProductosEnStock().contains(prod)) {
+            this.listaDeProductosEnStock.remove(prod);
+        }
+    }
+
     public void agregarSucursal(Sucursal s) {
         if (!this.sucursales.contains(s)) {
 
@@ -159,13 +160,48 @@ public class Tienda {
             this.sucursales.remove(s);
         }
     }
-    
+
     public void agregarEnvase(Envase e) {
         if (!this.todosLosEnvasesDisponibles.contains(e)) {
             this.todosLosEnvasesDisponibles.add(e);
         }
         //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
     }
+
+    public ArrayList<Producto> obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
+        int contador = 0;
+        int max = Integer.MIN_VALUE;
+        ArrayList<Producto> masVendidos = new ArrayList<Producto>();
+        ArrayList<Producto> copiaListaProd = listaProd;
+        Producto prodAgregar = new Producto();
+
+        for (int i = 0; i < copiaListaProd.size() || contador <= 5; i++) {
+
+            if (copiaListaProd.get(i).getCantidadVendidos() > max) {
+                prodAgregar = copiaListaProd.get(i);
+                copiaListaProd.remove(i);
+            }
+
+            if (!masVendidos.contains(prodAgregar)) {
+                masVendidos.add(prodAgregar);
+            }
+
+        }
+        return masVendidos;
+    }
+
+    @Override
+    public String toString() {
+        return "Tienda{" + "direccion=" + direccion + ", numeroSucursal=" 
+                + numeroSucursal + ", sucursales=" + sucursales +
+                ", telefono=" + telefono + ", listaDeProductosEnStock=" +
+                listaDeProductosEnStock + ", stockDeProductoPorId=" + stockDeProductoPorId +
+                ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles + 
+                ", horaInicio=" + horaInicio + ", horaFinalizacion=" +
+                horaFinalizacion + '}';
+    }
+    
+    
     
 
     @Override

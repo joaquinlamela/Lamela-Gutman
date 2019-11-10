@@ -82,6 +82,14 @@ public class Envase {
             throw new RuntimeException("IdentificadorMayorA1");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Envase{" + "nombre=" + nombre + ", idIdentificador=" + idIdentificador + ", pesoMaximoSoportado=" + pesoMaximoSoportado + ", tiposDeMateriales=" + tiposDeMateriales + '}';
+    }
+    
+    
+    
     
     
 

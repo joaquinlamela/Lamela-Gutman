@@ -5,19 +5,24 @@
  */
 package Interfaz2;
 
+import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableView;
 import javafx.stage.Stage;
@@ -45,11 +50,46 @@ public class EliminarProductoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.tablaDeProductos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     @FXML
     private void eliminarProductoSeleccionado(ActionEvent event) {
+        
+        //Parte de eliminar los productos seleccionados
+        boolean esValido = true;
+
+        ArrayList<Producto> listaProducto = new ArrayList<Producto>();
+
+        if (tablaDeProductos.getItems().isEmpty()) {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡Debe ingresar envases al sistema!");
+            alert.showAndWait();
+        } else {
+            ObservableList<Dominio.Producto> lista = (ObservableList<Dominio.Producto>) this.tablaDeProductos.getSelectionModel().getSelectedItems();
+            if (lista.isEmpty()) {
+                esValido = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: no ha seleccionado los envases");
+                alert.setContentText("¡Debe seleccionar envases para poder ingresar el producto!");
+                alert.showAndWait();
+            }
+
+            for (int i = 0; i < lista.size(); i++) {
+                listaProducto.add(lista.get(i));
+            }
+
+        }
+        
+        for (int i = 0; i < listaProducto.size(); i++) {
+            Producto prodAElim= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            this.getSistema().getEchoShop().eliminarProductoSinImportarStock(prodAElim);
+        }
+        
     }
 
     @FXML
@@ -69,11 +109,11 @@ public class EliminarProductoController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -88,6 +128,7 @@ public class EliminarProductoController implements Initializable {
 
     @FXML
     private void seleccionarElementoAEliminar(SortEvent<?> event) {
+
     }
 
     public void cerrarVentana() {
@@ -106,11 +147,11 @@ public class EliminarProductoController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);

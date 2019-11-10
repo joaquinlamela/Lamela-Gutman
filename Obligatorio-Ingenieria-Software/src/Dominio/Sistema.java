@@ -9,6 +9,7 @@ public class Sistema {
     private ArrayList<PreVenta> listaDePreventas;
     private Tienda echoShop;
     private int cantPreVentas;
+    private ArrayList<Persona> listaCliente;
 
     //Constructor:
     public Sistema() {
@@ -16,6 +17,7 @@ public class Sistema {
         this.listaDeVentasDelSistema = new ArrayList<Venta>();
         this.echoShop = new Tienda();
         this.cantPreVentas = 0;
+        this.listaCliente = new ArrayList<Persona>();
     }
 
     public int getCantPreVentas() {
@@ -49,6 +51,14 @@ public class Sistema {
 
     public void setEchToShop(Tienda listaDeEchoShop) {
         this.echoShop = listaDeEchoShop;
+    }
+
+    public ArrayList<Persona> getListaCliente() {
+        return listaCliente;
+    }
+
+    public void setListaCliente(ArrayList<Persona> listaCliente) {
+        this.listaCliente = listaCliente;
     }
 
     //Metodos:
@@ -134,14 +144,26 @@ public class Sistema {
     }
 
     public int ponerIdentificadorAProducto() {
-        int cantidadDeElementos = this.echoShop.getListaDeProductosEnStock().size();
+        int cantidadDeElementos = this.echoShop.getListaDeProductosEnStock().size() + 1;
         return cantidadDeElementos++;
     }
-    
-    
-    public int ponerIdentificadorAEnvase(){
-        int cantidadDeElementos = this.echoShop.getTodosLosEnvasesDisponibles().size(); 
+
+    public int ponerIdentificadorAEnvase() {
+        int cantidadDeElementos = this.echoShop.getTodosLosEnvasesDisponibles().size() + 1;
         return cantidadDeElementos++;
+    }
+
+    public void agregarCliente(Persona cliente) {
+        if (!this.listaCliente.contains(cliente)) {
+            this.listaCliente.add(cliente);
+        }
+    }
+
+    public void mostrar() {
+        for (int i = 0; i < this.getEchoShop().getListaDeProductosEnStock().size(); i++) {
+            System.out.println(this.getEchoShop().getListaDeProductosEnStock().get(i));
+
+        }
     }
 
 }

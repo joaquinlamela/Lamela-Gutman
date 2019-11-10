@@ -127,4 +127,12 @@ public class PreVenta {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PreVenta{" + "comprador=" + comprador + ", precioDePreVenta=" + precioDePreVenta + ", listaDeProductos=" + listaDeProductos + ", lugarARetirar=" + lugarARetirar + ", tipoDePagoDefinido=" + tipoDePagoDefinido + ", listaDeEnvase=" + listaDeEnvase + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+    }
+    
+    
+    
+
 }
