@@ -1,9 +1,9 @@
 package Dominio;
 
 import java.util.*;
+import javafx.scene.image.Image;
 
-
-public class Producto  {
+public class Producto {
 
     //Atributos:
     private String nombre; //Esta
@@ -15,8 +15,7 @@ public class Producto  {
     private ArrayList<Envase> posiblesEnvasesRecomendados; // Esta
     private ArrayList<tipoMaterial> listaDeMateriales; //Falta
     private int cantidadVendidos; //No se muestra a la hora de agregar productos
-    
-    
+    private Image imagenDelProducto;
 
     //Constructores:
     public Producto() {
@@ -29,12 +28,13 @@ public class Producto  {
         this.setCodigoIdentificador(1);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
+        this.setImagenDelProducto(new Image(""));
     }
 
     public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,
             int pesoDelProducto, int precio, int codigoIdentificador,
             ArrayList<Envase> posiblesEnvasesRecomendados,
-            ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos) {
+            ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos, Image imagen) {
         this.setNombre(nombre);
         this.setOrigen(origen);
         this.setDescripcionDelProducto(descripcionDelProducto);
@@ -44,6 +44,7 @@ public class Producto  {
         this.setCodigoIdentificador(codigoIdentificador);
         this.setListaDeMateriales(listaDeMateriales);
         this.setCantidadVendidos(cantVendidos);
+        this.setImagenDelProducto(imagen);
     }
 
     //Get´s && Set´s
@@ -62,7 +63,7 @@ public class Producto  {
     public void setDescripcionDelProducto(String descripcionDelProducto) {
         if (!descripcionDelProducto.trim().equals("")) {
             this.descripcionDelProducto = descripcionDelProducto;
-        }else{
+        } else {
             throw new RuntimeException("DescripcionNoVacia");
         }
     }
@@ -72,9 +73,9 @@ public class Producto  {
     }
 
     public void setPesoDelProducto(int pesoDelProducto) {
-        if (pesoDelProducto >=1) {
+        if (pesoDelProducto >= 1) {
             this.pesoDelProducto = pesoDelProducto;
-        }else{
+        } else {
             throw new RuntimeException("PesoMayorA0");
         }
     }
@@ -92,9 +93,9 @@ public class Producto  {
     }
 
     public void setPrecio(double precio) {
-        if (precio >=1) {
+        if (precio >= 1) {
             this.precio = precio;
-        }else{
+        } else {
             throw new RuntimeException("PrecioMayorA0");
         }
     }
@@ -104,9 +105,9 @@ public class Producto  {
     }
 
     public void setCodigoIdentificador(int codigoIdentificador) {
-        if (codigoIdentificador >=1) {
+        if (codigoIdentificador >= 1) {
             this.codigoIdentificador = codigoIdentificador;
-        }else{
+        } else {
             throw new RuntimeException("IdentificadorMayorA0");
         }
     }
@@ -124,9 +125,9 @@ public class Producto  {
     }
 
     public void setCantidadVendidos(int cantidadVendidos) {
-        if (cantidadVendidos >=0) {
+        if (cantidadVendidos >= 0) {
             this.cantidadVendidos = cantidadVendidos;
-        }else{
+        } else {
             throw new RuntimeException("cantidadVendidosPositivo");
         }
     }
@@ -138,35 +139,44 @@ public class Producto  {
     public void setNombre(String nombre) {
         if (!nombre.trim().equals("")) {
             this.nombre = nombre;
-        }else{
+        } else {
             throw new RuntimeException("NombreNoVacio");
         }
     }
 
-    public void agregarEnvase(Envase e){
+    public Image getImagenDelProducto() {
+        return imagenDelProducto;
+    }
+
+    public void setImagenDelProducto(Image imagenDelProducto) {
+        this.imagenDelProducto = imagenDelProducto;
+    }
+
+    //Metodos aparte de los getter and setter
+    public void agregarEnvase(Envase e) {
         if (!this.posiblesEnvasesRecomendados.contains(e)) {
             this.posiblesEnvasesRecomendados.add(e);
         }
     }
-    
-    public void eliminarEnvase(Envase e){
+
+    public void eliminarEnvase(Envase e) {
         if (this.posiblesEnvasesRecomendados.contains(e)) {
             this.posiblesEnvasesRecomendados.remove(e);
         }
     }
-    
-    public void agregarMateriales(tipoMaterial t){
+
+    public void agregarMateriales(tipoMaterial t) {
         if (!this.listaDeMateriales.contains(t)) {
             this.listaDeMateriales.add(t);
         }
     }
-    
-    public void eliminarMaterial(tipoMaterial t){
+
+    public void eliminarMaterial(tipoMaterial t) {
         if (this.listaDeMateriales.contains(t)) {
             this.listaDeMateriales.remove(t);
         }
     }
-    
+
     @Override
     public boolean equals(Object o) {
         Producto p = (Producto) o;
@@ -175,17 +185,12 @@ public class Producto  {
 
     @Override
     public String toString() {
-        return "Producto{" + "nombre=" + nombre + ", origen=" + origen + 
-                ", descripcionDelProducto=" + descripcionDelProducto + 
-                ", pesoDelProducto=" + pesoDelProducto + ", precio=" + precio +
-                ", codigoIdentificador=" + codigoIdentificador + ", posiblesEnvasesRecomendados=" +
-                posiblesEnvasesRecomendados + ", listaDeMateriales=" + listaDeMateriales 
+        return "Producto{" + "nombre=" + nombre + ", origen=" + origen
+                + ", descripcionDelProducto=" + descripcionDelProducto
+                + ", pesoDelProducto=" + pesoDelProducto + ", precio=" + precio
+                + ", codigoIdentificador=" + codigoIdentificador + ", posiblesEnvasesRecomendados="
+                + posiblesEnvasesRecomendados + ", listaDeMateriales=" + listaDeMateriales
                 + ", cantidadVendidos=" + cantidadVendidos + '}';
     }
-    
-    
-    
-    
-    
 
 }

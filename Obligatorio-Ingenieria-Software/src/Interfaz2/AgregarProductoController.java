@@ -16,6 +16,7 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -34,6 +35,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -73,13 +77,15 @@ public class AgregarProductoController implements Initializable {
      */
     private Sistema sistema;
     @FXML
-    private TableView<Dominio.Envase> tablaDeEnvases;
+    private TableView<Envase> tablaDeEnvases;
     @FXML
-    private TableColumn<?, ?> nombreEnvase;
+    private TableColumn<Envase, String> nombreEnvase;
     @FXML
-    private TableColumn<?, ?> idEnvase;
+    private TableColumn<Envase, String> idEnvase;
     @FXML
-    private TableColumn<?, ?> capacidadEnvase;
+    private TableColumn<Envase, Integer> capacidadEnvase;
+
+    private ObservableList<Envase> listaDeEnvases;
 
     /**
      * Initializes the controller class.
@@ -90,7 +96,33 @@ public class AgregarProductoController implements Initializable {
         ObservableList<String> valoresPosibles = FXCollections.observableArrayList("Vegetal", "Mineral", "Animal", "Fosil", "Indefinido");
         this.cmbOrigen.setItems(valoresPosibles);
         this.tablaDeEnvases.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listaDeEnvases = FXCollections.observableArrayList();
 
+        //PREGUNTARRRRR, EL TEMA QUE SUCEDE ES QUE SISTEMA QUEDA EN NULL, ESTO DEBIDO A QUE ES QUE SE LLAMA AL INICIALIZAR ANTES DE HACER EL SET DE SISTEMA
+        /*
+        if (this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size() == 0) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay envases posibles para asociar!");
+            alert.showAndWait();
+        } else {
+            listaDeEnvases= FXCollections.observableArrayList();
+
+           
+            this.nombreEnvase.setCellFactory(new PropertyValueFactory("nombre"));
+            this.idEnvase.setCellFactory(new PropertyValueFactory("idIdentificador"));
+            this.capacidadEnvase.setCellFactory(new PropertyValueFactory("pesoMaximoSoportado"));
+            
+
+            for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+                listaDeEnvases.add(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
+            }
+
+            this.tablaDeEnvases.setItems(listaDeEnvases);
+        }
+         */
     }
 
     @FXML
@@ -110,6 +142,31 @@ public class AgregarProductoController implements Initializable {
     private void obtenerOrigen(ActionEvent event) {
     }
 
+    public void cargarDatos(ArrayList<Envase> listaEnvases, Sistema sistema) {
+
+        this.setSistema(sistema);
+
+        if (this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().isEmpty()) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay envases posibles para asociar!");
+            alert.showAndWait();
+        } else {
+
+            this.nombreEnvase.setCellValueFactory(new PropertyValueFactory("nombre"));
+            this.idEnvase.setCellValueFactory(new PropertyValueFactory("idIdentificador"));
+            this.capacidadEnvase.setCellValueFactory(new PropertyValueFactory("pesoMaximoSoportado"));
+
+            for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
+                listaDeEnvases.add(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
+            }
+
+            this.tablaDeEnvases.setItems(listaDeEnvases);
+        }
+    }
+
     @FXML
     private void agregarProductoCreado(ActionEvent event) {
 
@@ -120,7 +177,6 @@ public class AgregarProductoController implements Initializable {
         int peso = 1;
         ArrayList<Dominio.Envase> listaEnvases = new ArrayList<>();
 
-        
         //Parte de nombre de producto
         String nombre = txtFNombre.getText().trim();
 
@@ -133,9 +189,8 @@ public class AgregarProductoController implements Initializable {
             alert.showAndWait();
 
         }
-        
-        //Parte de peso
 
+        //Parte de peso
         try {
             String pesoString = txtFPeso.getText().trim();
             if (pesoString.length() == 0) {
@@ -154,6 +209,15 @@ public class AgregarProductoController implements Initializable {
                     alert.setHeaderText("Error: no es un precio valido");
                     alert.setContentText("Ingrese un peso positivo y mayor a 0");
                     alert.showAndWait();
+                } else {
+                    if (peso > 100) {
+                        esValido = false;
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("¡Cuidado!");
+                        alert.setHeaderText("Error: no es un precio valido");
+                        alert.setContentText("Ingrese un peso menor o igual a 100");
+                        alert.showAndWait();
+                    }
                 }
             }
         } catch (NumberFormatException e) {
@@ -164,9 +228,8 @@ public class AgregarProductoController implements Initializable {
             alert.setContentText("Reingrese el valor del peso!");
             alert.showAndWait();
         }
-        
-        //Parte de precio
 
+        //Parte de precio
         try {
             String precioString = txtFPrecio.getText().trim();
 
@@ -197,14 +260,13 @@ public class AgregarProductoController implements Initializable {
             alert.setContentText("Reingrese el valor del peso!");
             alert.showAndWait();
         }
-        
-        //Parte de tipo de origen
 
+        //Parte de tipo de origen
         Dominio.tipoOrigen origenReal = tipoOrigen.Indefinido;
         //Preguntar  en ayudantia
         if (!cmbOrigen.getSelectionModel().isEmpty()) {
             String origen = this.cmbOrigen.getSelectionModel().getSelectedItem();
-            
+
             if (origen.length() == 0) {
                 esValido = false;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -233,18 +295,16 @@ public class AgregarProductoController implements Initializable {
                     }
                 }
             }
-        }else{
-                esValido = false;
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("¡Cuidado!");
-                alert.setHeaderText("Error: no ha seleccionado ningun origen");
-                alert.setContentText("!Seleccione un origen!");
-                alert.showAndWait();
+        } else {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no ha seleccionado ningun origen");
+            alert.setContentText("!Seleccione un origen!");
+            alert.showAndWait();
         }
-        
-        //Parte de descripcion
-        
 
+        //Parte de descripcion
         String descripcion = this.txtFDescripcion.getText().trim();
         if (descripcion.length() < 10) {
             esValido = false;
@@ -254,9 +314,8 @@ public class AgregarProductoController implements Initializable {
             alert.setContentText("El campo de descripcion debe contener mas caracteres !");
             alert.showAndWait();
         }
-        
-        //Parte de tipos de materiales
 
+        //Parte de tipos de materiales
         ArrayList<Dominio.tipoMaterial> array = new ArrayList<>();
         if (cmbPlastico.isSelected()) {
             array.add(tipoMaterial.Plastico);
@@ -282,10 +341,8 @@ public class AgregarProductoController implements Initializable {
             alert.setContentText("Debe seleccionar al menos un material !");
             alert.showAndWait();
         }
-        
-        //Parte de envases
 
-        /*
+        //Parte de envases
         if (tablaDeEnvases.getItems().isEmpty()) {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -306,12 +363,10 @@ public class AgregarProductoController implements Initializable {
 
             for (int i = 0; i < lista.size(); i++) {
                 listaEnvases.add(lista.get(i));
-
             }
 
         }
-         */
-        
+
         //Parte de codigo identificador
         int codigoIdentificadorDelProducto = this.getSistema().ponerIdentificadorAProducto();
 
@@ -322,15 +377,19 @@ public class AgregarProductoController implements Initializable {
                 cantVendidos++;
             }
         }
-        
-        //Creacion del producto si los campso son validos
 
-        if (esValido) {                                                                                                             //listaEnvases  //array
-            Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, null, array, cantVendidos);
+        //Creacion del producto si los campso son validos
+        if (esValido) {
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+            Image imagenProducto = new Image(selectedFile.toURI().toString());
+            //listaEnvases  //array
+            Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);
             this.sistema.getEchoShop().agregarProducto(productoACrear);
+            //System.out.println(selectedFile.getAbsolutePath()); 
         }
-        System.out.println(this.sistema.getEchoShop().getListaDeProductosEnStock().size());
-        
+        // System.out.println(this.sistema.getEchoShop().getListaDeProductosEnStock().size());
+        // System.out.println(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(0));
 
     }
 

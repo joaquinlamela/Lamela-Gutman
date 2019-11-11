@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,7 +25,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.SortEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -41,9 +44,19 @@ public class EliminarProductoController implements Initializable {
     @FXML
     private JFXButton btnInicio;
     @FXML
-    private TableView<?> tablaDeProductos;
+    private TableView<Producto> tablaDeProductos;
 
     private Sistema sistema;
+
+    private ObservableList<Producto> listaDeProductos;
+    @FXML
+    private TableColumn<Producto, String> clNombre;
+    @FXML
+    private TableColumn<Producto, String> clIdentificador;
+    @FXML
+    private TableColumn<Producto, Integer> clPrecio;
+    @FXML
+    private TableColumn<Producto, Integer> clCantVendidos;
 
     /**
      * Initializes the controller class.
@@ -51,11 +64,63 @@ public class EliminarProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.tablaDeProductos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        listaDeProductos = FXCollections.observableArrayList();
+        //PREGUNTARRRRR, EL TEMA QUE SUCEDE ES QUE SISTEMA QUEDA EN NULL, ESTO DEBIDO A QUE ES QUE SE LLAMA AL INICIALIZAR ANTES DE HACER EL SET DE SISTEMA
+
+        /*
+        if (this.getSistema().getEchoShop().getListaDeProductosEnStock().size() == 0) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay productos en el sistema para eliminar!");
+            alert.showAndWait();
+        } else {
+            listaDeProductos = FXCollections.observableArrayList();
+
+            this.clNombre.setCellFactory(new PropertyValueFactory("nombre"));
+            this.clIdentificador.setCellFactory(new PropertyValueFactory("codigoIdentificador"));
+            this.clPrecio.setCellFactory(new PropertyValueFactory("precio"));
+            this.clCantVendidos.setCellFactory(new PropertyValueFactory("cantidadVendidos"));
+
+            for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+                listaDeProductos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i));
+            }
+
+            this.tablaDeProductos.setItems(listaDeProductos);
+        }
+         */
+    }
+
+    public void cargarDatos(ArrayList<Producto> lista, Sistema sistema) {
+       
+        this.setSistema(sistema);
+        if (this.getSistema().getEchoShop().getListaDeProductosEnStock().size() == 0) {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay productos en el sistema para eliminar!");
+            alert.showAndWait();
+        } else {
+
+            this.clNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
+            this.clIdentificador.setCellValueFactory(new PropertyValueFactory("codigoIdentificador"));
+            this.clPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
+            this.clCantVendidos.setCellValueFactory(new PropertyValueFactory("cantidadVendidos"));
+
+            for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+                    listaDeProductos.add(lista.get(i)); 
+                    // listaDeProductos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i));
+            }
+
+            this.tablaDeProductos.setItems(listaDeProductos);
+        }
     }
 
     @FXML
     private void eliminarProductoSeleccionado(ActionEvent event) {
-        
+
         //Parte de eliminar los productos seleccionados
         boolean esValido = true;
 
@@ -84,12 +149,13 @@ public class EliminarProductoController implements Initializable {
             }
 
         }
-        
+
         for (int i = 0; i < listaProducto.size(); i++) {
-            Producto prodAElim= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            Producto prodAElim = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
             this.getSistema().getEchoShop().eliminarProductoSinImportarStock(prodAElim);
+            
         }
-        
+
     }
 
     @FXML

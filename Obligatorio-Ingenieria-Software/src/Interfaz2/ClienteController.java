@@ -19,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -31,23 +33,23 @@ import javafx.stage.Stage;
 public class ClienteController implements Initializable {
 
     @FXML
-    private ScrollPane scrollPane;
-    @FXML
     private VBox vBox;
     @FXML
     private JFXButton btnCarrito;
+    private Sistema sistema;
+    
+    @FXML
+    private JFXButton btnMenu;
+    @FXML
+    private JFXButton btnIrAInicio;
+    @FXML
+    private ScrollPane scrollPane;
     @FXML
     private JFXButton btnMapa;
     @FXML
     private JFXButton btnMercado;
     @FXML
     private JFXButton btnTopVentas;
-    @FXML
-    private JFXButton btnMenu;
-    @FXML
-    private JFXButton btnIrAInicio;
-    
-    private Sistema sistema; 
 
     /**
      * Initializes the controller class.
@@ -58,7 +60,7 @@ public class ClienteController implements Initializable {
             ProductosController prod= new ProductosController(); 
             vBox.getChildren().add(prod); 
        
-        
+  
     }    
 
     @FXML

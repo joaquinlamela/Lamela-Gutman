@@ -48,11 +48,11 @@ public class InicioClienteController implements Initializable {
     private void continuar(ActionEvent event) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Prueba.fxml"));
+            
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            PruebaController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -78,6 +78,8 @@ public class InicioClienteController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(InicioVendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
         
         
     }

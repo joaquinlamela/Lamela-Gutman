@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -59,35 +60,45 @@ public class VendedorController implements Initializable {
     @FXML
     private void agregarProducto(ActionEvent event) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarProducto.fxml"));
+        if (!this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().isEmpty()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarProducto.fxml"));
 
-            Parent root = loader.load();
+                Parent root = loader.load();
 
-            AgregarProductoController controlador = loader.getController();
+                AgregarProductoController controlador = loader.getController();
 
-            Scene escena = new Scene(root);
+                controlador.cargarDatos(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles(), this.sistema);
 
-            Stage stage = new Stage();
+                Scene escena = new Scene(root);
 
-            stage.setScene(escena);
+                Stage stage = new Stage();
 
-            stage.show();
-            
-            stage.setHeight(675);
-            
-            stage.setWidth(366);
-            
-            stage.setResizable(false);
+                stage.setScene(escena);
 
-            controlador.setSistema(sistema);
+                stage.show();
 
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                stage.setHeight(675);
 
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+                stage.setWidth(366);
+
+                stage.setResizable(false);
+
+                controlador.setSistema(sistema);
+
+                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay envases posibles para asociar!");
+            alert.showAndWait();
         }
 
     }
@@ -109,11 +120,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -145,11 +156,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -167,35 +178,45 @@ public class VendedorController implements Initializable {
     @FXML
     private void eliminarProducto(ActionEvent event) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EliminarProducto.fxml"));
+        if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("EliminarProducto.fxml"));
 
-            Parent root = loader.load();
+                Parent root = loader.load();
 
-            EliminarProductoController controlador = loader.getController();
+                EliminarProductoController controlador = loader.getController();
 
-            Scene escena = new Scene(root);
+                controlador.cargarDatos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
-            Stage stage = new Stage();
+                Scene escena = new Scene(root);
 
-            stage.setScene(escena);
+                Stage stage = new Stage();
 
-            stage.show();
-            
-            stage.setHeight(675);
-            
-            stage.setWidth(366);
-            
-            stage.setResizable(false);
+                stage.setScene(escena);
 
-            controlador.setSistema(sistema);
+                stage.show();
 
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                stage.setHeight(675);
 
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+                stage.setWidth(366);
+
+                stage.setResizable(false);
+
+                controlador.setSistema(sistema);
+
+                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay productos en el sistema para eliminar!");
+            alert.showAndWait();
         }
 
     }
@@ -217,11 +238,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -253,11 +274,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -289,11 +310,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -324,11 +345,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -358,13 +379,13 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
 
             stage.setResizable(false);
-            
+
             controlador.setSistema(sistema);
 
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
@@ -392,11 +413,11 @@ public class VendedorController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);

@@ -117,6 +117,8 @@ public class InicioController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    
 
     }
 

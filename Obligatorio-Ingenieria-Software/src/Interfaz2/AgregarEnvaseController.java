@@ -74,9 +74,8 @@ public class AgregarEnvaseController implements Initializable {
     @FXML
     private void agregarEnvase(ActionEvent event) {
         boolean esValido = true;
-        int peso=1; 
-        
-        
+        int peso = 1;
+
         //Parte de nombre del envase
         String nombre = this.txtFNombreEnvase.getText().trim();
 
@@ -88,9 +87,8 @@ public class AgregarEnvaseController implements Initializable {
             alert.setContentText("El campo de nombre, se encuentra vacio!");
             alert.showAndWait();
         }
-        
-        //Parte de peso
 
+        //Parte de peso
         try {
             String pesoString = this.txtFPesoSoportado.getText().trim();
             if (pesoString.length() == 0) {
@@ -109,6 +107,15 @@ public class AgregarEnvaseController implements Initializable {
                     alert.setHeaderText("Error: no es un precio valido");
                     alert.setContentText("Ingrese un peso positivo y mayor a 0");
                     alert.showAndWait();
+                } else {
+                    if (peso > 100) {
+                        esValido = false;
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("¡Cuidado!");
+                        alert.setHeaderText("Error: no es un precio valido");
+                        alert.setContentText("Ingrese un peso menor o igual a 100");
+                        alert.showAndWait();
+                    }
                 }
             }
         } catch (NumberFormatException e) {
@@ -119,10 +126,8 @@ public class AgregarEnvaseController implements Initializable {
             alert.setContentText("Reingrese el valor del peso!");
             alert.showAndWait();
         }
-        
-        
-         //Parte de tipos de materiales
 
+        //Parte de tipos de materiales
         ArrayList<Dominio.tipoMaterial> materiales = new ArrayList<>();
         if (this.rbPlastico.isSelected()) {
             materiales.add(tipoMaterial.Plastico);
@@ -148,27 +153,19 @@ public class AgregarEnvaseController implements Initializable {
             alert.setContentText("Debe seleccionar al menos un material !");
             alert.showAndWait();
         }
-        
+
         //Parte del codigo identificador del envase
-        
-        int codigoIdentificadorEnvase= this.getSistema().ponerIdentificadorAEnvase(); 
-        
+        int codigoIdentificadorEnvase = this.getSistema().ponerIdentificadorAEnvase();
+
         //Parte de la creacion del envase si es valido
-        
-        if(esValido){
-            Envase envaseAgregar= new Envase(nombre, codigoIdentificadorEnvase, peso, materiales); 
+        if (esValido) {
+            Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales);
             this.getSistema().getEchoShop().agregarEnvase(envaseAgregar);
         }
-        
-        
+
         for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
             System.out.println(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
         }
-
-       
-        
-        
-        
 
     }
 
@@ -184,7 +181,7 @@ public class AgregarEnvaseController implements Initializable {
 
             Scene escena = new Scene(root);
 
-            Stage stage = new Stage(); 
+            Stage stage = new Stage();
 
             stage.setScene(escena);
 

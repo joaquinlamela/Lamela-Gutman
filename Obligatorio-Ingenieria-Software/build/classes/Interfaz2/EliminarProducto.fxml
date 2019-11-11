@@ -19,10 +19,10 @@
       <JFXButton fx:id="btnInicio" layoutX="-4.0" layoutY="590.0" onAction="#volverAInicio" prefHeight="55.0" prefWidth="367.0" text="&#10;&#10;" />
       <TableView fx:id="tablaDeProductos" layoutX="14.0" layoutY="117.0" onSort="#seleccionarElementoAEliminar" prefHeight="371.0" prefWidth="334.0">
          <columns>
-            <TableColumn prefWidth="84.0" text="Nombre" />
-            <TableColumn prefWidth="65.0" text="Id" />
-            <TableColumn prefWidth="85.0" text="Precio" />
-            <TableColumn prefWidth="99.0" text="Imagen" />
+            <TableColumn fx:id="clNombre" prefWidth="84.0" text="Nombre" />
+            <TableColumn fx:id="clIdentificador" prefWidth="65.0" text="Id" />
+            <TableColumn fx:id="clPrecio" prefWidth="85.0" text="Precio" />
+            <TableColumn fx:id="clCantVendidos" prefWidth="99.0" text="Cant vendidos" />
          </columns>
       </TableView>
    </children>
