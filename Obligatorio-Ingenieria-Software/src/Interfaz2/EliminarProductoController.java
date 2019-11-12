@@ -105,7 +105,7 @@ public class EliminarProductoController implements Initializable {
     }
     */
 
-    /*
+    
     public void cargarDatos(ArrayList<Producto> lista, Sistema sistema) {
        
         this.setSistema(sistema);
@@ -131,7 +131,7 @@ public class EliminarProductoController implements Initializable {
             this.tablaDeProductos.setItems(listaDeProductos);
         }
     }
-     */
+     
     @FXML
     private void eliminarProductoSeleccionado(ActionEvent event) {
 
