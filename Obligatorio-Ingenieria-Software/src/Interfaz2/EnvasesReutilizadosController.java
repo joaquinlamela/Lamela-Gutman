@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Envase;
 import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -24,8 +25,6 @@ import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Alert;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -33,14 +32,8 @@ import javafx.stage.Stage;
  *
  * @author user
  */
-public class EstadisticasController implements Initializable {
+public class EnvasesReutilizadosController implements Initializable {
 
-    @FXML
-    private JFXButton btnInicio;
-    @FXML
-    private JFXButton btnAtras;
-
-    private Sistema sistema;
     @FXML
     private JFXButton btnMasVendidos;
     @FXML
@@ -50,131 +43,54 @@ public class EstadisticasController implements Initializable {
     @FXML
     private JFXButton btnBeneficios;
     @FXML
-    private BarChart<?, ?> graficaMasVendidos;
+    private BarChart<?, ?> graficaEnvases;
     @FXML
     private NumberAxis y;
     @FXML
     private CategoryAxis x;
+    @FXML
+    private JFXButton btnAtras;
+    @FXML
+    private JFXButton btnInicio;
 
-    
+    private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        /*
-        XYChart.Series set1 = new XYChart.Series<>();
-
-        ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().obtenerLos5MasVendidos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
-
-        for (int i = 0; i < listaProductos.size(); i++) {
-            String nombreProd = listaProductos.get(i).getNombre();
-            int cantVendidos = listaProductos.get(i).getCantidadVendidos();
-            set1.getData().add(new XYChart.Data(nombreProd, cantVendidos));
-            graficaMasVendidos.getData().add(set1);
-        }
-        */ 
-
+        // TODO
     }
     
-    public void cargarGraficas(Sistema sistema){
+    public void cargarGraficaEnvases(Sistema sistema){
         
         this.setSistema(sistema);
         
         XYChart.Series set1 = new XYChart.Series<>();
+        
+        ArrayList<Envase> listaDeEnvases= this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles(); 
 
-        ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().obtenerLos5MasVendidos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
-
-        for (int i = 0; i < listaProductos.size(); i++) {
-            String nombreProd = listaProductos.get(i).getNombre();
-            int cantVendidos = listaProductos.get(i).getCantidadVendidos();
-            set1.getData().add(new XYChart.Data(nombreProd, cantVendidos));
-            graficaMasVendidos.getData().add(set1);
-        }
-    }
-    
-    
-    
-
-    @FXML
-    private void volverAInicio(ActionEvent event) {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
-            Parent root = loader.load();
-
-            ClienteController controlador = loader.getController();
+        for (int i = 0; i < listaDeEnvases.size(); i++) {
             
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setHeight(675);
-
-            stage.setWidth(366);
-
-            stage.setResizable(false);
-
-            controlador.setSistema(sistema);
-
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
+            
+            String nombreEnvase = listaDeEnvases.get(i).getNombre();
+            int maximoPesoEnvase = listaDeEnvases.get(i).getPesoMaximoSoportado(); 
+            set1.getData().add(new XYChart.Data(nombreEnvase, maximoPesoEnvase));
+            graficaEnvases.getData().add(set1);
         }
-
     }
+    
 
     @FXML
-    private void volverVentanaAnterior(ActionEvent event) {
+    private void mostrarMasVendidos(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Estadisticas.fxml"));
 
             Parent root = loader.load();
 
-           ClienteController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setHeight(675);
-
-            stage.setWidth(366);
-
-            stage.setResizable(false);
-
-            controlador.setSistema(sistema);
-
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
-
-    public void cerrarVentana() {
-
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
-            Parent root = loader.load();
-
-            VendedorController controlador = loader.getController();
+            EstadisticasController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -194,72 +110,25 @@ public class EstadisticasController implements Initializable {
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
-            Stage myStage = (Stage) this.btnInicio.getScene().getWindow();
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }
-
-    public Sistema getSistema() {
-        return sistema;
-    }
-
-    public void setSistema(Sistema sistema) {
-        this.sistema = sistema;
-    }
-
-    @FXML
-    private void mostrarMasVendidos(ActionEvent event) {
     }
 
     @FXML
     private void envasesUtilizados(ActionEvent event) {
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EnvasesReutilizados.fxml"));
-            
-            Parent root = loader.load();
 
-            EnvasesReutilizadosController controlador = loader.getController();
-            
-            controlador.cargarGraficaEnvases(sistema); 
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setHeight(675);
-
-            stage.setWidth(366);
-
-            stage.setResizable(false);
-
-            controlador.setSistema(sistema);
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        
     }
 
     @FXML
     private void ventasPorMes(ActionEvent event) {
-        
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GraficaDeVentaXMes.fxml"));
-            
+
             Parent root = loader.load();
 
             GraficaDeVentaXMesController controlador = loader.getController();
@@ -285,20 +154,17 @@ public class EstadisticasController implements Initializable {
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-      
-        
-        
     }
 
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Beneficios.fxml"));
-            
+
             Parent root = loader.load();
 
             BeneficiosController controlador = loader.getController();
@@ -324,9 +190,120 @@ public class EstadisticasController implements Initializable {
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
+    }
+
+    @FXML
+    private void volverVentanaAnterior(ActionEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+            Parent root = loader.load();
+
+            ClienteController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    @FXML
+    private void volverAInicio(ActionEvent event) {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+            Parent root = loader.load();
+
+            ClienteController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public Sistema getSistema() {
+        return sistema;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
+    public void cerrarVentana() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+            Parent root = loader.load();
+
+            ClienteController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
 }

@@ -20,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -65,33 +66,46 @@ public class EliminarProductoController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         this.tablaDeProductos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listaDeProductos = FXCollections.observableArrayList();
-        //PREGUNTARRRRR, EL TEMA QUE SUCEDE ES QUE SISTEMA QUEDA EN NULL, ESTO DEBIDO A QUE ES QUE SE LLAMA AL INICIALIZAR ANTES DE HACER EL SET DE SISTEMA
 
-        /*
-        if (this.getSistema().getEchoShop().getListaDeProductosEnStock().size() == 0) {
+    }
+    
+    /*
 
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no hay envases");
-            alert.setContentText("¡No hay productos en el sistema para eliminar!");
-            alert.showAndWait();
-        } else {
-            listaDeProductos = FXCollections.observableArrayList();
+    public void cargarArticulos(ArrayList<Producto> lista, Sistema sistema) {
 
-            this.clNombre.setCellFactory(new PropertyValueFactory("nombre"));
-            this.clIdentificador.setCellFactory(new PropertyValueFactory("codigoIdentificador"));
-            this.clPrecio.setCellFactory(new PropertyValueFactory("precio"));
-            this.clCantVendidos.setCellFactory(new PropertyValueFactory("cantidadVendidos"));
+        this.productosMasVendidos.getChildren().clear();
 
-            for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
-                listaDeProductos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i));
+        this.productosMasVendidos.setSpacing(20);
+
+        for (int i = 0; i < listaProductos.size(); i++) {
+
+            try {
+                Producto producto = listaProductos.get(i);
+                //Cargarart el objeto
+
+                FXMLLoader fxml = new FXMLLoader(getClass().getResource("ProductosAEliminar.fxml"));
+
+                Parent nodo = fxml.load();
+
+                //Carga los datos
+                ProductosAEliminarController controlador = fxml.getController();
+
+                controlador.inicializarDatos(producto, sistema, paraCargarDevuelta);
+
+                controlador.setSistema(sistema);
+
+                //Cargo el nuevo objeto
+                this.productosMasVendidos.getChildren().add((Node) nodo);
+
+            } catch (IOException ex) {
+                Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            this.tablaDeProductos.setItems(listaDeProductos);
         }
-         */
     }
+    */
 
+    /*
     public void cargarDatos(ArrayList<Producto> lista, Sistema sistema) {
        
         this.setSistema(sistema);
@@ -117,7 +131,7 @@ public class EliminarProductoController implements Initializable {
             this.tablaDeProductos.setItems(listaDeProductos);
         }
     }
-
+     */
     @FXML
     private void eliminarProductoSeleccionado(ActionEvent event) {
 
@@ -153,7 +167,7 @@ public class EliminarProductoController implements Initializable {
         for (int i = 0; i < listaProducto.size(); i++) {
             Producto prodAElim = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
             this.getSistema().getEchoShop().eliminarProductoSinImportarStock(prodAElim);
-            
+
         }
 
     }

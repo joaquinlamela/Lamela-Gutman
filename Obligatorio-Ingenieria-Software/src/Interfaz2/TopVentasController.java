@@ -5,10 +5,12 @@
  */
 package Interfaz2;
 
+import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,9 +18,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -28,14 +32,15 @@ import javafx.stage.Stage;
  */
 public class TopVentasController implements Initializable {
 
-    @FXML
-    private TableView<?> tablaDeProductos;
+   
     @FXML
     private JFXButton btnAtras;
     @FXML
     private JFXButton btnInicio;
 
     private Sistema sistema;
+    @FXML
+    private VBox productosMasVendidos;
 
     /**
      * Initializes the controller class.
@@ -138,7 +143,7 @@ public class TopVentasController implements Initializable {
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
-            Stage myStage = (Stage) this.tablaDeProductos.getScene().getWindow();
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
@@ -153,5 +158,43 @@ public class TopVentasController implements Initializable {
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+    
+     public void cargarProductos(ArrayList<Producto> listaProductos, TopVentasController paraCargarDevuelta) {
+        this.productosMasVendidos.getChildren().clear();
+       
+        this.productosMasVendidos.setSpacing(20);
+
+        for (int i = 0; i < listaProductos.size(); i++) {
+
+            
+            try {
+                Producto producto = listaProductos.get(i);
+                //Cargarart el objeto
+
+                FXMLLoader fxml = new FXMLLoader(getClass().getResource("ProductosAEliminar.fxml"));
+
+                Parent nodo = fxml.load();
+
+                //Carga los datos
+                ProductosAEliminarController controlador = fxml.getController();
+
+                controlador.inicializarDatos(producto, sistema, paraCargarDevuelta);
+
+                controlador.setSistema(sistema);
+
+                //Cargo el nuevo objeto
+                
+                this.productosMasVendidos.getChildren().add((Node)nodo);
+                
+            } catch (IOException ex) {
+                Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            
+
+        }
+
+    }
+    
 
 }

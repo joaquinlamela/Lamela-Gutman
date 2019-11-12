@@ -12,10 +12,10 @@
    <children>
       <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Interfaz%20ingenieria/Estadisticas.png" />
+            <Image url="@../Imagenes/Estadisticas_1.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btnInicio" layoutY="585.0" onAction="#volverAInicio" prefHeight="55.0" prefWidth="368.0" text="&#10;&#10;" />
+      <JFXButton fx:id="btnInicio" layoutY="590.0" onAction="#volverAInicio" prefHeight="50.0" prefWidth="368.0" text="&#10;&#10;" />
       <JFXButton fx:id="btnAtras" layoutX="10.0" layoutY="28.0" onAction="#volverVentanaAnterior" prefHeight="61.0" prefWidth="54.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
       <BarChart fx:id="graficaMasVendidos" layoutX="4.0" layoutY="83.0" prefHeight="319.0" prefWidth="360.0">
         <xAxis>

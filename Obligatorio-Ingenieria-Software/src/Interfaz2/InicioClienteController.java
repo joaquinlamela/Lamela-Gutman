@@ -48,11 +48,11 @@ public class InicioClienteController implements Initializable {
     private void continuar(ActionEvent event) {
         
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Prueba.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
             
             Parent root = loader.load();
 
-            PruebaController controlador = loader.getController();
+            ClienteController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -67,8 +67,10 @@ public class InicioClienteController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
-
+            
             controlador.setSistema(sistema);
+
+            controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
