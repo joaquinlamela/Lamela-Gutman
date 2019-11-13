@@ -35,15 +35,15 @@ public class Venta {
 
     public Venta() {
         this.setListaDeProductosAVender(new ArrayList<Producto>());
-        this.setPrecioTotal(0);
+        this.setPrecioTotal(1);
         this.setCantidadesPorProducto(new int[10]);
         this.setFechaDeCompra(new Date());
         this.setComprador(new Persona());
         this.setTipoDePago(tipoPago.Indefinido);
         this.setEchoShop(new Tienda());
         this.setListaDeEnvasesUtilizados(new ArrayList<Envase>());
-        this.setCodigoIdentificadorDeVenta(0);
-        this.setDireccionAEnviar("");
+        this.setCodigoIdentificadorDeVenta(1);
+        this.setDireccionAEnviar("Direccion");
         this.setMes(0);
     }
 
@@ -61,7 +61,11 @@ public class Venta {
     }
 
     public void setPrecioTotal(int precioTotal) {
-        this.precioTotal = precioTotal;
+        if (precioTotal >= 1) {
+            this.precioTotal = precioTotal;
+        } else {
+            throw new RuntimeException("PrecioMayorA0");
+        }
     }
 
     public int[] getCantidadesPorProducto() {
@@ -117,7 +121,11 @@ public class Venta {
     }
 
     public void setCodigoIdentificadorDeVenta(int codigoIdentificadorDeVenta) {
-        this.codigoIdentificadorDeVenta = codigoIdentificadorDeVenta;
+        if (codigoIdentificadorDeVenta >= 1) {
+            this.codigoIdentificadorDeVenta = codigoIdentificadorDeVenta;
+        } else {
+            throw new RuntimeException("IdentificadorMayorA1");
+        }
     }
 
     public String getDireccionAEnviar() {
@@ -125,7 +133,11 @@ public class Venta {
     }
 
     public void setDireccionAEnviar(String direccionAEnviar) {
-        this.direccionAEnviar = direccionAEnviar;
+        if (!direccionAEnviar.trim().equals("")) {
+            this.direccionAEnviar = direccionAEnviar;
+        } else {
+            throw new RuntimeException("direccionNoVacia");
+        }
     }
 
     public int getMes() {
@@ -138,32 +150,36 @@ public class Venta {
 
     //Metodos
     public void agregarProducto(Producto producto) {
-        this.listaDeProductosAVender.add(producto);
-        int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
-        while (tamañoDeListaDeEnvases >= 0) {
-            Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
-            tamañoDeListaDeEnvases--;
-            this.getListaDeEnvasesUtilizados().add(envase);
+        if (!this.listaDeProductosAVender.contains(producto)) {
+            this.listaDeProductosAVender.add(producto);
+            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
+            while (tamañoDeListaDeEnvases > 0) {
+                Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
+                tamañoDeListaDeEnvases--;
+                this.getListaDeEnvasesUtilizados().add(envase);
+            }
+            this.precioTotal += producto.getPrecio();
+
         }
-        this.precioTotal += producto.getPrecio();
         // TODO: 27/10/2019 HACER QUE CUANDO EN LA INTERFAZ AGREGUE CANTIDAD DE ELEMENTOS, SUME EN LA CANTIDAD DE PRODUCTOS
 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] + 1;
-
+        //this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]+1;
     }
 
     public void eliminarProducto(Producto producto) {
-        this.listaDeProductosAVender.remove(producto);
-        int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
-        while (tamañoDeListaDeEnvases >= 0) {
-            Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
-            tamañoDeListaDeEnvases--;
-            this.getListaDeEnvasesUtilizados().remove(envase);
-        }
-        this.precioTotal -= producto.getPrecio();
-        // TODO: 27/10/2019  ACTUALIZAR EN EL GET LA CANTIDAD DE ELEMENTOS 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] - 1;
+        if (this.listaDeProductosAVender.contains(producto)) {
+            this.listaDeProductosAVender.remove(producto);
+            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
+            while (tamañoDeListaDeEnvases > 0) {
+                Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
+                tamañoDeListaDeEnvases--;
+                this.getListaDeEnvasesUtilizados().remove(envase);
+            }
+            this.precioTotal -= producto.getPrecio();
+            // TODO: 27/10/2019  ACTUALIZAR EN EL GET LA CANTIDAD DE ELEMENTOS 
+            //this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]-1;
 
+        }
     }
 
     @Override
@@ -178,7 +194,17 @@ public class Venta {
                 direccionAEnviar + ", mes=" + mes + '}';
     }
     
+    public void agregarEnvase(Envase e){
+        if (!this.listaDeEnvasesUtilizados.contains(e)) {
+            this.listaDeEnvasesUtilizados.add(e);
+        }
+    }
     
+    public void eliminarEnvase(Envase e){
+        if (this.listaDeEnvasesUtilizados.contains(e)) {
+            this.listaDeEnvasesUtilizados.remove(e);
+        }
+    }
     
 
 }

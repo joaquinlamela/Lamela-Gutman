@@ -28,7 +28,7 @@ public class Producto {
         this.setCodigoIdentificador(1);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
-        this.setImagenDelProducto(new Image(""));
+//        this.setImagenDelProducto(new Image(""));
     }
 
     public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,

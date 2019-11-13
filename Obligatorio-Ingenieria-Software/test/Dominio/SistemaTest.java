@@ -198,7 +198,6 @@ public class SistemaTest {
         v2.setCodigoIdentificadorDeVenta(2);
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
-        v1 = v2;
         instance.agregarVenta(v1);
         instance.agregarVenta(v1);
         instance.agregarVenta(v2);
@@ -206,6 +205,7 @@ public class SistemaTest {
         instance.agregarVenta(v3);
         
         instance.eliminarVenta(v1);
+        instance.eliminarVenta(v2);
         
         ArrayList<Venta> a = new ArrayList<>();
         a.add(v3);
@@ -227,7 +227,6 @@ public class SistemaTest {
         v2.setCodigoIdentificadorDeVenta(2);
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
-        v1 = v2;
         instance.agregarVenta(v1);
         instance.agregarVenta(v1);
         instance.agregarVenta(v2);
@@ -235,6 +234,7 @@ public class SistemaTest {
         instance.agregarVenta(v3);
         
         instance.eliminarVenta(v1);
+        instance.eliminarVenta(v2);
         instance.eliminarVenta(v3);
         
         ArrayList<Venta> a = new ArrayList<>();
@@ -255,7 +255,6 @@ public class SistemaTest {
         v2.setCodigoIdentificadorDeVenta(2);
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
-        v1 = v2;
         instance.agregarVenta(v1);
         instance.agregarVenta(v1);
         instance.agregarVenta(v2);
@@ -708,33 +707,6 @@ public class SistemaTest {
         instance.setEchToShop(listaDeEchoShop);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of actualizarStock method, of class Sistema.
-     */
-    @Test
-    public void testActualizarStock() {
-        //System.out.println("actualizarStock");
-        Venta venta = null;
-        Sistema instance = new Sistema();
-        instance.actualizarStock(venta);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of ponerIdentificadorAProducto method, of class Sistema.
-     */
-    @Test
-    public void testPonerIdentificadorAProducto() {
-        //System.out.println("ponerIdentificadorAProducto");
-        Sistema instance = new Sistema();
-        int expResult = 0;
-        int result = instance.ponerIdentificadorAProducto();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }
