@@ -110,11 +110,12 @@ public class Sistema {
         if (!this.listaDeVentasDelSistema.contains(venta)) {
             this.listaDeVentasDelSistema.add(venta);
             ArrayList<Producto> listaProductosParaVender = venta.getListaDeProductosAVender();
-            for (int i = 0; i < listaProductosParaVender.size(); i++) {
-                Producto vendido = listaProductosParaVender.get(i);
-                vendido.setCantidadVendidos(vendido.getCantidadVendidos() + 1);
+          
+            if (this.listaDeVentasDelSistema.size() == 1) {
+                venta.setCodigoIdentificadorDeVenta(1);
+            }else{
+                venta.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size() + 1);
             }
-            venta.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size() + 1);
         }
     }
 
@@ -204,9 +205,9 @@ public class Sistema {
         for (int i = 0; i < v.getListaDeProductosAVender().size(); i++) {
             productos += "<tr>\n" +
 "	<td class=\"desc\">"+v.getListaDeProductosAVender().get(i).getNombre()+"</td>\n" +
-"	<td class=\"qty\">1</td>\n" +
+"	<td class=\"qty\">"+this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
 "	<td class=\"unit\">"+v.getListaDeProductosAVender().get(i).getPrecio()+"</td>\n" +
-"	<td class=\"total\">"+v.getListaDeProductosAVender().get(i).getPrecio()+"</td>\n" +
+"	<td class=\"total\">"+v.getListaDeProductosAVender().get(i).getPrecio()*this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
 "	</tr>\n";
         }
         
@@ -507,7 +508,7 @@ public class Sistema {
 "			<div class=\"company-address\">\n" +
 "				<h2 class=\"title\">Echo Shop</h2>\n" +
 "				<p>\n" +
-"					"+v.getDireccionAEnviar()+"<br>\n" +
+"					"+v.getEchoShop().getDireccion()+"<br>\n" +
 "\n" +
 "				</p>\n" +
 "			</div>\n" +
@@ -595,18 +596,6 @@ public class Sistema {
         return retorno;
     }
 
-    /*Agragar al registro de venta
-    WebView webView = new WebView();
-        String contenido = "";
-        
-        webView.getEngine().loadContent();
     
-        VBox vBox = new VBox(webView);
-        Scene scene = new Scene(vBox, 960, 600);
-
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    
-    */
     
 }

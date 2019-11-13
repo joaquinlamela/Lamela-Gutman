@@ -29,12 +29,11 @@ public class ProductosCarritoController implements Initializable {
     private Label nombreProducto;
     @FXML
     private Label cantidad;
-    
-    private Sistema sistema; 
 
-    private CarritoController controlador; 
-    
-    
+    private Sistema sistema;
+
+    private CarritoController controlador;
+
     @FXML
     private ImageView imagenProducto;
     @FXML
@@ -43,15 +42,17 @@ public class ProductosCarritoController implements Initializable {
     private JFXButton btnBajarCant;
     @FXML
     private Label precioTotal;
-    
-    
-    
- 
+
+    private int identificador;
+
+    @FXML
+    private JFXButton btnEliminar;
+
     //Gets and sets: 
     public Label getNombreProducto() {
         return nombreProducto;
         // TODO
-    }    
+    }
 
     public void setNombreProducto(Label nombreProducto) {
         this.nombreProducto = nombreProducto;
@@ -104,44 +105,77 @@ public class ProductosCarritoController implements Initializable {
     public void setBtnBajarCant(JFXButton btnBajarCant) {
         this.btnBajarCant = btnBajarCant;
     }
-    
-    
 
-    
+    public int getIdentificador() {
+        return identificador;
+    }
 
-    
+    public void setIdentificador(int identificador) {
+        this.identificador = identificador;
+    }
+
     //Metodos: 
-    public void inicializarDatos(Producto producto, Sistema sistema, CarritoController controlador, int [] cantidadPorId) {
+    public void inicializarDatos(Producto producto, Sistema sistema, CarritoController controlador, int[] cantidadPorId) {
         this.setSistema(sistema);
+        this.setIdentificador(producto.getCodigoIdentificador());
         this.setControlador(controlador);
         this.imagenProducto.setImage(producto.getImagenDelProducto());
         this.nombreProducto.setText(producto.getNombre());
-        int cant= cantidadPorId[producto.getCodigoIdentificador()]; 
+        int cant = cantidadPorId[producto.getCodigoIdentificador()];
         this.cantidad.setText(Integer.toString(cant));
-        this.precioTotal.setText(Double.toString(cant*producto.getPrecio()));
+        this.precioTotal.setText(Double.toString(cant * producto.getPrecio()));
     }
-    
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void agregarCantidad(ActionEvent event) {
-        int cantidadActual= Integer.parseInt(this.getCantidad().toString()); 
-        this.cantidad.setText(Integer.toString(cantidadActual+1));
+
+        int cantidadActual = Integer.parseInt(this.getCantidad().getText());
+        if (cantidadActual <= 99) {
+            this.cantidad.setText(Integer.toString(cantidadActual + 1));
+            this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual + 1)));
+            this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = cantidadActual + 1;
+            
+        }
+
     }
 
     @FXML
     private void bajarCantidad(ActionEvent event) {
         //Ver cuando es 0 la cantidad 
-        int cantidadActual= Integer.parseInt(this.getCantidad().toString()); 
-        if(cantidadActual>=1){
-            this.cantidad.setText(Integer.toString(cantidadActual-1));
+        int cantidadActual = Integer.parseInt(this.getCantidad().getText());
+        if (cantidadActual >= 1) {
+            this.cantidad.setText(Integer.toString(cantidadActual - 1));
+            this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual - 1)));
+            this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = (cantidadActual - 1);
         }
-        
-        
+
     }
-    
+
+    public Producto obtenerProducto() {
+        Producto p = new Producto();
+        for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
+            if (this.getIdentificador() == this.getSistema().getProductosAVenderEnSesionActiva().get(i).getCodigoIdentificador()) {
+                p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
+            }
+        }
+        return p;
+    }
+
+    @FXML
+    private void eliminarProducto(ActionEvent event) {
+        Producto p = this.obtenerProducto();
+
+        if (this.getSistema().getProductosAVenderEnSesionActiva().contains(p)) {
+            this.getSistema().getCantidadPorIdDeProd()[p.getCodigoIdentificador()] = 0;
+            this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
+
+        }
+        this.getControlador().cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
+    }
+
 }

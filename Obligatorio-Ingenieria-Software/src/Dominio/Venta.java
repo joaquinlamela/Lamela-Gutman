@@ -11,26 +11,25 @@ public class Venta {
     private int[] cantidadesPorProducto; //Para acceder a la posicion del producto le pasamos el codigo identificador;
     private Date fechaDeCompra;
     private Persona comprador; //En este caso seria la clase cliente, de manera que tiene clientes frecuentes
-    private tipoPago tipoDePago;  //Segun el numero que ponga la persona lo que vamos a hacer es mostrar las pantallas (ejemplo 1 tarjeta debito y ponemos una interfaz diferente para cada uno)
     private Tienda echoShop;
     private ArrayList<Envase> listaDeEnvasesUtilizados;
     private int codigoIdentificadorDeVenta;
     private String direccionAEnviar;
-    private int mes;
+  
 
     //Constructor:
-    public Venta(int mes, ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, tipoPago tipoDePago, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
+    public Venta( ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
         this.setListaDeProductosAVender(listaDeProductosAVender);
         this.setPrecioTotal(precioTotal);
         this.setCantidadesPorProducto(cantidadesPorProducto);
         this.setFechaDeCompra(fechaDeCompra);
         this.setComprador(comprador);
-        this.setTipoDePago(tipoDePago);
+       
         this.setEchoShop(tienda);
         this.setListaDeEnvasesUtilizados(listaDeEnvases);
         this.setCodigoIdentificadorDeVenta(codigoIdentificador);
         this.setDireccionAEnviar(direccion);
-        this.setMes(mes);
+        
     }
 
     public Venta() {
@@ -39,12 +38,12 @@ public class Venta {
         this.setCantidadesPorProducto(new int[10]);
         this.setFechaDeCompra(new Date());
         this.setComprador(new Persona());
-        this.setTipoDePago(tipoPago.Indefinido);
+      
         this.setEchoShop(new Tienda());
         this.setListaDeEnvasesUtilizados(new ArrayList<Envase>());
         this.setCodigoIdentificadorDeVenta(1);
         this.setDireccionAEnviar("Direccion");
-        this.setMes(0);
+        
     }
 
     //Get´s && set´s
@@ -92,13 +91,7 @@ public class Venta {
         this.comprador = comprador;
     }
 
-    public tipoPago getTipoDePago() {
-        return tipoDePago;
-    }
-
-    public void setTipoDePago(tipoPago tipoDePago) {
-        this.tipoDePago = tipoDePago;
-    }
+  
 
     public Tienda getEchoShop() {
         return echoShop;
@@ -140,13 +133,7 @@ public class Venta {
         }
     }
 
-    public int getMes() {
-        return mes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
+   
 
     //Metodos
     public void agregarProducto(Producto producto) {
@@ -187,11 +174,11 @@ public class Venta {
         return "Venta{" + "listaDeProductosAVender=" + listaDeProductosAVender +
                 ", precioTotal=" + precioTotal + ", cantidadesPorProducto=" +
                 cantidadesPorProducto + ", fechaDeCompra=" + fechaDeCompra +
-                ", comprador=" + comprador + ", tipoDePago=" + tipoDePago + 
+                ", comprador=" + comprador +  
                 ", echoShop=" + echoShop + ", listaDeEnvasesUtilizados=" + 
                 listaDeEnvasesUtilizados + ", codigoIdentificadorDeVenta=" + 
                 codigoIdentificadorDeVenta + ", direccionAEnviar=" + 
-                direccionAEnviar + ", mes=" + mes + '}';
+                direccionAEnviar + '}';
     }
     
     public void agregarEnvase(Envase e){

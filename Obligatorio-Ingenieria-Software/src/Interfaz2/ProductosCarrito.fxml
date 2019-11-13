@@ -13,12 +13,13 @@
             <Image url="@../Imagenes/ProductosCarrito.png" />
          </image>
       </ImageView>
-      <Label fx:id="nombreProducto" layoutX="193.0" layoutY="14.0" prefHeight="21.0" prefWidth="150.0" />
-      <JFXButton fx:id="btnAgregar" layoutX="290.0" layoutY="63.0" onAction="#agregarCantidad" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
-      <JFXButton fx:id="btnBajarCant" layoutX="166.0" layoutY="63.0" onAction="#bajarCantidad" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
-      <Label fx:id="cantidad" layoutX="209.0" layoutY="63.0" prefHeight="31.0" prefWidth="73.0" style="-fx-background-radius: 18 18 18 18; -fx-background-color: ffffff; -fx-border-radius: 18 18 18 18;" />
-      <ImageView fx:id="imagenProducto" fitHeight="89.0" fitWidth="104.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
-      <Label layoutX="140.0" layoutY="106.0" prefHeight="21.0" prefWidth="104.0" text="Precio total: $" />
-      <Label fx:id="precioTotal" layoutX="254.0" layoutY="101.0" prefHeight="31.0" prefWidth="73.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+      <Label fx:id="nombreProducto" layoutX="118.0" layoutY="7.0" prefHeight="21.0" prefWidth="122.0" />
+      <JFXButton fx:id="btnAgregar" layoutX="274.0" layoutY="60.0" onAction="#agregarCantidad" prefHeight="45.0" prefWidth="43.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnBajarCant" layoutX="157.0" layoutY="63.0" onAction="#bajarCantidad" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <ImageView fx:id="imagenProducto" fitHeight="70.0" fitWidth="79.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="101.0" layoutY="31.0" prefHeight="21.0" prefWidth="51.0" text="Precio:" />
+      <Label fx:id="precioTotal" layoutX="167.0" layoutY="31.0" prefHeight="21.0" prefWidth="107.0" style="-fx-background-radius: 18 18 18 18; -fx-background-color: ffffff; -fx-border-radius: 18 18 18 18;" />
+      <Label fx:id="cantidad" layoutX="215.0" layoutY="68.0" prefHeight="28.0" prefWidth="51.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+      <JFXButton fx:id="btnEliminar" layoutX="81.0" layoutY="105.0" onAction="#eliminarProducto" prefHeight="0.0" prefWidth="187.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
    </children>
 </Pane>

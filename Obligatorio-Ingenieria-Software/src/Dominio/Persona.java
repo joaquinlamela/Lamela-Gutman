@@ -21,9 +21,9 @@ public class Persona {
 
 
     public Persona(String nombre, int edad, String domicilio, String rutComprador) {
-        this.setDomicilio(nombre);
+        this.setDomicilio(domicilio);
         this.setEdad(edad);
-        this.setNombre(domicilio);
+        this.setNombre(nombre);
         this.setRutComprador(rutComprador);
     }
 
