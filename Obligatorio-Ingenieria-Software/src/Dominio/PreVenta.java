@@ -9,7 +9,7 @@ public class PreVenta {
     private int precioDePreVenta;
     private ArrayList<Producto> listaDeProductos;
     private Tienda lugarARetirar;
-    private tipoPago tipoDePagoDefinido;
+    
     private ArrayList<Envase> listaDeEnvase;
     private int identificadorDePreventa;
 
@@ -17,13 +17,13 @@ public class PreVenta {
     //Constructor:
 
     public PreVenta(Persona comprador, int precioDePreVenta, ArrayList<Producto>
-            listaDeProductos, Tienda lugarARetirar, tipoPago tipoDePagoDefinido,
+            listaDeProductos, Tienda lugarARetirar, 
             ArrayList<Envase> listaDeEnvase, int id) {
         this.setComprador(comprador);
         this.setPrecioDePreVenta(precioDePreVenta);
         this.setListaDeProductos(listaDeProductos);
         this.setLugarARetirar(lugarARetirar);
-        this.setTipoDePagoDefinido(tipoDePagoDefinido);
+       
         this.setListaDeEnvase(listaDeEnvase);
         this.setIdentificadorDePreventa(id);
     }
@@ -33,7 +33,7 @@ public class PreVenta {
         this.setPrecioDePreVenta(1);
         this.setListaDeProductos(new ArrayList<Producto>());
         this.setLugarARetirar(new Tienda());
-        this.setTipoDePagoDefinido(tipoPago.Indefinido);
+        
         this.setListaDeEnvase(new ArrayList<Envase>());
         this.setIdentificadorDePreventa(1);
     }
@@ -75,13 +75,7 @@ public class PreVenta {
         this.lugarARetirar = lugarARetirar;
     }
 
-    public tipoPago getTipoDePagoDefinido() {
-        return tipoDePagoDefinido;
-    }
-
-    public void setTipoDePagoDefinido(tipoPago tipoDePagoDefinido) {
-        this.tipoDePagoDefinido = tipoDePagoDefinido;
-    }
+   
 
     public ArrayList<Envase> getListaDeEnvase() {
         return listaDeEnvase;
@@ -129,7 +123,9 @@ public class PreVenta {
 
     @Override
     public String toString() {
-        return "PreVenta{" + "comprador=" + comprador + ", precioDePreVenta=" + precioDePreVenta + ", listaDeProductos=" + listaDeProductos + ", lugarARetirar=" + lugarARetirar + ", tipoDePagoDefinido=" + tipoDePagoDefinido + ", listaDeEnvase=" + listaDeEnvase + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+        return "PreVenta{" + "comprador=" + comprador + ", precioDePreVenta=" + precioDePreVenta + 
+                ", listaDeProductos=" + listaDeProductos + ", lugarARetirar=" + lugarARetirar + 
+                ", listaDeEnvase=" + listaDeEnvase + ", identificadorDePreventa=" + identificadorDePreventa + '}';
     }
     
     

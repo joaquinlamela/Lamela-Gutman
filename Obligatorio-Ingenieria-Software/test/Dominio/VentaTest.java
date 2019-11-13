@@ -341,33 +341,7 @@ public class VentaTest {
         //fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of getTipoDePago method, of class Venta.
-     */
-    @Test
-    public void testGetTipoDePagoDefinido() {
-        //System.out.println("getTipoDePagoDefinido");
-        Venta instance = new Venta();
-        instance.setTipoDePago(tipoPago.Efectivo);
-        tipoPago expResult = tipoPago.Efectivo;
-        tipoPago result = instance.getTipoDePago();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTipoDePagoDefinido method, of class Venta.
-     */
-    @Test
-    public void testSetTipoDePagoDefinido() {
-        //System.out.println("setTipoDePagoDefinido");
-        tipoPago tipoDePagoDefinido = tipoPago.Efectivo;
-        Venta instance = new Venta();
-        instance.setTipoDePago(tipoDePagoDefinido);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
+    
 
     /**
      * Test of getEchoShop method, of class Venta.

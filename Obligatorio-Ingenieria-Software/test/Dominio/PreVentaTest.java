@@ -18,22 +18,22 @@ import static org.junit.Assert.*;
  * @author PC
  */
 public class PreVentaTest {
-    
+
     public PreVentaTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -66,7 +66,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of setComprador method, of class PreVenta.
      */
@@ -89,7 +89,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of getPrecioDePreVenta method, of class PreVenta.
      */
@@ -116,7 +116,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetPrecioDePreVenta3() {
         //System.out.println("getPrecioDePreVenta");
@@ -128,7 +128,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetPrecioDePreVenta4() {
         //System.out.println("getPrecioDePreVenta");
@@ -140,7 +140,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetPrecioDePreVenta5() {
         //System.out.println("getPrecioDePreVenta");
@@ -152,6 +152,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
     /**
      * Test of setPrecioDePreVenta method, of class PreVenta.
      */
@@ -174,7 +175,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetPrecioDePreVenta3() {
         //System.out.println("setPrecioDePreVenta");
@@ -184,7 +185,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetPrecioDePreVenta4() {
         //System.out.println("setPrecioDePreVenta");
@@ -194,7 +195,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetPrecioDePreVenta5() {
         //System.out.println("setPrecioDePreVenta");
@@ -204,7 +205,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of getListaDeProductos method, of class PreVenta.
      */
@@ -239,7 +240,7 @@ public class PreVentaTest {
         instance.agregarProducto(f);
         instance.agregarProducto(p);
         instance.agregarProducto(g);
-        
+
         a.add(f);
         a.add(p);
         ArrayList<Producto> expResult = a;
@@ -248,7 +249,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetListaDeProductos3() {
         //System.out.println("getListaDeProductos");
@@ -262,7 +263,7 @@ public class PreVentaTest {
         instance.agregarProducto(p);
         instance.agregarProducto(g);
         instance.eliminarProducto(f);
-        
+
         a.add(p);
         ArrayList<Producto> expResult = a;
         ArrayList<Producto> result = instance.getListaDeProductos();
@@ -270,10 +271,11 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
     /**
      * Test of setListaDeProductos method, of class PreVenta.
      */
-    
+
     @Test
     public void testGetListaDeProductos4() {
         //System.out.println("getListaDeProductos");
@@ -288,14 +290,14 @@ public class PreVentaTest {
         instance.agregarProducto(g);
         instance.eliminarProducto(f);
         instance.eliminarProducto(p);
-        
+
         ArrayList<Producto> expResult = a;
         ArrayList<Producto> result = instance.getListaDeProductos();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetListaDeProductos() {
         //System.out.println("setListaDeProductos");
@@ -336,34 +338,6 @@ public class PreVentaTest {
     }
 
     /**
-     * Test of getTipoDePagoDefinido method, of class PreVenta.
-     */
-    @Test
-    public void testGetTipoDePagoDefinido() {
-        //System.out.println("getTipoDePagoDefinido");
-        PreVenta instance = new PreVenta();
-        instance.setTipoDePagoDefinido(tipoPago.Efectivo);
-        tipoPago expResult = tipoPago.Efectivo;
-        tipoPago result = instance.getTipoDePagoDefinido();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setTipoDePagoDefinido method, of class PreVenta.
-     */
-    @Test
-    public void testSetTipoDePagoDefinido() {
-        //System.out.println("setTipoDePagoDefinido");
-        tipoPago tipoDePagoDefinido = tipoPago.Efectivo;
-        PreVenta instance = new PreVenta();
-        instance.setTipoDePagoDefinido(tipoDePagoDefinido);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of getListaDeEnvase method, of class PreVenta.
      */
     @Test
@@ -391,7 +365,7 @@ public class PreVentaTest {
         Envase e2 = new Envase();
         e2.setNombre("Envase 2");
         instance.agregarEnvase(e2);
-        
+
         a.add(e1);
         a.add(e2);
         ArrayList<Envase> expResult = a;
@@ -400,7 +374,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetListaDeEnvase3() {
         //System.out.println("getListaDeEnvase");
@@ -416,8 +390,7 @@ public class PreVentaTest {
         Envase e3 = new Envase();
         e3.setNombre("Envase 2");
         instance.agregarEnvase(e3);
-        
-        
+
         a.add(e1);
         a.add(e2);
         ArrayList<Envase> expResult = a;
@@ -426,8 +399,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-   
-    
+
     @Test
     public void testGetListaDeEnvase4() {
         //System.out.println("getListaDeEnvase");
@@ -444,7 +416,7 @@ public class PreVentaTest {
         e3.setNombre("Envase 2");
         instance.agregarEnvase(e3);
         instance.eliminarEnvase(e2);
-        
+
         a.add(e1);
         ArrayList<Envase> expResult = a;
         ArrayList<Envase> result = instance.getListaDeEnvase();
@@ -452,7 +424,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetListaDeEnvase5() {
         //System.out.println("getListaDeEnvase");
@@ -470,14 +442,14 @@ public class PreVentaTest {
         instance.agregarEnvase(e3);
         instance.eliminarEnvase(e2);
         instance.eliminarEnvase(e1);
-        
+
         ArrayList<Envase> expResult = a;
         ArrayList<Envase> result = instance.getListaDeEnvase();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     /**
      * Test of setListaDeEnvase method, of class PreVenta.
      */
@@ -504,7 +476,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetIdentificadorDePreVenta3() {
         //System.out.println("getPrecioDePreVenta");
@@ -516,7 +488,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetIdentificadorDePreVenta4() {
         //System.out.println("getPrecioDePreVenta");
@@ -528,7 +500,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testGetIdentificadorDePreVenta5() {
         //System.out.println("getPrecioDePreVenta");
@@ -540,6 +512,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
+
     /**
      * Test of setPrecioDePreVenta method, of class PreVenta.
      */
@@ -562,7 +535,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetIdentificadorDePreVenta3() {
         //System.out.println("setPrecioDePreVenta");
@@ -572,7 +545,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetIdentificadorDePreVenta4() {
         //System.out.println("setPrecioDePreVenta");
@@ -582,7 +555,7 @@ public class PreVentaTest {
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
     }
-    
+
     @Test
     public void testSetIdentificadorDePreVenta5() {
         //System.out.println("setPrecioDePreVenta");
