@@ -10,6 +10,10 @@ public class Sistema {
     private Tienda echoShop;
     private int cantPreVentas;
     private ArrayList<Persona> listaCliente;
+    
+    
+    private ArrayList<Producto> productosAVenderEnSesionActiva; 
+    private int [] cantidadPorIdDeProd; 
 
     //Constructor:
     public Sistema() {
@@ -18,6 +22,8 @@ public class Sistema {
         this.echoShop = new Tienda();
         this.cantPreVentas = 0;
         this.listaCliente = new ArrayList<Persona>();
+        this.productosAVenderEnSesionActiva= new ArrayList<Producto>(); 
+        this.cantidadPorIdDeProd= new int[25]; 
     }
 
     public int getCantPreVentas() {
@@ -60,6 +66,27 @@ public class Sistema {
     public void setListaCliente(ArrayList<Persona> listaCliente) {
         this.listaCliente = listaCliente;
     }
+
+    public ArrayList<Producto> getProductosAVenderEnSesionActiva() {
+        return productosAVenderEnSesionActiva;
+    }
+
+    public void setProductosAVenderEnSesionActiva(ArrayList<Producto> productosAVenderEnSesionActiva) {
+        this.productosAVenderEnSesionActiva = productosAVenderEnSesionActiva;
+    }
+
+    public int[] getCantidadPorIdDeProd() {
+        return cantidadPorIdDeProd;
+    }
+
+    public void setCantidadPorIdDeProd(int[] cantidadPorIdDeProd) {
+        this.cantidadPorIdDeProd = cantidadPorIdDeProd;
+    }
+    
+    
+    
+    
+    
 
     //Metodos:
     public void agregarSucursal(Sucursal nueva) {
@@ -163,6 +190,13 @@ public class Sistema {
         for (int i = 0; i < this.getEchoShop().getListaDeProductosEnStock().size(); i++) {
             System.out.println(this.getEchoShop().getListaDeProductosEnStock().get(i));
 
+        }
+    }
+    
+    
+    public void agregarProductosALaListaDeProductosSesionActiva(Producto producto){
+        if(!this.getProductosAVenderEnSesionActiva().contains(producto)){
+            this.getProductosAVenderEnSesionActiva().add(producto); 
         }
     }
 

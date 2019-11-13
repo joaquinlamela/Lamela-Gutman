@@ -60,12 +60,47 @@ public class ClienteController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-        
+
     }
 
     @FXML
     private void irAlCarrito(ActionEvent event) {
+
+       
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Carrito.fxml"));
+
+            Parent root = loader.load();
+
+            CarritoController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            controlador.cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
 
     @FXML
@@ -130,10 +165,11 @@ public class ClienteController implements Initializable {
         this.sistema = sistema;
     }
 
-    
-    public void cargarProductos(ArrayList<Producto> listaProductos) {
+    public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
+
+        this.setSistema(sis);
         this.vBox.getChildren().clear();
-       
+
         this.vBox.setSpacing(20);
 
         for (int i = 0; i < listaProductos.size(); i++) {
@@ -142,20 +178,19 @@ public class ClienteController implements Initializable {
                 Producto producto = listaProductos.get(i);
                 //Cargarart el objeto
 
-                FXMLLoader fxml = new FXMLLoader(getClass().getResource("Productos.fxml"));
+                FXMLLoader fxml = new FXMLLoader(getClass().getResource("PresentacionProductos.fxml"));
 
                 Parent nodo = fxml.load();
 
                 //Carga los datos
-                ProductosController controlador = fxml.getController();
+                PresentacionProductosController controlador = fxml.getController();
 
                 controlador.inicializarDatos(producto, sistema);
 
                 controlador.setSistema(sistema);
 
                 //Cargo el nuevo objeto
-                
-                vBox.getChildren().add((Node)nodo);
+                vBox.getChildren().add((Node) nodo);
 
             } catch (IOException ex) {
                 Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
@@ -164,7 +199,5 @@ public class ClienteController implements Initializable {
         }
 
     }
-    
+
 }
-
-

@@ -29,6 +29,7 @@ import javafx.scene.control.SortEvent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -39,48 +40,35 @@ import javafx.stage.Stage;
 public class EliminarProductoController implements Initializable {
 
     @FXML
-    private JFXButton btnEliminar;
-    @FXML
     private JFXButton btnAtras;
+
     @FXML
     private JFXButton btnInicio;
-    @FXML
-    private TableView<Producto> tablaDeProductos;
 
     private Sistema sistema;
 
-    private ObservableList<Producto> listaDeProductos;
     @FXML
-    private TableColumn<Producto, String> clNombre;
-    @FXML
-    private TableColumn<Producto, String> clIdentificador;
-    @FXML
-    private TableColumn<Producto, Integer> clPrecio;
-    @FXML
-    private TableColumn<Producto, Integer> clCantVendidos;
+    private VBox listaProductos;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.tablaDeProductos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        listaDeProductos = FXCollections.observableArrayList();
 
     }
-    
-    /*
 
-    public void cargarArticulos(ArrayList<Producto> lista, Sistema sistema) {
+    public void cargarArticulos(ArrayList<Producto> lista, EliminarProductoController paraCargarDevuelta, Sistema sis) {
 
-        this.productosMasVendidos.getChildren().clear();
+        this.setSistema(sis);
+        this.listaProductos.getChildren().clear();
 
-        this.productosMasVendidos.setSpacing(20);
+        this.listaProductos.setSpacing(10);
 
-        for (int i = 0; i < listaProductos.size(); i++) {
+        for (int i = 0; i < lista.size(); i++) {
 
             try {
-                Producto producto = listaProductos.get(i);
+                Producto producto = lista.get(i);
                 //Cargarart el objeto
 
                 FXMLLoader fxml = new FXMLLoader(getClass().getResource("ProductosAEliminar.fxml"));
@@ -90,86 +78,18 @@ public class EliminarProductoController implements Initializable {
                 //Carga los datos
                 ProductosAEliminarController controlador = fxml.getController();
 
-                controlador.inicializarDatos(producto, sistema, paraCargarDevuelta);
-
                 controlador.setSistema(sistema);
 
+                controlador.inicializarDatos(producto, sistema, paraCargarDevuelta);
+
                 //Cargo el nuevo objeto
-                this.productosMasVendidos.getChildren().add((Node) nodo);
+                this.listaProductos.getChildren().add((Node) nodo);
 
             } catch (IOException ex) {
                 Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-    }
-    */
-
-    
-    public void cargarDatos(ArrayList<Producto> lista, Sistema sistema) {
-       
-        this.setSistema(sistema);
-        if (this.getSistema().getEchoShop().getListaDeProductosEnStock().size() == 0) {
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no hay envases");
-            alert.setContentText("¡No hay productos en el sistema para eliminar!");
-            alert.showAndWait();
-        } else {
-
-            this.clNombre.setCellValueFactory(new PropertyValueFactory("nombre"));
-            this.clIdentificador.setCellValueFactory(new PropertyValueFactory("codigoIdentificador"));
-            this.clPrecio.setCellValueFactory(new PropertyValueFactory("precio"));
-            this.clCantVendidos.setCellValueFactory(new PropertyValueFactory("cantidadVendidos"));
-
-            for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
-                    listaDeProductos.add(lista.get(i)); 
-                    // listaDeProductos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i));
-            }
-
-            this.tablaDeProductos.setItems(listaDeProductos);
-        }
-    }
-     
-    @FXML
-    private void eliminarProductoSeleccionado(ActionEvent event) {
-
-        //Parte de eliminar los productos seleccionados
-        boolean esValido = true;
-
-        ArrayList<Producto> listaProducto = new ArrayList<Producto>();
-
-        if (tablaDeProductos.getItems().isEmpty()) {
-            esValido = false;
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no hay envases");
-            alert.setContentText("¡Debe ingresar envases al sistema!");
-            alert.showAndWait();
-        } else {
-            ObservableList<Dominio.Producto> lista = (ObservableList<Dominio.Producto>) this.tablaDeProductos.getSelectionModel().getSelectedItems();
-            if (lista.isEmpty()) {
-                esValido = false;
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("¡Cuidado!");
-                alert.setHeaderText("Error: no ha seleccionado los envases");
-                alert.setContentText("¡Debe seleccionar envases para poder ingresar el producto!");
-                alert.showAndWait();
-            }
-
-            for (int i = 0; i < lista.size(); i++) {
-                listaProducto.add(lista.get(i));
-            }
-
-        }
-
-        for (int i = 0; i < listaProducto.size(); i++) {
-            Producto prodAElim = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
-            this.getSistema().getEchoShop().eliminarProductoSinImportarStock(prodAElim);
-
-        }
-
     }
 
     @FXML
@@ -206,11 +126,6 @@ public class EliminarProductoController implements Initializable {
 
     }
 
-    @FXML
-    private void seleccionarElementoAEliminar(SortEvent<?> event) {
-
-    }
-
     public void cerrarVentana() {
 
         try {
@@ -238,7 +153,7 @@ public class EliminarProductoController implements Initializable {
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
-            Stage myStage = (Stage) this.btnEliminar.getScene().getWindow();
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(EliminarProductoController.class.getName()).log(Level.SEVERE, null, ex);

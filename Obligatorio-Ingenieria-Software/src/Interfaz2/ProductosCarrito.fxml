@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="144.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz2.ProductosCarritoController">
+   <children>
+      <ImageView fitHeight="144.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/ProductosCarrito.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nombreProducto" layoutX="193.0" layoutY="14.0" prefHeight="21.0" prefWidth="150.0" />
+      <JFXButton fx:id="btnAgregar" layoutX="290.0" layoutY="63.0" onAction="#agregarCantidad" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnBajarCant" layoutX="166.0" layoutY="63.0" onAction="#bajarCantidad" prefHeight="31.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <Label fx:id="cantidad" layoutX="209.0" layoutY="63.0" prefHeight="31.0" prefWidth="73.0" style="-fx-background-radius: 18 18 18 18; -fx-background-color: ffffff; -fx-border-radius: 18 18 18 18;" />
+      <ImageView fx:id="imagenProducto" fitHeight="89.0" fitWidth="104.0" layoutX="14.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="140.0" layoutY="106.0" prefHeight="21.0" prefWidth="104.0" text="Precio total: $" />
+      <Label fx:id="precioTotal" layoutX="254.0" layoutY="101.0" prefHeight="31.0" prefWidth="73.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+   </children>
+</Pane>

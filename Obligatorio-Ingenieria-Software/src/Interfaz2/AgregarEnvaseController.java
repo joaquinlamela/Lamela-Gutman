@@ -112,7 +112,7 @@ public class AgregarEnvaseController implements Initializable {
                         esValido = false;
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("¡Cuidado!");
-                        alert.setHeaderText("Error: no es un precio valido");
+                        alert.setHeaderText("Error: no es un peso valido");
                         alert.setContentText("Ingrese un peso menor o igual a 100");
                         alert.showAndWait();
                     }

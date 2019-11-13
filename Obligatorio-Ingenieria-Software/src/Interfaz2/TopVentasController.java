@@ -159,8 +159,9 @@ public class TopVentasController implements Initializable {
         this.sistema = sistema;
     }
     
-     public void cargarProductos(ArrayList<Producto> listaProductos, TopVentasController paraCargarDevuelta) {
-        this.productosMasVendidos.getChildren().clear();
+     public void cargarProductos(ArrayList<Producto> listaProductos) {
+        
+         this.productosMasVendidos.getChildren().clear();
        
         this.productosMasVendidos.setSpacing(20);
 
@@ -171,14 +172,14 @@ public class TopVentasController implements Initializable {
                 Producto producto = listaProductos.get(i);
                 //Cargarart el objeto
 
-                FXMLLoader fxml = new FXMLLoader(getClass().getResource("ProductosAEliminar.fxml"));
+                FXMLLoader fxml = new FXMLLoader(getClass().getResource("MasVendidos.fxml"));
 
                 Parent nodo = fxml.load();
 
                 //Carga los datos
-                ProductosAEliminarController controlador = fxml.getController();
+                MasVendidosController controlador = fxml.getController();
 
-                controlador.inicializarDatos(producto, sistema, paraCargarDevuelta);
+                controlador.inicializarDatos(producto, sistema);
 
                 controlador.setSistema(sistema);
 

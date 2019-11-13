@@ -20,5 +20,6 @@
             <Font size="18.0" />
          </font>
       </Label>
+      <JFXButton fx:id="btnInicio" layoutX="-3.0" layoutY="590.0" onAction="#volverInicio" prefHeight="50.0" prefWidth="368.0" text="&#10;&#10;" />
    </children>
 </Pane>

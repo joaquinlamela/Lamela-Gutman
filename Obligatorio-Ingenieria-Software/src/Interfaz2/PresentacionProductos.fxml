@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz2.PresentacionProductosController">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/PresentacionProductos.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnPreventa" buttonType="RAISED" layoutX="25.0" layoutY="169.0" onAction="#agregarPreventa" prefHeight="27.0" prefWidth="131.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;&#10;" />
+      <JFXButton fx:id="carrito" buttonType="RAISED" layoutX="196.0" layoutY="169.0" onAction="#agregarCarrito" prefHeight="27.0" prefWidth="131.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;&#10;" />
+      <ImageView fx:id="imagenProducto" fitHeight="89.0" fitWidth="104.0" layoutX="13.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="nombreProd" layoutX="151.0" layoutY="4.0" prefHeight="21.0" prefWidth="176.0" />
+      <Label layoutX="121.0" layoutY="67.0" prefHeight="21.0" prefWidth="91.0" text="Identificador:" />
+      <Label fx:id="precioProducto" layoutX="212.0" layoutY="39.0" prefHeight="21.0" prefWidth="114.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+      <Label layoutX="122.0" layoutY="90.0" prefHeight="21.0" prefWidth="68.0" text="Cantidad:" />
+      <Label layoutX="25.0" layoutY="111.0" prefHeight="21.0" prefWidth="85.0" text="Descripción:" />
+      <Label fx:id="descripcion" layoutX="25.0" layoutY="132.0" prefHeight="31.0" prefWidth="303.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+      <JFXComboBox fx:id="cantidadProductos" layoutX="190.0" layoutY="88.0" prefHeight="8.0" prefWidth="143.0" />
+      <Label layoutX="121.0" layoutY="39.0" prefHeight="21.0" prefWidth="60.0" text="Precio: $" />
+      <Label fx:id="identificador" layoutX="212.0" layoutY="67.0" prefHeight="21.0" prefWidth="114.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+   </children>
+</Pane>

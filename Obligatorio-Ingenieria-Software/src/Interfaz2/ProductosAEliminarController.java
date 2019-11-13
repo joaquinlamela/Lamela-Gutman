@@ -42,14 +42,14 @@ public class ProductosAEliminarController implements Initializable {
     private Sistema sistema;
     
     
-    private TopVentasController controlador; 
+    private EliminarProductoController controlador; 
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+       
     }
 
     //Gets and sets
@@ -117,20 +117,23 @@ public class ProductosAEliminarController implements Initializable {
         this.sistema = sistema;
     }
 
-    public TopVentasController getControlador() {
+    public EliminarProductoController getControlador() {
         return controlador;
     }
 
-    public void setControlador(TopVentasController controlador) {
+    public void setControlador(EliminarProductoController controlador) {
         this.controlador = controlador;
     }
+
+    
+   
     
     
 
     
     //Metodos: 
     
-    public void inicializarDatos(Producto producto, Sistema sistema, TopVentasController controlador ) {
+    public void inicializarDatos(Producto producto, Sistema sistema, EliminarProductoController controlador ) {
         this.setSistema(sistema);
         this.setControlador(controlador);
         this.imagenProducto.setImage(producto.getImagenDelProducto());
@@ -151,7 +154,7 @@ public class ProductosAEliminarController implements Initializable {
                 this.getSistema().getEchoShop().eliminarProductoSinImportarStock(p);
             }
         }
-        controlador.cargarProductos(listaProductos, controlador);
+        controlador.cargarArticulos(listaProductos, controlador, sistema);
     }
 
 }

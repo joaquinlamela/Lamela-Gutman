@@ -187,11 +187,10 @@ public class VendedorController implements Initializable {
                 Parent root = loader.load();
 
                 EliminarProductoController controlador = loader.getController();
-                
-                ArrayList<Producto> listaProd = this.getSistema().getEchoShop().getListaDeProductosEnStock(); 
-                //controlador.cargarDatos(listaProd, sistema);
 
-                controlador.cargarDatos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
+                ArrayList<Producto> listaProd = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+
+                controlador.cargarArticulos(listaProd, controlador, sistema);
 
                 Scene escena = new Scene(root);
 
@@ -235,10 +234,10 @@ public class VendedorController implements Initializable {
             Parent root = loader.load();
 
             TopVentasController controlador = loader.getController();
-            
-            ArrayList<Producto> todosLosProductosDelSistema= this.getSistema().getEchoShop().getListaDeProductosEnStock(); 
-            
-            controlador.cargarProductos(this.getSistema().getEchoShop().obtenerLos5MasVendidos(todosLosProductosDelSistema), controlador);
+
+            ArrayList<Producto> todosLosProductosDelSistema = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+
+            controlador.cargarProductos(this.getSistema().getEchoShop().obtenerLos5MasVendidos(todosLosProductosDelSistema));
 
             Scene escena = new Scene(root);
 
