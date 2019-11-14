@@ -12,8 +12,12 @@ public class Sistema {
     private ArrayList<Persona> listaCliente;
     
     
+    
     private ArrayList<Producto> productosAVenderEnSesionActiva; 
     private int [] cantidadPorIdDeProd; 
+    
+    private ArrayList<Producto> productosPreVentaSesionActiva; 
+    private int [] cantidadPorIdDePreVenta; 
 
     //Constructor:
     public Sistema() {
@@ -23,7 +27,9 @@ public class Sistema {
         this.cantPreVentas = 0;
         this.listaCliente = new ArrayList<Persona>();
         this.productosAVenderEnSesionActiva= new ArrayList<Producto>(); 
+        this.productosPreVentaSesionActiva= new ArrayList<Producto>(); 
         this.cantidadPorIdDeProd= new int[25]; 
+        this.cantidadPorIdDePreVenta= new int[25]; 
     }
 
     public int getCantPreVentas() {
@@ -82,6 +88,24 @@ public class Sistema {
     public void setCantidadPorIdDeProd(int[] cantidadPorIdDeProd) {
         this.cantidadPorIdDeProd = cantidadPorIdDeProd;
     }
+
+    public ArrayList<Producto> getProductosPreVentaSesionActiva() {
+        return productosPreVentaSesionActiva;
+    }
+
+    public void setProductosPreVentaSesionActiva(ArrayList<Producto> productosPreVentaSesionActiva) {
+        this.productosPreVentaSesionActiva = productosPreVentaSesionActiva;
+    }
+
+    public int[] getCantidadPorIdDePreVenta() {
+        return cantidadPorIdDePreVenta;
+    }
+
+    public void setCantidadPorIdDePreVenta(int[] cantidadPorIdDePreVenta) {
+        this.cantidadPorIdDePreVenta = cantidadPorIdDePreVenta;
+    }
+    
+    
     
     
     
@@ -195,6 +219,13 @@ public class Sistema {
     public void agregarProductosALaListaDeProductosSesionActiva(Producto producto){
         if(!this.getProductosAVenderEnSesionActiva().contains(producto)){
             this.getProductosAVenderEnSesionActiva().add(producto); 
+        }
+    }
+    
+    
+    public void agregarProductosALaListaPreVenta(Producto producto){
+        if(!this.getProductosPreVentaSesionActiva().contains(producto)){
+            this.getProductosPreVentaSesionActiva().add(producto); 
         }
     }
     

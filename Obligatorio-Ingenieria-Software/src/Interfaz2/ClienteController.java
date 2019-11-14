@@ -47,8 +47,6 @@ public class ClienteController implements Initializable {
     @FXML
     private JFXButton btnIrAInicio;
     @FXML
-    private ScrollPane scrollPane;
-    @FXML
     private JFXButton btnMapa;
     @FXML
     private JFXButton btnMercado;
@@ -109,6 +107,41 @@ public class ClienteController implements Initializable {
 
     @FXML
     private void irAlMercado(ActionEvent event) {
+        
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("PreVenta.fxml"));
+
+            Parent root = loader.load();
+
+            PreVentaController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @FXML
@@ -121,10 +154,42 @@ public class ClienteController implements Initializable {
 
     @FXML
     private void irAInicio(ActionEvent event) {
+       
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
+            
+            Parent root = loader.load();
+            
+            InicioController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        
     }
 
     public void cerrarVentana() {
 
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
 
@@ -150,10 +215,11 @@ public class ClienteController implements Initializable {
 
             Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
             myStage.close();
-
         } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
 
     }
 

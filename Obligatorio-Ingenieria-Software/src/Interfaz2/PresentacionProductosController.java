@@ -138,6 +138,37 @@ public class PresentacionProductosController implements Initializable {
 
     @FXML
     private void agregarPreventa(ActionEvent event) {
+        
+        boolean esValido = true;
+
+        int cantProductos = 1;
+
+        if (!this.cantidadProductos.getSelectionModel().isEmpty()) {
+            cantProductos = this.cantidadProductos.getSelectionModel().getSelectedItem();
+        } else {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no ha seleccionado ninguna cantidad");
+            alert.setContentText("!Seleccione un origen!");
+            alert.showAndWait();
+        }
+
+        if (esValido) {
+            int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
+
+            ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+            for (int i = 0; i < listaProductos.size(); i++) {
+                if (codigoIdentificador == listaProductos.get(i).getCodigoIdentificador()) {
+                    Producto p = listaProductos.get(i);
+                    this.getSistema().agregarProductosALaListaPreVenta(p);
+                    this.getSistema().getCantidadPorIdDeProd()[codigoIdentificador] = cantProductos;
+                }
+            }
+
+        }
+        
+        
 
     }
 
