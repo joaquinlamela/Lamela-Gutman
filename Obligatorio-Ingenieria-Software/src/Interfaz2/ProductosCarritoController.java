@@ -135,7 +135,7 @@ public class ProductosCarritoController implements Initializable {
     private void agregarCantidad(ActionEvent event) {
 
         int cantidadActual = Integer.parseInt(this.getCantidad().getText());
-        if (cantidadActual <= 99) {
+        if (cantidadActual < 99) {
             this.cantidad.setText(Integer.toString(cantidadActual + 1));
             this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual + 1)));
             this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = cantidadActual + 1;
@@ -148,7 +148,7 @@ public class ProductosCarritoController implements Initializable {
     private void bajarCantidad(ActionEvent event) {
         //Ver cuando es 0 la cantidad 
         int cantidadActual = Integer.parseInt(this.getCantidad().getText());
-        if (cantidadActual >= 1) {
+        if (cantidadActual > 1) {
             this.cantidad.setText(Integer.toString(cantidadActual - 1));
             this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual - 1)));
             this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = (cantidadActual - 1);

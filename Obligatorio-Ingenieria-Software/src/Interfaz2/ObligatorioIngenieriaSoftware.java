@@ -35,6 +35,9 @@ public class ObligatorioIngenieriaSoftware extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
+        
+        //Poner imagenes a los productos
+        
         try {
             
             Sistema sistema = new Sistema();

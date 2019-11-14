@@ -9,15 +9,22 @@ import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -44,6 +51,8 @@ public class PresentacionProductosController implements Initializable {
     private Sistema sistema;
 
     private CarritoController controlador;
+    
+    private int CodigoIdentificador; 
 
     @FXML
     private Label identificador;
@@ -130,6 +139,18 @@ public class PresentacionProductosController implements Initializable {
         this.controlador = controlador;
     }
 
+    public int getCodigoIdentificador() {
+        return CodigoIdentificador;
+    }
+
+    public void setCodigoIdentificador(int CodigoIdentificador) {
+        this.CodigoIdentificador = CodigoIdentificador;
+    }
+    
+    
+    
+    
+
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -138,7 +159,7 @@ public class PresentacionProductosController implements Initializable {
 
     @FXML
     private void agregarPreventa(ActionEvent event) {
-        
+
         boolean esValido = true;
 
         int cantProductos = 1;
@@ -167,8 +188,6 @@ public class PresentacionProductosController implements Initializable {
             }
 
         }
-        
-        
 
     }
 
@@ -190,6 +209,51 @@ public class PresentacionProductosController implements Initializable {
         }
 
         if (esValido) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarEnvasePorProducto.fxml"));
+
+                Parent root = loader.load();
+
+                SeleccionarEnvasePorProductoController controlado = loader.getController();
+
+                Scene escena = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.setScene(escena);
+
+                stage.show();
+
+                stage.setHeight(675);
+
+                stage.setWidth(366);
+
+                stage.setResizable(false);
+
+                controlado.setSistema(sistema);
+
+                Producto p = new Producto();
+
+                for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+                    if (this.getCodigoIdentificador() == this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador()) {
+                        p = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
+                    }
+                }
+                
+                controlado.cargarProductos(p, sistema, controlado);
+
+                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado);
+
+                stage.setOnCloseRequest(e -> controlado.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnPreventa.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (esValido) {
             int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
 
             ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
@@ -207,6 +271,7 @@ public class PresentacionProductosController implements Initializable {
 
     public void inicializarDatos(Producto producto, Sistema sistema) {
         this.setSistema(sistema);
+        this.setCodigoIdentificador(producto.getCodigoIdentificador());
         this.imagenProducto.setImage(producto.getImagenDelProducto());
         this.nombreProd.setText(producto.getNombre());
         this.precioProducto.setText(Double.toString(producto.getPrecio()));

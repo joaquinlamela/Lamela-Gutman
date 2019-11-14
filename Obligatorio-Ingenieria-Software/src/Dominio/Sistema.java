@@ -15,9 +15,12 @@ public class Sistema {
     
     private ArrayList<Producto> productosAVenderEnSesionActiva; 
     private int [] cantidadPorIdDeProd; 
+    ArrayList<Envase> envasesALlevarEnVenta; 
+    
     
     private ArrayList<Producto> productosPreVentaSesionActiva; 
     private int [] cantidadPorIdDePreVenta; 
+    ArrayList<Envase> envasesALlevarEnPreVenta; 
 
     //Constructor:
     public Sistema() {
@@ -30,6 +33,8 @@ public class Sistema {
         this.productosPreVentaSesionActiva= new ArrayList<Producto>(); 
         this.cantidadPorIdDeProd= new int[25]; 
         this.cantidadPorIdDePreVenta= new int[25]; 
+        this.envasesALlevarEnVenta= new ArrayList<Envase>(); 
+         this.envasesALlevarEnPreVenta= new ArrayList<Envase>(); 
     }
 
     public int getCantPreVentas() {
@@ -104,6 +109,26 @@ public class Sistema {
     public void setCantidadPorIdDePreVenta(int[] cantidadPorIdDePreVenta) {
         this.cantidadPorIdDePreVenta = cantidadPorIdDePreVenta;
     }
+
+    public ArrayList<Envase> getEnvasesALlevarEnVenta() {
+        return envasesALlevarEnVenta;
+    }
+
+    public void setEnvasesALlevarEnVenta(ArrayList<Envase> envasesALlevarEnVenta) {
+        this.envasesALlevarEnVenta = envasesALlevarEnVenta;
+    }
+
+    public ArrayList<Envase> getEnvasesALlevarEnPreVenta() {
+        return envasesALlevarEnPreVenta;
+    }
+
+    public void setEnvasesALlevarEnPreVenta(ArrayList<Envase> envasesALlevarEnPreVenta) {
+        this.envasesALlevarEnPreVenta = envasesALlevarEnPreVenta;
+    }
+    
+    
+    
+    
     
     
     

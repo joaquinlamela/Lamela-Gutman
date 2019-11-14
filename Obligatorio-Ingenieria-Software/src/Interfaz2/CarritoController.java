@@ -263,15 +263,17 @@ public class CarritoController implements Initializable {
         
         Persona comprador = this.getSistema().getListaCliente().get(this.getSistema().getListaCliente().size()-1); 
         Tienda tienda= this.getSistema().getEchoShop(); 
-        ArrayList<Envase> listaDeEnvasesUtilizados= new ArrayList<Envase>(); 
-        for (int i = 0; i < listaDeProductos.size(); i++) {
+        ArrayList<Envase> listaDeEnvasesUtilizados= this.getSistema().getEnvasesALlevarEnVenta(); 
+        
+        
+        /*for (int i = 0; i < listaDeProductos.size(); i++) {
             Producto p= listaDeProductos.get(i); 
             for (int j = 0; j <p.getPosiblesEnvasesRecomendados().size() ; j++) {
                 if(!listaDeEnvasesUtilizados.contains(p.getPosiblesEnvasesRecomendados().get(j))){
                     listaDeEnvasesUtilizados.add(p.getPosiblesEnvasesRecomendados().get(j)); 
                 }   
             }
-        }
+        }*/ 
         int codigoIdentificador=1; 
         String direccionComprador= comprador.getDomicilio(); 
         
@@ -283,6 +285,7 @@ public class CarritoController implements Initializable {
         
         
         sistema.agregarVenta(ventaAgregar);
+       
         WebView webView = new WebView();
         String contenido = this.getSistema().factura(ventaAgregar);
         
@@ -295,7 +298,7 @@ public class CarritoController implements Initializable {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        System.out.println(this.getSistema().getListaDeVentasDelSitema());
+       // System.out.println(this.getSistema().getListaDeVentasDelSitema());
         
         for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
             Producto p= this.getSistema().getProductosAVenderEnSesionActiva().get(i); 

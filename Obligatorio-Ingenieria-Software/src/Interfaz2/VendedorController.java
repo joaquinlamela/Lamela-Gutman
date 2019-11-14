@@ -303,7 +303,9 @@ public class VendedorController implements Initializable {
 
     @FXML
     private void obtenerEstadisticas(ActionEvent event) {
-        if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
+       
+        
+        if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Estadisticas.fxml"));
 
@@ -337,7 +339,7 @@ public class VendedorController implements Initializable {
                 Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            if (!this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().isEmpty()) {
+            if (!this.getSistema().getEnvasesALlevarEnVenta().isEmpty()) {
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EnvasesReutilizados.fxml"));
 

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interfaz2.SeleccionarEnvasePorProductoController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/Envase%20producto.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="productoSeleccionado" layoutX="-2.0" layoutY="93.0" prefHeight="182.0" prefWidth="360.0" />
+      <ScrollPane layoutY="314.0" prefHeight="200.0" prefWidth="360.0">
+         <content>
+            <VBox fx:id="listaDeEnvases" prefHeight="186.0" prefWidth="360.0" />
+         </content>
+      </ScrollPane>
+      <Label layoutX="15.0" layoutY="280.0" prefHeight="21.0" prefWidth="323.0" text="Seleccione los envases para el producto: " textFill="WHITE" />
+      <ImageView fitHeight="48.0" fitWidth="296.0" layoutX="29.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Imagenes/BotonVolver.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnCarrito" layoutX="24.0" layoutY="524.0" onAction="#irACarrito" prefHeight="48.0" prefWidth="304.0" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnAtras" layoutX="-6.0" layoutY="592.0" onAction="#irAInicio" prefHeight="48.0" prefWidth="368.0" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnVolver" layoutX="14.0" layoutY="29.0" onAction="#volverInicio" prefHeight="55.0" prefWidth="55.0" text="&#10;&#10;&#10;" />
+   </children>
+</Pane>

@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
 import com.jfoenix.controls.JFXTextField;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -25,6 +26,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -159,7 +162,12 @@ public class AgregarEnvaseController implements Initializable {
 
         //Parte de la creacion del envase si es valido
         if (esValido) {
-            Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales);
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+            Image imagenProducto = new Image(selectedFile.toURI().toString());
+            
+            
+            Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales, imagenProducto);
             this.getSistema().getEchoShop().agregarEnvase(envaseAgregar);
         }
 

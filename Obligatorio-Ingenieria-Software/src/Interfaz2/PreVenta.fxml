@@ -11,7 +11,7 @@
    <children>
       <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Imagenes/Top%20ventas.png" />
+            <Image url="@../Imagenes/Pre-venta.png" />
          </image>
       </ImageView>
       <ScrollPane layoutX="-2.0" layoutY="154.0" prefHeight="383.0" prefWidth="360.0">

@@ -50,21 +50,19 @@ public class EstadisticasController implements Initializable {
     @FXML
     private JFXButton btnBeneficios;
     @FXML
-    private BarChart<?, ?> graficaMasVendidos;
+    private BarChart<String, Integer> graficaMasVendidos;
     @FXML
     private NumberAxis y;
     @FXML
     private CategoryAxis x;
 
-    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-        /*
+
+        /* 
         XYChart.Series set1 = new XYChart.Series<>();
 
         ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().obtenerLos5MasVendidos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
@@ -75,14 +73,13 @@ public class EstadisticasController implements Initializable {
             set1.getData().add(new XYChart.Data(nombreProd, cantVendidos));
             graficaMasVendidos.getData().add(set1);
         }
-        */ 
-
+         */
     }
-    
-    public void cargarGraficas(Sistema sistema){
-        
+
+    public void cargarGraficas(Sistema sistema) {
+
         this.setSistema(sistema);
-        
+
         XYChart.Series set1 = new XYChart.Series<>();
 
         ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().obtenerLos5MasVendidos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
@@ -91,12 +88,10 @@ public class EstadisticasController implements Initializable {
             String nombreProd = listaProductos.get(i).getNombre();
             int cantVendidos = listaProductos.get(i).getCantidadVendidos();
             set1.getData().add(new XYChart.Data(nombreProd, cantVendidos));
-            graficaMasVendidos.getData().add(set1);
+
         }
+        graficaMasVendidos.getData().add(set1);
     }
-    
-    
-    
 
     @FXML
     private void volverAInicio(ActionEvent event) {
@@ -107,7 +102,6 @@ public class EstadisticasController implements Initializable {
             Parent root = loader.load();
 
             ClienteController controlador = loader.getController();
-            
 
             Scene escena = new Scene(root);
 
@@ -141,7 +135,7 @@ public class EstadisticasController implements Initializable {
 
             Parent root = loader.load();
 
-           ClienteController controlador = loader.getController();
+            ClienteController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -216,15 +210,15 @@ public class EstadisticasController implements Initializable {
 
     @FXML
     private void envasesUtilizados(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("EnvasesReutilizados.fxml"));
-            
+
             Parent root = loader.load();
 
             EnvasesReutilizadosController controlador = loader.getController();
-            
-            controlador.cargarGraficaEnvases(sistema); 
+
+            controlador.cargarGraficaEnvases(sistema);
 
             Scene escena = new Scene(root);
 
@@ -250,16 +244,14 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
     }
 
     @FXML
     private void ventasPorMes(ActionEvent event) {
-        
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GraficaDeVentaXMes.fxml"));
-            
+
             Parent root = loader.load();
 
             GraficaDeVentaXMesController controlador = loader.getController();
@@ -288,17 +280,14 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-      
-        
-        
     }
 
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Beneficios.fxml"));
-            
+
             Parent root = loader.load();
 
             BeneficiosController controlador = loader.getController();
@@ -326,7 +315,7 @@ public class EstadisticasController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
 }

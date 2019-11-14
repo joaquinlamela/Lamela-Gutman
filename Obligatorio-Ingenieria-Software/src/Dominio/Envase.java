@@ -1,6 +1,7 @@
 package Dominio;
 
 import java.util.*;
+import javafx.scene.image.Image;
 
 
 public class Envase {
@@ -11,12 +12,15 @@ public class Envase {
     private int idIdentificador; 
     private int pesoMaximoSoportado;
     private ArrayList<tipoMaterial> tiposDeMateriales;
+    private Image imagenDelProducto;
+    
 
-    public Envase(String nombre,int id, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales) {
+    public Envase(String nombre,int id, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales, Image imagen) {
         this.setNombre(nombre);
         this.setIdIdentificador(id);
         this.setPesoMaximoSoportado(pesoMaximoSoportado);
         this.setTiposDeMateriales(tiposDeMateriales);
+        this.setImagenDelProducto(imagen);
     }
 
     public Envase(){
@@ -82,6 +86,18 @@ public class Envase {
             throw new RuntimeException("IdentificadorMayorA1");
         }
     }
+
+    public Image getImagenDelProducto() {
+        return imagenDelProducto;
+    }
+
+    public void setImagenDelProducto(Image imagenDelProducto) {
+        this.imagenDelProducto = imagenDelProducto;
+    }
+    
+    
+    
+    
 
     @Override
     public String toString() {
