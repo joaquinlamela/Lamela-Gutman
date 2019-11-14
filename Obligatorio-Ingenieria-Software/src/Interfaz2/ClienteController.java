@@ -26,7 +26,9 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import Dominio.Producto;
+import java.nio.file.Paths;
 import javafx.scene.Node;
+import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -103,6 +105,14 @@ public class ClienteController implements Initializable {
 
     @FXML
     private void irAlMapa(ActionEvent event) {
+        WebView webView = new WebView();  
+        webView.getEngine().load("file:" + Paths.get("").toAbsolutePath().toString()+"/src/CarpetaMapa/MapaNuevo.html");
+        VBox vBox = new VBox(webView);
+        Scene scene = new Scene(vBox, 600, 400);
+
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     @FXML

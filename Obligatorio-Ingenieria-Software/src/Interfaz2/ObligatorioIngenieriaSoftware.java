@@ -90,41 +90,57 @@ public class ObligatorioIngenieriaSoftware extends Application {
             //Se inicializan los envases
             Envase envasePlantas = new Envase();
             
+            File fi1 = new File("src/Imagenes/EnvasePlanta.jpg");     
+            Image e1 = new Image(fi1.toURI().toString());
+            
             envasePlantas.setNombre("Envase Plantas");
             envasePlantas.setPesoMaximoSoportado(20);
             ArrayList<tipoMaterial> materiales1 = new ArrayList<>();
             materiales1.add(tipoMaterial.Carton);
             envasePlantas.setTiposDeMateriales(materiales1);
+            envasePlantas.setImagenDelProducto(e1);
             
             sistema.getEchoShop().agregarEnvase(envasePlantas);
             
             Envase envaseAlimentos = new Envase();
+            
+            File fi2 = new File("src/Imagenes/EnvaseAlimentos.jpg");     
+            Image e2 = new Image(fi2.toURI().toString());
             
             envaseAlimentos.setNombre("Envase Alimentos");
             envaseAlimentos.setPesoMaximoSoportado(30);
             ArrayList<tipoMaterial> materiales2 = new ArrayList<>();
             materiales2.add(tipoMaterial.Plastico);
             envaseAlimentos.setTiposDeMateriales(materiales2);
+            envaseAlimentos.setImagenDelProducto(e2);
             
             sistema.getEchoShop().agregarEnvase(envaseAlimentos);
             
             Envase envaseSemillas = new Envase();
+            
+            File fi3 = new File("src/Imagenes/EnvaseSemilla.jpg");     
+            Image e3 = new Image(fi3.toURI().toString());
             
             envaseSemillas.setNombre("Envase Semillas");
             envaseSemillas.setPesoMaximoSoportado(15);
             ArrayList<tipoMaterial> materiales3 = new ArrayList<>();
             materiales3.add(tipoMaterial.Carton);
             envaseSemillas.setTiposDeMateriales(materiales3);
+            envaseSemillas.setImagenDelProducto(e3);
             
             sistema.getEchoShop().agregarEnvase(envaseSemillas);
             
             Envase envaseElectrodomesticos = new Envase();
             
-            envaseElectrodomesticos.setNombre("Envase Semillas");
+            File fi4 = new File("src/Imagenes/EnvaseSemilla.jpg");     
+            Image e4 = new Image(fi4.toURI().toString());
+            
+            envaseElectrodomesticos.setNombre("Envase Electrodomesticos");
             envaseElectrodomesticos.setPesoMaximoSoportado(50);
             ArrayList<tipoMaterial> materiales4 = new ArrayList<>();
             materiales4.add(tipoMaterial.Metal);
             envaseElectrodomesticos.setTiposDeMateriales(materiales4);
+            envaseElectrodomesticos.setImagenDelProducto(e4);
             
             sistema.getEchoShop().agregarEnvase(envaseElectrodomesticos);
             
