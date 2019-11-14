@@ -138,7 +138,7 @@ public class Sistema {
             if (this.listaDeVentasDelSistema.size() == 1) {
                 venta.setCodigoIdentificadorDeVenta(1);
             }else{
-                venta.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size() + 1);
+                venta.setCodigoIdentificadorDeVenta(this.listaDeVentasDelSistema.size());
             }
         }
     }

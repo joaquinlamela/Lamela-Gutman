@@ -128,6 +128,7 @@ public class Tienda {
 
     //Metodos:
     public void agregarProducto(Producto producto) {
+        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size()+1);
         if (!this.listaDeProductosEnStock.contains(producto)) {
 
             this.listaDeProductosEnStock.add(producto);
@@ -148,8 +149,8 @@ public class Tienda {
     }
 
     public void agregarSucursal(Sucursal s) {
+        s.setNumeroSucursal(this.sucursales.size()+1);
         if (!this.sucursales.contains(s)) {
-
             this.sucursales.add(s);
         }
         //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
@@ -162,6 +163,7 @@ public class Tienda {
     }
 
     public void agregarEnvase(Envase e) {
+        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size()+1);
         if (!this.todosLosEnvasesDisponibles.contains(e)) {
             this.todosLosEnvasesDisponibles.add(e);
         }

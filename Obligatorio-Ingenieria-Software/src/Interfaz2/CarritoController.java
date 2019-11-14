@@ -282,6 +282,7 @@ public class CarritoController implements Initializable {
                 direccionComprador); 
         
         
+        sistema.agregarVenta(ventaAgregar);
         WebView webView = new WebView();
         String contenido = this.getSistema().factura(ventaAgregar);
         

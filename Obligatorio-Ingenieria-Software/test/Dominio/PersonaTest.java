@@ -43,9 +43,9 @@ public class PersonaTest {
     @Test
     public void testGetNombre1() {
         ///System.out.println("getNombre");
-        Envase instance = new Envase();
-        instance.setNombre("vidrio");
-        String expResult = "vidrio";
+        Persona instance = new Persona();
+        instance.setNombre("Santi");
+        String expResult = "Santi";
         String result = instance.getNombre();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
@@ -55,9 +55,9 @@ public class PersonaTest {
         @Test
     public void testGetNombre2() {
         ///System.out.println("getNombre");
-        Envase instance = new Envase();
-        instance.setNombre("Plastico");
-        String expResult = "Plastico";
+        Persona instance = new Persona();
+        instance.setNombre("Juan");
+        String expResult = "Juan";
         String result = instance.getNombre();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
