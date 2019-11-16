@@ -5,6 +5,7 @@
  */
 package Interfaz2;
 
+import Dominio.Envase;
 import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -51,8 +52,8 @@ public class PresentacionProductosController implements Initializable {
     private Sistema sistema;
 
     private CarritoController controlador;
-    
-    private int CodigoIdentificador; 
+
+    private int codigoIdentificador;
 
     @FXML
     private Label identificador;
@@ -140,16 +141,15 @@ public class PresentacionProductosController implements Initializable {
     }
 
     public int getCodigoIdentificador() {
-        return CodigoIdentificador;
+        return codigoIdentificador;
     }
 
-    public void setCodigoIdentificador(int CodigoIdentificador) {
-        this.CodigoIdentificador = CodigoIdentificador;
+    public void setCodigoIdentificador(int codigoIdentificador) {
+        this.codigoIdentificador = codigoIdentificador;
     }
+
     
-    
-    
-    
+   
 
     //Metodos: 
     @Override
@@ -174,20 +174,103 @@ public class PresentacionProductosController implements Initializable {
             alert.setContentText("!Seleccione un origen!");
             alert.showAndWait();
         }
+        Producto producto= new Producto(); 
+        
+        for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+            if(this.getCodigoIdentificador()==this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador() ){
+                producto= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            }
+        }
+        
+        
+         if (esValido && !this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarEnvasePorProductoPreVenta.fxml"));
 
-        if (esValido) {
-            int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
+                Parent root = loader.load();
+
+                SeleccionarEnvasePorProductoPreVentaController controlado = loader.getController();
+
+                Scene escena = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.setScene(escena);
+
+                stage.show();
+
+                stage.setHeight(675);
+
+                stage.setWidth(366);
+
+                stage.setResizable(false);
+
+                controlado.setSistema(sistema);
+
+                Producto p = new Producto();
+
+                for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+                    if (this.getCodigoIdentificador() == this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador()) {
+                        p = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
+                    }
+                }
+
+                controlado.cargarProductos(p, sistema, controlado);
+
+                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado, p);
+
+                stage.setOnCloseRequest(e -> controlado.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnPreventa.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (esValido && !this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
+            int codigoIdentifi = Integer.parseInt(this.getIdentificador().getText());
 
             ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
             for (int i = 0; i < listaProductos.size(); i++) {
-                if (codigoIdentificador == listaProductos.get(i).getCodigoIdentificador()) {
+                if (codigoIdentifi == listaProductos.get(i).getCodigoIdentificador()) {
                     Producto p = listaProductos.get(i);
                     this.getSistema().agregarProductosALaListaPreVenta(p);
-                    this.getSistema().getCantidadPorIdDeProd()[codigoIdentificador] = cantProductos;
+                    this.getSistema().getCantidadPorIdDePreVenta()[this.getCodigoIdentificador()] = cantProductos;
                 }
             }
 
         }
+        
+        
+        
+        /*
+
+        if (esValido) {
+
+            
+
+            ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+
+            for (int i = 0; i < listaProductos.size(); i++) {
+                if (this.getCodigoIdentificador()== listaProductos.get(i).getCodigoIdentificador()) {
+                    Producto p = listaProductos.get(i);
+                    this.getSistema().agregarProductosALaListaPreVenta(p);
+                    this.getSistema().getCantidadPorIdDePreVenta()[this.getCodigoIdentificador()] = cantProductos;
+
+                    ArrayList<Envase> listaDeEnvasePorProducto = p.getPosiblesEnvasesRecomendados();
+                    for (int j = 0; j < listaDeEnvasePorProducto.size(); j++) {
+                        if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(listaDeEnvasePorProducto.get(j))) {
+                            this.getSistema().getEnvasesALlevarEnPreVenta().add(listaDeEnvasePorProducto.get(j));
+
+                        }
+
+                    }
+                }
+            }
+
+        }
+        */ 
 
     }
 
@@ -207,8 +290,17 @@ public class PresentacionProductosController implements Initializable {
             alert.setContentText("!Seleccione un origen!");
             alert.showAndWait();
         }
+        
+        Producto producto= new Producto(); 
+        
+        for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
+            if(this.getCodigoIdentificador()==this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador() ){
+                producto= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            }
+        }
+        
 
-        if (esValido) {
+        if (esValido && !this.getSistema().getProductosAVenderEnSesionActiva().contains(producto)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarEnvasePorProducto.fxml"));
 
@@ -239,10 +331,10 @@ public class PresentacionProductosController implements Initializable {
                         p = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
                     }
                 }
-                
+
                 controlado.cargarProductos(p, sistema, controlado);
 
-                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado);
+                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado,p);
 
                 stage.setOnCloseRequest(e -> controlado.cerrarVentana());
 
@@ -253,7 +345,7 @@ public class PresentacionProductosController implements Initializable {
             }
         }
 
-        if (esValido) {
+        if (esValido && !this.getSistema().getProductosAVenderEnSesionActiva().contains(producto)) {
             int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
 
             ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
@@ -281,5 +373,7 @@ public class PresentacionProductosController implements Initializable {
         this.descripcion.setText(producto.getDescripcionDelProducto());
         this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));
     }
+    
+    
 
 }

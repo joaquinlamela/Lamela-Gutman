@@ -40,6 +40,8 @@ public class PresentacionEnvasesController implements Initializable {
 
     private SeleccionarEnvasePorProductoController controlador;
     
+    private Producto producto; 
+    
     
  
     
@@ -70,16 +72,28 @@ public class PresentacionEnvasesController implements Initializable {
         this.controlador = controlador;
     }
 
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+    
+    
+    
+
    
     
     
     
     
 
-    public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoController controlador) {
+    public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoController controlador, Producto producto) {
         this.setSistema(sistema);
         this.setControlador(controlador);
         this.setCodigoIdentificador(envase.getIdIdentificador());
+        this.setProducto(producto);
         this.imagenEnvase.setImage(envase.getImagenDelProducto());
         this.nombreEnvase.setText(envase.getNombre());
         this.pesoEnvase.setText(Integer.toString(envase.getPesoMaximoSoportado()));
@@ -103,7 +117,7 @@ public class PresentacionEnvasesController implements Initializable {
 
         int codigoIdentificad = this.getCodigoIdentificador();
 
-        ArrayList<Envase> listaEnvases = this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles();
+        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados(); 
 
         for (int i = 0; i < listaEnvases.size(); i++) {
             if (codigoIdentificad == listaEnvases.get(i).getIdIdentificador()) {
@@ -111,9 +125,10 @@ public class PresentacionEnvasesController implements Initializable {
                 if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {
                     this.getSistema().getEnvasesALlevarEnVenta().add(e);
                 }
-
+                listaEnvases.remove(e); 
             }
         }
+        controlador.cargarProductos2(listaEnvases, sistema, controlador, this.getProducto());
 
     }
 

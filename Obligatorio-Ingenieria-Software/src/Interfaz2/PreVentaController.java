@@ -22,6 +22,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -135,48 +136,60 @@ public class PreVentaController implements Initializable {
     @FXML
     private void confirmarPreVenta(ActionEvent event) {
 
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmacionCompra.fxml"));
+        if (!this.getSistema().getProductosPreVentaSesionActiva().isEmpty()) {
 
-            Parent root = loader.load();
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfirmacionCompra.fxml"));
 
-            ConfirmacionCompraController controlador = loader.getController();
+                Parent root = loader.load();
 
-            Scene escena = new Scene(root);
+                ConfirmacionCompraController controlador = loader.getController();
 
-            Stage stage = new Stage();
+                Scene escena = new Scene(root);
 
-            stage.setScene(escena);
+                Stage stage = new Stage();
 
-            stage.show();
+                stage.setScene(escena);
 
-            stage.setHeight(675);
+                stage.show();
 
-            stage.setWidth(366);
+                stage.setHeight(675);
 
-            stage.setResizable(false);
+                stage.setWidth(366);
 
-            controlador.setSistema(sistema);
+                stage.setResizable(false);
 
-            ArrayList<Envase> listaDeEnvasesALlevar = new ArrayList<>();
+                controlador.setSistema(sistema);
 
-            for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
-                Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
-                ArrayList<Envase> listaDeEnvaseDeUnProducto = p.getPosiblesEnvasesRecomendados();
-                for (int j = 0; j < listaDeEnvaseDeUnProducto.size(); j++) {
-                    listaDeEnvasesALlevar.add(listaDeEnvaseDeUnProducto.get(i));
+                /*
+                ArrayList<Envase> listaDeEnvasesALlevar = new ArrayList<>();
+
+                for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
+                    Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
+                    ArrayList<Envase> listaDeEnvaseDeUnProducto = p.getPosiblesEnvasesRecomendados();
+                    for (int j = 0; j < listaDeEnvaseDeUnProducto.size(); j++) {
+                        listaDeEnvasesALlevar.add(listaDeEnvaseDeUnProducto.get(i));
+                    }
+
                 }
+                 */
+                
+                controlador.cargarProductos(this.getSistema().getEnvasesALlevarEnPreVenta(), sistema, controlador);
 
+                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            controlador.cargarProductos(listaDeEnvasesALlevar, sistema, controlador);
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: Seleccione almenos un producto para la preventa");
+            alert.setContentText("Agregue un producto en la preventa");
+            alert.showAndWait();
         }
 
     }
@@ -190,6 +203,10 @@ public class PreVentaController implements Initializable {
         for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
             this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
         }
+         for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
+                Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
+                this.getSistema().getEnvasesALlevarEnPreVenta().remove(envase);
+            }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));

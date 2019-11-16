@@ -21,6 +21,10 @@ public class Sistema {
     private ArrayList<Producto> productosPreVentaSesionActiva; 
     private int [] cantidadPorIdDePreVenta; 
     ArrayList<Envase> envasesALlevarEnPreVenta; 
+    
+   
+     
+
 
     //Constructor:
     public Sistema() {

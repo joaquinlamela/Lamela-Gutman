@@ -26,6 +26,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -204,13 +205,18 @@ public class CarritoController implements Initializable {
     @FXML
     private void cancelarVenta(ActionEvent event) {
         for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
-            Producto p= this.getSistema().getProductosAVenderEnSesionActiva().get(i); 
-            this.getSistema().getProductosAVenderEnSesionActiva().remove(p); 
+            Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
+            this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
         }
         for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
-            this.getSistema().getCantidadPorIdDeProd()[i]=0; 
+            this.getSistema().getCantidadPorIdDeProd()[i] = 0;
         }
+         for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
+                Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
+                this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
+            }
         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -243,107 +249,111 @@ public class CarritoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
 
     @FXML
     private void confirmarVenta(ActionEvent event) {
-        ArrayList<Producto> listaDeProductos= this.getSistema().getProductosAVenderEnSesionActiva(); 
-        int precioTotal=0; 
-        for (int i = 0; i < listaDeProductos.size(); i++) {
-            this.getSistema().getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(
-                    this.getSistema().getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos() + 
-                    this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
-            
-            precioTotal+= (listaDeProductos.get(i).getPrecio() * this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]); 
-        }
-        int [] cantidadesPorId= this.getSistema().getCantidadPorIdDeProd(); 
-        Date fecha= new Date(); 
-        
-        Persona comprador = this.getSistema().getListaCliente().get(this.getSistema().getListaCliente().size()-1); 
-        Tienda tienda= this.getSistema().getEchoShop(); 
-        ArrayList<Envase> listaDeEnvasesUtilizados= this.getSistema().getEnvasesALlevarEnVenta(); 
-        
-        
-        /*for (int i = 0; i < listaDeProductos.size(); i++) {
+        if (!this.getSistema().getProductosAVenderEnSesionActiva().isEmpty()) {
+
+            ArrayList<Producto> listaDeProductos = this.getSistema().getProductosAVenderEnSesionActiva();
+            int precioTotal = 0;
+            for (int i = 0; i < listaDeProductos.size(); i++) {
+                this.getSistema().getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(
+                        this.getSistema().getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()
+                        + this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
+
+                precioTotal += (listaDeProductos.get(i).getPrecio() * this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
+            }
+            int[] cantidadesPorId = this.getSistema().getCantidadPorIdDeProd();
+            Date fecha = new Date();
+
+            Persona comprador = this.getSistema().getListaCliente().get(this.getSistema().getListaCliente().size() - 1);
+            Tienda tienda = this.getSistema().getEchoShop();
+            ArrayList<Envase> listaDeEnvasesUtilizados = this.getSistema().getEnvasesALlevarEnVenta();
+
+            /*for (int i = 0; i < listaDeProductos.size(); i++) {
             Producto p= listaDeProductos.get(i); 
             for (int j = 0; j <p.getPosiblesEnvasesRecomendados().size() ; j++) {
                 if(!listaDeEnvasesUtilizados.contains(p.getPosiblesEnvasesRecomendados().get(j))){
                     listaDeEnvasesUtilizados.add(p.getPosiblesEnvasesRecomendados().get(j)); 
                 }   
             }
-        }*/ 
-        int codigoIdentificador=1; 
-        String direccionComprador= comprador.getDomicilio(); 
-        
-        
-        
-        Venta ventaAgregar= new Venta(listaDeProductos, precioTotal, cantidadesPorId,
-                fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
-                direccionComprador); 
-        
-        
-        sistema.agregarVenta(ventaAgregar);
-       
-        WebView webView = new WebView();
-        String contenido = this.getSistema().factura(ventaAgregar);
-        
-        webView.getEngine().loadContent(contenido);
-    
-        VBox vBox = new VBox(webView);
-        Scene scene = new Scene(vBox, 960, 600);
-        
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        }*/
+            int codigoIdentificador = 1;
+            String direccionComprador = comprador.getDomicilio();
 
-       // System.out.println(this.getSistema().getListaDeVentasDelSitema());
-        
-        for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
-            Producto p= this.getSistema().getProductosAVenderEnSesionActiva().get(i); 
-            this.getSistema().getProductosAVenderEnSesionActiva().remove(p); 
+            Venta ventaAgregar = new Venta(listaDeProductos, precioTotal, cantidadesPorId,
+                    fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
+                    direccionComprador);
+
+            sistema.agregarVenta(ventaAgregar);
+
+            WebView webView = new WebView();
+            String contenido = this.getSistema().factura(ventaAgregar);
+
+            webView.getEngine().loadContent(contenido);
+
+            VBox vBox = new VBox(webView);
+            Scene scene = new Scene(vBox, 960, 600);
+
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+
+            // System.out.println(this.getSistema().getListaDeVentasDelSitema());
+            for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
+                Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
+                this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
+            }
+            for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
+                this.getSistema().getCantidadPorIdDeProd()[i] = 0;
+            }
+            for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
+                Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
+                this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
+            }
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+                Parent root = loader.load();
+
+                ClienteController controlador = loader.getController();
+
+                Scene escena = new Scene(root);
+
+                Stage stage = new Stage();
+
+                stage.setScene(escena);
+
+                stage.show();
+
+                stage.setHeight(675);
+
+                stage.setWidth(366);
+
+                stage.setResizable(false);
+
+                controlador.setSistema(sistema);
+
+                controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
+
+                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+                myStage.close();
+            } catch (IOException ex) {
+                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }else{ 
+             Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no ha agregado productos al carrito");
+            alert.setContentText("Agregue productos al carrito");
+            alert.showAndWait();
         }
-        for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
-            this.getSistema().getCantidadPorIdDeProd()[i]=0; 
-        }
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
-            Parent root = loader.load();
-
-            ClienteController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
-
-            stage.setHeight(675);
-
-            stage.setWidth(366);
-
-            stage.setResizable(false);
-
-            controlador.setSistema(sistema);
-
-            controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-  
-    
-        
     }
-
 }

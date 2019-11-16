@@ -32,8 +32,6 @@ public class EnvasesParaConfirmacionDePreventaController implements Initializabl
     private Label pesoEnvase;
     @FXML
     private Label materialesEnvase;
-    @FXML
-    private JFXButton btnAgregar;
     
     
     private int codigoIdentificador; 
@@ -97,7 +95,6 @@ public class EnvasesParaConfirmacionDePreventaController implements Initializabl
     
     
 
-    @FXML
     private void agregarListaEnvase(ActionEvent event) {
         int codigoIdentificad = this.getCodigoIdentificador();
 

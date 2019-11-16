@@ -5,10 +5,12 @@
  */
 package Interfaz2;
 
+import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -60,6 +63,8 @@ public class MenuController implements Initializable {
 
             AgregarProductoController controlador = loader.getController();
 
+            controlador.cargarDatos(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles(), this.sistema);
+
             Scene escena = new Scene(root);
 
             Stage stage = new Stage();
@@ -67,11 +72,11 @@ public class MenuController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -81,12 +86,14 @@ public class MenuController implements Initializable {
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     @FXML
     private void agregarSucursal(ActionEvent event) {
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregadoSucursal.fxml"));
 
@@ -101,11 +108,11 @@ public class MenuController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -115,12 +122,14 @@ public class MenuController implements Initializable {
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+       
     }
 
     @FXML
     private void agregarEnvase(ActionEvent event) {
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("AgregarEnvase.fxml"));
 
@@ -135,11 +144,11 @@ public class MenuController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -149,54 +158,70 @@ public class MenuController implements Initializable {
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+      
 
     }
 
     @FXML
     private void eliminarProducto(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("EliminarProducto.fxml"));
-
-            Parent root = loader.load();
-
-            EliminarProductoController controlador = loader.getController();
-
-            Scene escena = new Scene(root);
-
-            Stage stage = new Stage();
-
-            stage.setScene(escena);
-
-            stage.show();
+         if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
             
-            stage.setHeight(675);
-            
-            stage.setWidth(366);
-            
-            stage.setResizable(false);
-
-            controlador.setSistema(sistema);
-
-            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-            myStage.close();
-        } catch (IOException ex) {
-            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
+             try {
+                 FXMLLoader loader = new FXMLLoader(getClass().getResource("EliminarProducto.fxml"));
+                 
+                 Parent root = loader.load();
+                 
+                 EliminarProductoController controlador = loader.getController();
+                 
+                 ArrayList<Producto> listaProd = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+                 
+                 controlador.cargarArticulos(listaProd, controlador, sistema);
+                 
+                 Scene escena = new Scene(root);
+                 
+                 Stage stage = new Stage();
+                 
+                 stage.setScene(escena);
+                 
+                 stage.show();
+                 
+                 stage.setHeight(675);
+                 
+                 stage.setWidth(366);
+                 
+                 stage.setResizable(false);
+                 
+                 controlador.setSistema(sistema);
+                 
+                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                 
+                 Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
+                 myStage.close();
+             } catch (IOException ex) {
+                 Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+             }
+          
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay envases");
+            alert.setContentText("¡No hay productos en el sistema para eliminar!");
+            alert.showAndWait();
         }
 
     }
 
     @FXML
     private void volverInicio(ActionEvent event) {
+        
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            InicioController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -205,21 +230,24 @@ public class MenuController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
 
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
             Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
             myStage.close();
-
         } catch (IOException ex) {
-            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        
 
     }
 

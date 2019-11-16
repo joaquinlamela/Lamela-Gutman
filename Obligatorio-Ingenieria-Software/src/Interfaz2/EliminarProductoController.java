@@ -116,7 +116,9 @@ public class EliminarProductoController implements Initializable {
 
             stage.setResizable(false);
 
-            controlador.setSistema(sistema);
+           controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();

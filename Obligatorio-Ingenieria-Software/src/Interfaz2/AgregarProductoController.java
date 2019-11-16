@@ -175,7 +175,8 @@ public class AgregarProductoController implements Initializable {
 
         int precio = 1;
         int peso = 1;
-        ArrayList<Dominio.Envase> listaEnvases = new ArrayList<>();
+        
+        ArrayList<Envase> listaEnvases = new ArrayList<>();
 
         //Parte de nombre de producto
         String nombre = txtFNombre.getText().trim();
@@ -383,13 +384,6 @@ public class AgregarProductoController implements Initializable {
             FileChooser fileChooser = new FileChooser();
             File selectedFile = fileChooser.showOpenDialog(new Stage());
             Image imagenProducto = new Image(selectedFile.toURI().toString());
-            
-            //URL url = getClass().getResource("Imagenes\\Agregar Envase.png");
-            //File file = new File("../Imagenes/Inicio.png");
-            
-            
-            
-            //Image imagen= new Image(file.toURI().toString()); 
 
             //listaEnvases  //array
             Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);

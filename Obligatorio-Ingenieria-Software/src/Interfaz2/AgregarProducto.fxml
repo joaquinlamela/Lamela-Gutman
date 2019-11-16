@@ -19,8 +19,8 @@
       </ImageView>
       <JFXTextField fx:id="txtFNombre" focusColor="#2a2e43" layoutX="102.0" layoutY="97.0" onAction="#obtenerNombre" prefHeight="31.0" prefWidth="200.0" style="-fx-background-radius: 18 18 18 18;" unFocusColor="#2a2e43" />
       <JFXTextField fx:id="txtFPeso" focusColor="#2a2e43" layoutX="102.0" layoutY="136.0" onAction="#obtenerPeso" prefHeight="31.0" prefWidth="200.0" style="-fx-background-radius: 18 18 18 18;" unFocusColor="#2a2e43" />
-      <JFXTextField fx:id="txtFPrecio" focusColor="#2a2e43" layoutX="102.0" layoutY="176.0" onAction="#obtenerPrecio" prefHeight="5.0" prefWidth="200.0" style="-fx-background-radius: 18 18 18 18;" unFocusColor="#2a2e43" />
-      <JFXComboBox fx:id="cmbOrigen" focusColor="#2a2e43" layoutX="108.0" layoutY="207.0" onAction="#obtenerOrigen" prefHeight="31.0" prefWidth="200.0" unFocusColor="#2a2e43" />
+      <JFXTextField fx:id="txtFPrecio" focusColor="#2a2e43" layoutX="102.0" layoutY="167.0" onAction="#obtenerPrecio" prefHeight="13.0" prefWidth="200.0" style="-fx-background-radius: 18 18 18 18;" unFocusColor="#2a2e43" />
+      <JFXComboBox fx:id="cmbOrigen" focusColor="#2a2e43" layoutX="102.0" layoutY="207.0" onAction="#obtenerOrigen" prefHeight="31.0" prefWidth="206.0" unFocusColor="#2a2e43" />
       <TableView fx:id="tablaDeEnvases" layoutX="18.0" layoutY="383.0" prefHeight="138.0" prefWidth="334.0">
         <columns>
           <TableColumn fx:id="nombreEnvase" prefWidth="126.0" text="Nombre" />

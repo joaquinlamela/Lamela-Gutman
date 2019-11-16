@@ -166,6 +166,8 @@ public class BeneficiosController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+            
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -199,6 +201,8 @@ public class BeneficiosController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();

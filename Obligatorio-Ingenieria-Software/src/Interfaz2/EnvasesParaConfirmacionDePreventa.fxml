@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -19,11 +18,5 @@
       <Label layoutX="121.0" layoutY="103.0" prefHeight="21.0" prefWidth="78.0" text="Materiales:" />
       <Label fx:id="pesoEnvase" layoutX="235.0" layoutY="68.0" prefHeight="21.0" prefWidth="104.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
       <Label fx:id="materialesEnvase" layoutX="234.0" layoutY="103.0" prefHeight="21.0" prefWidth="104.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
-      <ImageView fitHeight="37.0" fitWidth="156.0" layoutX="108.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Imagenes/Agregar.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="btnAgregar" layoutX="109.0" layoutY="146.0" onAction="#agregarListaEnvase" prefHeight="37.0" prefWidth="156.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
    </children>
 </Pane>

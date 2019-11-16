@@ -128,7 +128,7 @@ public class Tienda {
 
     //Metodos:
     public void agregarProducto(Producto producto) {
-        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size()+1);
+        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size() + 1);
         if (!this.listaDeProductosEnStock.contains(producto)) {
 
             this.listaDeProductosEnStock.add(producto);
@@ -149,7 +149,7 @@ public class Tienda {
     }
 
     public void agregarSucursal(Sucursal s) {
-        s.setNumeroSucursal(this.sucursales.size()+1);
+        s.setNumeroSucursal(this.sucursales.size() + 1);
         if (!this.sucursales.contains(s)) {
             this.sucursales.add(s);
         }
@@ -163,48 +163,42 @@ public class Tienda {
     }
 
     public void agregarEnvase(Envase e) {
-        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size()+1);
+        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size() + 1);
         if (!this.todosLosEnvasesDisponibles.contains(e)) {
             this.todosLosEnvasesDisponibles.add(e);
         }
         //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
     }
 
-    public ArrayList<Producto> obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
+    public Producto obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
         int contador = 0;
         int max = Integer.MIN_VALUE;
-        ArrayList<Producto> masVendidos = new ArrayList<Producto>();
-        ArrayList<Producto> copiaListaProd = listaProd;
-        Producto prodAgregar = new Producto();
 
-        for (int i = 0; i < copiaListaProd.size() || contador <= 5; i++) {
+        Producto producto = new Producto();
 
-            if (copiaListaProd.get(i).getCantidadVendidos() > max) {
-                prodAgregar = copiaListaProd.get(i);
-                copiaListaProd.remove(i);
-            }
+        for (int i = 0; i < listaProd.size(); i++) {
 
-            if (!masVendidos.contains(prodAgregar)) {
-                masVendidos.add(prodAgregar);
+            if (listaProd.get(i).getCantidadVendidos() > max) {
+                producto = listaProd.get(i);
+
             }
 
         }
-        return masVendidos;
+        listaProd.remove(producto);
+        return producto; 
+        
     }
 
     @Override
     public String toString() {
-        return "Tienda{" + "direccion=" + direccion + ", numeroSucursal=" 
-                + numeroSucursal + ", sucursales=" + sucursales +
-                ", telefono=" + telefono + ", listaDeProductosEnStock=" +
-                listaDeProductosEnStock + ", stockDeProductoPorId=" + stockDeProductoPorId +
-                ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles + 
-                ", horaInicio=" + horaInicio + ", horaFinalizacion=" +
-                horaFinalizacion + '}';
+        return "Tienda{" + "direccion=" + direccion + ", numeroSucursal="
+                + numeroSucursal + ", sucursales=" + sucursales
+                + ", telefono=" + telefono + ", listaDeProductosEnStock="
+                + listaDeProductosEnStock + ", stockDeProductoPorId=" + stockDeProductoPorId
+                + ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles
+                + ", horaInicio=" + horaInicio + ", horaFinalizacion="
+                + horaFinalizacion + '}';
     }
-    
-    
-    
 
     @Override
     public boolean equals(Object o) {

@@ -37,6 +37,8 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
     
     private SeleccionarEnvasePorProductoController controlador; 
     
+    private SeleccionarEnvasePorProductoPreVentaController controladorPreVenta; 
+    
     
     private Sistema sistema ; 
 
@@ -55,6 +57,14 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
     public void setControlador(SeleccionarEnvasePorProductoController controlador) {
         this.controlador = controlador;
     }
+
+    public SeleccionarEnvasePorProductoPreVentaController getControladorPreVenta() {
+        return controladorPreVenta;
+    }
+
+    public void setControladorPreVenta(SeleccionarEnvasePorProductoPreVentaController controladorPreVenta) {
+        this.controladorPreVenta = controladorPreVenta;
+    }
     
     
     
@@ -63,6 +73,19 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
     public void inicializarDatos(Producto producto, Sistema sistema, SeleccionarEnvasePorProductoController controlador) {
         this.setSistema(sistema);
         this.setControlador(controlador);
+        this.imagenProducto.setImage(producto.getImagenDelProducto());
+        this.nombreProd.setText(producto.getNombre());
+        this.precioProducto.setText(Double.toString(producto.getPrecio()));
+        this.descripcion.setText(producto.getDescripcionDelProducto());
+        this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));
+        this.cantidadVendidos.setText(Integer.toString(producto.getCantidadVendidos()));
+    }
+    
+    
+    
+    public void inicializarDatosPreVenta(Producto producto, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador) {
+        this.setSistema(sistema);
+        this.setControladorPreVenta(controlador);
         this.imagenProducto.setImage(producto.getImagenDelProducto());
         this.nombreProd.setText(producto.getNombre());
         this.precioProducto.setText(Double.toString(producto.getPrecio()));

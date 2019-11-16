@@ -13,16 +13,16 @@ public class Sucursal {
 
     private int numeroSucursal;
     private String direccion;
-    private long telefono; 
+    private long telefono;
 
     public int getNumeroSucursal() {
         return numeroSucursal;
     }
 
     public void setNumeroSucursal(int numeroSucursal) {
-        if (numeroSucursal >=1) {
+        if (numeroSucursal >= 1) {
             this.numeroSucursal = numeroSucursal;
-        }else{
+        } else {
             throw new RuntimeException("numeroSucursalMayorA0");
         }
     }
@@ -34,7 +34,7 @@ public class Sucursal {
     public void setDireccion(String direccion) {
         if (!direccion.trim().equals("")) {
             this.direccion = direccion;
-        }else{
+        } else {
             throw new RuntimeException("direccionNoVacia");
         }
     }
@@ -44,12 +44,14 @@ public class Sucursal {
     }
 
     public void setTelefono(long telefono) {
-        if (telefono >=1) {
+        if (telefono >= 1) {
             this.telefono = telefono;
-        }else{
+        } else {
             throw new RuntimeException("telefonoMayorA0");
         }
     }
+    
+    
     
     
     
@@ -68,11 +70,8 @@ public class Sucursal {
 
     @Override
     public String toString() {
-        return "Sucursal{" + "numeroSucursal=" + numeroSucursal + ", direccion=" +
-                direccion + ", telefono=" + telefono + '}';
+        return "Sucursal{" + "numeroSucursal=" + numeroSucursal + ", direccion="
+                + direccion + ", telefono=" + telefono + '}';
     }
-    
-    
-    
 
 }

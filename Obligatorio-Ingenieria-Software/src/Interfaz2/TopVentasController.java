@@ -32,7 +32,6 @@ import javafx.stage.Stage;
  */
 public class TopVentasController implements Initializable {
 
-   
     @FXML
     private JFXButton btnAtras;
     @FXML
@@ -67,14 +66,16 @@ public class TopVentasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
@@ -100,14 +101,16 @@ public class TopVentasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
@@ -132,11 +135,11 @@ public class TopVentasController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -158,16 +161,16 @@ public class TopVentasController implements Initializable {
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-    
-     public void cargarProductos(ArrayList<Producto> listaProductos) {
+
+    public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
+        this.setSistema(sis);
         
-         this.productosMasVendidos.getChildren().clear();
-       
-        this.productosMasVendidos.setSpacing(20);
+        this.productosMasVendidos.getChildren().clear();
+
+        this.productosMasVendidos.setSpacing(10);
 
         for (int i = 0; i < listaProductos.size(); i++) {
 
-            
             try {
                 Producto producto = listaProductos.get(i);
                 //Cargarart el objeto
@@ -184,18 +187,14 @@ public class TopVentasController implements Initializable {
                 controlador.setSistema(sistema);
 
                 //Cargo el nuevo objeto
-                
-                this.productosMasVendidos.getChildren().add((Node)nodo);
-                
+                this.productosMasVendidos.getChildren().add((Node) nodo);
+
             } catch (IOException ex) {
                 Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            
-
         }
 
     }
-    
 
 }

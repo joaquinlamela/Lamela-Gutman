@@ -62,25 +62,23 @@ public class EnvasesReutilizadosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    public void cargarGraficaEnvases(Sistema sistema){
-        
+
+    public void cargarGraficaEnvases(Sistema sistema) {
+
         this.setSistema(sistema);
-        
+
         XYChart.Series set1 = new XYChart.Series<>();
-        
-        ArrayList<Envase> listaDeEnvases= this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles(); 
+
+        ArrayList<Envase> listaDeEnvases = this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles();
 
         for (int i = 0; i < listaDeEnvases.size(); i++) {
-            
-            
+
             String nombreEnvase = listaDeEnvases.get(i).getNombre();
-            int maximoPesoEnvase = listaDeEnvases.get(i).getPesoMaximoSoportado(); 
+            int maximoPesoEnvase = listaDeEnvases.get(i).getPesoMaximoSoportado();
             set1.getData().add(new XYChart.Data(nombreEnvase, maximoPesoEnvase));
             graficaEnvases.getData().add(set1);
         }
     }
-    
 
     @FXML
     private void mostrarMasVendidos(ActionEvent event) {
@@ -221,6 +219,8 @@ public class EnvasesReutilizadosController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -254,6 +254,8 @@ public class EnvasesReutilizadosController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();

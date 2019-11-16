@@ -48,7 +48,9 @@ public class InicioClienteController implements Initializable {
 
     @FXML
     private void continuar(ActionEvent event) {
-
+        
+        
+        
         if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));

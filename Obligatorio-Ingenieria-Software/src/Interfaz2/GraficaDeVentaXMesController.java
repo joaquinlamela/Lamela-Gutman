@@ -201,6 +201,8 @@ public class GraficaDeVentaXMesController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -235,6 +237,8 @@ public class GraficaDeVentaXMesController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();

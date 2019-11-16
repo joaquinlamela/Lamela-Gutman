@@ -76,6 +76,7 @@ public class EstadisticasController implements Initializable {
          */
     }
 
+    /*
     public void cargarGraficas(Sistema sistema) {
 
         this.setSistema(sistema);
@@ -92,6 +93,7 @@ public class EstadisticasController implements Initializable {
         }
         graficaMasVendidos.getData().add(set1);
     }
+*/ 
 
     @FXML
     private void volverAInicio(ActionEvent event) {
@@ -118,6 +120,8 @@ public class EstadisticasController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
@@ -152,6 +156,8 @@ public class EstadisticasController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();

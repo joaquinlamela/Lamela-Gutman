@@ -201,7 +201,9 @@ public class AgregarEnvaseController implements Initializable {
 
             stage.setResizable(false);
 
-            controlador.setSistema(sistema);
+           controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
@@ -235,6 +237,8 @@ public class AgregarEnvaseController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();

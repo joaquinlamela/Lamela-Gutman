@@ -212,6 +212,10 @@ public class AgregadoSucursalController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
+            
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
@@ -243,6 +247,10 @@ public class AgregadoSucursalController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
+            
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
@@ -282,6 +290,8 @@ public class AgregadoSucursalController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
+
+            controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
