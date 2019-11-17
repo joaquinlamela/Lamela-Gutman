@@ -11,6 +11,7 @@ import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -76,34 +77,51 @@ public class EstadisticasController implements Initializable {
          */
     }
 
-    /*
     public void cargarGraficas(Sistema sistema) {
 
         this.setSistema(sistema);
 
         XYChart.Series set1 = new XYChart.Series<>();
 
-        ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().obtenerLos5MasVendidos(this.getSistema().getEchoShop().getListaDeProductosEnStock());
+        /*
+        ArrayList<Producto> todosLosProductosDelSistema = this.getSistema().getEchoShop().getListaDeProductosEnStock();
 
-        for (int i = 0; i < listaProductos.size(); i++) {
-            String nombreProd = listaProductos.get(i).getNombre();
-            int cantVendidos = listaProductos.get(i).getCantidadVendidos();
+        ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
+
+        Producto producto = new Producto();
+
+        for (int i = 0; i < 5; i++) {
+            Producto prodANoAgregar = new Producto();
+            producto = this.getSistema().getEchoShop().obtenerElMasVendidos(todosLosProductosDelSistema);
+            if (!(producto.getCodigoIdentificador() == prodANoAgregar.getCodigoIdentificador() && producto.getNombre().equals(prodANoAgregar.getNombre()))) {
+                los5MasVendidosInversa.add(producto);
+            }
+        }
+        
+        Collections.reverse(los5MasVendidosInversa); 
+        */ 
+        ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos(); 
+        
+       
+
+        for (int i = 0; i < los5MasVendidosInversa.size(); i++) {
+            String nombreProd = los5MasVendidosInversa.get(i).getNombre();
+            int cantVendidos = los5MasVendidosInversa.get(i).getCantidadVendidos();
             set1.getData().add(new XYChart.Data(nombreProd, cantVendidos));
 
         }
         graficaMasVendidos.getData().add(set1);
     }
-*/ 
 
     @FXML
     private void volverAInicio(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -135,11 +153,11 @@ public class EstadisticasController implements Initializable {
     private void volverVentanaAnterior(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -261,6 +279,8 @@ public class EstadisticasController implements Initializable {
             Parent root = loader.load();
 
             GraficaDeVentaXMesController controlador = loader.getController();
+            
+            controlador.cargarGraficaDeVentas(sistema);
 
             Scene escena = new Scene(root);
 
@@ -297,6 +317,8 @@ public class EstadisticasController implements Initializable {
             Parent root = loader.load();
 
             BeneficiosController controlador = loader.getController();
+            
+            controlador.cargarGraficaDeBeneficios(sistema);
 
             Scene escena = new Scene(root);
 

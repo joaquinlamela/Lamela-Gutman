@@ -87,6 +87,7 @@ public class TopVentasController implements Initializable {
 
     @FXML
     private void volverInicio(ActionEvent event) {
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -107,7 +108,7 @@ public class TopVentasController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
-
+            
             controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -117,6 +118,7 @@ public class TopVentasController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     public void cerrarVentana() {
@@ -150,6 +152,43 @@ public class TopVentasController implements Initializable {
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public void cerrarVentana2() {
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+
+            Parent root = loader.load();
+
+            ClienteController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }

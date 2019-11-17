@@ -125,10 +125,23 @@ public class ConfirmacionCompraController implements Initializable {
             this.getSistema().getEchoShop().setNumeroSucursal(numeroDeSucursal);
 
             PreVenta preventaAgregar = new PreVenta(cliente, precio, this.getSistema().getProductosPreVentaSesionActiva(), this.getSistema().getEchoShop(),
-                    this.getSistema().getEnvasesALlevarEnPreVenta(), 1);
+                    this.getSistema().getEnvasesALlevarEnPreVenta(), 1, fechaDeRetiro);
 
             this.getSistema().agregarPreVenta(preventaAgregar);
             
+            for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
+                this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnPreVenta().get(i).getIdIdentificador()]++; 
+            }
+            
+            
+            //Nuevo 
+            Date fechaAhora= new Date(); 
+            
+            if(fechaAhora.getDay()== fechaDeRetiro.getDayOfMonth() && fechaAhora.getMonth() == fechaDeRetiro.getMonthValue() && fechaAhora.getYear() == fechaDeRetiro.getYear()){
+                this.getSistema().agregarUnaPreVentaAlArray(preventaAgregar); 
+                this.getSistema().agregarGananciaPreVenta(preventaAgregar);
+            }
+            //Hasta aca 
             
 
             // System.out.println(this.getSistema().getListaDePreventas());

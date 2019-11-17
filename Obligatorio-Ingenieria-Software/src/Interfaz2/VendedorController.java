@@ -213,7 +213,7 @@ public class VendedorController implements Initializable {
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no hay envases");
+            alert.setHeaderText("Error: no hay hay productos");
             alert.setContentText("¡No hay productos en el sistema para eliminar!");
             alert.showAndWait();
         }
@@ -222,71 +222,40 @@ public class VendedorController implements Initializable {
 
     @FXML
     private void topVentas(ActionEvent event) {
-        if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("TopVentas.fxml"));
 
-                Parent root = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("TopVentas.fxml"));
 
-                TopVentasController controlador = loader.getController();
+            Parent root = loader.load();
 
-                ArrayList<Producto> todosLosProductosDelSistema = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+            TopVentasController controlador = loader.getController();
 
-                ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
+            ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos();
 
-                Producto producto = new Producto();
+            controlador.cargarProductos(los5MasVendidosInversa, sistema);
 
-                for (int i = 0; i < 5; i++) {
-                    Producto prodANoAgregar = new Producto();
-                    producto = this.getSistema().getEchoShop().obtenerLos5MasVendidos(todosLosProductosDelSistema);
-                    if (!(producto.getCodigoIdentificador()== prodANoAgregar.getCodigoIdentificador() && producto.getNombre().equals(prodANoAgregar.getNombre()))) {
-                        los5MasVendidosInversa.add(producto);
-                    }
-                }
+            Scene escena = new Scene(root);
 
-                /* 
-                Collections.sort(los5MasVendidos, new Comparator<Producto>() {
-                    @Override
-                    public int compare(Producto p1, Producto p2) {
-                        return p1.getCantidadVendidos()- p2.getCantidadVendidos(); // Ascending
-                    }
+            Stage stage = new Stage();
 
-                });
-                 */
-                Collections.reverse(los5MasVendidosInversa); 
-                
-                
-                controlador.cargarProductos(los5MasVendidosInversa, sistema);
+            stage.setScene(escena);
 
-                Scene escena = new Scene(root);
+            stage.show();
 
-                Stage stage = new Stage();
+            stage.setHeight(675);
 
-                stage.setScene(escena);
+            stage.setWidth(366);
 
-                stage.show();
+            stage.setResizable(false);
 
-                stage.setHeight(675);
+            controlador.setSistema(sistema);
 
-                stage.setWidth(366);
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
-                stage.setResizable(false);
-
-                controlador.setSistema(sistema);
-
-                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-                Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
-                myStage.close();
-            } catch (IOException ex) {
-                Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no hay ventas disponibles en el sistema");
-            alert.setContentText("¡No se han realizado ventas en el sistema!");
-            alert.showAndWait();
+            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -338,7 +307,8 @@ public class VendedorController implements Initializable {
 
                 EstadisticasController controlador = loader.getController();
 
-//                controlador.cargarGraficas(sistema);
+                controlador.cargarGraficas(sistema);
+
                 Scene escena = new Scene(root);
 
                 Stage stage = new Stage();
@@ -370,6 +340,8 @@ public class VendedorController implements Initializable {
                     Parent root = loader.load();
 
                     EnvasesReutilizadosController controlador = loader.getController();
+                    
+                    controlador.cargarGraficaEnvases(sistema);
 
                     Scene escena = new Scene(root);
 
@@ -402,6 +374,8 @@ public class VendedorController implements Initializable {
                         Parent root = loader.load();
 
                         GraficaDeVentaXMesController controlador = loader.getController();
+                        
+                        controlador.cargarGraficaDeVentas(sistema);
 
                         Scene escena = new Scene(root);
 
@@ -434,6 +408,8 @@ public class VendedorController implements Initializable {
                         Parent root = loader.load();
 
                         BeneficiosController controlador = loader.getController();
+                        
+                        controlador.cargarGraficaDeBeneficios(sistema);
 
                         Scene escena = new Scene(root);
 

@@ -272,14 +272,7 @@ public class CarritoController implements Initializable {
             Tienda tienda = this.getSistema().getEchoShop();
             ArrayList<Envase> listaDeEnvasesUtilizados = this.getSistema().getEnvasesALlevarEnVenta();
 
-            /*for (int i = 0; i < listaDeProductos.size(); i++) {
-            Producto p= listaDeProductos.get(i); 
-            for (int j = 0; j <p.getPosiblesEnvasesRecomendados().size() ; j++) {
-                if(!listaDeEnvasesUtilizados.contains(p.getPosiblesEnvasesRecomendados().get(j))){
-                    listaDeEnvasesUtilizados.add(p.getPosiblesEnvasesRecomendados().get(j)); 
-                }   
-            }
-        }*/
+          
             int codigoIdentificador = 1;
             String direccionComprador = comprador.getDomicilio();
 
@@ -288,6 +281,13 @@ public class CarritoController implements Initializable {
                     direccionComprador);
 
             sistema.agregarVenta(ventaAgregar);
+            this.getSistema().agregarUnaVentaAlArray(ventaAgregar);
+            this.getSistema().agregarGananciaEnVenta(ventaAgregar);
+           
+            for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
+                this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnVenta().get(i).getIdIdentificador()]++; 
+            }
+            
 
             WebView webView = new WebView();
             String contenido = this.getSistema().factura(ventaAgregar);

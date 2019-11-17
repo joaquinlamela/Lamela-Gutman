@@ -70,14 +70,16 @@ public class EnvasesReutilizadosController implements Initializable {
         XYChart.Series set1 = new XYChart.Series<>();
 
         ArrayList<Envase> listaDeEnvases = this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles();
-
+        int cantidadDeVeces=0; 
+        
         for (int i = 0; i < listaDeEnvases.size(); i++) {
 
             String nombreEnvase = listaDeEnvases.get(i).getNombre();
-            int maximoPesoEnvase = listaDeEnvases.get(i).getPesoMaximoSoportado();
-            set1.getData().add(new XYChart.Data(nombreEnvase, maximoPesoEnvase));
-            graficaEnvases.getData().add(set1);
+            cantidadDeVeces= this.getSistema().getEnvasesUtilizadosPorId()[listaDeEnvases.get(i).getIdIdentificador()]; 
+            set1.getData().add(new XYChart.Data(nombreEnvase, cantidadDeVeces));
+            
         }
+        graficaEnvases.getData().add(set1);
     }
 
     @FXML
@@ -89,6 +91,8 @@ public class EnvasesReutilizadosController implements Initializable {
             Parent root = loader.load();
 
             EstadisticasController controlador = loader.getController();
+            
+            controlador.cargarGraficas(sistema);
 
             Scene escena = new Scene(root);
 
@@ -130,6 +134,8 @@ public class EnvasesReutilizadosController implements Initializable {
             Parent root = loader.load();
 
             GraficaDeVentaXMesController controlador = loader.getController();
+            
+            controlador.cargarGraficaDeVentas(sistema);
 
             Scene escena = new Scene(root);
 
@@ -167,6 +173,8 @@ public class EnvasesReutilizadosController implements Initializable {
 
             BeneficiosController controlador = loader.getController();
 
+            controlador.cargarGraficaDeBeneficios(sistema);
+            
             Scene escena = new Scene(root);
 
             Stage stage = new Stage();
@@ -197,11 +205,11 @@ public class EnvasesReutilizadosController implements Initializable {
     private void volverVentanaAnterior(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -233,11 +241,11 @@ public class EnvasesReutilizadosController implements Initializable {
     private void volverAInicio(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -276,11 +284,11 @@ public class EnvasesReutilizadosController implements Initializable {
     public void cerrarVentana() {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
             Parent root = loader.load();
 
-            ClienteController controlador = loader.getController();
+            VendedorController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 

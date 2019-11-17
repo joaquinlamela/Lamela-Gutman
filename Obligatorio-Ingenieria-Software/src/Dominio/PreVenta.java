@@ -1,6 +1,8 @@
 package Dominio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class PreVenta {
 
@@ -9,7 +11,7 @@ public class PreVenta {
     private int precioDePreVenta;
     private ArrayList<Producto> listaDeProductos;
     private Tienda lugarARetirar;
-    
+    private LocalDate fechaDeCompra;
     private ArrayList<Envase> listaDeEnvase;
     private int identificadorDePreventa;
 
@@ -18,12 +20,12 @@ public class PreVenta {
 
     public PreVenta(Persona comprador, int precioDePreVenta, ArrayList<Producto>
             listaDeProductos, Tienda lugarARetirar, 
-            ArrayList<Envase> listaDeEnvase, int id) {
+            ArrayList<Envase> listaDeEnvase, int id, LocalDate fechaDeCompra) {
         this.setComprador(comprador);
         this.setPrecioDePreVenta(precioDePreVenta);
         this.setListaDeProductos(listaDeProductos);
         this.setLugarARetirar(lugarARetirar);
-       
+        this.setFechaDeCompra(fechaDeCompra);
         this.setListaDeEnvase(listaDeEnvase);
         this.setIdentificadorDePreventa(id);
     }
@@ -36,6 +38,8 @@ public class PreVenta {
         
         this.setListaDeEnvase(new ArrayList<Envase>());
         this.setIdentificadorDePreventa(1);
+        LocalDate fechaAhora= LocalDate.now(); 
+        this.setFechaDeCompra(fechaAhora);
     }
 
     //Get´s && Set´s
@@ -74,6 +78,16 @@ public class PreVenta {
     public void setLugarARetirar(Tienda lugarARetirar) {
         this.lugarARetirar = lugarARetirar;
     }
+
+    public LocalDate getFechaDeCompra() {
+        return fechaDeCompra;
+    }
+
+    public void setFechaDeCompra(LocalDate fechaDeCompra) {
+        this.fechaDeCompra = fechaDeCompra;
+    }
+    
+    
 
    
 

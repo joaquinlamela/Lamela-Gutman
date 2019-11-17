@@ -118,17 +118,25 @@ public class PresentacionEnvasesController implements Initializable {
         int codigoIdentificad = this.getCodigoIdentificador();
 
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados(); 
-
+        
+        ArrayList<Envase> copiaDeListaDeEnvases= new ArrayList<>(); 
+        
+        
         for (int i = 0; i < listaEnvases.size(); i++) {
-            if (codigoIdentificad == listaEnvases.get(i).getIdIdentificador()) {
-                Envase e = listaEnvases.get(i);
+            copiaDeListaDeEnvases.add(listaEnvases.get(i)); 
+        }
+        
+
+        for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
+            if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
+                Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {
                     this.getSistema().getEnvasesALlevarEnVenta().add(e);
                 }
-                listaEnvases.remove(e); 
+                copiaDeListaDeEnvases.remove(e); 
             }
         }
-        controlador.cargarProductos2(listaEnvases, sistema, controlador, this.getProducto());
+        controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
 
     }
 

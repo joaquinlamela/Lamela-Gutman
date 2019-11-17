@@ -170,7 +170,7 @@ public class Tienda {
         //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
     }
 
-    public Producto obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
+    public Producto obtenerElMasVendidos(ArrayList<Producto> listaProd) {
         int contador = 0;
         int max = Integer.MIN_VALUE;
 
@@ -185,8 +185,38 @@ public class Tienda {
 
         }
         listaProd.remove(producto);
-        return producto; 
+        return producto;
+
+    }
+
+    public ArrayList<Producto> obtenerLos5MasVendidos() {
+        ArrayList<Producto> todosLosProductosDelSistema = this.getListaDeProductosEnStock();
+
+        ArrayList<Producto> copiaDeTodosLosProductosDelSistema = new ArrayList();
+
+        for (int i = 0; i < todosLosProductosDelSistema.size(); i++) {
+            if (!copiaDeTodosLosProductosDelSistema.contains(todosLosProductosDelSistema.get(i))) {
+                copiaDeTodosLosProductosDelSistema.add(todosLosProductosDelSistema.get(i));
+
+            }
+        }
+
+        ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
+
+        Producto producto = new Producto();
+
+        for (int i = 0; i < 5; i++) {
+            Producto prodANoAgregar = new Producto();
+            producto = this.obtenerElMasVendidos(copiaDeTodosLosProductosDelSistema);
+            if (!(producto.getCodigoIdentificador() == prodANoAgregar.getCodigoIdentificador() && producto.getNombre().equals(prodANoAgregar.getNombre()))) {
+                los5MasVendidosInversa.add(producto);
+            }
+        }
+
+        Collections.reverse(los5MasVendidosInversa);
         
+        
+        return los5MasVendidosInversa; 
     }
 
     @Override

@@ -1,6 +1,8 @@
 package Dominio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Sistema {
 
@@ -22,7 +24,12 @@ public class Sistema {
     private int [] cantidadPorIdDePreVenta; 
     ArrayList<Envase> envasesALlevarEnPreVenta; 
     
-   
+ 
+    int [] ventasPorMes; 
+    
+    int [] envasesUtilizadosPorId; 
+    
+    int [] ganancias; 
      
 
 
@@ -39,6 +46,10 @@ public class Sistema {
         this.cantidadPorIdDePreVenta= new int[25]; 
         this.envasesALlevarEnVenta= new ArrayList<Envase>(); 
          this.envasesALlevarEnPreVenta= new ArrayList<Envase>(); 
+         this.ventasPorMes= new int[12]; 
+         this.envasesUtilizadosPorId= new int[50]; 
+         this.ganancias= new int[12]; 
+         
     }
 
     public int getCantPreVentas() {
@@ -129,6 +140,34 @@ public class Sistema {
     public void setEnvasesALlevarEnPreVenta(ArrayList<Envase> envasesALlevarEnPreVenta) {
         this.envasesALlevarEnPreVenta = envasesALlevarEnPreVenta;
     }
+
+    public int[] getVentasPorMes() {
+        return ventasPorMes;
+    }
+
+    public void setVentasPorMes(int[] ventasPorMes) {
+        this.ventasPorMes = ventasPorMes;
+    }
+
+    public int[] getEnvasesUtilizadosPorId() {
+        return envasesUtilizadosPorId;
+    }
+
+    public void setEnvasesUtilizadosPorId(int[] envasesUtilizadosPorId) {
+        this.envasesUtilizadosPorId = envasesUtilizadosPorId;
+    }
+
+    public int[] getGanancias() {
+        return ganancias;
+    }
+
+    public void setGanancias(int[] ganancias) {
+        this.ganancias = ganancias;
+    }
+    
+    
+    
+    
     
     
     
@@ -257,6 +296,32 @@ public class Sistema {
             this.getProductosPreVentaSesionActiva().add(producto); 
         }
     }
+    
+    
+    public void agregarUnaVentaAlArray(Venta venta){
+        Date fechaDeVenta= venta.getFechaDeCompra(); 
+          int mes=  fechaDeVenta.getMonth(); 
+          this.getVentasPorMes()[mes]=   this.getVentasPorMes()[mes] +1; 
+    }
+    
+    public void agregarUnaPreVentaAlArray(PreVenta preVenta){
+        LocalDate fechaDeVenta= preVenta.getFechaDeCompra(); 
+          int mes=  fechaDeVenta.getMonthValue(); 
+          this.getVentasPorMes()[mes]=   this.getVentasPorMes()[mes] +1; 
+    }
+    
+     public void agregarGananciaEnVenta(Venta venta){
+        Date fechaDeVenta= venta.getFechaDeCompra(); 
+          int mes=  fechaDeVenta.getMonth(); 
+          this.getGanancias()[mes]=   this.getGanancias()[mes] +venta.getPrecioTotal(); 
+    }
+     
+    public void agregarGananciaPreVenta(PreVenta preVenta){
+        LocalDate fechaDeVenta= preVenta.getFechaDeCompra(); 
+          int mes=  fechaDeVenta.getMonthValue(); 
+          this.getGanancias()[mes]=   this.getGanancias()[mes] +preVenta.getPrecioDePreVenta(); 
+    }
+    
     
     public String factura(Venta v){
         String retorno = "";

@@ -153,6 +153,8 @@ public class ClienteController implements Initializable {
         }
 
     }
+    
+    //MODIFICARRRRRR: 
 
     @FXML
     private void topVentas(ActionEvent event) {
@@ -164,6 +166,8 @@ public class ClienteController implements Initializable {
 
                 TopVentasController controlador = loader.getController();
 
+                
+                /*
                 ArrayList<Producto> todosLosProductosDelSistema = this.getSistema().getEchoShop().getListaDeProductosEnStock();
 
                 ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
@@ -172,23 +176,16 @@ public class ClienteController implements Initializable {
 
                 for (int i = 0; i < 5; i++) {
                     Producto prodANoAgregar = new Producto();
-                    producto = this.getSistema().getEchoShop().obtenerLos5MasVendidos(todosLosProductosDelSistema);
+                    producto = this.getSistema().getEchoShop().obtenerElMasVendidos(todosLosProductosDelSistema);
                     if (!(producto.getCodigoIdentificador()== prodANoAgregar.getCodigoIdentificador() && producto.getNombre().equals(prodANoAgregar.getNombre()))) {
                         los5MasVendidosInversa.add(producto);
                     }
                 }
 
-                /* 
-                Collections.sort(los5MasVendidos, new Comparator<Producto>() {
-                    @Override
-                    public int compare(Producto p1, Producto p2) {
-                        return p1.getCantidadVendidos()- p2.getCantidadVendidos(); // Ascending
-                    }
-
-                });
-                 */
-                Collections.reverse(los5MasVendidosInversa); 
                 
+                Collections.reverse(los5MasVendidosInversa); 
+                */ 
+                ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos(); 
                 
                 controlador.cargarProductos(los5MasVendidosInversa, sistema);
 
@@ -208,7 +205,7 @@ public class ClienteController implements Initializable {
 
                 controlador.setSistema(sistema);
 
-                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                stage.setOnCloseRequest(e -> controlador.cerrarVentana2());
 
                 Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
                 myStage.close();

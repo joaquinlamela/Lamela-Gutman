@@ -9,14 +9,23 @@ import Dominio.Envase;
 import Dominio.Producto;
 import Dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -35,18 +44,16 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     private Label materialesEnvase;
     @FXML
     private JFXButton btnAgregar;
-    
-    
-    private Sistema sistema; 
-    
-    private SeleccionarEnvasePorProductoPreVentaController controlador; 
-    
-    private int codigoIdentificador; 
-    
-    private Producto producto; 
-    
-    //Gets and sets: 
 
+    private Sistema sistema;
+
+    private SeleccionarEnvasePorProductoPreVentaController controlador;
+
+    private int codigoIdentificador;
+
+    private Producto producto;
+
+    //Gets and sets: 
     public Sistema getSistema() {
         return sistema;
     }
@@ -62,8 +69,6 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     public void setControlador(SeleccionarEnvasePorProductoPreVentaController controlador) {
         this.controlador = controlador;
     }
-    
-    
 
     public int getCodigoIdentificador() {
         return codigoIdentificador;
@@ -80,12 +85,6 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-    
-    
-    
-    
-    
-    
 
     /**
      * Initializes the controller class.
@@ -93,30 +92,36 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
-         int codigoIdentificad = this.getCodigoIdentificador();
+        int codigoIdentificad = this.getCodigoIdentificador();
 
-        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados(); 
+        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
+
+        ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
 
         for (int i = 0; i < listaEnvases.size(); i++) {
-            if (codigoIdentificad == listaEnvases.get(i).getIdIdentificador()) {
+            if (!copiaDeListaDeEnvases.contains(listaEnvases.get(i))) {
+                copiaDeListaDeEnvases.add(listaEnvases.get(i));
+            }
+        }
+
+        for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
+            if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
                 Envase e = listaEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(e)) {
                     this.getSistema().getEnvasesALlevarEnPreVenta().add(e);
                 }
-                listaEnvases.remove(e); 
+                copiaDeListaDeEnvases.remove(e);
             }
-            controlador.cargarProductos2(listaEnvases, sistema, controlador, this.getProducto());
+            controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
         }
-        
-        
+
     }
-    
-    
-     public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
+
+    public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
         this.setSistema(sistema);
         this.setControlador(controlador);
         this.setCodigoIdentificador(envase.getIdIdentificador());
@@ -127,5 +132,5 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
         //  this.materialesEnvase.setText(envase.getTiposDeMateriales());
 
     }
-    
+
 }
