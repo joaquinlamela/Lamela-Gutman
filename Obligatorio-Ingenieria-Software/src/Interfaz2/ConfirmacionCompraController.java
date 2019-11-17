@@ -72,7 +72,6 @@ public class ConfirmacionCompraController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         // TODO
     }
 
@@ -133,7 +132,6 @@ public class ConfirmacionCompraController implements Initializable {
                 this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnPreVenta().get(i).getIdIdentificador()]++; 
             }
             
-            
             //Nuevo 
             Date fechaAhora= new Date(); 
             
@@ -141,11 +139,7 @@ public class ConfirmacionCompraController implements Initializable {
                 this.getSistema().agregarUnaPreVentaAlArray(preventaAgregar); 
                 this.getSistema().agregarGananciaPreVenta(preventaAgregar);
             }
-            //Hasta aca 
             
-
-            // System.out.println(this.getSistema().getListaDePreventas());
-
             for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
                 Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
                 this.getSistema().getProductosPreVentaSesionActiva().remove(p);
@@ -190,9 +184,7 @@ public class ConfirmacionCompraController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
     }
 
     @FXML
@@ -251,9 +243,7 @@ public class ConfirmacionCompraController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
     }
 
     public void cerrarVentana() {
@@ -290,7 +280,6 @@ public class ConfirmacionCompraController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
 }

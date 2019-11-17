@@ -6,15 +6,15 @@ import javafx.scene.image.Image;
 public class Producto {
 
     //Atributos:
-    private String nombre; //Esta
-    private tipoOrigen origen; //Esta
-    private String descripcionDelProducto; //Esta
-    private int pesoDelProducto;  //Esta
-    private double precio; //Esta
-    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales //Se marca por backend
-    private ArrayList<Envase> posiblesEnvasesRecomendados; // Esta
-    private ArrayList<tipoMaterial> listaDeMateriales; //Falta
-    private int cantidadVendidos; //No se muestra a la hora de agregar productos
+    private String nombre; 
+    private tipoOrigen origen; 
+    private String descripcionDelProducto; 
+    private int pesoDelProducto;  
+    private double precio; 
+    private int codigoIdentificador; 
+    private ArrayList<Envase> posiblesEnvasesRecomendados; 
+    private ArrayList<tipoMaterial> listaDeMateriales;
+    private int cantidadVendidos; 
     private Image imagenDelProducto;
 
     //Constructores:
@@ -28,7 +28,6 @@ public class Producto {
         this.setCodigoIdentificador(1);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
-//        this.setImagenDelProducto(new Image(""));
     }
 
     public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,
@@ -47,7 +46,7 @@ public class Producto {
         this.setImagenDelProducto(imagen);
     }
 
-    //Get´s && Set´s
+    //Getters && Setters
     public tipoOrigen getOrigen() {
         return origen;
     }
@@ -152,7 +151,7 @@ public class Producto {
         this.imagenDelProducto = imagenDelProducto;
     }
 
-    //Metodos aparte de los getter and setter
+    //Metodos
     public void agregarEnvase(Envase e) {
         if (!this.posiblesEnvasesRecomendados.contains(e)) {
             this.posiblesEnvasesRecomendados.add(e);
@@ -188,8 +187,9 @@ public class Producto {
         return "Producto{" + "nombre=" + nombre + ", origen=" + origen
                 + ", descripcionDelProducto=" + descripcionDelProducto
                 + ", pesoDelProducto=" + pesoDelProducto + ", precio=" + precio
-                + ", codigoIdentificador=" + codigoIdentificador + ", posiblesEnvasesRecomendados="
-                + posiblesEnvasesRecomendados + ", listaDeMateriales=" + listaDeMateriales
+                + ", codigoIdentificador=" + codigoIdentificador 
+                + ", posiblesEnvasesRecomendados=" + posiblesEnvasesRecomendados 
+                + ", listaDeMateriales=" + listaDeMateriales
                 + ", cantidadVendidos=" + cantidadVendidos + '}';
     }
 

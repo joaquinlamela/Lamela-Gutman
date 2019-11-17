@@ -3,9 +3,7 @@ package Dominio;
 import java.util.*;
 import javafx.scene.image.Image;
 
-
 public class Envase {
-
 
     //Atributos
     private String nombre;
@@ -14,8 +12,9 @@ public class Envase {
     private ArrayList<tipoMaterial> tiposDeMateriales;
     private Image imagenDelProducto;
     
-
-    public Envase(String nombre,int id, int pesoMaximoSoportado, ArrayList<tipoMaterial> tiposDeMateriales, Image imagen) {
+    //Constructores
+    public Envase(String nombre,int id, int pesoMaximoSoportado, 
+            ArrayList<tipoMaterial> tiposDeMateriales, Image imagen){
         this.setNombre(nombre);
         this.setIdIdentificador(id);
         this.setPesoMaximoSoportado(pesoMaximoSoportado);
@@ -29,6 +28,7 @@ public class Envase {
         this.setTiposDeMateriales(new ArrayList<tipoMaterial>());
     }
 
+    //Getters && Setters
     public String getNombre() {
         return nombre;
     }
@@ -39,8 +39,7 @@ public class Envase {
             this.nombre = nombre;
         }else{
             throw new RuntimeException("NombreNoVacio");
-        }
-        
+        }        
     }
 
     public int getPesoMaximoSoportado() {
@@ -95,18 +94,20 @@ public class Envase {
         this.imagenDelProducto = imagenDelProducto;
     }
     
-    
-    
-    
-
+    //Metodos
     @Override
     public String toString() {
-        return "Envase{" + "nombre=" + nombre + ", idIdentificador=" + idIdentificador + ", pesoMaximoSoportado=" + pesoMaximoSoportado + ", tiposDeMateriales=" + tiposDeMateriales + '}';
+        return "Envase{" 
+                + "nombre=" + nombre 
+                + ", idIdentificador=" + idIdentificador 
+                + ", pesoMaximoSoportado=" + pesoMaximoSoportado 
+                + ", tiposDeMateriales=" + tiposDeMateriales + '}';
     }
     
+    @Override
+    public boolean equals(Object o) {
+        Envase envase = (Envase) o;
+        return this.getIdIdentificador() == envase.getIdIdentificador();
+    }
     
-    
-    
-    
-
 }

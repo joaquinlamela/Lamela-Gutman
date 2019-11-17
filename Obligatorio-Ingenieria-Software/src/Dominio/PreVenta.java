@@ -2,7 +2,6 @@ package Dominio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class PreVenta {
 
@@ -15,9 +14,7 @@ public class PreVenta {
     private ArrayList<Envase> listaDeEnvase;
     private int identificadorDePreventa;
 
-
     //Constructor:
-
     public PreVenta(Persona comprador, int precioDePreVenta, ArrayList<Producto>
             listaDeProductos, Tienda lugarARetirar, 
             ArrayList<Envase> listaDeEnvase, int id, LocalDate fechaDeCompra) {
@@ -35,14 +32,13 @@ public class PreVenta {
         this.setPrecioDePreVenta(1);
         this.setListaDeProductos(new ArrayList<Producto>());
         this.setLugarARetirar(new Tienda());
-        
         this.setListaDeEnvase(new ArrayList<Envase>());
         this.setIdentificadorDePreventa(1);
         LocalDate fechaAhora= LocalDate.now(); 
         this.setFechaDeCompra(fechaAhora);
     }
 
-    //Get´s && Set´s
+    //Getters && Setters
     public Persona getComprador() {
         return comprador;
     }
@@ -87,10 +83,6 @@ public class PreVenta {
         this.fechaDeCompra = fechaDeCompra;
     }
     
-    
-
-   
-
     public ArrayList<Envase> getListaDeEnvase() {
         return listaDeEnvase;
     }
@@ -135,14 +127,21 @@ public class PreVenta {
         }
     }
 
+    //Metodos
     @Override
     public String toString() {
-        return "PreVenta{" + "comprador=" + comprador + ", precioDePreVenta=" + precioDePreVenta + 
-                ", listaDeProductos=" + listaDeProductos + ", lugarARetirar=" + lugarARetirar + 
-                ", listaDeEnvase=" + listaDeEnvase + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+        return "PreVenta{" + "comprador=" + comprador 
+                + ", precioDePreVenta=" + precioDePreVenta 
+                + ", listaDeProductos=" + listaDeProductos 
+                + ", lugarARetirar=" + lugarARetirar 
+                + ", listaDeEnvase=" + listaDeEnvase  
+                + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+    }
+   
+    @Override
+    public boolean equals(Object o) {
+        PreVenta preVenta = (PreVenta) o;
+        return this.getIdentificadorDePreventa() == preVenta.getIdentificadorDePreventa();
     }
     
-    
-    
-
 }

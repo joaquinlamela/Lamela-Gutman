@@ -12,27 +12,18 @@ public class Sistema {
     private Tienda echoShop;
     private int cantPreVentas;
     private ArrayList<Persona> listaCliente;
-    
-    
-    
     private ArrayList<Producto> productosAVenderEnSesionActiva; 
     private int [] cantidadPorIdDeProd; 
-    ArrayList<Envase> envasesALlevarEnVenta; 
-    
-    
     private ArrayList<Producto> productosPreVentaSesionActiva; 
     private int [] cantidadPorIdDePreVenta; 
+    
+    //Variables locales auxiliares
     ArrayList<Envase> envasesALlevarEnPreVenta; 
-    
- 
+    ArrayList<Envase> envasesALlevarEnVenta; 
     int [] ventasPorMes; 
-    
-    int [] envasesUtilizadosPorId; 
-    
+    int [] envasesUtilizadosPorId;  
     int [] ganancias; 
-     
-
-
+    
     //Constructor:
     public Sistema() {
         this.listaDePreventas = new ArrayList<PreVenta>();
@@ -45,11 +36,10 @@ public class Sistema {
         this.cantidadPorIdDeProd= new int[25]; 
         this.cantidadPorIdDePreVenta= new int[25]; 
         this.envasesALlevarEnVenta= new ArrayList<Envase>(); 
-         this.envasesALlevarEnPreVenta= new ArrayList<Envase>(); 
-         this.ventasPorMes= new int[12]; 
-         this.envasesUtilizadosPorId= new int[50]; 
-         this.ganancias= new int[12]; 
-         
+        this.envasesALlevarEnPreVenta= new ArrayList<Envase>(); 
+        this.ventasPorMes= new int[12]; 
+        this.envasesUtilizadosPorId= new int[50]; 
+        this.ganancias= new int[12]; 
     }
 
     public int getCantPreVentas() {
@@ -60,7 +50,7 @@ public class Sistema {
         this.cantPreVentas = cantPreVentas;
     }
 
-    //Get´s && Set´s
+    //Getters && Setters
     public ArrayList<Venta> getListaDeVentasDelSitema() {
         return listaDeVentasDelSistema;
     }
@@ -165,44 +155,25 @@ public class Sistema {
         this.ganancias = ganancias;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     //Metodos:
     public void agregarSucursal(Sucursal nueva) {
-//TODO metodo para que se vea en el mapa
         this.echoShop.getSucursales().add(nueva);
         this.echoShop.setNumeroSucursal(this.echoShop.getNumeroSucursal() + 1);
 
     }
 
     public void eliminarSucursal(Sucursal aEliminar) {
-//TODO metodo para que se deje de ver en el mapa
         for (int i = 0; i < this.echoShop.getSucursales().size(); i++) {
-            if (this.echoShop.getSucursales().get(i).getNumeroSucursal() == aEliminar.getNumeroSucursal()) {
+            if (this.echoShop.getSucursales().get(i).getNumeroSucursal() 
+                    == aEliminar.getNumeroSucursal()) {
                 this.echoShop.getSucursales().remove(i);
             }
         }
     }
 
   public void agregarVenta(Venta venta) {
-//TODO agregar Ticket electronico
         if (!this.listaDeVentasDelSistema.contains(venta)) {
             this.listaDeVentasDelSistema.add(venta);
-            ArrayList<Producto> listaProductosParaVender = venta.getListaDeProductosAVender();
-          
             if (this.listaDeVentasDelSistema.size() == 1) {
                 venta.setCodigoIdentificadorDeVenta(1);
             }else{
@@ -212,9 +183,7 @@ public class Sistema {
     }
 
     public void eliminarVenta(Venta venta) {
-
         if (this.listaDeVentasDelSistema.contains(venta)) {
-
             for (int i = 0; i < this.listaDeVentasDelSistema.size(); i++) {
                 int id = this.listaDeVentasDelSistema.get(i).getCodigoIdentificadorDeVenta();
                 if (id> venta.getCodigoIdentificadorDeVenta()) {
@@ -227,8 +196,6 @@ public class Sistema {
 
     public void agregarPreVenta(PreVenta preCompra) {
 
-//TODO falta calendario
-        //preCompra.setIdentificadorDePreventa(this.getCantPreVentas()+1);
         if (!this.listaDePreventas.contains(preCompra)) {
             this.setCantPreVentas(this.getCantPreVentas() + 1);
             preCompra.setIdentificadorDePreventa(this.getCantPreVentas());
@@ -237,7 +204,6 @@ public class Sistema {
     }
 
     public void cancelarPreVenta(PreVenta preCompra) {
-//TODO eliminar del calendario
         if (this.listaDePreventas.contains(preCompra)) {
             this.listaDePreventas.remove(preCompra);
             for (int i = 0; i < this.listaDePreventas.size(); i++) {
@@ -247,7 +213,6 @@ public class Sistema {
                 }
             }
         }
-
     }
 
     public void actualizarStock(Venta venta) {
@@ -257,7 +222,6 @@ public class Sistema {
             Producto productoComprado = listaDeProductosComprados.get(i);
             tiendaDeVenta.getStockDeProductoPorId()[productoComprado.getCodigoIdentificador()] = tiendaDeVenta.getStockDeProductoPorId()[productoComprado.getCodigoIdentificador()] - venta.getCantidadesPorProducto()[productoComprado.getCodigoIdentificador()];
         }
-
     }
 
     public int ponerIdentificadorAProducto() {
@@ -283,13 +247,11 @@ public class Sistema {
         }
     }
     
-    
     public void agregarProductosALaListaDeProductosSesionActiva(Producto producto){
         if(!this.getProductosAVenderEnSesionActiva().contains(producto)){
             this.getProductosAVenderEnSesionActiva().add(producto); 
         }
     }
-    
     
     public void agregarProductosALaListaPreVenta(Producto producto){
         if(!this.getProductosPreVentaSesionActiva().contains(producto)){
@@ -297,31 +259,29 @@ public class Sistema {
         }
     }
     
-    
     public void agregarUnaVentaAlArray(Venta venta){
         Date fechaDeVenta= venta.getFechaDeCompra(); 
-          int mes=  fechaDeVenta.getMonth(); 
-          this.getVentasPorMes()[mes]=   this.getVentasPorMes()[mes] +1; 
+        int mes = fechaDeVenta.getMonth(); 
+        this.getVentasPorMes()[mes] = this.getVentasPorMes()[mes] +1; 
     }
     
     public void agregarUnaPreVentaAlArray(PreVenta preVenta){
-        LocalDate fechaDeVenta= preVenta.getFechaDeCompra(); 
-          int mes=  fechaDeVenta.getMonthValue(); 
-          this.getVentasPorMes()[mes]=   this.getVentasPorMes()[mes] +1; 
+        LocalDate fechaDeVenta = preVenta.getFechaDeCompra(); 
+        int mes = fechaDeVenta.getMonthValue(); 
+        this.getVentasPorMes()[mes] = this.getVentasPorMes()[mes] +1; 
     }
     
-     public void agregarGananciaEnVenta(Venta venta){
-        Date fechaDeVenta= venta.getFechaDeCompra(); 
-          int mes=  fechaDeVenta.getMonth(); 
-          this.getGanancias()[mes]=   this.getGanancias()[mes] +venta.getPrecioTotal(); 
+    public void agregarGananciaEnVenta(Venta venta){
+        Date fechaDeVenta = venta.getFechaDeCompra(); 
+        int mes = fechaDeVenta.getMonth(); 
+        this.getGanancias()[mes] = this.getGanancias()[mes] +venta.getPrecioTotal(); 
     }
      
     public void agregarGananciaPreVenta(PreVenta preVenta){
-        LocalDate fechaDeVenta= preVenta.getFechaDeCompra(); 
-          int mes=  fechaDeVenta.getMonthValue(); 
-          this.getGanancias()[mes]=   this.getGanancias()[mes] +preVenta.getPrecioDePreVenta(); 
+        LocalDate fechaDeVenta = preVenta.getFechaDeCompra(); 
+        int mes = fechaDeVenta.getMonthValue(); 
+        this.getGanancias()[mes] = this.getGanancias()[mes] +preVenta.getPrecioDePreVenta(); 
     }
-    
     
     public String factura(Venta v){
         String retorno = "";
@@ -329,24 +289,25 @@ public class Sistema {
         String envases = "";
         for (int i = 0; i < v.getListaDeProductosAVender().size(); i++) {
             productos += "<tr>\n" +
-"	<td class=\"desc\">"+v.getListaDeProductosAVender().get(i).getNombre()+"</td>\n" +
-"	<td class=\"qty\">"+this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
-"	<td class=\"unit\">"+v.getListaDeProductosAVender().get(i).getPrecio()+"</td>\n" +
-"	<td class=\"total\">"+v.getListaDeProductosAVender().get(i).getPrecio()*this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
-"	</tr>\n";
+"           <td class=\"desc\">"+v.getListaDeProductosAVender().get(i).getNombre()+"</td>\n" +
+"           <td class=\"qty\">"+this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
+"           <td class=\"unit\">"+v.getListaDeProductosAVender().get(i).getPrecio()+"</td>\n" +
+"           <td class=\"total\">"+v.getListaDeProductosAVender().get(i).getPrecio()*this.getCantidadPorIdDeProd()[v.getListaDeProductosAVender().get(i).getCodigoIdentificador()]+"</td>\n" +
+"           </tr>\n";
         }
         
         for (int i = 0; i < v.getListaDeEnvasesUtilizados().size(); i++) {
             envases+= "<tr>\n" +
-"		<td class=\"desc\">"+v.getListaDeEnvasesUtilizados().get(i).getNombre()+"</td>\n" +
-"		<td class=\"qty\">"+v.getListaDeEnvasesUtilizados().get(i).getIdIdentificador()+"</td>\n" +
-"		<td class=\"unit\">"+v.getListaDeEnvasesUtilizados().get(i).getPesoMaximoSoportado()+"</td>\n" +
-"	</tr>\n";
+"           <td class=\"desc\">"+v.getListaDeEnvasesUtilizados().get(i).getNombre()+"</td>\n" +
+"           <td class=\"qty\">"+v.getListaDeEnvasesUtilizados().get(i).getIdIdentificador()+"</td>\n" +
+"           <td class=\"unit\">"+v.getListaDeEnvasesUtilizados().get(i).getPesoMaximoSoportado()+"</td>\n" +
+"           </tr>\n";
         }
         
         retorno = "<!DOCTYPE html>\n" +
-"<html>\n" +
-"<head>\n" +
+                
+"   <html>\n" +
+"   <head>\n" +
 "	<title>HTML to API - Invoice</title>\n" +
 "	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>\n" +
 "	<!-- <link rel=\"stylesheet\" href=\"sass/main.css\" media=\"screen\" charset=\"utf-8\"/> -->\n" +
@@ -717,10 +678,7 @@ public class Sistema {
 "</body>\n" +
 "\n" +
 "</html>";
-        
         return retorno;
     }
 
-    
-    
 }

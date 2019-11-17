@@ -82,7 +82,6 @@ public class AgregadoSucursalController implements Initializable {
     private void agregarSucursal(ActionEvent event) {
 
         boolean esValido = true;
-
         int telefon = 911;
         int numeroSucursal = 1;
 
@@ -153,7 +152,6 @@ public class AgregadoSucursalController implements Initializable {
         }
 
         //Parte de hora de inicio 
-        
         LocalTime horaInicio = this.dateInicio.getValue();
 
         //Parte de hora de finalizacion
@@ -222,7 +220,6 @@ public class AgregadoSucursalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
@@ -257,7 +254,6 @@ public class AgregadoSucursalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
@@ -300,7 +296,6 @@ public class AgregadoSucursalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public Sistema getSistema() {

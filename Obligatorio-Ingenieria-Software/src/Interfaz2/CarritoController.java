@@ -125,7 +125,6 @@ public class CarritoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void cargarProductos(ArrayList<Producto> lista, Sistema sis, CarritoController paraCargarPestañaCarrito, int[] cantidadPorId) {
@@ -159,9 +158,7 @@ public class CarritoController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
     }
 
     @FXML
@@ -199,7 +196,6 @@ public class CarritoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
@@ -249,7 +245,6 @@ public class CarritoController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
@@ -262,46 +257,32 @@ public class CarritoController implements Initializable {
                 this.getSistema().getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(
                         this.getSistema().getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()
                         + this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
-
                 precioTotal += (listaDeProductos.get(i).getPrecio() * this.getSistema().getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
             }
             int[] cantidadesPorId = this.getSistema().getCantidadPorIdDeProd();
             Date fecha = new Date();
-
             Persona comprador = this.getSistema().getListaCliente().get(this.getSistema().getListaCliente().size() - 1);
             Tienda tienda = this.getSistema().getEchoShop();
             ArrayList<Envase> listaDeEnvasesUtilizados = this.getSistema().getEnvasesALlevarEnVenta();
-
-          
             int codigoIdentificador = 1;
             String direccionComprador = comprador.getDomicilio();
-
             Venta ventaAgregar = new Venta(listaDeProductos, precioTotal, cantidadesPorId,
                     fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
                     direccionComprador);
-
             sistema.agregarVenta(ventaAgregar);
             this.getSistema().agregarUnaVentaAlArray(ventaAgregar);
             this.getSistema().agregarGananciaEnVenta(ventaAgregar);
-           
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
                 this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnVenta().get(i).getIdIdentificador()]++; 
             }
-            
-
             WebView webView = new WebView();
             String contenido = this.getSistema().factura(ventaAgregar);
-
             webView.getEngine().loadContent(contenido);
-
             VBox vBox = new VBox(webView);
             Scene scene = new Scene(vBox, 960, 600);
-
             Stage primaryStage = new Stage();
             primaryStage.setScene(scene);
             primaryStage.show();
-
-            // System.out.println(this.getSistema().getListaDeVentasDelSitema());
             for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
                 Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
                 this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
@@ -313,7 +294,6 @@ public class CarritoController implements Initializable {
                 Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
                 this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
             }
-
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -346,7 +326,6 @@ public class CarritoController implements Initializable {
             } catch (IOException ex) {
                 Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }else{ 
              Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
@@ -354,6 +333,6 @@ public class CarritoController implements Initializable {
             alert.setContentText("Agregue productos al carrito");
             alert.showAndWait();
         }
-
     }
+    
 }

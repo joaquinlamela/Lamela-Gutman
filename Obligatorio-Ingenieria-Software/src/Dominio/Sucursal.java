@@ -1,20 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Dominio;
 
-/**
- *
- * @author user
- */
 public class Sucursal {
 
+    //Atributos
     private int numeroSucursal;
     private String direccion;
     private long telefono;
+    
+    //Constructores
+    public Sucursal(int numeroSucursal, String direccion, long telefono) {
+        this.setNumeroSucursal(numeroSucursal);
+        this.setDireccion(direccion);
+        this.setTelefono(telefono);
+    }
 
+    public Sucursal() {
+        this.setNumeroSucursal(1);
+        this.setDireccion("Direccion");
+        this.setTelefono(1);
+    }
+    
+    //Getters && Setters
     public int getNumeroSucursal() {
         return numeroSucursal;
     }
@@ -51,27 +57,19 @@ public class Sucursal {
         }
     }
     
-    
-    
-    
-    
-
-    public Sucursal(int numeroSucursal, String direccion, long telefono) {
-        this.setNumeroSucursal(numeroSucursal);
-        this.setDireccion(direccion);
-        this.setTelefono(telefono);
-    }
-
-    public Sucursal() {
-        this.setNumeroSucursal(1);
-        this.setDireccion("Direccion");
-        this.setTelefono(1);
-    }
-
+    //Metodos
     @Override
     public String toString() {
-        return "Sucursal{" + "numeroSucursal=" + numeroSucursal + ", direccion="
-                + direccion + ", telefono=" + telefono + '}';
+        return "Sucursal{" 
+                + "numeroSucursal=" + numeroSucursal 
+                + ", direccion=" + direccion 
+                + ", telefono=" + telefono + '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        Sucursal sucursal = (Sucursal) o;
+        return this.getNumeroSucursal() == sucursal.getNumeroSucursal();
     }
 
 }

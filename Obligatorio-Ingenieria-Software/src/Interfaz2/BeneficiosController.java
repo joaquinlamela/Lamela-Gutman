@@ -95,7 +95,6 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void cargarGraficaDeBeneficios(Sistema sistema) {
@@ -151,12 +150,10 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
     }
 
     @FXML
     private void ventasPorMes(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("GraficaDeVentaXMes.fxml"));
 
@@ -189,17 +186,14 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
-
     }
 
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -230,12 +224,10 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
     private void volverAInicio(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -266,11 +258,9 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void cerrarVentana() {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -301,7 +291,6 @@ public class BeneficiosController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public Sistema getSistema() {

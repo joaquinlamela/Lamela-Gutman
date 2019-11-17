@@ -174,7 +174,6 @@ public class AgregarEnvaseController implements Initializable {
         for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
             System.out.println(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
         }
-
     }
 
     @FXML
@@ -210,7 +209,6 @@ public class AgregarEnvaseController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @FXML
@@ -279,7 +277,6 @@ public class AgregarEnvaseController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public Sistema getSistema() {
