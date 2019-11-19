@@ -180,6 +180,10 @@ public class AgregarEnvaseController implements Initializable {
                 Image imagenProducto = new Image(selectedFile.toURI().toString());
                 Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales, imagenProducto);
                 this.getSistema().getEchoShop().agregarEnvase(envaseAgregar);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Agregado de envase");
+                alert.setHeaderText("Se ha agregado correctamente el envase");
+                alert.showAndWait();
             }
 
         }

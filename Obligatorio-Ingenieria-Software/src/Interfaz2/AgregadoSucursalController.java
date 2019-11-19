@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -61,21 +62,21 @@ public class AgregadoSucursalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //En este caso lo que estamos haciendo es decir que el maximo de sucursales que va a haber por sistema en este caso van a ser 50, pero no todas estas son las que se mostraran en el mapa
-        
+
         this.dateInicio.setValue(LocalTime.now());
 
         this.dateFinalizacion.setValue(LocalTime.now());
     }
 
-    public void cargarProductos(Sistema sis){
+    public void cargarProductos(Sistema sis) {
         this.setSistema(sis);
         this.getSistema().getEchoShop().getSucursales();
-        for (int i = this.getSistema().getEchoShop().getSucursales().size()+1; i < 50; i++) {
+        for (int i = this.getSistema().getEchoShop().getSucursales().size() + 1; i < 50; i++) {
             cmbNumeroSucursal.getItems().add(i);
         }
-        this.cmbNumeroSucursal.setValue(this.getSistema().getEchoShop().getSucursales().size()+1);
+        this.cmbNumeroSucursal.setValue(this.getSistema().getEchoShop().getSucursales().size() + 1);
     }
-    
+
     @FXML
     private void obtenerNumeroSucursal(ActionEvent event) {
     }
@@ -214,6 +215,10 @@ public class AgregadoSucursalController implements Initializable {
             echoShop.setHoraInicio(horaInicio);
             echoShop.setHoraFinalizacion(horaFinalizacion);
             this.cargarProductos(sistema);
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Agregado de sucursal");
+            alert.setHeaderText("Se ha agregado correctamente la sucursal");
+            alert.showAndWait();
         }
 
         System.out.println(this.getSistema().getEchoShop().getSucursales().size());
@@ -299,7 +304,6 @@ public class AgregadoSucursalController implements Initializable {
 
     public void cerrarVentana() {
 
-        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -330,7 +334,7 @@ public class AgregadoSucursalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public Sistema getSistema() {

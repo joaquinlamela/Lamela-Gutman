@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -25,5 +26,7 @@
             <VBox fx:id="vBox" prefHeight="292.0" prefWidth="346.0" />
          </content>
       </ScrollPane>
+      <Label fx:id="txtCarrito" layoutX="69.0" layoutY="448.0" prefHeight="21.0" prefWidth="26.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18;" />
+      <Label fx:id="txtPreventa" layoutX="234.0" layoutY="448.0" prefHeight="21.0" prefWidth="26.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18;" />
    </children>
 </Pane>

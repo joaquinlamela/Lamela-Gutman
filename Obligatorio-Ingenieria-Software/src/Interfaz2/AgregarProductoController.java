@@ -369,9 +369,13 @@ public class AgregarProductoController implements Initializable {
                 alert.showAndWait();
             } else {
                 Image imagenProducto = new Image(selectedFile.toURI().toString());
-
                 Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);
                 this.sistema.getEchoShop().agregarProducto(productoACrear);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Agregado de producto");
+                alert.setHeaderText("Se ha agregado correctamente el producto");
+                alert.showAndWait();
+                
             }
 
         }

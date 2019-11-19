@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -148,9 +149,6 @@ public class PresentacionProductosController implements Initializable {
         this.codigoIdentificador = codigoIdentificador;
     }
 
-    
-   
-
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -174,16 +172,15 @@ public class PresentacionProductosController implements Initializable {
             alert.setContentText("!Seleccione un origen!");
             alert.showAndWait();
         }
-        Producto producto= new Producto(); 
-        
+        Producto producto = new Producto();
+
         for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
-            if(this.getCodigoIdentificador()==this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador() ){
-                producto= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            if (this.getCodigoIdentificador() == this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador()) {
+                producto = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
             }
         }
-        
-        
-         if (esValido && !this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
+
+        if (esValido && !this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarEnvasePorProductoPreVenta.fxml"));
 
@@ -240,10 +237,15 @@ public class PresentacionProductosController implements Initializable {
                 }
             }
 
+        }else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ya se ha agregado el producto a la preventa");
+            alert.setHeaderText("El producto ya se encuentra en la preventa");
+            alert.setContentText("¡Ya ha agregado el producto en preventa!");
+
+            alert.showAndWait();
         }
-        
-        
-        
+
         /*
 
         if (esValido) {
@@ -270,8 +272,7 @@ public class PresentacionProductosController implements Initializable {
             }
 
         }
-        */ 
-
+         */
     }
 
     @FXML
@@ -290,15 +291,14 @@ public class PresentacionProductosController implements Initializable {
             alert.setContentText("!Seleccione un origen!");
             alert.showAndWait();
         }
-        
-        Producto producto= new Producto(); 
-        
+
+        Producto producto = new Producto();
+
         for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
-            if(this.getCodigoIdentificador()==this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador() ){
-                producto= this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i); 
+            if (this.getCodigoIdentificador() == this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).getCodigoIdentificador()) {
+                producto = this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i);
             }
         }
-        
 
         if (esValido && !this.getSistema().getProductosAVenderEnSesionActiva().contains(producto)) {
             try {
@@ -334,7 +334,7 @@ public class PresentacionProductosController implements Initializable {
 
                 controlado.cargarProductos(p, sistema, controlado);
 
-                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado,p);
+                controlado.cargarProductos2(p.getPosiblesEnvasesRecomendados(), sistema, controlado, p);
 
                 stage.setOnCloseRequest(e -> controlado.cerrarVentana());
 
@@ -357,6 +357,13 @@ public class PresentacionProductosController implements Initializable {
                 }
             }
 
+        } else {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Ya se ha agregado el producto al carrito");
+            alert.setHeaderText("El producto ya se encuentra en el carrito");
+            alert.setContentText("¡Ya ha agregado el producto al carrito!");
+
+            alert.showAndWait();
         }
 
     }
@@ -373,7 +380,5 @@ public class PresentacionProductosController implements Initializable {
         this.descripcion.setText(producto.getDescripcionDelProducto());
         this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));
     }
-    
-    
 
 }

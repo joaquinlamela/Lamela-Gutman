@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -40,16 +41,15 @@ public class ProductosAEliminarController implements Initializable {
     private JFXButton btnEliminarProd;
 
     private Sistema sistema;
-    
-    
-    private EliminarProductoController controlador; 
+
+    private EliminarProductoController controlador;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+
     }
 
     //Gets and sets
@@ -125,15 +125,8 @@ public class ProductosAEliminarController implements Initializable {
         this.controlador = controlador;
     }
 
-    
-   
-    
-    
-
-    
     //Metodos: 
-    
-    public void inicializarDatos(Producto producto, Sistema sistema, EliminarProductoController controlador ) {
+    public void inicializarDatos(Producto producto, Sistema sistema, EliminarProductoController controlador) {
         this.setSistema(sistema);
         this.setControlador(controlador);
         this.imagenProducto.setImage(producto.getImagenDelProducto());
@@ -146,15 +139,20 @@ public class ProductosAEliminarController implements Initializable {
 
     @FXML
     private void eliminarProducto(ActionEvent event) {
-        int codigoIdentificador= Integer.parseInt(this.getIdentificador().getText()); 
-        ArrayList<Producto> listaProductos= this.getSistema().getEchoShop().getListaDeProductosEnStock(); 
+        int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
+        ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
         for (int i = 0; i < listaProductos.size(); i++) {
-            if(codigoIdentificador== listaProductos.get(i).getCodigoIdentificador()){
-                Producto p= listaProductos.get(i); 
+            if (codigoIdentificador == listaProductos.get(i).getCodigoIdentificador()) {
+                Producto p = listaProductos.get(i);
                 this.getSistema().getEchoShop().eliminarProductoSinImportarStock(p);
             }
         }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Eliminación de producto");
+        alert.setHeaderText("Se ha eliminado correctamente.");
+        alert.showAndWait();
         controlador.cargarArticulos(listaProductos, controlador, sistema);
+
     }
 
 }

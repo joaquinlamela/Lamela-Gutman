@@ -107,8 +107,18 @@ public class ConfirmacionCompraController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no ha seleccionado ninguna fecha de retiro");
-            alert.setContentText("!Seleccione uuna fecha de retiro!");
+            alert.setContentText("!Seleccione una fecha de retiro!");
             alert.showAndWait();
+        } else {
+            LocalDate hoy= LocalDate.now(); 
+            if (fechaDeRetiro.compareTo(hoy)<1) {
+                esValido = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: seleccione una fecha que sea valida");
+                alert.setContentText("!Seleccione una fecha que sea hoy o posterior!");
+                alert.showAndWait();
+            }
         }
 
         if (esValido) {
@@ -127,19 +137,19 @@ public class ConfirmacionCompraController implements Initializable {
                     this.getSistema().getEnvasesALlevarEnPreVenta(), 1, fechaDeRetiro);
 
             this.getSistema().agregarPreVenta(preventaAgregar);
-            
+
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
-                this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnPreVenta().get(i).getIdIdentificador()]++; 
+                this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnPreVenta().get(i).getIdIdentificador()]++;
             }
-            
+
             //Nuevo 
-            Date fechaAhora= new Date(); 
-            
-            if(fechaAhora.getDay()== fechaDeRetiro.getDayOfMonth() && fechaAhora.getMonth() == fechaDeRetiro.getMonthValue() && fechaAhora.getYear() == fechaDeRetiro.getYear()){
-                this.getSistema().agregarUnaPreVentaAlArray(preventaAgregar); 
+            Date fechaAhora = new Date();
+
+            if (fechaAhora.getDay() == fechaDeRetiro.getDayOfMonth() && fechaAhora.getMonth() == fechaDeRetiro.getMonthValue() && fechaAhora.getYear() == fechaDeRetiro.getYear()) {
+                this.getSistema().agregarUnaPreVentaAlArray(preventaAgregar);
                 this.getSistema().agregarGananciaPreVenta(preventaAgregar);
             }
-            
+
             for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
                 Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
                 this.getSistema().getProductosPreVentaSesionActiva().remove(p);
@@ -280,6 +290,21 @@ public class ConfirmacionCompraController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void setearDireccion(ActionEvent event) {
+        int numeroDeSucursal=0; 
+        if (!this.numeroSucursal.getSelectionModel().isEmpty()) {
+            numeroDeSucursal = this.numeroSucursal.getSelectionModel().getSelectedItem();
+            for (int i = 0; i < this.getSistema().getEchoShop().getSucursales().size(); i++) {
+                if (numeroDeSucursal == this.getSistema().getEchoShop().getSucursales().get(i).getNumeroSucursal()) {
+                    Sucursal sucursal = this.getSistema().getEchoShop().getSucursales().get(i);
+                    this.direccionSucursal.setText(sucursal.getDireccion());
+                }
+            }
+        } 
+        
     }
 
 }

@@ -30,6 +30,7 @@ import java.nio.file.Paths;
 import java.util.Collections;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.web.WebView;
 
 /**
@@ -56,6 +57,10 @@ public class ClienteController implements Initializable {
     private JFXButton btnMercado;
     @FXML
     private JFXButton btnTopVentas;
+    @FXML
+    private Label txtCarrito;
+    @FXML
+    private Label txtPreventa;
 
     /**
      * Initializes the controller class.
@@ -302,7 +307,9 @@ public class ClienteController implements Initializable {
 
         this.setSistema(sis);
         
+        this.txtCarrito.setText(this.getSistema().getProductosAVenderEnSesionActiva().size()+""); 
         
+        this.txtPreventa.setText(this.getSistema().getProductosPreVentaSesionActiva().size()+""); 
         
         this.vBox.getChildren().clear(); 
 
