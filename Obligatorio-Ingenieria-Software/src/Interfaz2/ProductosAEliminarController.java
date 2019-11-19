@@ -147,6 +147,17 @@ public class ProductosAEliminarController implements Initializable {
                 this.getSistema().getEchoShop().eliminarProductoSinImportarStock(p);
             }
         }
+        for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().
+                size(); i++) {
+            if (codigoIdentificador<
+                    this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).
+                            getCodigoIdentificador()) {
+                this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i).
+                        setCodigoIdentificador(this.getSistema().getEchoShop().
+                                getListaDeProductosEnStock().get(i).
+                                getCodigoIdentificador()-1);
+            }
+        }
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Eliminación de producto");
         alert.setHeaderText("Se ha eliminado correctamente.");

@@ -202,9 +202,79 @@ public class TiendaTest {
 
     }
 
+    //Stock por Id   
+    @Test
+    public void testGetstockPorId1() {
+
+        Tienda instance = new Tienda();
+        int[] array = {5};
+        instance.setStockDeProductoPorId(array);
+        int[] expResult = array;
+        int[] result = instance.getStockDeProductoPorId();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetstockPorId2() {
+        Tienda instance = new Tienda();
+        int[] array = {5, 10, 2};
+        instance.setStockDeProductoPorId(array);
+        int[] expResult = array;
+        int[] result = instance.getStockDeProductoPorId();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetstockPorId3() {
+        Tienda instance = new Tienda();
+        int[] array = {};
+        instance.setStockDeProductoPorId(array);
+        int[] expResult = array;
+        int[] result = instance.getStockDeProductoPorId();
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testGetStockPorId4() {
+
+        Tienda instance = new Tienda();
+        int[] a = new int[10];
+        instance.setStockDeProductoPorId(a);
+        int[] expResult = a;
+        int[] result = instance.getStockDeProductoPorId();
+        assertArrayEquals(expResult, result);
+
+    }
+
+    @Test
+    public void testGetStockPorId5() {
+
+        Tienda instance = new Tienda();
+        int[] a = {1, 2, 4, 5, 6, 8, 10};
+        instance.setStockDeProductoPorId(a);
+        int[] expResult = a;
+        int[] result = instance.getStockDeProductoPorId();
+        assertArrayEquals(expResult, result);
+
+    }
+
+    @Test
+    public void testSetStockDeProductoPorId1() {
+        int[] stockDeProductoPorId = new int[15];
+        Tienda instance = new Tienda();
+        instance.setStockDeProductoPorId(stockDeProductoPorId);
+    }
+    
+    @Test
+    public void testSetStockDeProductoPorId2() {
+        int[] stockDeProductoPorId = new int[0];
+        Tienda instance = new Tienda();
+        instance.setStockDeProductoPorId(stockDeProductoPorId);
+    }
+    
     //Productos
     @Test
-    public void testGetProductoes1() {
+    public void testGetProductos1() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -224,7 +294,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes2() {
+    public void testGetProductos2() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -245,7 +315,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes3() {
+    public void testGetProductos3() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -267,7 +337,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes4() {
+    public void testGetProductos4() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -291,7 +361,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes5() {
+    public void testGetProductos5() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -314,7 +384,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes6() {
+    public void testGetProductos6() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -339,7 +409,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testGetProductoes7() {
+    public void testGetProductos7() {
 
         Tienda instance = new Tienda();
         Producto s1 = new Producto();
@@ -364,7 +434,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testSetProductoes1() {
+    public void testSetProductos1() {
 
         ArrayList<Producto> sucursales = new ArrayList<>();
         Tienda instance = new Tienda();
@@ -380,7 +450,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testSetProductoes2() {
+    public void testSetProductos2() {
 
         ArrayList<Producto> sucursales = new ArrayList<>();
         Tienda instance = new Tienda();
@@ -397,7 +467,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testSetProductoes3() {
+    public void testSetProductos3() {
 
         ArrayList<Producto> sucursales = new ArrayList<>();
         Tienda instance = new Tienda();
@@ -415,7 +485,7 @@ public class TiendaTest {
     }
 
     @Test
-    public void testSetProductoes4() {
+    public void testSetProductos4() {
 
         ArrayList<Producto> sucursales = new ArrayList<>();
         Tienda instance = new Tienda();
@@ -426,40 +496,6 @@ public class TiendaTest {
         Producto s3 = new Producto();
         s3.setCodigoIdentificador(3);
         instance.setListaDeProductosEnStock(sucursales);
-
-    }
-
-    //Producto por id
-    @Test
-    public void testGetStockDeProductoPorId1() {
-
-        Tienda instance = new Tienda();
-        int[] a = new int[10];
-        instance.setStockDeProductoPorId(a);
-        int[] expResult = a;
-        int[] result = instance.getStockDeProductoPorId();
-        assertArrayEquals(expResult, result);
-
-    }
-
-    @Test
-    public void testGetStockDeProductoPorId2() {
-
-        Tienda instance = new Tienda();
-        int[] a = {1, 2, 4, 5, 6, 8, 10};
-        instance.setStockDeProductoPorId(a);
-        int[] expResult = a;
-        int[] result = instance.getStockDeProductoPorId();
-        assertArrayEquals(expResult, result);
-
-    }
-
-    @Test
-    public void testSetStockDeProductoPorId() {
-        System.out.println("setStockDeProductoPorId");
-        int[] stockDeProductoPorId = new int[15];
-        Tienda instance = new Tienda();
-        instance.setStockDeProductoPorId(stockDeProductoPorId);
 
     }
 
@@ -546,7 +582,7 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        
+
         instance.agregarSucursal(s1);
         instance.agregarSucursal(s3);
 
@@ -566,7 +602,7 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        
+
         instance.agregarSucursal(s1);
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
@@ -588,7 +624,7 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        
+
         instance.agregarSucursal(s1);
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);

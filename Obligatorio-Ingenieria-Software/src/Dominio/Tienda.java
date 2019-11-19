@@ -152,6 +152,7 @@ public class Tienda {
         }
     }
 
+    //No se cambia el id, porque no se accede a el desde frontend
     public void eliminarSucursal(Sucursal s) {
         if (this.sucursales.contains(s)) {
             this.sucursales.remove(s);
