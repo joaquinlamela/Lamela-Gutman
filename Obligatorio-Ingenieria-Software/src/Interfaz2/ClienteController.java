@@ -67,7 +67,7 @@ public class ClienteController implements Initializable {
 
     @FXML
     private void irAlCarrito(ActionEvent event) {
-        
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Carrito.fxml"));
 
@@ -104,13 +104,38 @@ public class ClienteController implements Initializable {
 
     @FXML
     private void irAlMapa(ActionEvent event) {
-        WebView webView = new WebView();
-        webView.getEngine().load("file:" + Paths.get("").toAbsolutePath().toString() + "/src/CarpetaMapa/MapaNuevo.html");
-        VBox vBox = new VBox(webView);
-        Scene scene = new Scene(vBox, 600, 400);
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Mapa.fxml"));
+
+            Parent root = loader.load();
+
+            MapaController controlador = loader.getController();
+
+            Scene escena = new Scene(root);
+
+            Stage stage = new Stage();
+
+            stage.setScene(escena);
+
+            stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
+            controlador.setSistema(sistema);
+
+            stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+
+            Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
+            myStage.close();
+        } catch (IOException ex) {
+            Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @FXML
@@ -149,7 +174,7 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @FXML
     private void topVentas(ActionEvent event) {
         if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
@@ -160,8 +185,8 @@ public class ClienteController implements Initializable {
 
                 TopVentasController controlador = loader.getController();
 
-                ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos(); 
-                
+                ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos();
+
                 controlador.cargarProductos(los5MasVendidosInversa, sistema);
 
                 Scene escena = new Scene(root);
@@ -193,7 +218,7 @@ public class ClienteController implements Initializable {
             alert.setHeaderText("Error: no hay ventas disponibles en el sistema");
             alert.setContentText("¡No se han realizado ventas en el sistema!");
             alert.showAndWait();
-        }    
+        }
     }
 
     @FXML
@@ -276,7 +301,10 @@ public class ClienteController implements Initializable {
     public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
 
         this.setSistema(sis);
-        this.vBox.getChildren().clear();
+        
+        
+        
+        this.vBox.getChildren().clear(); 
 
         this.vBox.setSpacing(10);
 

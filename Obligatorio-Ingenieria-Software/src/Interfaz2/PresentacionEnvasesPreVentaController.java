@@ -93,6 +93,7 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
 
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
@@ -103,14 +104,14 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
         ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
 
         for (int i = 0; i < listaEnvases.size(); i++) {
-            if (!copiaDeListaDeEnvases.contains(listaEnvases.get(i))) {
+            if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(listaEnvases.get(i)) ) {
                 copiaDeListaDeEnvases.add(listaEnvases.get(i));
             }
         }
 
         for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
             if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
-                Envase e = listaEnvases.get(i);
+                Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(e)) {
                     this.getSistema().getEnvasesALlevarEnPreVenta().add(e);
                 }
@@ -120,6 +121,48 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
         }
 
     }
+    
+    
+    
+    /*
+    @FXML
+    private void agregarListaEnvase(ActionEvent event) {
+
+        int codigoIdentificad = this.getCodigoIdentificador();
+
+        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
+
+        ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
+
+        for (int i = 0; i < listaEnvases.size(); i++) {
+            if(!this.getSistema().getEnvasesALlevarEnVenta().contains(listaEnvases.get(i))){
+                copiaDeListaDeEnvases.add(listaEnvases.get(i));
+            }
+            
+        }
+
+        for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
+            if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
+                Envase e = copiaDeListaDeEnvases.get(i);
+                if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
+                    this.getSistema().getEnvasesALlevarEnVenta().add(e);
+
+                    copiaDeListaDeEnvases.remove(e);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("¡Cuidado!");
+                    alert.setHeaderText("Error: El peso del envase es menor al peso del producto");
+                    alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
+                    alert.showAndWait();
+                }
+
+            }
+        }
+        controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
+
+    }
+*/ 
+    
 
     public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
         this.setSistema(sistema);

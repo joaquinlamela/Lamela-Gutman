@@ -17,13 +17,12 @@
       </ImageView>
       <JFXButton fx:id="btnInicio" layoutX="-4.0" layoutY="585.0" onAction="#volverAInicio" prefHeight="55.0" prefWidth="368.0" text="&#10;&#10;" />
       <JFXButton fx:id="btnAtras" layoutX="11.0" layoutY="26.0" onAction="#volverVentanaAnterior" prefHeight="61.0" prefWidth="54.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
-      <JFXDatePicker defaultColor="#3ac000" layoutX="159.0" layoutY="172.0" style="-fx-background-radius: 18 18 18 18;" />
-      <TableView fx:id="tablaDeProductosPorFecha" layoutX="-1.0" layoutY="243.0" onSort="#productosPorFecha" prefHeight="322.0" prefWidth="360.0">
+      <JFXDatePicker fx:id="fechaSeleccionada" defaultColor="#3ac000" layoutX="88.0" layoutY="172.0" onAction="#seleccionoFecha" prefHeight="31.0" prefWidth="276.0" style="-fx-background-radius: 18 18 18 18;" />
+      <TableView fx:id="tablaDeProductosPorFecha" layoutY="256.0" onSort="#productosPorFecha" prefHeight="322.0" prefWidth="360.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Producto" />
-            <TableColumn prefWidth="94.0" text="Cantidad" />
-            <TableColumn prefWidth="88.0" text="Precio" />
-            <TableColumn prefWidth="102.0" text="Imagen" />
+            <TableColumn fx:id="columnaIdentificador" prefWidth="75.0" text="Id" />
+            <TableColumn fx:id="columnaPrecio" prefWidth="95.0" text="Precio" />
+            <TableColumn fx:id="columnaFecha" prefWidth="189.0" text="Fecha" />
          </columns>
       </TableView>
    </children>

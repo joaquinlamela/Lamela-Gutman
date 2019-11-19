@@ -184,6 +184,43 @@ public class ObligatorioIngenieriaSoftware extends Application {
                        envasesRecomendados3, tipoProductos,0, i3);
             sistema.getEchoShop().agregarProducto(pastafrola);
             
+            //Producto: Mandarinas
+            File f4 = new File("src/Imagenes/mandarinas.jpg");     
+            Image i4 = new Image(f4.toURI().toString());
+            
+            ArrayList<Envase> envasesRecomendados4 = new ArrayList<>();
+            envasesRecomendados4.add(envasePlantas);
+            Producto mandarinas = new Producto("Mandarina", tipoOrigen.Vegetal, 
+                    "Delicosas mandarinas, jugosas.", 2, 5, 4, 
+                    envasesRecomendados4, tipoProductos,0, i4);
+            sistema.getEchoShop().agregarProducto(mandarinas);
+            
+           //Producto: Frijoles 
+            File f5 = new File("src/Imagenes/Frijoles.jpg");     
+            Image i5 = new Image(f5.toURI().toString());
+            
+            ArrayList<Envase> envasesRecomendados5 = new ArrayList<>();
+            envasesRecomendados5.add(envaseSemillas);
+            Producto frijoles = new Producto("Frijoles", tipoOrigen.Vegetal, 
+                    "Para el guiso del domingo ", 5, 15, 5, 
+                    envasesRecomendados5, tipoProductos,0, i5);
+            sistema.getEchoShop().agregarProducto(frijoles);
+            
+            //Producto: Pizza
+            File f6 = new File("src/Imagenes/Pizza.jpg");     
+            Image i6 = new Image(f6.toURI().toString());
+            
+            ArrayList<Envase> envasesRecomendados6 = new ArrayList<>();
+            envasesRecomendados6.add(envaseAlimentos);
+            Producto pizza = new Producto("Pizza para llevar", tipoOrigen.Indefinido, 
+                    "Pizza recien hecha, deliciosa ", 1, 100, 6, 
+                    envasesRecomendados6, tipoProductos,0, i6);
+            sistema.getEchoShop().agregarProducto(pizza);
+            
+            
+            
+            
+            
             //Se setea el sistema en la interface
             controlador.setSistema(sistema);
 

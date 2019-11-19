@@ -29,6 +29,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  * FXML Controller class
@@ -163,12 +164,24 @@ public class AgregarEnvaseController implements Initializable {
         //Parte de la creacion del envase si es valido
         if (esValido) {
             FileChooser fileChooser = new FileChooser();
+
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Imagenes (*.png, *.jpg, *.jpeg)", "*.png", "*.jpeg", "*.jpg");
+            fileChooser.getExtensionFilters().add(filter);
+
             File selectedFile = fileChooser.showOpenDialog(new Stage());
-            Image imagenProducto = new Image(selectedFile.toURI().toString());
-            
-            
-            Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales, imagenProducto);
-            this.getSistema().getEchoShop().agregarEnvase(envaseAgregar);
+            if (selectedFile == null) {
+
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: seleccione una imagen");
+                alert.setContentText("Debe seleccionar un imagen!");
+                alert.showAndWait();
+            } else {
+                Image imagenProducto = new Image(selectedFile.toURI().toString());
+                Envase envaseAgregar = new Envase(nombre, codigoIdentificadorEnvase, peso, materiales, imagenProducto);
+                this.getSistema().getEchoShop().agregarEnvase(envaseAgregar);
+            }
+
         }
 
         for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
@@ -200,7 +213,7 @@ public class AgregarEnvaseController implements Initializable {
 
             stage.setResizable(false);
 
-           controlador.setSistema(sistema);
+            controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 

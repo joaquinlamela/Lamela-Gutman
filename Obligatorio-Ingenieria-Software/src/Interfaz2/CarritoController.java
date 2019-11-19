@@ -88,7 +88,8 @@ public class CarritoController implements Initializable {
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            this.listaProductos.getChildren().clear();
+
     }
 
     public void cerrarVentana() {
@@ -133,6 +134,8 @@ public class CarritoController implements Initializable {
 
         this.listaProductos.getChildren().clear();
 
+      
+        
         this.listaProductos.setSpacing(10);
 
         for (int i = 0; i < lista.size(); i++) {
@@ -269,12 +272,17 @@ public class CarritoController implements Initializable {
             Venta ventaAgregar = new Venta(listaDeProductos, precioTotal, cantidadesPorId,
                     fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
                     direccionComprador);
+            
+            
             sistema.agregarVenta(ventaAgregar);
             this.getSistema().agregarUnaVentaAlArray(ventaAgregar);
             this.getSistema().agregarGananciaEnVenta(ventaAgregar);
+            System.out.println(this.getSistema().getListaDeVentasDelSitema().size());
+            
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
                 this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnVenta().get(i).getIdIdentificador()]++; 
             }
+            
             WebView webView = new WebView();
             String contenido = this.getSistema().factura(ventaAgregar);
             webView.getEngine().loadContent(contenido);
@@ -283,17 +291,28 @@ public class CarritoController implements Initializable {
             Stage primaryStage = new Stage();
             primaryStage.setScene(scene);
             primaryStage.show();
-            for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
-                Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
+            
+            int tamañoLista= this.getSistema().getProductosAVenderEnSesionActiva().size(); 
+            
+            this.getSistema().getProductosAVenderEnSesionActiva().clear();
+            /* 
+            for (int i = 0; i < tamañoLista; i++) {
+                Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(tamañoLista - i);
                 this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
             }
+            */ 
+            
             for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
                 this.getSistema().getCantidadPorIdDeProd()[i] = 0;
             }
+            
+            this.getSistema().getEnvasesALlevarEnVenta().clear();
+            /*
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
                 Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
                 this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
             }
+            */ 
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 

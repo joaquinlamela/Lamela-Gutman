@@ -5,21 +5,31 @@
  */
 package Interfaz2;
 
+import Dominio.Envase;
 import Dominio.Sistema;
+import Dominio.Venta;
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDatePicker;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SortEvent;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -34,16 +44,30 @@ public class VentaPorMesController implements Initializable {
     @FXML
     private JFXButton btnAtras;
     @FXML
-    private TableView<?> tablaDeProductosPorFecha;
+    private TableView<Venta> tablaDeProductosPorFecha;
 
     private Sistema sistema;
+
+    @FXML
+    private JFXDatePicker fechaSeleccionada;
+    @FXML
+    private TableColumn<Venta, Integer> columnaIdentificador;
+    @FXML
+    private TableColumn<Venta, Integer> columnaCantidad;
+    @FXML
+    private TableColumn<Venta, Double> columnaPrecio;
+    @FXML
+    private TableColumn<Venta, Date> columnaFecha;
+
+    private ObservableList<Venta> listaDeVenta;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.fechaSeleccionada.setValue(LocalDate.now());
+        listaDeVenta = FXCollections.observableArrayList();
     }
 
     @FXML
@@ -63,11 +87,11 @@ public class VentaPorMesController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -96,11 +120,11 @@ public class VentaPorMesController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -132,11 +156,11 @@ public class VentaPorMesController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
-            
+
             stage.setHeight(675);
-            
+
             stage.setWidth(366);
-            
+
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
@@ -158,8 +182,34 @@ public class VentaPorMesController implements Initializable {
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-    
-    
-    
+
+    @FXML
+    private void seleccionoFecha(ActionEvent event) {
+
+        if (this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no hay ventas en el sistema");
+            alert.setContentText("¡No hay ventas realizadas en el sistema!");
+            alert.showAndWait();
+        } else {
+            this.columnaIdentificador.setCellValueFactory(new PropertyValueFactory("codigoIdentificadorDeVenta"));
+            this.columnaPrecio.setCellValueFactory(new PropertyValueFactory("precioTotal"));
+            this.columnaFecha.setCellValueFactory(new PropertyValueFactory("fechaDeCompra"));
+
+            int mesDeVenta = this.fechaSeleccionada.getValue().getMonthValue();
+
+            for (int i = 0; i < this.getSistema().getListaDeVentasDelSitema().size(); i++) {
+                int mesFechaDeCompra = this.getSistema().getListaDeVentasDelSitema().get(i).getFechaDeCompra().getMonth() + 1;
+                if (mesFechaDeCompra == mesDeVenta) {
+                    listaDeVenta.add(this.getSistema().getListaDeVentasDelSitema().get(i));
+                }
+
+            }
+
+            this.tablaDeProductosPorFecha.setItems(listaDeVenta);
+        }
+
+    }
 
 }

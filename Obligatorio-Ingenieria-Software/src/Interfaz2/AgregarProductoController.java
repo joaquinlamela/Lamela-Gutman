@@ -144,7 +144,7 @@ public class AgregarProductoController implements Initializable {
 
         int precio = 1;
         int peso = 1;
-        
+
         ArrayList<Envase> listaEnvases = new ArrayList<>();
 
         //Parte de nombre de producto
@@ -327,6 +327,22 @@ public class AgregarProductoController implements Initializable {
 
         }
 
+        int pesoMaximo = 0;
+        for (int i = 0; i < listaEnvases.size(); i++) {
+            if (pesoMaximo < listaEnvases.get(i).getPesoMaximoSoportado()) {
+                pesoMaximo = listaEnvases.get(i).getPesoMaximoSoportado();
+            }
+        }
+
+        if (peso > pesoMaximo) {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: El peso del producto no es soportador por los envases recomendados");
+            alert.setContentText("¡El peso del producto debe ser menor a la suma de todos los pesos soportados por los envases!");
+            alert.showAndWait();
+        }
+
         //Parte de codigo identificador
         int codigoIdentificadorDelProducto = this.getSistema().ponerIdentificadorAProducto();
 
@@ -341,12 +357,23 @@ public class AgregarProductoController implements Initializable {
         //Creacion del producto si los campso son validos
         if (esValido) {
             FileChooser fileChooser = new FileChooser();
-            File selectedFile = fileChooser.showOpenDialog(new Stage());
-            Image imagenProducto = new Image(selectedFile.toURI().toString());
+            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Imagenes (*.png, *.jpg, *.jpeg)", "*.png", "*.jpeg", "*.jpg");
+            fileChooser.getExtensionFilters().add(filter);
 
-            //listaEnvases  //array
-            Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);
-            this.sistema.getEchoShop().agregarProducto(productoACrear);
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: seleccione una imagen");
+                alert.setContentText("Debe seleccionar un imagen!");
+                alert.showAndWait();
+            } else {
+                Image imagenProducto = new Image(selectedFile.toURI().toString());
+
+                Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);
+                this.sistema.getEchoShop().agregarProducto(productoACrear);
+            }
+
         }
     }
 
@@ -465,5 +492,5 @@ public class AgregarProductoController implements Initializable {
     @FXML
     private void obtenerDescripcion(ActionEvent event) {
     }
-    
+
 }

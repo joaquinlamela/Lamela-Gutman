@@ -61,11 +61,21 @@ public class AgregadoSucursalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         //En este caso lo que estamos haciendo es decir que el maximo de sucursales que va a haber por sistema en este caso van a ser 50, pero no todas estas son las que se mostraran en el mapa
-        for (int i = 1; i < 50; i++) {
-            cmbNumeroSucursal.getItems().add(i);
-        }
+        
+        this.dateInicio.setValue(LocalTime.now());
+
+        this.dateFinalizacion.setValue(LocalTime.now());
     }
 
+    public void cargarProductos(Sistema sis){
+        this.setSistema(sis);
+        this.getSistema().getEchoShop().getSucursales();
+        for (int i = this.getSistema().getEchoShop().getSucursales().size()+1; i < 50; i++) {
+            cmbNumeroSucursal.getItems().add(i);
+        }
+        this.cmbNumeroSucursal.setValue(this.getSistema().getEchoShop().getSucursales().size()+1);
+    }
+    
     @FXML
     private void obtenerNumeroSucursal(ActionEvent event) {
     }
@@ -90,12 +100,34 @@ public class AgregadoSucursalController implements Initializable {
             numeroSucursal = this.cmbNumeroSucursal.getSelectionModel().getSelectedItem();
 
         } else {
-            esValido = false;
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no ha seleccionado ningun origen");
-            alert.setContentText("!Seleccione un origen!");
-            alert.showAndWait();
+
+            if (this.cmbNumeroSucursal.getSelectionModel().isEmpty()) {
+
+                esValido = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: no ha seleccionado ningun origen");
+                alert.setContentText("!Seleccione un origen!");
+                alert.showAndWait();
+            } else {
+
+                for (int i = 0; i < this.getSistema().getEchoShop().getSucursales().size(); i++) {
+                    if (numeroSucursal == this.getSistema().getEchoShop().getSucursales().get(i).getNumeroSucursal()) {
+
+                        esValido = false;
+                    }
+                    if (!esValido) {
+
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("¡Cuidado!");
+                        alert.setHeaderText("Error: ha seleccionado un numero existente");
+                        alert.setContentText("!Seleccione un nuevo numero!");
+                        alert.showAndWait();
+                    }
+                    esValido = true;
+                }
+            }
+
         }
 
         //Parte de direccion
@@ -118,7 +150,7 @@ public class AgregadoSucursalController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("¡Cuidado!");
                 alert.setHeaderText("Error: campo vacio");
-                alert.setContentText("El campo de peso, se encuentra vacio!");
+                alert.setContentText("El campo de telefono, se encuentra vacio!");
                 alert.showAndWait();
             } else {
                 if (telefono.length() > 9) {
@@ -147,7 +179,7 @@ public class AgregadoSucursalController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no es un peso valido");
-            alert.setContentText("Reingrese el valor del peso!");
+            alert.setContentText("Reingrese el valor del telefono!");
             alert.showAndWait();
         }
 
@@ -181,6 +213,7 @@ public class AgregadoSucursalController implements Initializable {
             echoShop.getSucursales().add(sucursalAgregar);
             echoShop.setHoraInicio(horaInicio);
             echoShop.setHoraFinalizacion(horaFinalizacion);
+            this.cargarProductos(sistema);
         }
 
         System.out.println(this.getSistema().getEchoShop().getSucursales().size());
@@ -210,7 +243,7 @@ public class AgregadoSucursalController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
-            
+
             controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -244,7 +277,7 @@ public class AgregadoSucursalController implements Initializable {
             stage.setWidth(366);
 
             stage.setResizable(false);
-            
+
             controlador.setSistema(sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -266,6 +299,7 @@ public class AgregadoSucursalController implements Initializable {
 
     public void cerrarVentana() {
 
+        
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
 
@@ -296,6 +330,7 @@ public class AgregadoSucursalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 
     public Sistema getSistema() {

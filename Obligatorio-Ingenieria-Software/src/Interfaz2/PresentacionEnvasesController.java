@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -39,12 +40,9 @@ public class PresentacionEnvasesController implements Initializable {
     private int codigoIdentificador;
 
     private SeleccionarEnvasePorProductoController controlador;
-    
-    private Producto producto; 
-    
-    
- 
-    
+
+    private Producto producto;
+
     @FXML
     private JFXButton btnAgregar;
 
@@ -79,15 +77,6 @@ public class PresentacionEnvasesController implements Initializable {
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-    
-    
-    
-
-   
-    
-    
-    
-    
 
     public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoController controlador, Producto producto) {
         this.setSistema(sistema);
@@ -100,9 +89,6 @@ public class PresentacionEnvasesController implements Initializable {
         //  this.materialesEnvase.setText(envase.getTiposDeMateriales());
 
     }
-    
-     
-    
 
     /**
      * Initializes the controller class.
@@ -117,23 +103,32 @@ public class PresentacionEnvasesController implements Initializable {
 
         int codigoIdentificad = this.getCodigoIdentificador();
 
-        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados(); 
-        
-        ArrayList<Envase> copiaDeListaDeEnvases= new ArrayList<>(); 
-        
-        
+        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
+
+        ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
+
         for (int i = 0; i < listaEnvases.size(); i++) {
-            copiaDeListaDeEnvases.add(listaEnvases.get(i)); 
+            if(!this.getSistema().getEnvasesALlevarEnVenta().contains(listaEnvases.get(i))){
+                copiaDeListaDeEnvases.add(listaEnvases.get(i));
+            }
+            
         }
-        
 
         for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
             if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
                 Envase e = copiaDeListaDeEnvases.get(i);
-                if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {
+                if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
                     this.getSistema().getEnvasesALlevarEnVenta().add(e);
+
+                    copiaDeListaDeEnvases.remove(e);
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("¡Cuidado!");
+                    alert.setHeaderText("Error: El peso del envase es menor al peso del producto");
+                    alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
+                    alert.showAndWait();
                 }
-                copiaDeListaDeEnvases.remove(e); 
+
             }
         }
         controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
