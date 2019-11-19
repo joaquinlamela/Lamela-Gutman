@@ -255,9 +255,6 @@ public class TiendaTest {
         Producto s3 = new Producto();
         s3.setCodigoIdentificador(3);
         instance.agregarProducto(s1);
-        instance.agregarProducto(s1);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
         instance.agregarProducto(s2);
 
         ArrayList<Producto> a = new ArrayList<>();
@@ -280,9 +277,6 @@ public class TiendaTest {
         Producto s3 = new Producto();
         s3.setCodigoIdentificador(3);
         instance.agregarProducto(s1);
-        instance.agregarProducto(s1);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
         instance.agregarProducto(s2);
         instance.agregarProducto(s3);
 
@@ -308,10 +302,6 @@ public class TiendaTest {
         s3.setCodigoIdentificador(3);
         s1 = s2;
         instance.agregarProducto(s1);
-        instance.agregarProducto(s1);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
         instance.agregarProducto(s3);
 
         ArrayList<Producto> a = new ArrayList<>();
@@ -333,16 +323,14 @@ public class TiendaTest {
         s2.setCodigoIdentificador(2);
         Producto s3 = new Producto();
         s3.setCodigoIdentificador(3);
-        s1 = s2;
+
         instance.agregarProducto(s1);
-        instance.agregarProducto(s1);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
         instance.agregarProducto(s2);
         instance.agregarProducto(s3);
         instance.eliminarProducto(s1);
 
         ArrayList<Producto> a = new ArrayList<>();
+        a.add(s2);
         a.add(s3);
         ArrayList<Producto> expResult = a;
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
@@ -360,17 +348,15 @@ public class TiendaTest {
         s2.setCodigoIdentificador(2);
         Producto s3 = new Producto();
         s3.setCodigoIdentificador(3);
-        s1 = s2;
+
         instance.agregarProducto(s1);
-        instance.agregarProducto(s1);
-        instance.agregarProducto(s2);
-        instance.agregarProducto(s2);
         instance.agregarProducto(s2);
         instance.agregarProducto(s3);
         instance.eliminarProducto(s1);
         instance.eliminarProducto(s3);
 
         ArrayList<Producto> a = new ArrayList<>();
+        a.add(s2);
         ArrayList<Producto> expResult = a;
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
@@ -521,9 +507,6 @@ public class TiendaTest {
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
         instance.agregarSucursal(s1);
-        instance.agregarSucursal(s1);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
         instance.agregarSucursal(s2);
 
         ArrayList<Sucursal> a = new ArrayList<>();
@@ -543,9 +526,6 @@ public class TiendaTest {
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
         instance.agregarSucursal(s1);
-        instance.agregarSucursal(s1);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
 
@@ -566,12 +546,8 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        s1 = s2;
+        
         instance.agregarSucursal(s1);
-        instance.agregarSucursal(s1);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
 
         ArrayList<Sucursal> a = new ArrayList<>();
@@ -590,16 +566,14 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        s1 = s2;
+        
         instance.agregarSucursal(s1);
-        instance.agregarSucursal(s1);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
         instance.eliminarSucursal(s1);
 
         ArrayList<Sucursal> a = new ArrayList<>();
+        a.add(s2);
         a.add(s3);
         ArrayList<Sucursal> expResult = a;
         ArrayList<Sucursal> result = instance.getSucursales();
@@ -614,14 +588,12 @@ public class TiendaTest {
         Sucursal s1 = new Sucursal();
         Sucursal s2 = new Sucursal();
         Sucursal s3 = new Sucursal();
-        s1 = s2;
+        
         instance.agregarSucursal(s1);
-        instance.agregarSucursal(s1);
-        instance.agregarSucursal(s2);
-        instance.agregarSucursal(s2);
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
         instance.eliminarSucursal(s1);
+        instance.eliminarSucursal(s2);
         instance.eliminarSucursal(s3);
 
         ArrayList<Sucursal> a = new ArrayList<>();

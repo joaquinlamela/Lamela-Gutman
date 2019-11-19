@@ -343,7 +343,9 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
 
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
@@ -363,9 +365,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-
+        e3.setIdIdentificador(3);
+        
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -387,9 +392,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-
+        e3.setIdIdentificador(3);
+        
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -411,9 +419,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-
+        e3.setIdIdentificador(3);
+        
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -435,9 +446,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-        ArrayList<Envase> a = new ArrayList<>();
+        e3.setIdIdentificador(3);ArrayList<Envase> a = new ArrayList<>();
+        
         a.add(e);
         a.add(e2);
         a.add(e3);
@@ -450,8 +464,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
+        e3.setIdIdentificador(3);
+        
         ArrayList<Envase> a = new ArrayList<>();
         a.add(e);
         instance.setPosiblesEnvasesRecomendados(a);
@@ -462,9 +480,12 @@ public class ProductoTest {
 
         Producto instance = new Producto();
         Envase e = new Envase();
+        e.setIdIdentificador(1);
         Envase e2 = new Envase();
+        e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-
+        e3.setIdIdentificador(3);
+        
         ArrayList<Envase> a = new ArrayList<>();
         instance.setPosiblesEnvasesRecomendados(a);
 

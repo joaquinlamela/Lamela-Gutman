@@ -106,8 +106,6 @@ public class SistemaTest {
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
         instance.agregarVenta(v1);
-        instance.agregarVenta(v1);
-        instance.agregarVenta(v2);
         instance.agregarVenta(v2);
 
         ArrayList<Venta> a = new ArrayList<>();
@@ -130,8 +128,6 @@ public class SistemaTest {
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
         instance.agregarVenta(v1);
-        instance.agregarVenta(v1);
-        instance.agregarVenta(v2);
         instance.agregarVenta(v2);
         instance.agregarVenta(v3);
 
@@ -155,11 +151,7 @@ public class SistemaTest {
         v2.setCodigoIdentificadorDeVenta(2);
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
-        v1 = v2;
         instance.agregarVenta(v1);
-        instance.agregarVenta(v1);
-        instance.agregarVenta(v2);
-        instance.agregarVenta(v2);
         instance.agregarVenta(v3);
 
         ArrayList<Venta> a = new ArrayList<>();
@@ -182,8 +174,6 @@ public class SistemaTest {
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
         instance.agregarVenta(v1);
-        instance.agregarVenta(v1);
-        instance.agregarVenta(v2);
         instance.agregarVenta(v2);
         instance.agregarVenta(v3);
 
@@ -209,8 +199,6 @@ public class SistemaTest {
         Venta v3 = new Venta();
         v3.setCodigoIdentificadorDeVenta(3);
         instance.agregarVenta(v1);
-        instance.agregarVenta(v1);
-        instance.agregarVenta(v2);
         instance.agregarVenta(v2);
         instance.agregarVenta(v3);
 
@@ -356,10 +344,11 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
+        v3.setIdentificadorDePreventa(3);
 
         instance.agregarPreVenta(v1);
         instance.agregarPreVenta(v2);
@@ -378,13 +367,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v2);
 
         ArrayList<PreVenta> a = new ArrayList<>();
@@ -401,14 +390,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v2);
 
         ArrayList<PreVenta> a = new ArrayList<>();
@@ -425,14 +413,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v3);
 
@@ -451,16 +438,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
-        v1 = v2;
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v3);
 
         ArrayList<PreVenta> a = new ArrayList<>();
@@ -477,18 +461,14 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
-        v1 = v2;
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v3);
-
         instance.cancelarPreVenta(v1);
 
         ArrayList<PreVenta> a = new ArrayList<>();
@@ -504,16 +484,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
+        v3.setIdentificadorDePreventa(3);
 
-        v1 = v2;
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v3);
 
         instance.cancelarPreVenta(v1);
@@ -532,15 +509,13 @@ public class SistemaTest {
 
         Sistema instance = new Sistema();
         PreVenta v1 = new PreVenta();
-
+        v1.setIdentificadorDePreventa(1);
         PreVenta v2 = new PreVenta();
-
+        v2.setIdentificadorDePreventa(2);
         PreVenta v3 = new PreVenta();
-
-        v1 = v2;
+        v3.setIdentificadorDePreventa(3);
+        
         instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v1);
-        instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v2);
         instance.agregarPreVenta(v3);
 
@@ -634,17 +609,6 @@ public class SistemaTest {
     }
 
     //Echo Shop
-    @Test
-    public void testGetEchoShop() {
-
-        Sistema instance = new Sistema();
-        Tienda t = new Tienda();
-        Tienda expResult = t;
-        Tienda result = instance.getEchoShop();
-        assertEquals(expResult, result);
-
-    }
-
     @Test
     public void testSetEchToShop() {
 

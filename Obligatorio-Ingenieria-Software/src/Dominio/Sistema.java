@@ -204,7 +204,7 @@ public class Sistema {
             this.listaDePreventas.remove(preCompra);
             for (int i = 0; i < this.listaDePreventas.size(); i++) {
                 PreVenta preVen = this.listaDePreventas.get(i);
-                if (preCompra.getIdentificadorDePreventa() < preVen.getIdentificadorDePreventa()) {
+                if (preCompra.getIdentificadorDePreventa() <= preVen.getIdentificadorDePreventa()) {
                     preVen.setIdentificadorDePreventa(preVen.getIdentificadorDePreventa() - 1);
                 }
             }
