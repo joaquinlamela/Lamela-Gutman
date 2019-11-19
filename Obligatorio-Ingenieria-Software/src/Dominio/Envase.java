@@ -106,8 +106,18 @@ public class Envase {
     
     @Override
     public boolean equals(Object o) {
-        Envase envase = (Envase) o;
-        return this.getIdIdentificador() == envase.getIdIdentificador();
+        boolean retorno = false;
+        if (o instanceof Envase) {
+            Envase e = (Envase) o;
+            retorno = this.getIdIdentificador()
+                    == e.getIdIdentificador();
+        }
+        return retorno;
+    }
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
     
 }

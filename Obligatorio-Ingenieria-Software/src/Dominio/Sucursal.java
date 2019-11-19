@@ -68,8 +68,18 @@ public class Sucursal {
     
     @Override
     public boolean equals(Object o) {
-        Sucursal sucursal = (Sucursal) o;
-        return this.getNumeroSucursal() == sucursal.getNumeroSucursal();
+        boolean retorno = false;
+        if (o instanceof Sucursal) {
+            Sucursal s = (Sucursal) o;
+            retorno = this.getNumeroSucursal()
+                    == s.getNumeroSucursal();
+        }
+        return retorno;
+    }
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
 
 }

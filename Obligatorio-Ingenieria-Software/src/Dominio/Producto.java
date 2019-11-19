@@ -178,8 +178,18 @@ public class Producto {
 
     @Override
     public boolean equals(Object o) {
-        Producto p = (Producto) o;
-        return this.getCodigoIdentificador() == p.getCodigoIdentificador() && this.getNombre().equals(p.getNombre());
+        boolean retorno = false;
+        if (o instanceof Producto) {
+            Producto p = (Producto) o;
+            retorno = this.getCodigoIdentificador()
+                    == p.getCodigoIdentificador();
+        }
+        return retorno;
+    }
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
 
     @Override

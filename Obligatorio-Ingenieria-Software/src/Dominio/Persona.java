@@ -81,10 +81,20 @@ public class Persona {
         
     @Override
     public boolean equals(Object o) {
-        Persona persona = (Persona) o;
-        return this.getNombre().equalsIgnoreCase(persona.getNombre()) && 
-                this.getEdad()==persona.getEdad()&& 
-                this.getDomicilio().equalsIgnoreCase(persona.getDomicilio());
+        boolean retorno = false;
+        if (o instanceof Persona) {
+            Persona p = (Persona) o;
+            retorno = this.getNombre().equals(p.getNombre())&&
+                    this.getEdad() == p.getEdad()&&
+                    this.getDomicilio().equals(p.getDomicilio())&&
+                    this.getRutComprador().equals(p.getRutComprador());
+        }
+        return retorno;
+    }
+    
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
 
 }

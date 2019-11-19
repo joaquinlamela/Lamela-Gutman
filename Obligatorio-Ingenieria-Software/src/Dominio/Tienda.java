@@ -171,6 +171,7 @@ public class Tienda {
         for (int i = 0; i < listaProd.size(); i++) {
             if (listaProd.get(i).getCantidadVendidos() > max) {
                 producto = listaProd.get(i);
+                max = listaProd.get(i).getCantidadVendidos();
             }
         }
         listaProd.remove(producto);
@@ -186,7 +187,7 @@ public class Tienda {
             }
         }
         ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
-        Producto producto = new Producto();
+        Producto producto;
         for (int i = 0; i < 5; i++) {
             Producto prodANoAgregar = new Producto();
             producto = this.obtenerElMasVendidos(copiaDeTodosLosProductosDelSistema);
@@ -204,16 +205,10 @@ public class Tienda {
                 + ", numeroSucursal=" + numeroSucursal + ", sucursales=" + sucursales
                 + ", telefono=" + telefono 
                 + ", listaDeProductosEnStock="+ listaDeProductosEnStock 
-                + ", stockDeProductoPorId=" + stockDeProductoPorId
+                + ", stockDeProductoPorId=" + Arrays.toString(stockDeProductoPorId)
                 + ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles
                 + ", horaInicio=" + horaInicio 
                 + ", horaFinalizacion=" + horaFinalizacion + '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        Tienda tienda = (Tienda) o;
-        return this.getNumeroSucursal() == tienda.getNumeroSucursal();
     }
     
 }

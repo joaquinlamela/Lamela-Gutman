@@ -154,9 +154,9 @@ public class Venta {
 
     @Override
     public String toString() {
-        return "Venta{" + "listaDeProductosAVender=" + listaDeProductosAVender 
+        return "Venta{" + "listaDeProductosAVender=" + listaDeProductosAVender.toString()
                 + ", precioTotal=" + precioTotal 
-                + ", cantidadesPorProducto=" +cantidadesPorProducto 
+                + ", cantidadesPorProducto=" +Arrays.toString(cantidadesPorProducto) 
                 + ", fechaDeCompra=" + fechaDeCompra 
                 + ", comprador=" + comprador   
                 + ", echoShop=" + echoShop 
@@ -179,8 +179,17 @@ public class Venta {
     
     @Override
     public boolean equals(Object o) {
-        Venta venta = (Venta) o;
-        return this.getCodigoIdentificadorDeVenta() == venta.getCodigoIdentificadorDeVenta();
+        boolean retorno = false;
+        if (o instanceof Venta) {
+            Venta venta = (Venta) o;
+            retorno = this.getCodigoIdentificadorDeVenta()
+                    == venta.getCodigoIdentificadorDeVenta();
+        }
+        return retorno;
     }
-    
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
+    }
 }

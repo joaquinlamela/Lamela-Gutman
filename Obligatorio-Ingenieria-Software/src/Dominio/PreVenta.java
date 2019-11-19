@@ -140,8 +140,18 @@ public class PreVenta {
    
     @Override
     public boolean equals(Object o) {
-        PreVenta preVenta = (PreVenta) o;
-        return this.getIdentificadorDePreventa() == preVenta.getIdentificadorDePreventa();
+        boolean retorno = false;
+        if (o instanceof PreVenta) {
+            PreVenta preVenta = (PreVenta) o;
+            retorno = this.getIdentificadorDePreventa()
+                    == preVenta.getIdentificadorDePreventa();
+        }
+        return retorno;
+    }
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
     
 }
