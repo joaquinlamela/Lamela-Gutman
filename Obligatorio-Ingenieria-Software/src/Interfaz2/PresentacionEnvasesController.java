@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
@@ -33,7 +34,7 @@ public class PresentacionEnvasesController implements Initializable {
     @FXML
     private Label pesoEnvase;
     @FXML
-    private Label materialesEnvase;
+    private ComboBox<String> materialesEnvase;
 
     private Sistema sistema;
 
@@ -86,7 +87,11 @@ public class PresentacionEnvasesController implements Initializable {
         this.imagenEnvase.setImage(envase.getImagenDelProducto());
         this.nombreEnvase.setText(envase.getNombre());
         this.pesoEnvase.setText(Integer.toString(envase.getPesoMaximoSoportado()));
-        //  this.materialesEnvase.setText(envase.getTiposDeMateriales());
+        for (int i = 0; i < envase.getTiposDeMateriales().size(); i++) {
+            this.materialesEnvase.getItems().add(envase.getTiposDeMateriales().get(i)+""); 
+        }
+        
+        
 
     }
 
