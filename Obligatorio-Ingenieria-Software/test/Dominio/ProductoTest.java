@@ -1033,4 +1033,15 @@ public class ProductoTest {
         instance.setCantidadVendidos(precioDeProducto);
 
     }
+    
+    //Equals
+    @Test
+    public void equals() {
+        Producto instance = new Producto();
+        instance.setCodigoIdentificador(100000);
+        Producto e = new Producto();
+        e.setCodigoIdentificador(100000);
+        boolean result = instance.equals(e);
+        assertEquals(true, result);
+    }
 }

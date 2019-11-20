@@ -6,6 +6,7 @@
 package Interfaz2;
 
 import Dominio.Envase;
+import Dominio.Persona;
 import Dominio.PreVenta;
 import Dominio.Producto;
 import Dominio.Sistema;
@@ -17,6 +18,7 @@ import Dominio.TipoOrigen;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -218,7 +220,92 @@ public class ObligatorioIngenieriaSoftware extends Application {
             sistema.getEchoShop().agregarProducto(pizza);
             
             
+            //Se inicializan las ventas en el sistema
+            //Venta 1
+            ArrayList<Producto> listaDeProductos1 = new ArrayList<>();
+            listaDeProductos1.add(menta);
+            listaDeProductos1.add(pizza);
+            listaDeProductos1.add(pastafrola);
+            sistema.setProductosAVenderEnSesionActiva(listaDeProductos1);
+            int[] cantidadesPorId = {0, 10,0, 2, 0, 0, 4};
+            sistema.setCantidadPorIdDeProd(cantidadesPorId);
             
+            int precioTotal = 0;
+            for (int i = 0; i < listaDeProductos1.size(); i++) {
+                sistema.getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(
+                        sistema.getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()
+                        + sistema.getCantidadPorIdDeProd()[listaDeProductos1.get(i).getCodigoIdentificador()]);
+                precioTotal += (listaDeProductos1.get(i).getPrecio() * sistema.getCantidadPorIdDeProd()[listaDeProductos1.get(i).getCodigoIdentificador()]);
+            }
+            
+            ArrayList<Envase> uti1 = new ArrayList<>();
+            uti1.add(envaseAlimentos);
+            Date fecha = new Date();
+            fecha.setMonth(7);
+            Persona comprador = new Persona();
+            Tienda tienda = sistema.getEchoShop();
+            ArrayList<Envase> listaDeEnvasesUtilizados = uti1;
+            int codigoIdentificador = 1;
+            String direccionComprador = comprador.getDomicilio();
+            Venta ventaAgregar1 = new Venta(listaDeProductos1, precioTotal, cantidadesPorId,
+                    fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
+                    direccionComprador);
+            sistema.agregarVenta(ventaAgregar1);
+            
+            sistema.agregarUnaVentaAlArray(ventaAgregar1);
+            sistema.agregarGananciaEnVenta(ventaAgregar1);
+            
+            for (int i = 0; i < listaDeEnvasesUtilizados.size(); i++) {
+                sistema.getEnvasesUtilizadosPorId()[listaDeEnvasesUtilizados.get(i).getIdIdentificador()]++; 
+            }
+            
+            //Venta 2
+            ArrayList<Producto> listaDeProductos = new ArrayList<>();
+            listaDeProductos.add(frijoles);
+            listaDeProductos.add(mandarinas);
+            listaDeProductos.add(cacao);
+            sistema.setProductosAVenderEnSesionActiva(listaDeProductos);
+            int[] cantidadesPorId2 = {0, 0,9, 0, 15, 2, 0};
+            sistema.setCantidadPorIdDeProd(cantidadesPorId2);
+            
+            int precioTotal2 = 0;
+            for (int i = 0; i < listaDeProductos.size(); i++) {
+                sistema.getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(
+                        sistema.getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()
+                        + sistema.getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
+                precioTotal2 += (listaDeProductos.get(i).getPrecio() * sistema.getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);
+            }
+            
+            ArrayList<Envase> uti2 = new ArrayList<>();
+            uti2.add(envasePlantas);
+            uti2.add(envaseAlimentos);
+            uti2.add(envaseSemillas);
+            Date fecha2 = new Date();
+            fecha2.setMonth(4);
+            Persona comprador2 = new Persona();
+            Tienda tienda2 = sistema.getEchoShop();
+            ArrayList<Envase> listaDeEnvasesUtilizados2 = uti2;
+            int codigoIdentificador2 = 2;
+            String direccionComprador2 = comprador2.getDomicilio();
+            Venta ventaAgregar2 = new Venta(listaDeProductos, precioTotal2, cantidadesPorId2,
+                    fecha2, comprador2, tienda2, listaDeEnvasesUtilizados2, codigoIdentificador2,
+                    direccionComprador2);
+            sistema.agregarVenta(ventaAgregar2);
+            
+            sistema.agregarUnaVentaAlArray(ventaAgregar2);
+            sistema.agregarGananciaEnVenta(ventaAgregar2);
+            
+            for (int i = 0; i < listaDeEnvasesUtilizados2.size(); i++) {
+                sistema.getEnvasesUtilizadosPorId()[listaDeEnvasesUtilizados2.get(i).getIdIdentificador()]++; 
+            }
+            
+            sistema.getProductosAVenderEnSesionActiva().clear();
+            
+            for (int i = 0; i < sistema.getCantidadPorIdDeProd().length; i++) {
+                sistema.getCantidadPorIdDeProd()[i] = 0;
+            }
+            
+            sistema.getEnvasesALlevarEnVenta().clear();
             
             
             //Se setea el sistema en la interface

@@ -292,27 +292,14 @@ public class CarritoController implements Initializable {
             primaryStage.setScene(scene);
             primaryStage.show();
             
-            int tamañoLista= this.getSistema().getProductosAVenderEnSesionActiva().size(); 
-            
             this.getSistema().getProductosAVenderEnSesionActiva().clear();
-            /* 
-            for (int i = 0; i < tamañoLista; i++) {
-                Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(tamañoLista - i);
-                this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
-            }
-            */ 
             
             for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
                 this.getSistema().getCantidadPorIdDeProd()[i] = 0;
             }
             
             this.getSistema().getEnvasesALlevarEnVenta().clear();
-            /*
-            for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
-                Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
-                this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
-            }
-            */ 
+            
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 

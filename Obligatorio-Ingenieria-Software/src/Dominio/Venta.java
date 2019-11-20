@@ -129,7 +129,7 @@ public class Venta {
     public void agregarProducto(Producto producto) {
         if (!this.listaDeProductosAVender.contains(producto)) {
             this.listaDeProductosAVender.add(producto);
-            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
+            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size()-1;
             while (tamañoDeListaDeEnvases > 0) {
                 Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
                 tamañoDeListaDeEnvases--;

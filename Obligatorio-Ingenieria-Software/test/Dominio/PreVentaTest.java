@@ -491,4 +491,15 @@ public class PreVentaTest {
 
     }
 
+    //Equals
+    @Test
+    public void equals() {
+        PreVenta instance = new PreVenta();
+        instance.setIdentificadorDePreventa(100000);
+        PreVenta e = new PreVenta();
+        e.setIdentificadorDePreventa(100000);
+        boolean result = instance.equals(e);
+        assertEquals(true, result);
+    }
+    
 }

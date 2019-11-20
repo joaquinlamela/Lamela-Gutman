@@ -632,5 +632,16 @@ public class VentaTest {
         instance.setDireccionAEnviar(dir);
 
     }
+    
+    //Equals
+    @Test
+    public void equals() {
+        Venta instance = new Venta();
+        instance.setCodigoIdentificadorDeVenta(100000);
+        Venta e = new Venta();
+        e.setCodigoIdentificadorDeVenta(100000);
+        boolean result = instance.equals(e);
+        assertEquals(true, result);
+    }
 
 }
