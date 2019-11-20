@@ -7,33 +7,33 @@ public class Producto {
 
     //Atributos:
     private String nombre; 
-    private tipoOrigen origen; 
+    private TipoOrigen origen; 
     private String descripcionDelProducto; 
     private int pesoDelProducto;  
     private double precio; 
     private int codigoIdentificador; 
     private ArrayList<Envase> posiblesEnvasesRecomendados; 
-    private ArrayList<tipoMaterial> listaDeMateriales;
+    private ArrayList<TipoMateriales> listaDeMateriales;
     private int cantidadVendidos; 
     private Image imagenDelProducto;
 
     //Constructores:
     public Producto() {
         this.setNombre("Nombre");
-        this.setOrigen(tipoOrigen.Indefinido);
+        this.setOrigen(TipoOrigen.Indefinido);
         this.setDescripcionDelProducto("Descripcion");
         this.setPesoDelProducto(1);
         this.setPosiblesEnvasesRecomendados(new ArrayList<Envase>());
         this.setPrecio(2);
         this.setCodigoIdentificador(1);
-        this.setListaDeMateriales(new ArrayList<tipoMaterial>());
+        this.setListaDeMateriales(new ArrayList<TipoMateriales>());
         this.setCantidadVendidos(0);
     }
 
-    public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,
+    public Producto(String nombre, TipoOrigen origen, String descripcionDelProducto,
             int pesoDelProducto, int precio, int codigoIdentificador,
             ArrayList<Envase> posiblesEnvasesRecomendados,
-            ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos, Image imagen) {
+            ArrayList<TipoMateriales> listaDeMateriales, int cantVendidos, Image imagen) {
         this.setNombre(nombre);
         this.setOrigen(origen);
         this.setDescripcionDelProducto(descripcionDelProducto);
@@ -47,11 +47,11 @@ public class Producto {
     }
 
     //Getters && Setters
-    public tipoOrigen getOrigen() {
+    public TipoOrigen getOrigen() {
         return origen;
     }
 
-    public void setOrigen(tipoOrigen origen) {
+    public void setOrigen(TipoOrigen origen) {
         this.origen = origen;
     }
 
@@ -111,11 +111,11 @@ public class Producto {
         }
     }
 
-    public ArrayList<tipoMaterial> getListaDeMateriales() {
+    public ArrayList<TipoMateriales> getListaDeMateriales() {
         return listaDeMateriales;
     }
 
-    public void setListaDeMateriales(ArrayList<tipoMaterial> listaDeMateriales) {
+    public void setListaDeMateriales(ArrayList<TipoMateriales> listaDeMateriales) {
         this.listaDeMateriales = listaDeMateriales;
     }
 
@@ -164,13 +164,13 @@ public class Producto {
         }
     }
 
-    public void agregarMateriales(tipoMaterial t) {
+    public void agregarMateriales(TipoMateriales t) {
         if (!this.listaDeMateriales.contains(t)) {
             this.listaDeMateriales.add(t);
         }
     }
 
-    public void eliminarMaterial(tipoMaterial t) {
+    public void eliminarMaterial(TipoMateriales t) {
         if (this.listaDeMateriales.contains(t)) {
             this.listaDeMateriales.remove(t);
         }

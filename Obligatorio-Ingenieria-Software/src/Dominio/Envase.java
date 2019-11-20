@@ -9,12 +9,12 @@ public class Envase {
     private String nombre;
     private int idIdentificador; 
     private int pesoMaximoSoportado;
-    private ArrayList<tipoMaterial> tiposDeMateriales;
+    private ArrayList<TipoMateriales> tiposDeMateriales;
     private Image imagenDelProducto;
     
     //Constructores
     public Envase(String nombre,int id, int pesoMaximoSoportado, 
-            ArrayList<tipoMaterial> tiposDeMateriales, Image imagen){
+            ArrayList<TipoMateriales> tiposDeMateriales, Image imagen){
         this.setNombre(nombre);
         this.setIdIdentificador(id);
         this.setPesoMaximoSoportado(pesoMaximoSoportado);
@@ -25,7 +25,7 @@ public class Envase {
     public Envase(){
         this.setNombre("Nombre");
         this.setPesoMaximoSoportado(1);
-        this.setTiposDeMateriales(new ArrayList<tipoMaterial>());
+        this.setTiposDeMateriales(new ArrayList<TipoMateriales>());
     }
 
     //Getters && Setters
@@ -54,21 +54,21 @@ public class Envase {
         }
     }
 
-    public ArrayList<tipoMaterial> getTiposDeMateriales() {
+    public ArrayList<TipoMateriales> getTiposDeMateriales() {
         return tiposDeMateriales;
     }
 
-    public void setTiposDeMateriales(ArrayList<tipoMaterial> tiposDeMateriales) {
+    public void setTiposDeMateriales(ArrayList<TipoMateriales> tiposDeMateriales) {
         this.tiposDeMateriales = tiposDeMateriales;
     }
     
-    public void agregarMateriales(tipoMaterial t){
+    public void agregarMateriales(TipoMateriales t){
         if (!this.tiposDeMateriales.contains(t)) {
             this.tiposDeMateriales.add(t);
         }
     }
     
-    public void eliminarMaterial(tipoMaterial t){
+    public void eliminarMaterial(TipoMateriales t){
         if (this.tiposDeMateriales.contains(t)) {
             this.tiposDeMateriales.remove(t);
         }

@@ -7,7 +7,7 @@ package Interfaz2;
 
 import Dominio.Envase;
 import Dominio.Sistema;
-import Dominio.tipoMaterial;
+import Dominio.TipoMateriales;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
@@ -132,21 +132,21 @@ public class AgregarEnvaseController implements Initializable {
         }
 
         //Parte de tipos de materiales
-        ArrayList<Dominio.tipoMaterial> materiales = new ArrayList<>();
+        ArrayList<Dominio.TipoMateriales> materiales = new ArrayList<>();
         if (this.rbPlastico.isSelected()) {
-            materiales.add(tipoMaterial.Plastico);
+            materiales.add(TipoMateriales.Plastico);
         }
 
         if (this.rbPapel.isSelected()) {
-            materiales.add(tipoMaterial.Papel);
+            materiales.add(TipoMateriales.Papel);
         }
 
         if (this.rbMetal.isSelected()) {
-            materiales.add(tipoMaterial.Metal);
+            materiales.add(TipoMateriales.Metal);
         }
 
         if (this.rbCarton.isSelected()) {
-            materiales.add(tipoMaterial.Carton);
+            materiales.add(TipoMateriales.Carton);
         }
 
         if (materiales.isEmpty()) {

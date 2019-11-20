@@ -106,9 +106,9 @@ public class ProductoTest {
     public void testGetOrigen1() {
 
         Producto instance = new Producto();
-        instance.setOrigen(tipoOrigen.Animal);
-        tipoOrigen expResult = tipoOrigen.Animal;
-        tipoOrigen result = instance.getOrigen();
+        instance.setOrigen(TipoOrigen.Animal);
+        TipoOrigen expResult = TipoOrigen.Animal;
+        TipoOrigen result = instance.getOrigen();
         assertEquals(expResult, result);
 
     }
@@ -117,9 +117,9 @@ public class ProductoTest {
     public void testGetOrigen2() {
 
         Producto instance = new Producto();
-        instance.setOrigen(tipoOrigen.Indefinido);
-        tipoOrigen expResult = tipoOrigen.Indefinido;
-        tipoOrigen result = instance.getOrigen();
+        instance.setOrigen(TipoOrigen.Indefinido);
+        TipoOrigen expResult = TipoOrigen.Indefinido;
+        TipoOrigen result = instance.getOrigen();
         assertEquals(expResult, result);
 
     }
@@ -127,7 +127,7 @@ public class ProductoTest {
     @Test
     public void testSetOrigen() {
 
-        tipoOrigen origen = tipoOrigen.Mineral;
+        TipoOrigen origen = TipoOrigen.Mineral;
         Producto instance = new Producto();
         instance.setOrigen(origen);
 
@@ -699,11 +699,11 @@ public class ProductoTest {
     public void testGetlistaDeMateriales1() {
 
         Producto instance = new Producto();
-        instance.getListaDeMateriales().add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        instance.getListaDeMateriales().add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -712,13 +712,13 @@ public class ProductoTest {
     public void testGetListaDeMateriales2() {
 
         Producto instance = new Producto();
-        instance.getListaDeMateriales().add(tipoMaterial.Metal);
-        instance.getListaDeMateriales().add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        instance.getListaDeMateriales().add(TipoMateriales.Metal);
+        instance.getListaDeMateriales().add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -727,9 +727,9 @@ public class ProductoTest {
     public void testGetListaDeMateriales3() {
 
         Producto instance = new Producto();
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -737,7 +737,7 @@ public class ProductoTest {
     @Test
     public void testSetListaDeMateriales1() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = null;
+        ArrayList<TipoMateriales> tiposDeMateriales = null;
         Producto instance = new Producto();
         instance.setListaDeMateriales(tiposDeMateriales);
 
@@ -746,10 +746,10 @@ public class ProductoTest {
     @Test
     public void testSetListaDeMateriales2() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        tiposDeMateriales.add(tipoMaterial.Metal);
-        tiposDeMateriales.add(tipoMaterial.Plastico);
+        tiposDeMateriales.add(TipoMateriales.Metal);
+        tiposDeMateriales.add(TipoMateriales.Plastico);
         instance.setListaDeMateriales(tiposDeMateriales);
 
     }
@@ -757,9 +757,9 @@ public class ProductoTest {
     @Test
     public void testSetListaDeMateriales3() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        tiposDeMateriales.add(tipoMaterial.Metal);
+        tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setListaDeMateriales(tiposDeMateriales);
 
     }
@@ -767,11 +767,11 @@ public class ProductoTest {
     @Test
     public void testSetListaDeMateriales4() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        tiposDeMateriales.add(tipoMaterial.Metal);
-        tiposDeMateriales.add(tipoMaterial.Carton);
-        tiposDeMateriales.add(tipoMaterial.Metal);
+        tiposDeMateriales.add(TipoMateriales.Metal);
+        tiposDeMateriales.add(TipoMateriales.Carton);
+        tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setListaDeMateriales(tiposDeMateriales);
 
     }
@@ -779,16 +779,16 @@ public class ProductoTest {
     @Test
     public void testAgregarMateriales1() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -796,17 +796,17 @@ public class ProductoTest {
     @Test
     public void testAgregarMateriales2() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -814,20 +814,20 @@ public class ProductoTest {
     @Test
     public void testAgregarMateriales3() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        a.add(tipoMaterial.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        a.add(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -835,20 +835,20 @@ public class ProductoTest {
     @Test
     public void testEliminarMateriales1() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -856,20 +856,20 @@ public class ProductoTest {
     @Test
     public void testEliminarMateriales2() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -877,21 +877,21 @@ public class ProductoTest {
     @Test
     public void testEliminarMateriales3() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
 
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -899,16 +899,16 @@ public class ProductoTest {
     @Test
     public void testEliminarMateriales4() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
 
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }
@@ -916,19 +916,19 @@ public class ProductoTest {
     @Test
     public void testEliminarMateriales5() {
 
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Producto instance = new Producto();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Indefinido);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Indefinido);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
 
-        ArrayList<tipoMaterial> a = new ArrayList<>();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
 
-        a.add(tipoMaterial.Indefinido);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getListaDeMateriales();
+        a.add(TipoMateriales.Indefinido);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getListaDeMateriales();
         assertEquals(expResult, result);
 
     }

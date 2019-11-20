@@ -8,8 +8,8 @@ package Interfaz2;
 import Dominio.Envase;
 import Dominio.Producto;
 import Dominio.Sistema;
-import Dominio.tipoMaterial;
-import Dominio.tipoOrigen;
+import Dominio.TipoMateriales;
+import Dominio.TipoOrigen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXRadioButton;
@@ -228,7 +228,7 @@ public class AgregarProductoController implements Initializable {
             alert.showAndWait();
         }
         //Parte de tipo de origen
-        Dominio.tipoOrigen origenReal = tipoOrigen.Indefinido;
+        Dominio.TipoOrigen origenReal = TipoOrigen.Indefinido;
         if (!cmbOrigen.getSelectionModel().isEmpty()) {
             String origen = this.cmbOrigen.getSelectionModel().getSelectedItem();
             if (origen.length() == 0) {
@@ -240,19 +240,19 @@ public class AgregarProductoController implements Initializable {
                 alert.showAndWait();
             }
             if (origen.equals("Indefinido")) {
-                origenReal = tipoOrigen.Indefinido;
+                origenReal = TipoOrigen.Indefinido;
             } else {
                 if (origen.equals("Fosil")) {
-                    origenReal = tipoOrigen.Fosil;
+                    origenReal = TipoOrigen.Fosil;
                 } else {
                     if (origen.equals("Animal")) {
-                        origenReal = tipoOrigen.Animal;
+                        origenReal = TipoOrigen.Animal;
                     } else {
                         if (origen.equals("Mineral")) {
-                            origenReal = tipoOrigen.Mineral;
+                            origenReal = TipoOrigen.Mineral;
                         } else {
                             if (origen.equals("Vegetal")) {
-                                origenReal = tipoOrigen.Vegetal;
+                                origenReal = TipoOrigen.Vegetal;
                             }
                         }
                     }
@@ -278,21 +278,21 @@ public class AgregarProductoController implements Initializable {
         }
 
         //Parte de tipos de materiales
-        ArrayList<Dominio.tipoMaterial> array = new ArrayList<>();
+        ArrayList<Dominio.TipoMateriales> array = new ArrayList<>();
         if (cmbPlastico.isSelected()) {
-            array.add(tipoMaterial.Plastico);
+            array.add(TipoMateriales.Plastico);
         }
 
         if (cmbPapel.isSelected()) {
-            array.add(tipoMaterial.Papel);
+            array.add(TipoMateriales.Papel);
         }
 
         if (cmbMetal.isSelected()) {
-            array.add(tipoMaterial.Metal);
+            array.add(TipoMateriales.Metal);
         }
 
         if (cmbCarton.isSelected()) {
-            array.add(tipoMaterial.Carton);
+            array.add(TipoMateriales.Carton);
         }
 
         if (array.isEmpty()) {

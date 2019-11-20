@@ -8,7 +8,7 @@ package Interfaz2;
 import Dominio.Sistema;
 import Dominio.Tienda;
 import Dominio.Sucursal;
-import Dominio.tipoOrigen;
+import Dominio.TipoOrigen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;

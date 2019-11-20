@@ -1,6 +1,6 @@
 package Dominio;
 
-public enum  tipoOrigen {
+public enum  TipoOrigen {
     Vegetal,
     Mineral,
     Animal,

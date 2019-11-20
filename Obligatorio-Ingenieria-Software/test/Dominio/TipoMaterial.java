@@ -1,6 +1,6 @@
 package Dominio;
 
-public enum tipoMaterial {
+public enum TipoMaterial {
     Plastico,
     Carton,
     Metal,

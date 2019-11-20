@@ -173,193 +173,193 @@ public class EnvaseTest {
     @Test
     public void testGetTiposDeMateriales1() {
         Envase instance = new Envase();
-        instance.getTiposDeMateriales().add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.getTiposDeMateriales().add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testGetTiposDeMateriales2() {
         Envase instance = new Envase();
-        instance.getTiposDeMateriales().add(tipoMaterial.Metal);
-        instance.getTiposDeMateriales().add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.getTiposDeMateriales().add(TipoMateriales.Metal);
+        instance.getTiposDeMateriales().add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
      @Test
     public void testGetTiposDeMateriales3() {
         Envase instance = new Envase();
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
 
     @Test
     public void testSetTiposDeMateriales1() {
-        ArrayList<tipoMaterial> tiposDeMateriales = null;
+        ArrayList<TipoMateriales> tiposDeMateriales = null;
         Envase instance = new Envase();
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
     
     @Test
     public void testSetTiposDeMateriales2() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        tiposDeMateriales.add(tipoMaterial.Metal);
-        tiposDeMateriales.add(tipoMaterial.Plastico);
+        tiposDeMateriales.add(TipoMateriales.Metal);
+        tiposDeMateriales.add(TipoMateriales.Plastico);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
     
     @Test
     public void testSetTiposDeMateriales3() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        tiposDeMateriales.add(tipoMaterial.Metal);
+        tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
     
     @Test
     public void testSetTiposDeMateriales4() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        tiposDeMateriales.add(tipoMaterial.Metal);
-        tiposDeMateriales.add(tipoMaterial.Carton);
-        tiposDeMateriales.add(tipoMaterial.Metal);
+        tiposDeMateriales.add(TipoMateriales.Metal);
+        tiposDeMateriales.add(TipoMateriales.Carton);
+        tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
     
     @Test
     public void testAgregarMateriales1() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Metal);    
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Metal);    
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     
     @Test
     public void testAgregarMateriales2() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);    
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);    
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testAgregarMateriales3() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Carton);
-        a.add(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Carton);
+        a.add(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testEliminarMateriales1() {
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Metal);
-        a.add(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Metal);
+        a.add(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testEliminarMateriales2() {
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testEliminarMateriales3() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Carton);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.agregarMateriales(tipoMaterial.Papel);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Carton);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.agregarMateriales(TipoMateriales.Papel);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testEliminarMateriales4() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     
     @Test
     public void testEliminarMateriales5() {
-        ArrayList<tipoMaterial> tiposDeMateriales = new ArrayList<>();
+        ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
         Envase instance = new Envase();
-        instance.agregarMateriales(tipoMaterial.Metal);
-        instance.agregarMateriales(tipoMaterial.Indefinido);
-        instance.eliminarMaterial(tipoMaterial.Carton);
-        instance.eliminarMaterial(tipoMaterial.Metal);
-        instance.eliminarMaterial(tipoMaterial.Papel);
-        ArrayList<tipoMaterial> a = new ArrayList<>();
-        a.add(tipoMaterial.Indefinido);
-        ArrayList<tipoMaterial> expResult = a;
-        ArrayList<tipoMaterial> result = instance.getTiposDeMateriales();
+        instance.agregarMateriales(TipoMateriales.Metal);
+        instance.agregarMateriales(TipoMateriales.Indefinido);
+        instance.eliminarMaterial(TipoMateriales.Carton);
+        instance.eliminarMaterial(TipoMateriales.Metal);
+        instance.eliminarMaterial(TipoMateriales.Papel);
+        ArrayList<TipoMateriales> a = new ArrayList<>();
+        a.add(TipoMateriales.Indefinido);
+        ArrayList<TipoMateriales> expResult = a;
+        ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
     

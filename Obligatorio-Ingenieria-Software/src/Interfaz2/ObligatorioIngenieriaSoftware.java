@@ -12,8 +12,8 @@ import Dominio.Sistema;
 import Dominio.Sucursal;
 import Dominio.Tienda;
 import Dominio.Venta;
-import Dominio.tipoMaterial;
-import Dominio.tipoOrigen;
+import Dominio.TipoMateriales;
+import Dominio.TipoOrigen;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,8 +95,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             envasePlantas.setNombre("Envase Plantas");
             envasePlantas.setPesoMaximoSoportado(20);
-            ArrayList<tipoMaterial> materiales1 = new ArrayList<>();
-            materiales1.add(tipoMaterial.Carton);
+            ArrayList<TipoMateriales> materiales1 = new ArrayList<>();
+            materiales1.add(TipoMateriales.Carton);
             envasePlantas.setTiposDeMateriales(materiales1);
             envasePlantas.setImagenDelProducto(e1);
             
@@ -109,8 +109,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             envaseAlimentos.setNombre("Envase Alimentos");
             envaseAlimentos.setPesoMaximoSoportado(30);
-            ArrayList<tipoMaterial> materiales2 = new ArrayList<>();
-            materiales2.add(tipoMaterial.Plastico);
+            ArrayList<TipoMateriales> materiales2 = new ArrayList<>();
+            materiales2.add(TipoMateriales.Plastico);
             envaseAlimentos.setTiposDeMateriales(materiales2);
             envaseAlimentos.setImagenDelProducto(e2);
             
@@ -123,8 +123,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             envaseSemillas.setNombre("Envase Semillas");
             envaseSemillas.setPesoMaximoSoportado(15);
-            ArrayList<tipoMaterial> materiales3 = new ArrayList<>();
-            materiales3.add(tipoMaterial.Carton);
+            ArrayList<TipoMateriales> materiales3 = new ArrayList<>();
+            materiales3.add(TipoMateriales.Carton);
             envaseSemillas.setTiposDeMateriales(materiales3);
             envaseSemillas.setImagenDelProducto(e3);
             
@@ -137,8 +137,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             envaseElectrodomesticos.setNombre("Envase Electrodomesticos");
             envaseElectrodomesticos.setPesoMaximoSoportado(50);
-            ArrayList<tipoMaterial> materiales4 = new ArrayList<>();
-            materiales4.add(tipoMaterial.Metal);
+            ArrayList<TipoMateriales> materiales4 = new ArrayList<>();
+            materiales4.add(TipoMateriales.Metal);
             envaseElectrodomesticos.setTiposDeMateriales(materiales4);
             envaseElectrodomesticos.setImagenDelProducto(e4);
             
@@ -146,8 +146,8 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             //Se inicializan los productos
             
-            ArrayList<tipoMaterial> tipoProductos = new ArrayList<>();
-            tipoProductos.add(tipoMaterial.Indefinido);
+            ArrayList<TipoMateriales> tipoProductos = new ArrayList<>();
+            tipoProductos.add(TipoMateriales.Indefinido);
             
             // Producto: Menta
             File f1 = new File("src/Imagenes/menta.jpg");     
@@ -155,7 +155,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             ArrayList<Envase> envasesRecomendados1 = new ArrayList<>();
             envasesRecomendados1.add(envasePlantas);
-            Producto menta = new Producto("Menta", tipoOrigen.Vegetal, 
+            Producto menta = new Producto("Menta", TipoOrigen.Vegetal, 
                     "Planta de menta, deliciciosos sabor y olor", 1, 10, 1, 
                     envasesRecomendados1, tipoProductos,0, i1);
             sistema.getEchoShop().agregarProducto(menta);
@@ -168,7 +168,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             ArrayList<Envase> envasesRecomendados2 = new ArrayList<>();
             envasesRecomendados2.add(envaseSemillas);
             envasesRecomendados2.add(envaseAlimentos);
-            Producto cacao = new Producto("Cacao", tipoOrigen.Vegetal, 
+            Producto cacao = new Producto("Cacao", TipoOrigen.Vegetal, 
                     "Semillas de cacao, para plantar y condimentar", 1, 5, 2, 
                        envasesRecomendados2, tipoProductos,0, i2);
             sistema.getEchoShop().agregarProducto(cacao);
@@ -179,7 +179,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             ArrayList<Envase> envasesRecomendados3 = new ArrayList<>();
             envasesRecomendados3.add(envaseAlimentos);
-            Producto pastafrola = new Producto("Pastafrola", tipoOrigen.Vegetal, 
+            Producto pastafrola = new Producto("Pastafrola", TipoOrigen.Vegetal, 
                     "Tarta de pastafrola, gustos a eleccion", 5, 50, 3, 
                        envasesRecomendados3, tipoProductos,0, i3);
             sistema.getEchoShop().agregarProducto(pastafrola);
@@ -190,7 +190,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             ArrayList<Envase> envasesRecomendados4 = new ArrayList<>();
             envasesRecomendados4.add(envasePlantas);
-            Producto mandarinas = new Producto("Mandarina", tipoOrigen.Vegetal, 
+            Producto mandarinas = new Producto("Mandarina", TipoOrigen.Vegetal, 
                     "Delicosas mandarinas, jugosas.", 2, 5, 4, 
                     envasesRecomendados4, tipoProductos,0, i4);
             sistema.getEchoShop().agregarProducto(mandarinas);
@@ -201,7 +201,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             ArrayList<Envase> envasesRecomendados5 = new ArrayList<>();
             envasesRecomendados5.add(envaseSemillas);
-            Producto frijoles = new Producto("Frijoles", tipoOrigen.Vegetal, 
+            Producto frijoles = new Producto("Frijoles", TipoOrigen.Vegetal, 
                     "Para el guiso del domingo ", 5, 15, 5, 
                     envasesRecomendados5, tipoProductos,0, i5);
             sistema.getEchoShop().agregarProducto(frijoles);
@@ -212,7 +212,7 @@ public class ObligatorioIngenieriaSoftware extends Application {
             
             ArrayList<Envase> envasesRecomendados6 = new ArrayList<>();
             envasesRecomendados6.add(envaseAlimentos);
-            Producto pizza = new Producto("Pizza para llevar", tipoOrigen.Indefinido, 
+            Producto pizza = new Producto("Pizza para llevar", TipoOrigen.Indefinido, 
                     "Pizza recien hecha, deliciosa ", 1, 100, 6, 
                     envasesRecomendados6, tipoProductos,0, i6);
             sistema.getEchoShop().agregarProducto(pizza);
