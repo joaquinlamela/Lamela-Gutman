@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.PruebaController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/ClientePrueba.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnCarro" layoutX="21.0" layoutY="458.0" onAction="#irAlCarrito" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMapita" layoutX="104.0" layoutY="458.0" onAction="#irAlMapa" prefHeight="78.0" prefWidth="72.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMercadito" layoutX="182.0" layoutY="458.0" onAction="#irAlMercado" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnTop" layoutX="260.0" layoutY="458.0" onAction="#topVentas" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMenu" layoutX="10.0" layoutY="27.0" onAction="#inicio" prefHeight="30.0" prefWidth="32.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnIrAInicio" layoutX="-5.0" layoutY="589.0" onAction="#irAtras" prefHeight="53.0" prefWidth="366.0" text="&#10;" />
+      <TableView fx:id="tbProductos" layoutX="8.0" layoutY="76.0" prefHeight="302.0" prefWidth="342.0">
+        <columns>
+          <TableColumn fx:id="coluNombre" prefWidth="75.0" text="Nombre" />
+          <TableColumn fx:id="coluIdentifica" prefWidth="96.0" text="Identificador" />
+            <TableColumn fx:id="coluCant" prefWidth="107.0" text="Cant vendidos" />
+            <TableColumn fx:id="coluPrecio" prefWidth="107.0" text="Precio" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

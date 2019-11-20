@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.InicioVendedorController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/continuar.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnContinuar" layoutX="17.0" layoutY="499.0" onAction="#continuar" prefHeight="44.0" prefWidth="341.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnInicio" layoutX="-2.0" layoutY="590.0" onAction="#volverInicio" prefHeight="52.0" prefWidth="367.0" text="&#10;&#10;" />
+   </children>
+</Pane>

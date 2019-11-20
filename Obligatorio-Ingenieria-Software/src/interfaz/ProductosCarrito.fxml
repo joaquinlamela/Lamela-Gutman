@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="144.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.ProductosCarritoController">
+   <children>
+      <ImageView fitHeight="144.0" fitWidth="349.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/ProductosCarrito.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="nombreProducto" layoutX="118.0" layoutY="7.0" prefHeight="21.0" prefWidth="122.0" />
+      <JFXButton fx:id="btnAgregar" layoutX="274.0" layoutY="60.0" onAction="#agregarCantidad" prefHeight="45.0" prefWidth="43.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnBajarCant" layoutX="157.0" layoutY="63.0" onAction="#bajarCantidad" prefHeight="37.0" prefWidth="36.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <ImageView fx:id="imagenProducto" fitHeight="70.0" fitWidth="79.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="101.0" layoutY="31.0" prefHeight="21.0" prefWidth="51.0" text="Precio:" />
+      <Label fx:id="precioTotal" layoutX="167.0" layoutY="31.0" prefHeight="21.0" prefWidth="107.0" style="-fx-background-radius: 18 18 18 18; -fx-background-color: ffffff; -fx-border-radius: 18 18 18 18;" />
+      <Label fx:id="cantidad" layoutX="215.0" layoutY="68.0" prefHeight="28.0" prefWidth="51.0" style="-fx-background-color: ffffff; -fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" />
+      <JFXButton fx:id="btnEliminar" layoutX="81.0" layoutY="105.0" onAction="#eliminarProducto" prefHeight="0.0" prefWidth="187.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+   </children>
+</Pane>
