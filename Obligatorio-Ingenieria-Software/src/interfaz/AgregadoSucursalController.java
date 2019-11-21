@@ -222,6 +222,7 @@ public class AgregadoSucursalController implements Initializable {
         }
 
         System.out.println(this.getSistema().getEchoShop().getSucursales().size());
+        System.out.println(this.getSistema().getEchoShop().getListaDeProductosEnStock());
 
     }
 
