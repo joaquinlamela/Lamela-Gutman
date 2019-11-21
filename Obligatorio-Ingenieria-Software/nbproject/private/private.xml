@@ -3,14 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/Interfaz2/ObligatorioIngenieriaSoftware.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/Dominio/ProductoTest.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/Dominio/EnvaseTest.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/Dominio/Envase.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/Dominio/TipoMaterial.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/Dominio/TipoOrigen.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/Dominio/TipoMaterial.java</file>
-            <file>file:/C:/Users/PC/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/Dominio/TipoOrigen.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/CarritoController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/TopVentasClienteController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ClienteController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/TopVentasController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/MenuController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ConfirmacionCompraController.java</file>
         </group>
     </open-files>
 </project-private>

@@ -17,6 +17,6 @@
       <JFXButton fx:id="btnAgregarEnvase" layoutX="38.0" layoutY="441.0" onAction="#agregarEnvase" prefHeight="31.0" prefWidth="284.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
       <JFXButton fx:id="btnEliminarProducto" layoutX="41.0" layoutY="497.0" onAction="#eliminarProducto" prefHeight="31.0" prefWidth="284.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
       <JFXButton fx:id="btnVolverAVendedor" layoutX="15.0" layoutY="33.0" onAction="#volverInicio" prefHeight="58.0" prefWidth="56.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
-      <JFXButton fx:id="btnAgregarProducto1" layoutX="-5.0" layoutY="588.0" onAction="#agregarProducto" prefHeight="58.0" prefWidth="367.0" text="&#10;&#10;" />
+      <JFXButton fx:id="btnAgregarProducto1" layoutX="-5.0" layoutY="588.0" onAction="#volverInicio" prefHeight="58.0" prefWidth="367.0" text="&#10;&#10;" />
    </children>
 </Pane>

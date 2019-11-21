@@ -199,6 +199,9 @@ public class ConfirmacionCompraController implements Initializable {
 
     @FXML
     private void volverInicio(ActionEvent event) {
+        
+        
+        
     }
 
     public void cargarProductos(ArrayList<Envase> lista, Sistema sis, ConfirmacionCompraController paraCargarPestañaCarrito) {
