@@ -138,6 +138,9 @@ public class ProductosCarritoController implements Initializable {
         if (this.getSistema().getProductosAVenderEnSesionActiva().contains(p)) {
             this.getSistema().getCantidadPorIdDeProd()[p.getCodigoIdentificador()] = 0;
             this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
+             for (int i = 0; i < p.getPosiblesEnvasesRecomendados().size(); i++) {
+                this.getSistema().getEnvasesALlevarEnVenta().remove(p.getPosiblesEnvasesRecomendados().get(i)); 
+            }
         }
         this.getControlador().cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
     }

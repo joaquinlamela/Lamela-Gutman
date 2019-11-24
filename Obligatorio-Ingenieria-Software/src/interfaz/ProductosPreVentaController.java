@@ -142,9 +142,13 @@ public class ProductosPreVentaController implements Initializable {
     @FXML
     private void eliminarProducto(ActionEvent event) {
         Producto p = this.obtenerProducto();
+        
         if (this.getSistema().getProductosPreVentaSesionActiva().contains(p)) {
             this.getSistema().getCantidadPorIdDePreVenta()[p.getCodigoIdentificador()] = 0;
             this.getSistema().getProductosPreVentaSesionActiva().remove(p);
+            for (int i = 0; i < p.getPosiblesEnvasesRecomendados().size(); i++) {
+                this.getSistema().getEnvasesALlevarEnPreVenta().remove(p.getPosiblesEnvasesRecomendados().get(i)); 
+            }
         }
         this.getControlador().cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
     }

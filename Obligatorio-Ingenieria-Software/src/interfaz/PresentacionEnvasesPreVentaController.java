@@ -92,6 +92,7 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     }
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
+        int contador=0; 
         int codigoIdentificad = this.getCodigoIdentificador();
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
         ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
@@ -115,35 +116,7 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
                 }
             }
         }
+        controlador.setContadorDeEnvasesSeleccionados(++contador);
         controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
     }
-    /*
-    @FXML
-    private void agregarListaEnvase(ActionEvent event) {
-        int codigoIdentificad = this.getCodigoIdentificador();
-        ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
-        ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
-        for (int i = 0; i < listaEnvases.size(); i++) {
-            if(!this.getSistema().getEnvasesALlevarEnVenta().contains(listaEnvases.get(i))){
-                copiaDeListaDeEnvases.add(listaEnvases.get(i));
-            }
-        }
-        for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
-            if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
-                Envase e = copiaDeListaDeEnvases.get(i);
-                if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
-                    this.getSistema().getEnvasesALlevarEnVenta().add(e);
-                    copiaDeListaDeEnvases.remove(e);
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("¡Cuidado!");
-                    alert.setHeaderText("Error: El peso del envase es menor al peso del producto");
-                    alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
-                    alert.showAndWait();
-                }
-            }
-        }
-        controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
-    }
-*/ 
 }

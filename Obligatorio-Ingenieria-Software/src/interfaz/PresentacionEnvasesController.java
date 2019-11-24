@@ -96,8 +96,7 @@ public class PresentacionEnvasesController implements Initializable {
             if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
                 Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
-                    this.getSistema().getEnvasesALlevarEnVenta().add(e);
-                    contador++; 
+                    this.getSistema().getEnvasesALlevarEnVenta().add(e); 
                     copiaDeListaDeEnvases.remove(e);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -108,6 +107,8 @@ public class PresentacionEnvasesController implements Initializable {
                 }
             }
         }
+        
+        controlador.setContadorDeEnvasesSeleccionados(++contador);
         controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
     }
 }

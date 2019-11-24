@@ -151,17 +151,11 @@ public class CarritoController implements Initializable {
     }
     @FXML
     private void cancelarVenta(ActionEvent event) {
-        for (int i = 0; i < this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {
-            Producto p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);
-            this.getSistema().getProductosAVenderEnSesionActiva().remove(p);
-        }
+        this.getSistema().getProductosAVenderEnSesionActiva().clear();
         for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
             this.getSistema().getCantidadPorIdDeProd()[i] = 0;
         }
-        for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
-            Envase envase = this.getSistema().getEnvasesALlevarEnVenta().get(i);
-            this.getSistema().getEnvasesALlevarEnVenta().remove(envase);
-        }
+        this.getSistema().getEnvasesALlevarEnVenta().clear();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
             Parent root = loader.load();

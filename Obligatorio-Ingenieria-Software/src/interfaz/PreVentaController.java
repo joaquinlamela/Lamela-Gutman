@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -25,12 +26,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class PreVentaController implements Initializable {
+
     @FXML
     private VBox listaDeProductos;
     @FXML
@@ -43,19 +46,24 @@ public class PreVentaController implements Initializable {
     private JFXButton btnInicio;
     private Sistema sistema;
     private Persona cliente;
+
     //Gets && sets: 
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     public void cargarProductos(ArrayList<Producto> lista, Sistema sis, PreVentaController paraCargarPestañaCarrito, int[] cantidadPorId) {
         this.setSistema(sis);
         this.listaDeProductos.getChildren().clear();
@@ -77,6 +85,7 @@ public class PreVentaController implements Initializable {
             }
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -99,10 +108,12 @@ public class PreVentaController implements Initializable {
             Logger.getLogger(PreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void confirmarPreVenta(ActionEvent event) {
         if (!this.getSistema().getProductosPreVentaSesionActiva().isEmpty()) {
@@ -119,16 +130,6 @@ public class PreVentaController implements Initializable {
                 stage.setResizable(false);
                 controlador.setSistema(sistema);
                 controlador.setCliente(this.getCliente());
-                /*
-                ArrayList<Envase> listaDeEnvasesALlevar = new ArrayList<>();
-                for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
-                    Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
-                    ArrayList<Envase> listaDeEnvaseDeUnProducto = p.getPosiblesEnvasesRecomendados();
-                    for (int j = 0; j < listaDeEnvaseDeUnProducto.size(); j++) {
-                        listaDeEnvasesALlevar.add(listaDeEnvaseDeUnProducto.get(i));
-                    }
-                }
-                 */
                 controlador.cargarProductos(this.getSistema().getEnvasesALlevarEnPreVenta(), sistema, controlador);
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
                 Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
@@ -144,19 +145,14 @@ public class PreVentaController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void cancelarPreVenta(ActionEvent event) {
-        for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
-            Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
-            this.getSistema().getProductosPreVentaSesionActiva().remove(p);
-        }
+        this.getSistema().getProductosPreVentaSesionActiva().clear();
         for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
             this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
         }
-        for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
-            Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
-            this.getSistema().getEnvasesALlevarEnPreVenta().remove(envase);
-        }
+        this.getSistema().getEnvasesALlevarEnPreVenta().clear();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
             Parent root = loader.load();
@@ -178,6 +174,7 @@ public class PreVentaController implements Initializable {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
