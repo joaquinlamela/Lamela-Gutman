@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaz;
-
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -27,14 +26,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class PresentacionEnvasesPreVentaController implements Initializable {
-
     @FXML
     private ImageView imagenEnvase;
     @FXML
@@ -45,48 +42,35 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     private ComboBox<String> materialesEnvase;
     @FXML
     private JFXButton btnAgregar;
-
     private Sistema sistema;
-
     private SeleccionarEnvasePorProductoPreVentaController controlador;
-
     private int codigoIdentificador;
-
     private Producto producto;
-
     //Gets and sets: 
     public Sistema getSistema() {
         return sistema;
     }
-
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-
     public SeleccionarEnvasePorProductoPreVentaController getControlador() {
         return controlador;
     }
-
     public void setControlador(SeleccionarEnvasePorProductoPreVentaController controlador) {
         this.controlador = controlador;
     }
-
     public int getCodigoIdentificador() {
         return codigoIdentificador;
     }
-
     public void setCodigoIdentificador(int codigoIdentificador) {
         this.codigoIdentificador = codigoIdentificador;
     }
-
     public Producto getProducto() {
         return producto;
     }
-
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-
     /**
      * Initializes the controller class.
      */
@@ -94,8 +78,6 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-    
-    
      public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
         this.setSistema(sistema);
         this.setControlador(controlador);
@@ -107,25 +89,17 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
         for (int i = 0; i < envase.getTiposDeMateriales().size(); i++) {
             this.materialesEnvase.getItems().add(envase.getTiposDeMateriales().get(i)+""); 
         }
-
     }
-    
-
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
-        
         int codigoIdentificad = this.getCodigoIdentificador();
-
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
-
         ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
-
         for (int i = 0; i < listaEnvases.size(); i++) {
             if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(listaEnvases.get(i)) ) {
                 copiaDeListaDeEnvases.add(listaEnvases.get(i));
             }
         }
-
         for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
             if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
                 Envase e = copiaDeListaDeEnvases.get(i);
@@ -139,39 +113,26 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
                     alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
                     alert.showAndWait();
                 }
-                
             }
-            
         }
         controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
-
     }
-    
-    
-    
     /*
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
-
         int codigoIdentificad = this.getCodigoIdentificador();
-
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
-
         ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
-
         for (int i = 0; i < listaEnvases.size(); i++) {
             if(!this.getSistema().getEnvasesALlevarEnVenta().contains(listaEnvases.get(i))){
                 copiaDeListaDeEnvases.add(listaEnvases.get(i));
             }
-            
         }
-
         for (int i = 0; i < copiaDeListaDeEnvases.size(); i++) {
             if (codigoIdentificad == copiaDeListaDeEnvases.get(i).getIdIdentificador()) {
                 Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
                     this.getSistema().getEnvasesALlevarEnVenta().add(e);
-
                     copiaDeListaDeEnvases.remove(e);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -180,15 +141,9 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
                     alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
                     alert.showAndWait();
                 }
-
             }
         }
         controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
-
     }
 */ 
-    
-
-   
-
 }

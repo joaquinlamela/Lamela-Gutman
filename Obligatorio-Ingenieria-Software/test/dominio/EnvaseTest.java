@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dominio;
-
 import dominio.TipoMateriales;
 import dominio.Envase;
 import java.util.ArrayList;
@@ -16,26 +15,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class EnvaseTest {
-    
+
     public EnvaseTest() {
     }
-    
     @BeforeClass
     public static void setUpClass() {
     }
-    
     @AfterClass
     public static void tearDownClass() {
     }
-    
     @Before
     public void setUp() {
     }
-    
     @After
     public void tearDown() {
     }
-
     //Test Nombre
     @Test
     public void testGetNombre1() {
@@ -45,7 +39,6 @@ public class EnvaseTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-
     @Test
     public void testGetNombre2() {
         Envase instance = new Envase();
@@ -54,7 +47,6 @@ public class EnvaseTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetNombre3() {
         Envase instance = new Envase();
@@ -63,7 +55,6 @@ public class EnvaseTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-        
     @Test(expected = RuntimeException.class)
     public void testGetNombre4() {
         Envase instance = new Envase();
@@ -72,28 +63,24 @@ public class EnvaseTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetNombre1() {
         String nombre = "Envase1";
         Envase instance = new Envase();
         instance.setNombre(nombre);
     }
-
     @Test(expected = RuntimeException.class)
     public void testSetNombre2() {
         String nombre = "";
         Envase instance = new Envase();
         instance.setNombre(nombre);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetNombre3() {
         String nombre = "    ";
         Envase instance = new Envase();
         instance.setNombre(nombre);
     }
-    
     //Test Peso Maximo
     @Test(expected = RuntimeException.class)
     public void testGetPesoMaximoSoportado1() {
@@ -103,14 +90,12 @@ public class EnvaseTest {
         int result = instance.getPesoMaximoSoportado();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetPesoMaximoSoportado2() {
         Envase instance = new Envase();        
         instance.setPesoMaximoSoportado(-5);
         int result = instance.getPesoMaximoSoportado();
     }
-
     @Test
     public void testGetPesoMaximoSoportado3() {
         Envase instance = new Envase();
@@ -119,14 +104,12 @@ public class EnvaseTest {
         int result = instance.getPesoMaximoSoportado();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetPesoMaximoSoportado4() {
         Envase instance = new Envase();    
         instance.setPesoMaximoSoportado(101);
         int result = instance.getPesoMaximoSoportado();
     }
-
     @Test
     public void testGetPesoMaximoSoportado5() {
         Envase instance = new Envase();
@@ -135,42 +118,36 @@ public class EnvaseTest {
         int result = instance.getPesoMaximoSoportado();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetPesoMaximoSoportado1() {
         int pesoMaximoSoportado = 6;
         Envase instance = new Envase();
         instance.setPesoMaximoSoportado(pesoMaximoSoportado);
     }
-
     @Test(expected = RuntimeException.class)
     public void testSetPesoMaximoSoportado2() {
         int pesoMaximoSoportado = -1;
         Envase instance = new Envase();
         instance.setPesoMaximoSoportado(pesoMaximoSoportado);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetPesoMaximoSoportado3() {
         int pesoMaximoSoportado = 0;
         Envase instance = new Envase();
         instance.setPesoMaximoSoportado(pesoMaximoSoportado);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetPesoMaximoSoportado4() {
         int pesoMaximoSoportado = 101;
         Envase instance = new Envase();
         instance.setPesoMaximoSoportado(pesoMaximoSoportado);
     }
-    
     @Test
     public void testSetPesoMaximoSoportado5() {
         int pesoMaximoSoportado = 100;
         Envase instance = new Envase();
         instance.setPesoMaximoSoportado(pesoMaximoSoportado);
     }
-    
     //Test Materiales
     @Test
     public void testGetTiposDeMateriales1() {
@@ -182,7 +159,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testGetTiposDeMateriales2() {
         Envase instance = new Envase();
@@ -195,7 +171,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
      @Test
     public void testGetTiposDeMateriales3() {
         Envase instance = new Envase();
@@ -204,14 +179,12 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-
     @Test
     public void testSetTiposDeMateriales1() {
         ArrayList<TipoMateriales> tiposDeMateriales = null;
         Envase instance = new Envase();
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
-    
     @Test
     public void testSetTiposDeMateriales2() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -220,7 +193,6 @@ public class EnvaseTest {
         tiposDeMateriales.add(TipoMateriales.Plastico);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
-    
     @Test
     public void testSetTiposDeMateriales3() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -228,7 +200,6 @@ public class EnvaseTest {
         tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
-    
     @Test
     public void testSetTiposDeMateriales4() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -238,7 +209,6 @@ public class EnvaseTest {
         tiposDeMateriales.add(TipoMateriales.Metal);
         instance.setTiposDeMateriales(tiposDeMateriales);
     }
-    
     @Test
     public void testAgregarMateriales1() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -252,8 +222,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
-    
     @Test
     public void testAgregarMateriales2() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -268,7 +236,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testAgregarMateriales3() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -285,7 +252,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testEliminarMateriales1() {
         Envase instance = new Envase();
@@ -301,7 +267,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testEliminarMateriales2() {
         Envase instance = new Envase();
@@ -317,7 +282,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testEliminarMateriales3() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -335,7 +299,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testEliminarMateriales4() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -348,7 +311,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testEliminarMateriales5() {
         ArrayList<TipoMateriales> tiposDeMateriales = new ArrayList<>();
@@ -364,7 +326,6 @@ public class EnvaseTest {
         ArrayList<TipoMateriales> result = instance.getTiposDeMateriales();
         assertEquals(expResult, result);
     }
-    
     //Identificador
     @Test(expected = RuntimeException.class)
     public void testGetIdentificadorDeEnvase1() {
@@ -374,7 +335,6 @@ public class EnvaseTest {
         int result = instance.getIdIdentificador();
         assertEquals(expResult, result);
     }
-
     @Test(expected = RuntimeException.class)
     public void testGetIdentificadorDeEnvase2() {
         Envase instance = new Envase();
@@ -383,7 +343,6 @@ public class EnvaseTest {
         int result = instance.getIdIdentificador();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testGetIdentificadorDeEnvase3() {
         Envase instance = new Envase();
@@ -392,7 +351,6 @@ public class EnvaseTest {
         int result = instance.getIdIdentificador();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testGetIdentificadorDeEnvase4() {
         Envase instance = new Envase();
@@ -401,7 +359,6 @@ public class EnvaseTest {
         int result = instance.getIdIdentificador();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testGetIdentificadorDeEnvase5() {
         Envase instance = new Envase();
@@ -410,42 +367,36 @@ public class EnvaseTest {
         int result = instance.getIdIdentificador();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetIdentificadorDeEnvase1() {
         int identificadorDeEnvase = 0;
         Envase instance = new Envase();
         instance.setIdIdentificador(identificadorDeEnvase);
     }
-
     @Test(expected = RuntimeException.class)
     public void testSetIdentificadorDeEnvase2() {
         int identificadorDeEnvase = -8;
         Envase instance = new Envase();
         instance.setIdIdentificador(identificadorDeEnvase);
     }
-    
     @Test
     public void testSetIdentificadorDeEnvase3() {
         int identificadorDeEnvase = 1;
         Envase instance = new Envase();
         instance.setIdIdentificador(identificadorDeEnvase);
     }
-    
     @Test
     public void testSetIdentificadorDeEnvase4() {
         int identificadorDeEnvase = 100;
         Envase instance = new Envase();
         instance.setIdIdentificador(identificadorDeEnvase);
     }
-    
     @Test
     public void testSetIdentificadorDeEnvase5() {
         int identificadorDeEnvase = 10000;
         Envase instance = new Envase();
         instance.setIdIdentificador(identificadorDeEnvase);
     }
-    
     //Equals
     @Test
     public void equals1() {
@@ -456,7 +407,6 @@ public class EnvaseTest {
         boolean result = instance.equals(e);
         assertEquals(true, result);
     }
-    
     @Test
     public void equals2() {
         Envase instance = new Envase();
@@ -465,5 +415,4 @@ public class EnvaseTest {
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
 }

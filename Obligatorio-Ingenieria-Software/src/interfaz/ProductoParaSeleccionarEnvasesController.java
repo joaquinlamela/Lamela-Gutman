@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaz;
-
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -14,14 +13,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
-
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class ProductoParaSeleccionarEnvasesController implements Initializable {
-
     @FXML
     private ImageView imagenProducto;
     @FXML
@@ -34,42 +31,27 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
     private Label identificador;
     @FXML
     private Label cantidadVendidos;
-    
     private SeleccionarEnvasePorProductoController controlador; 
-    
     private SeleccionarEnvasePorProductoPreVentaController controladorPreVenta; 
-    
-    
     private Sistema sistema ; 
-
     public Sistema getSistema() {
         return sistema;
     }
-
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-
     public SeleccionarEnvasePorProductoController getControlador() {
         return controlador;
     }
-
     public void setControlador(SeleccionarEnvasePorProductoController controlador) {
         this.controlador = controlador;
     }
-
     public SeleccionarEnvasePorProductoPreVentaController getControladorPreVenta() {
         return controladorPreVenta;
     }
-
     public void setControladorPreVenta(SeleccionarEnvasePorProductoPreVentaController controladorPreVenta) {
         this.controladorPreVenta = controladorPreVenta;
     }
-    
-    
-    
-    
-    
     public void inicializarDatos(Producto producto, Sistema sistema, SeleccionarEnvasePorProductoController controlador) {
         this.setSistema(sistema);
         this.setControlador(controlador);
@@ -80,9 +62,6 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
         this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));
         this.cantidadVendidos.setText(Integer.toString(producto.getCantidadVendidos()));
     }
-    
-    
-    
     public void inicializarDatosPreVenta(Producto producto, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador) {
         this.setSistema(sistema);
         this.setControladorPreVenta(controlador);
@@ -93,7 +72,6 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
         this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));
         this.cantidadVendidos.setText(Integer.toString(producto.getCantidadVendidos()));
     }
-
     /**
      * Initializes the controller class.
      */
@@ -101,5 +79,4 @@ public class ProductoParaSeleccionarEnvasesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
 }
