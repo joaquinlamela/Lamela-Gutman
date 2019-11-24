@@ -229,9 +229,6 @@ public class PreVentaTest {
         instance.agregarProducto(p);
         instance.agregarProducto(g);
         instance.eliminarProducto(f);
-        
-        //Preuba de eliminacion de un producto que no esta
-        instance.eliminarProducto(f);
 
         a.add(p);
         ArrayList<Producto> expResult = a;
@@ -501,22 +498,13 @@ public class PreVentaTest {
 
     //Equals
     @Test
-    public void equals1() {
+    public void equals() {
         PreVenta instance = new PreVenta();
         instance.setIdentificadorDePreventa(100000);
         PreVenta e = new PreVenta();
         e.setIdentificadorDePreventa(100000);
         boolean result = instance.equals(e);
         assertEquals(true, result);
-    }
-    
-    @Test
-    public void equals2() {
-        PreVenta instance = new PreVenta();
-        instance.setIdentificadorDePreventa(100000);
-        Venta e = new Venta();
-        boolean result = instance.equals(e);
-        assertEquals(false, result);
     }
     
 }

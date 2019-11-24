@@ -39,11 +39,10 @@ public class VentaTest {
     @Test
     public void testGetListaDeProductos1() {
 
-        Envase e = new Envase();
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);p.setCodigoIdentificador(18);
+        p.setCodigoIdentificador(18);
         Producto f = new Producto();
         instance.agregarProducto(f);
         instance.agregarProducto(p);
@@ -58,11 +57,10 @@ public class VentaTest {
     @Test
     public void testGetListaDeProductos2() {
 
-        Envase e = new Envase();
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);p.setCodigoIdentificador(18);
+        p.setCodigoIdentificador(18);
         Producto f = new Producto();
         Producto g = new Producto();
         f = g;
@@ -81,11 +79,9 @@ public class VentaTest {
     @Test
     public void testGetListaDeProductos3() {
 
-        Envase e = new Envase();
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);
         p.setCodigoIdentificador(18);
         Producto f = new Producto();
         Producto g = new Producto();
@@ -105,11 +101,9 @@ public class VentaTest {
     @Test
     public void testGetListaDeProductos4() {
 
-        Envase e = new Envase();
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);
         p.setCodigoIdentificador(18);
         Producto f = new Producto();
         Producto g = new Producto();
@@ -118,9 +112,6 @@ public class VentaTest {
         instance.agregarProducto(p);
         instance.agregarProducto(g);
         instance.eliminarProducto(f);
-        instance.eliminarProducto(p);
-        
-        //Pruebo eliminar un producto que no esta
         instance.eliminarProducto(p);
 
         ArrayList<Producto> expResult = a;
@@ -649,7 +640,7 @@ public class VentaTest {
     
     //Equals
     @Test
-    public void equals1() {
+    public void equals() {
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(100000);
         Venta e = new Venta();
@@ -658,12 +649,4 @@ public class VentaTest {
         assertEquals(true, result);
     }
 
-    @Test
-    public void equals2() {
-        Venta instance = new Venta();
-        instance.setCodigoIdentificadorDeVenta(100000);
-        Producto e = new Producto();
-        boolean result = instance.equals(e);
-        assertEquals(false, result);
-    }
 }

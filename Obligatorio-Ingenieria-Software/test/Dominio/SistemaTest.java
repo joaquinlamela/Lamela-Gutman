@@ -498,9 +498,7 @@ public class SistemaTest {
         instance.agregarPreVenta(v3);
 
         instance.cancelarPreVenta(v1);
-        instance.cancelarPreVenta(v3);
-        
-        //Cancelo una preventa que ya no esta
+
         instance.cancelarPreVenta(v3);
 
         ArrayList<PreVenta> a = new ArrayList<>();
