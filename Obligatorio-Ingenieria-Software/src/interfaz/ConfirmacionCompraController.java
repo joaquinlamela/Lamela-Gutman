@@ -141,6 +141,11 @@ public class ConfirmacionCompraController implements Initializable {
                 this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
             }
             this.getSistema().getEnvasesALlevarEnPreVenta().clear();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("¡Pre Venta confirmada!");
+            alert.setHeaderText("Se ha confirmado la preventa");
+            alert.setContentText("Gracias");
+            alert.showAndWait();
             /*
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
                 Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);

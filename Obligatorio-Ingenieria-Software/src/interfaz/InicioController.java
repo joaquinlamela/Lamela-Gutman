@@ -58,7 +58,6 @@ public class InicioController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.getSistema().mostrar();
     }
     @FXML
     private void tocoBotonCliente(ActionEvent event) {

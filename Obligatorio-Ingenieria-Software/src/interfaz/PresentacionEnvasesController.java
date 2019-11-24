@@ -83,6 +83,7 @@ public class PresentacionEnvasesController implements Initializable {
     }
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
+        int contador=0; 
         int codigoIdentificad = this.getCodigoIdentificador();
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
         ArrayList<Envase> copiaDeListaDeEnvases = new ArrayList<>();
@@ -96,6 +97,7 @@ public class PresentacionEnvasesController implements Initializable {
                 Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnVenta().contains(e)) {  // && e.getPesoMaximoSoportado() >= this.getProducto().getPesoDelProducto()) {
                     this.getSistema().getEnvasesALlevarEnVenta().add(e);
+                    contador++; 
                     copiaDeListaDeEnvases.remove(e);
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);

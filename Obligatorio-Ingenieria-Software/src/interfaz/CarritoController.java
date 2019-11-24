@@ -207,7 +207,6 @@ public class CarritoController implements Initializable {
             sistema.agregarVenta(ventaAgregar);
             this.getSistema().agregarUnaVentaAlArray(ventaAgregar);
             this.getSistema().agregarGananciaEnVenta(ventaAgregar);
-            System.out.println(this.getSistema().getListaDeVentasDelSitema().size());
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnVenta().size(); i++) {
                 this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnVenta().get(i).getIdIdentificador()]++;
             }

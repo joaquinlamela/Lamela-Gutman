@@ -143,7 +143,7 @@ public class PresentacionProductosController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no ha seleccionado ninguna cantidad");
-            alert.setContentText("!Seleccione un origen!");
+            alert.setContentText("!Seleccione una cantidad valida!");
             alert.showAndWait();
         }
         Producto producto = new Producto();
@@ -212,7 +212,7 @@ public class PresentacionProductosController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no ha seleccionado ninguna cantidad");
-            alert.setContentText("!Seleccione un origen!");
+            alert.setContentText("!Seleccione una cantidad valida!");
             alert.showAndWait();
         }
         Producto producto = new Producto();

@@ -235,13 +235,6 @@ public class Sistema {
         }
     }
 
-    public void mostrar() {
-        for (int i = 0; i < this.getEchoShop().getListaDeProductosEnStock().size(); i++) {
-            System.out.println(this.getEchoShop().getListaDeProductosEnStock().get(i));
-
-        }
-    }
-
     public void agregarProductosALaListaDeProductosSesionActiva(Producto producto) {
         if (!this.getProductosAVenderEnSesionActiva().contains(producto)) {
             this.getProductosAVenderEnSesionActiva().add(producto);

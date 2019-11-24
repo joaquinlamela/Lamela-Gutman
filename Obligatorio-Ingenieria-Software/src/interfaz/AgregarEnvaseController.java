@@ -98,7 +98,7 @@ public class AgregarEnvaseController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("¡Cuidado!");
                     alert.setHeaderText("Error: no es un precio valido");
-                    alert.setContentText("Ingrese un peso positivo y mayor a 0");
+                    alert.setContentText("Ingrese un peso entre 1 y 100");
                     alert.showAndWait();
                 } else {
                     if (peso > 100) {
@@ -106,7 +106,7 @@ public class AgregarEnvaseController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("¡Cuidado!");
                         alert.setHeaderText("Error: no es un peso valido");
-                        alert.setContentText("Ingrese un peso menor o igual a 100");
+                        alert.setContentText("Ingrese un peso entre 1 y 100");
                         alert.showAndWait();
                     }
                 }
@@ -138,7 +138,7 @@ public class AgregarEnvaseController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no ha seleccionado los materiales");
-            alert.setContentText("Debe seleccionar al menos un material !");
+            alert.setContentText("Debe seleccionar al menos un material!");
             alert.showAndWait();
         }
         //Parte del codigo identificador del envase
@@ -164,9 +164,6 @@ public class AgregarEnvaseController implements Initializable {
                 alert.setHeaderText("Se ha agregado correctamente el envase");
                 alert.showAndWait();
             }
-        }
-        for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
-            System.out.println(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
         }
     }
     @FXML

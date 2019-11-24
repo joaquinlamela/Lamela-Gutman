@@ -90,8 +90,8 @@ public class AgregadoSucursalController implements Initializable {
                 esValido = false;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("¡Cuidado!");
-                alert.setHeaderText("Error: no ha seleccionado ningun origen");
-                alert.setContentText("!Seleccione un origen!");
+                alert.setHeaderText("Error: no ha seleccionado ningun numero de sucursal");
+                alert.setContentText("!Seleccione un numero para la sucursal!");
                 alert.showAndWait();
             } else {
                 for (int i = 0; i < this.getSistema().getEchoShop().getSucursales().size(); i++) {
@@ -153,7 +153,7 @@ public class AgregadoSucursalController implements Initializable {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
-            alert.setHeaderText("Error: no es un peso valido");
+            alert.setHeaderText("Error: no es un telefono valido");
             alert.setContentText("Reingrese el valor del telefono!");
             alert.showAndWait();
         }
@@ -190,8 +190,6 @@ public class AgregadoSucursalController implements Initializable {
             alert.setHeaderText("Se ha agregado correctamente la sucursal");
             alert.showAndWait();
         }
-        System.out.println(this.getSistema().getEchoShop().getSucursales().size());
-        System.out.println(this.getSistema().getEchoShop().getListaDeProductosEnStock());
     }
     @FXML
     private void volverAVendedor(ActionEvent event) {

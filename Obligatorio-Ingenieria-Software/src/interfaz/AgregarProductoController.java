@@ -154,7 +154,7 @@ public class AgregarProductoController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("¡Cuidado!");
                     alert.setHeaderText("Error: no es un precio valido");
-                    alert.setContentText("Ingrese un peso positivo y mayor a 0");
+                    alert.setContentText("Ingrese un peso entre 1 y 100");
                     alert.showAndWait();
                 } else {
                     if (peso > 100) {
@@ -162,7 +162,7 @@ public class AgregarProductoController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("¡Cuidado!");
                         alert.setHeaderText("Error: no es un precio valido");
-                        alert.setContentText("Ingrese un peso menor o igual a 100");
+                        alert.setContentText("Ingrese un peso entre 1 y 100");
                         alert.showAndWait();
                     }
                 }
@@ -308,7 +308,7 @@ public class AgregarProductoController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: El peso del producto no es soportador por los envases recomendados");
-            alert.setContentText("¡El peso del producto debe ser menor a la suma de todos los pesos soportados por los envases!");
+            alert.setContentText("¡El peso del producto debe ser menor al peso maximo soportado por los envases!");
             alert.showAndWait();
         }
         //Parte de codigo identificador

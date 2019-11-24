@@ -103,7 +103,7 @@ public class UsuarioController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: campo vacio");
-            alert.setContentText("El campo de peso, se encuentra vacio!");
+            alert.setContentText("El campo de rut, se encuentra vacio!");
             alert.showAndWait();
         } else {
             if (rutString.length() <= 5) {
