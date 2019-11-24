@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaz;
-
 import dominio.Envase;
 import dominio.Persona;
 import dominio.PreVenta;
@@ -34,14 +33,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class ConfirmacionCompraController implements Initializable {
-
     @FXML
     private JFXButton btnConfirmar;
     @FXML
@@ -54,43 +51,32 @@ public class ConfirmacionCompraController implements Initializable {
     private Label direccionSucursal;
     @FXML
     private JFXDatePicker fechaRetiro;
-
     @FXML
     private VBox listaDeEnvases;
-
     private Sistema sistema;
     @FXML
     private Label precioTotal;
-
     private Persona cliente;
-
     public Sistema getSistema() {
         return sistema;
     }
-
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-
     public Persona getCliente() {
         return cliente;
     }
-
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
     @FXML
     private void confirmarVenta(ActionEvent event) {
-
         boolean esValido = true;
         int numeroDeSucursal = 1;
-
         //Parte de sucursal
         if (!this.numeroSucursal.getSelectionModel().isEmpty()) {
             numeroDeSucursal = this.numeroSucursal.getSelectionModel().getSelectedItem();
@@ -100,7 +86,6 @@ public class ConfirmacionCompraController implements Initializable {
                     this.direccionSucursal.setText(sucursal.getDireccion());
                 }
             }
-
         } else {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -109,9 +94,7 @@ public class ConfirmacionCompraController implements Initializable {
             alert.setContentText("!Seleccione una sucursal");
             alert.showAndWait();
         }
-
         LocalDate fechaDeRetiro = this.fechaRetiro.getValue();
-
         if (fechaDeRetiro == null) {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -130,34 +113,24 @@ public class ConfirmacionCompraController implements Initializable {
                 alert.showAndWait();
             }
         }
-
         if (esValido) {
             Persona cliente = this.getCliente(); 
             int precio = Integer.parseInt(this.precioTotal.getText());
-
             this.getSistema().getEchoShop().setDireccion(this.direccionSucursal.getText());
             this.getSistema().getEchoShop().setNumeroSucursal(numeroDeSucursal);
-
             PreVenta preventaAgregar = new PreVenta(cliente, precio, this.getSistema().getProductosPreVentaSesionActiva(), this.getSistema().getEchoShop(),
                     this.getSistema().getEnvasesALlevarEnPreVenta(), 1, fechaDeRetiro);
-
             this.getSistema().agregarPreVenta(preventaAgregar);
-
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
                 this.getSistema().getEnvasesUtilizadosPorId()[this.getSistema().getEnvasesALlevarEnPreVenta().get(i).getIdIdentificador()]++;
             }
-
             //Nuevo 
             Date fechaAhora = new Date();
-
             if (fechaAhora.getDay() == fechaDeRetiro.getDayOfMonth() && fechaAhora.getMonth() == fechaDeRetiro.getMonthValue() && fechaAhora.getYear() == fechaDeRetiro.getYear()) {
                 this.getSistema().agregarUnaPreVentaAlArray(preventaAgregar);
                 this.getSistema().agregarGananciaPreVenta(preventaAgregar);
             }
-
             this.getSistema().getProductosPreVentaSesionActiva().clear();
-
-
             /*
             for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
                 Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
@@ -167,9 +140,12 @@ public class ConfirmacionCompraController implements Initializable {
             for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
                 this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
             }
-
             this.getSistema().getEnvasesALlevarEnPreVenta().clear();
-
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("¡Pre Venta confirmada!");
+            alert.setHeaderText("Se ha confirmado la preventa");
+            alert.setContentText("Gracias");
+            alert.showAndWait();
             /*
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
                 Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
@@ -178,33 +154,19 @@ public class ConfirmacionCompraController implements Initializable {
              */
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
                 Parent root = loader.load();
-
                 ClienteController controlador = loader.getController();
-
                 Scene escena = new Scene(root);
-
                 Stage stage = new Stage();
-
                 stage.setScene(escena);
-
                 stage.show();
-
                 stage.setHeight(675);
-
                 stage.setWidth(366);
-
                 stage.setResizable(false);
-
                 controlador.setSistema(sistema);
-
                 controlador.setCliente(this.getCliente());
-
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
-
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
                 Stage myStage = (Stage) this.btnConfirmar.getScene().getWindow();
                 myStage.close();
             } catch (IOException ex) {
@@ -212,105 +174,64 @@ public class ConfirmacionCompraController implements Initializable {
             }
         }
     }
-
     @FXML
     private void volverInicio(ActionEvent event) {
-
     }
-
     public void cargarProductos(ArrayList<Envase> lista, Sistema sis, ConfirmacionCompraController paraCargarPestañaCarrito) {
-
         this.setSistema(sis);
-
         this.nombreCliente.setText(this.getCliente().getNombre());
-
         for (int i = 1; i < this.getSistema().getEchoShop().getSucursales().size() + 1; i++) {
             ArrayList<Sucursal> sucursales = this.getSistema().getEchoShop().getSucursales();
-
             this.numeroSucursal.getItems().add(i);
-
         }
-
         int precio = 0;
         ArrayList<Producto> listaDeProductos = this.getSistema().getProductosPreVentaSesionActiva();
         Date fechaActual = new Date();
-
         for (int i = 0; i < listaDeProductos.size(); i++) {
-
             precio += listaDeProductos.get(i).getPrecio() * this.getSistema().getCantidadPorIdDePreVenta()[listaDeProductos.get(i).getCodigoIdentificador()];
-
         }
-
         this.precioTotal.setText(Integer.toString(precio));
-
         this.listaDeEnvases.getChildren().clear();
-
         this.listaDeEnvases.setSpacing(10);
-
         for (int i = 0; i < lista.size(); i++) {
-
             try {
                 Envase envase = lista.get(i);
                 //Cargarart el objeto
-
                 FXMLLoader fxml = new FXMLLoader(getClass().getResource("EnvasesParaConfirmacionDePreventa.fxml"));
-
                 Parent nodo = fxml.load();
-
                 //Carga los datos
                 EnvasesParaConfirmacionDePreventaController controlador = fxml.getController();
-
                 controlador.inicializarDatos2(envase, sistema, paraCargarPestañaCarrito);
-
                 controlador.setSistema(sistema);
-
                 //Cargo el nuevo objeto
                 this.listaDeEnvases.getChildren().add((Node) nodo);
-
             } catch (IOException ex) {
                 Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-
     public void cerrarVentana() {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PreVenta.fxml"));
-
             Parent root = loader.load();
-
             PreVentaController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             controlador.setCliente(this.getCliente());
-
             controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.btnConfirmar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(PreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @FXML
     private void setearDireccion(ActionEvent event) {
         int numeroDeSucursal = 0;
@@ -323,7 +244,5 @@ public class ConfirmacionCompraController implements Initializable {
                 }
             }
         }
-
     }
-
 }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package dominio;
-
 import dominio.Persona;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,26 +13,21 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class PersonaTest {
-    
+
     public PersonaTest() {
     }
-    
     @BeforeClass
     public static void setUpClass() {
     }
-    
     @AfterClass
     public static void tearDownClass() {
     }
-    
     @Before
     public void setUp() {
     }
-    
     @After
     public void tearDown() {
     }
-
     //Nombre
     @Test
     public void testGetNombre1() {
@@ -43,7 +37,6 @@ public class PersonaTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-
     @Test
     public void testGetNombre2() {
         Persona instance = new Persona();
@@ -52,7 +45,6 @@ public class PersonaTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetNombre3() {
         Persona instance = new Persona();
@@ -61,7 +53,6 @@ public class PersonaTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetNombre4() {
         Persona instance = new Persona();
@@ -70,28 +61,24 @@ public class PersonaTest {
         String result = instance.getNombre();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetNombre1() {
         String nombre = "Envase1";
         Persona instance = new Persona();
         instance.setNombre(nombre);
     }
-
     @Test(expected = RuntimeException.class)
     public void testSetNombre2() {
         String nombre = "";
         Persona instance = new Persona();
         instance.setNombre(nombre);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetNombre3() {
         String nombre = "    ";
         Persona instance = new Persona();
         instance.setNombre(nombre);
     }
-
     //Edad
     @Test
     public void testSetEdad1() {
@@ -101,7 +88,6 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetEdad2() {
         Persona instance = new Persona();
@@ -110,7 +96,6 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetEdad3() {
         Persona instance = new Persona();
@@ -119,7 +104,6 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetEdad4() {
         Persona instance = new Persona();
@@ -128,7 +112,6 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetEdad5() {
         Persona instance = new Persona();
@@ -137,7 +120,6 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetEdad6() {
         Persona instance = new Persona();
@@ -146,49 +128,42 @@ public class PersonaTest {
         int result = instance.getEdad();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetEdad1() {
         int edad = -1;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetEdad2() {
         int edad = -100;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-
     @Test(expected = RuntimeException.class)
     public void testGetEdad3() {
         int edad = 101;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-    
     @Test
     public void testGetEdad4() {
         int edad = 50;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-    
     @Test
     public void testGetEdad5() {
         int edad = 1;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-    
     @Test
     public void testGetEdad6() {
         int edad = 100;
         Persona instance = new Persona();
         instance.setEdad(edad);
     }
-    
     //Domicilio
     @Test
     public void testGetDomicilio1() {
@@ -198,7 +173,6 @@ public class PersonaTest {
         String result = instance.getDomicilio();
         assertEquals(expResult, result);
     }
-
     @Test
     public void testGetDomicilio2() {
         Persona instance = new Persona();
@@ -207,7 +181,6 @@ public class PersonaTest {
         String result = instance.getDomicilio();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetDomicilio3() {
         Persona instance = new Persona();
@@ -216,7 +189,6 @@ public class PersonaTest {
         String result = instance.getDomicilio();
         assertEquals(expResult, result);
     }
-    
         @Test(expected = RuntimeException.class)
     public void testGetDomicilio4() {
         Persona instance = new Persona();
@@ -225,28 +197,24 @@ public class PersonaTest {
         String result = instance.getDomicilio();
         assertEquals(expResult, result);
     }
-    
     @Test
     public void testSetDomicilio1() {
         String domicilio = "Nuevo Domicilio";
         Persona instance = new Persona();
         instance.setDomicilio(domicilio);
     }
-
     @Test(expected = RuntimeException.class)
     public void testSetDomicilio2() {
         String domicilio = "";
         Persona instance = new Persona();
         instance.setDomicilio(domicilio);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetDomicilio3() {
         String domicilio = "    ";
         Persona instance = new Persona();
         instance.setDomicilio(domicilio);
     }
-
     //Rut de comprador
     @Test
     public void testGetRut1() {
@@ -256,7 +224,6 @@ public class PersonaTest {
         String result = instance.getRutComprador();
         assertEquals(expResult, result);
     }
-
     @Test
     public void testGetRut2() {
         Persona instance = new Persona();
@@ -265,7 +232,6 @@ public class PersonaTest {
         String result = instance.getRutComprador();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetRut3() {
         Persona instance = new Persona();
@@ -274,7 +240,6 @@ public class PersonaTest {
         String result = instance.getRutComprador();
         assertEquals(expResult, result);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testGetRut4() {
         Persona instance = new Persona();
@@ -283,29 +248,24 @@ public class PersonaTest {
         String result = instance.getRutComprador();
         assertEquals(expResult, result);
     }
-    
-    
     @Test
     public void testSetRut1() {
         String rut = "Nuevo rut";
         Persona instance = new Persona();
         instance.setRutComprador(rut);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetRut2() {
         String rut = "";
         Persona instance = new Persona();
         instance.setRutComprador(rut);
     }
-    
     @Test(expected = RuntimeException.class)
     public void testSetRut3() {
         String rut = "    ";
         Persona instance = new Persona();
         instance.setRutComprador(rut);
     }
-    
     //Equals
     @Test
     public void equals1() {
@@ -320,7 +280,6 @@ public class PersonaTest {
         boolean result = instance.equals(e);
         assertEquals(true, result);
     }
-    
     @Test
     public void equals2() {
         Persona instance = new Persona();
@@ -331,7 +290,6 @@ public class PersonaTest {
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
     @Test
     public void equals3() {
         Persona instance = new Persona();
@@ -345,7 +303,6 @@ public class PersonaTest {
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
     @Test
     public void equals4() {
         Persona instance = new Persona();
@@ -359,7 +316,6 @@ public class PersonaTest {
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
     @Test
     public void equals5() {
         Persona instance = new Persona();
@@ -373,7 +329,6 @@ public class PersonaTest {
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
     @Test
     public void equals6() {
         Persona instance = new Persona();
@@ -385,11 +340,9 @@ public class PersonaTest {
         e.setEdad(10);
         e.setNombre("Diego");
         e.setRutComprador("CompradorNuevo");
-        
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }
-    
     @Test
     public void equals7() {
         Persona instance = new Persona();
@@ -397,12 +350,10 @@ public class PersonaTest {
         instance.setEdad(10);
         instance.setNombre("Diego");
         Persona e = new Persona();
-        
         e.setDomicilio("Cuareim");
         e.setEdad(10);
         e.setNombre("Diego");
         e.setRutComprador("CompradorNuevo");
-        
         boolean result = instance.equals(e);
         assertEquals(false, result);
     }

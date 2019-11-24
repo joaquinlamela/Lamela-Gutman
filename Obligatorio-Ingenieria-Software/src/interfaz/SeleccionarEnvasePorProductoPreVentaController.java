@@ -38,19 +38,25 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
     private VBox productoSeleccionado;
     @FXML
     private VBox listaDeEnvases;
-
     @FXML
     private JFXButton btnAtras;
     @FXML
     private JFXButton btnVolver;
-
     private Sistema sistema;
     @FXML
     private JFXButton btnPreVenta;
-
     private Producto producto;
-
     private Persona cliente;
+
+    private int contadorDeEnvasesSeleccionados;
+
+    public int getContadorDeEnvasesSeleccionados() {
+        return contadorDeEnvasesSeleccionados;
+    }
+
+    public void setContadorDeEnvasesSeleccionados(int contadorDeEnvasesSeleccionados) {
+        this.contadorDeEnvasesSeleccionados = contadorDeEnvasesSeleccionados;
+    }
 
     public Sistema getSistema() {
         return sistema;
@@ -86,44 +92,35 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
     @FXML
     private void irACarrito(ActionEvent event) {
-
         if (!this.getSistema().getEnvasesALlevarEnPreVenta().isEmpty()) {
-
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("PreVenta.fxml"));
-
-                Parent root = loader.load();
-
-                PreVentaController controlador = loader.getController();
-
-                Scene escena = new Scene(root);
-
-                Stage stage = new Stage();
-
-                stage.setScene(escena);
-
-                stage.show();
-
-                stage.setHeight(675);
-
-                stage.setWidth(366);
-
-                stage.setResizable(false);
-
-                controlador.setSistema(sistema);
-
-                controlador.setCliente(this.getCliente());
-
-                controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
-
-                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-                Stage myStage = (Stage) this.btnPreVenta.getScene().getWindow();
-                myStage.close();
-            } catch (IOException ex) {
-                Logger.getLogger(SeleccionarEnvasePorProductoPreVentaController.class.getName()).log(Level.SEVERE, null, ex);
+            if (this.getContadorDeEnvasesSeleccionados() != 0) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("PreVenta.fxml"));
+                    Parent root = loader.load();
+                    PreVentaController controlador = loader.getController();
+                    Scene escena = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(escena);
+                    stage.show();
+                    stage.setHeight(675);
+                    stage.setWidth(366);
+                    stage.setResizable(false);
+                    controlador.setSistema(sistema);
+                    controlador.setCliente(this.getCliente());
+                    controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
+                    stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                    Stage myStage = (Stage) this.btnPreVenta.getScene().getWindow();
+                    myStage.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SeleccionarEnvasePorProductoPreVentaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: Seleccione almenos un envase");
+                alert.setContentText("Agregue un envase, en el cual retirara el producto");
+                alert.showAndWait();
             }
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
@@ -131,46 +128,38 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
             alert.setContentText("Agregue un envase, en el cual retirara el producto");
             alert.showAndWait();
         }
-
     }
 
     @FXML
     private void irAInicio(ActionEvent event) {
-
         if (!this.getSistema().getEnvasesALlevarEnPreVenta().isEmpty()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
-                Parent root = loader.load();
-
-                ClienteController controlador = loader.getController();
-
-                Scene escena = new Scene(root);
-
-                Stage stage = new Stage();
-
-                stage.setScene(escena);
-
-                stage.show();
-
-                stage.setHeight(675);
-
-                stage.setWidth(366);
-
-                stage.setResizable(false);
-
-                controlador.setSistema(sistema);
-
-                controlador.setCliente(this.getCliente());
-
-                controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
-
-                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-                myStage.close();
-            } catch (IOException ex) {
-                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+            if (this.getContadorDeEnvasesSeleccionados() != 0) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+                    Parent root = loader.load();
+                    ClienteController controlador = loader.getController();
+                    Scene escena = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(escena);
+                    stage.show();
+                    stage.setHeight(675);
+                    stage.setWidth(366);
+                    stage.setResizable(false);
+                    controlador.setSistema(sistema);
+                    controlador.setCliente(this.getCliente());
+                    controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
+                    stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                    Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+                    myStage.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: Seleccione almenos un envase");
+                alert.setContentText("Agregue un envase, en el cual retirara el producto");
+                alert.showAndWait();
             }
 
         } else {
@@ -180,47 +169,39 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
             alert.setContentText("Agregue un envase, en el cual retirara el producto");
             alert.showAndWait();
         }
-
     }
 
     @FXML
     private void volverInicio(ActionEvent event) {
         if (!this.getSistema().getEnvasesALlevarEnPreVenta().isEmpty()) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
-                Parent root = loader.load();
-
-                ClienteController controlador = loader.getController();
-
-                Scene escena = new Scene(root);
-
-                Stage stage = new Stage();
-
-                stage.setScene(escena);
-
-                stage.show();
-
-                stage.setHeight(675);
-
-                stage.setWidth(366);
-
-                stage.setResizable(false);
-
-                controlador.setSistema(sistema);
-
-                controlador.setCliente(this.getCliente());
-
-                controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
-
-                stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
-                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
-                myStage.close();
-            } catch (IOException ex) {
-                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+            if (this.getContadorDeEnvasesSeleccionados() != 0) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
+                    Parent root = loader.load();
+                    ClienteController controlador = loader.getController();
+                    Scene escena = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(escena);
+                    stage.show();
+                    stage.setHeight(675);
+                    stage.setWidth(366);
+                    stage.setResizable(false);
+                    controlador.setSistema(sistema);
+                    controlador.setCliente(this.getCliente());
+                    controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
+                    stage.setOnCloseRequest(e -> controlador.cerrarVentana());
+                    Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
+                    myStage.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: Seleccione almenos un envase");
+                alert.setContentText("Agregue un envase, en el cual retirara el producto");
+                alert.showAndWait();
             }
-
         } else {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
@@ -228,109 +209,67 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
             alert.setContentText("Agregue un envase, en el cual retirara el producto");
             alert.showAndWait();
         }
-
     }
 
     public void cargarProductos(Producto producto, Sistema sis, SeleccionarEnvasePorProductoPreVentaController paraCargarPestañaCarrito) {
-
         try {
             this.setSistema(sis);
-
             this.productoSeleccionado.getChildren().clear();
-
             //Cargarart el objeto
             FXMLLoader fxml = new FXMLLoader(getClass().getResource("ProductoParaSeleccionarEnvases.fxml"));
-
             Parent nodo = fxml.load();
-
             //Carga los datos
             ProductoParaSeleccionarEnvasesController controlador = fxml.getController();
-
             controlador.setSistema(sistema);
-
             controlador.inicializarDatosPreVenta(producto, sistema, paraCargarPestañaCarrito);
-
             //Cargo el nuevo objeto
             this.productoSeleccionado.getChildren().add((Node) nodo);
         } catch (IOException ex) {
             Logger.getLogger(SeleccionarEnvasePorProductoPreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void cargarProductos2(ArrayList<Envase> lista, Sistema sis, SeleccionarEnvasePorProductoPreVentaController paraCargarPestañaCarrito, Producto producto) {
-
         this.setSistema(sis);
-
         this.setProducto(producto);
-
         this.listaDeEnvases.getChildren().clear();
-
         this.listaDeEnvases.setSpacing(10);
-
         for (int i = 0; i < lista.size(); i++) {
-
             try {
                 Envase envase = lista.get(i);
-
                 FXMLLoader fxml = new FXMLLoader(getClass().getResource("PresentacionEnvasesPreVenta.fxml"));
-
                 Parent nodo = fxml.load();
-
                 PresentacionEnvasesPreVentaController controlador = fxml.getController();
-
                 controlador.inicializarDatos(envase, sistema, paraCargarPestañaCarrito, producto);
-
                 controlador.setSistema(sistema);
-
                 //Cargo el nuevo objeto
                 this.listaDeEnvases.getChildren().add((Node) nodo);
-
             } catch (IOException ex) {
                 Logger.getLogger(SeleccionarEnvasePorProductoPreVentaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
-
     }
 
     public void cerrarVentana() {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
-
             Parent root = loader.load();
-
             ClienteController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             controlador.setCliente(this.getCliente());
-
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
 }

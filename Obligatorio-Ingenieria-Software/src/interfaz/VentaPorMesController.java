@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaz;
-
 import dominio.Envase;
 import dominio.Sistema;
 import dominio.Venta;
@@ -31,23 +30,19 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class VentaPorMesController implements Initializable {
-
     @FXML
     private JFXButton btnInicio;
     @FXML
     private JFXButton btnAtras;
     @FXML
     private TableView<Venta> tablaDeProductosPorFecha;
-
     private Sistema sistema;
-
     @FXML
     private JFXDatePicker fechaSeleccionada;
     @FXML
@@ -58,9 +53,7 @@ public class VentaPorMesController implements Initializable {
     private TableColumn<Venta, Double> columnaPrecio;
     @FXML
     private TableColumn<Venta, Date> columnaFecha;
-
     private ObservableList<Venta> listaDeVenta;
-
     /**
      * Initializes the controller class.
      */
@@ -69,123 +62,77 @@ public class VentaPorMesController implements Initializable {
         this.fechaSeleccionada.setValue(LocalDate.now());
         listaDeVenta = FXCollections.observableArrayList();
     }
-
     @FXML
     private void volverAInicio(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
-
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @FXML
     private void productosPorFecha(SortEvent<?> event) {
     }
-
     public void cerrarVentana() {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.tablaDeProductosPorFecha.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(VentaPorMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
-
     public Sistema getSistema() {
         return sistema;
     }
-
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-
     @FXML
     private void seleccionoFecha(ActionEvent event) {
-
         if (this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
@@ -196,20 +143,14 @@ public class VentaPorMesController implements Initializable {
             this.columnaIdentificador.setCellValueFactory(new PropertyValueFactory("codigoIdentificadorDeVenta"));
             this.columnaPrecio.setCellValueFactory(new PropertyValueFactory("precioTotal"));
             this.columnaFecha.setCellValueFactory(new PropertyValueFactory("fechaDeCompra"));
-
             int mesDeVenta = this.fechaSeleccionada.getValue().getMonthValue();
-
             for (int i = 0; i < this.getSistema().getListaDeVentasDelSitema().size(); i++) {
                 int mesFechaDeCompra = this.getSistema().getListaDeVentasDelSitema().get(i).getFechaDeCompra().getMonth() + 1;
                 if (mesFechaDeCompra == mesDeVenta) {
                     listaDeVenta.add(this.getSistema().getListaDeVentasDelSitema().get(i));
                 }
-
             }
-
             this.tablaDeProductosPorFecha.setItems(listaDeVenta);
         }
-
     }
-
 }

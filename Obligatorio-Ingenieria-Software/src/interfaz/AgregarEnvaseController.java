@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaz;
-
 import dominio.Envase;
 import dominio.Sistema;
 import dominio.TipoMateriales;
@@ -30,14 +29,12 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class AgregarEnvaseController implements Initializable {
-
     @FXML
     private JFXTextField txtFPesoSoportado;
     @FXML
@@ -48,7 +45,6 @@ public class AgregarEnvaseController implements Initializable {
     private JFXButton btnAtras;
     @FXML
     private JFXButton btnInicio;
-
     private Sistema sistema;
     @FXML
     private JFXRadioButton rbPlastico;
@@ -58,7 +54,6 @@ public class AgregarEnvaseController implements Initializable {
     private JFXRadioButton rbPapel;
     @FXML
     private JFXRadioButton rbMetal;
-
     /**
      * Initializes the controller class.
      */
@@ -66,23 +61,18 @@ public class AgregarEnvaseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
-
     @FXML
     private void obtenerPesoSoportado(ActionEvent event) {
     }
-
     @FXML
     private void obtenerNombreEnvase(ActionEvent event) {
     }
-
     @FXML
     private void agregarEnvase(ActionEvent event) {
         boolean esValido = true;
         int peso = 1;
-
         //Parte de nombre del envase
         String nombre = this.txtFNombreEnvase.getText().trim();
-
         if (nombre.length() == 0) {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -91,7 +81,6 @@ public class AgregarEnvaseController implements Initializable {
             alert.setContentText("El campo de nombre, se encuentra vacio!");
             alert.showAndWait();
         }
-
         //Parte de peso
         try {
             String pesoString = this.txtFPesoSoportado.getText().trim();
@@ -109,7 +98,7 @@ public class AgregarEnvaseController implements Initializable {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("¡Cuidado!");
                     alert.setHeaderText("Error: no es un precio valido");
-                    alert.setContentText("Ingrese un peso positivo y mayor a 0");
+                    alert.setContentText("Ingrese un peso entre 1 y 100");
                     alert.showAndWait();
                 } else {
                     if (peso > 100) {
@@ -117,7 +106,7 @@ public class AgregarEnvaseController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("¡Cuidado!");
                         alert.setHeaderText("Error: no es un peso valido");
-                        alert.setContentText("Ingrese un peso menor o igual a 100");
+                        alert.setContentText("Ingrese un peso entre 1 y 100");
                         alert.showAndWait();
                     }
                 }
@@ -130,47 +119,37 @@ public class AgregarEnvaseController implements Initializable {
             alert.setContentText("Reingrese el valor del peso!");
             alert.showAndWait();
         }
-
         //Parte de tipos de materiales
         ArrayList<dominio.TipoMateriales> materiales = new ArrayList<>();
         if (this.rbPlastico.isSelected()) {
             materiales.add(TipoMateriales.Plastico);
         }
-
         if (this.rbPapel.isSelected()) {
             materiales.add(TipoMateriales.Papel);
         }
-
         if (this.rbMetal.isSelected()) {
             materiales.add(TipoMateriales.Metal);
         }
-
         if (this.rbCarton.isSelected()) {
             materiales.add(TipoMateriales.Carton);
         }
-
         if (materiales.isEmpty()) {
             esValido = false;
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("¡Cuidado!");
             alert.setHeaderText("Error: no ha seleccionado los materiales");
-            alert.setContentText("Debe seleccionar al menos un material !");
+            alert.setContentText("Debe seleccionar al menos un material!");
             alert.showAndWait();
         }
-
         //Parte del codigo identificador del envase
         int codigoIdentificadorEnvase = this.getSistema().ponerIdentificadorAEnvase();
-
         //Parte de la creacion del envase si es valido
         if (esValido) {
             FileChooser fileChooser = new FileChooser();
-
             FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter("Imagenes (*.png, *.jpg, *.jpeg)", "*.png", "*.jpeg", "*.jpg");
             fileChooser.getExtensionFilters().add(filter);
-
             File selectedFile = fileChooser.showOpenDialog(new Stage());
             if (selectedFile == null) {
-
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("¡Cuidado!");
                 alert.setHeaderText("Error: seleccione una imagen");
@@ -185,123 +164,74 @@ public class AgregarEnvaseController implements Initializable {
                 alert.setHeaderText("Se ha agregado correctamente el envase");
                 alert.showAndWait();
             }
-
-        }
-
-        for (int i = 0; i < this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {
-            System.out.println(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));
         }
     }
-
     @FXML
     private void volverAtras(ActionEvent event) {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public void cerrarVentana() {
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
-
             Parent root = loader.load();
-
             VendedorController controlador = loader.getController();
-
             Scene escena = new Scene(root);
-
             Stage stage = new Stage();
-
             stage.setScene(escena);
-
             stage.show();
-
             stage.setHeight(675);
-
             stage.setWidth(366);
-
             stage.setResizable(false);
-
             controlador.setSistema(sistema);
-
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
-
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public Sistema getSistema() {
         return sistema;
     }
-
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-
 }
