@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BeneficiosController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">BeneficiosController.java</span></div><h1>BeneficiosController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Sistema;
+import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L32">public class BeneficiosController implements Initializable {</span>
+
+    @FXML
+    private JFXButton btnMasVendidos;
+    @FXML
+    private JFXButton btnEnvasesRecomendados;
+    @FXML
+    private JFXButton btnVentasPorMes;
+    @FXML
+    private JFXButton btnBeneficios;
+    @FXML
+    private BarChart&lt;?, ?&gt; graficaBeneficios;
+    @FXML
+    private NumberAxis y;
+    @FXML
+    private CategoryAxis x;
+    @FXML
+    private JFXButton btnAtras;
+    @FXML
+    private JFXButton btnInicio;
+
+    private Sistema sistema;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+<span class="nc" id="L61">    }</span>
+
+    @FXML
+    private void mostrarMasVendidos(ActionEvent event) {
+
+        try {
+<span class="nc" id="L67">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Estadisticas.fxml&quot;));</span>
+
+<span class="nc" id="L69">            Parent root = loader.load();</span>
+
+<span class="nc" id="L71">            EstadisticasController controlador = loader.getController();</span>
+
+<span class="nc" id="L73">            controlador.cargarGraficas(sistema);</span>
+
+<span class="nc" id="L75">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L77">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L79">            stage.setScene(escena);</span>
+
+<span class="nc" id="L81">            stage.show();</span>
+
+<span class="nc" id="L83">            stage.setHeight(675);</span>
+
+<span class="nc" id="L85">            stage.setWidth(366);</span>
+
+<span class="nc" id="L87">            stage.setResizable(false);</span>
+
+<span class="nc" id="L89">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L91">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L93">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L94">            myStage.close();</span>
+<span class="nc" id="L95">        } catch (IOException ex) {</span>
+<span class="nc" id="L96">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L97">        }</span>
+<span class="nc" id="L98">    }</span>
+
+    public void cargarGraficaDeBeneficios(Sistema sistema) {
+
+<span class="nc" id="L102">        this.setSistema(sistema);</span>
+
+<span class="nc" id="L104">        XYChart.Series set1 = new XYChart.Series&lt;&gt;();</span>
+
+<span class="nc" id="L106">        int cantidadDeVentas = 0;</span>
+
+<span class="nc bnc" id="L108" title="All 2 branches missed.">        for (int i = 1; i &lt;= 12; i++) {</span>
+
+<span class="nc" id="L110">            cantidadDeVentas = this.getSistema().getGanancias()[i - 1];</span>
+<span class="nc" id="L111">            set1.getData().add(new XYChart.Data(Integer.toString(i), cantidadDeVentas));</span>
+
+        }
+<span class="nc" id="L114">        this.graficaBeneficios.getData().add(set1);</span>
+<span class="nc" id="L115">    }</span>
+
+    @FXML
+    private void envasesUtilizados(ActionEvent event) {
+
+      
+        try {
+<span class="nc" id="L122">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;EnvasesReutilizados.fxml&quot;));</span>
+
+<span class="nc" id="L124">            Parent root = loader.load();</span>
+
+<span class="nc" id="L126">            EnvasesReutilizadosController controlador = loader.getController();</span>
+
+<span class="nc" id="L128">            controlador.cargarGraficaEnvases(sistema);</span>
+
+<span class="nc" id="L130">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L132">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L134">            stage.setScene(escena);</span>
+
+<span class="nc" id="L136">            stage.show();</span>
+
+<span class="nc" id="L138">            stage.setHeight(675);</span>
+
+<span class="nc" id="L140">            stage.setWidth(366);</span>
+
+<span class="nc" id="L142">            stage.setResizable(false);</span>
+
+<span class="nc" id="L144">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L146">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L148">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L149">            myStage.close();</span>
+<span class="nc" id="L150">        } catch (IOException ex) {</span>
+<span class="nc" id="L151">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L152">        }</span>
+<span class="nc" id="L153">    }</span>
+
+    @FXML
+    private void ventasPorMes(ActionEvent event) {
+        try {
+<span class="nc" id="L158">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;GraficaDeVentaXMes.fxml&quot;));</span>
+
+<span class="nc" id="L160">            Parent root = loader.load();</span>
+
+<span class="nc" id="L162">            GraficaDeVentaXMesController controlador = loader.getController();</span>
+
+<span class="nc" id="L164">            controlador.cargarGraficaDeVentas(sistema);</span>
+
+<span class="nc" id="L166">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L168">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L170">            stage.setScene(escena);</span>
+
+<span class="nc" id="L172">            stage.show();</span>
+
+<span class="nc" id="L174">            stage.setHeight(675);</span>
+
+<span class="nc" id="L176">            stage.setWidth(366);</span>
+
+<span class="nc" id="L178">            stage.setResizable(false);</span>
+
+<span class="nc" id="L180">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L182">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L184">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L185">            myStage.close();</span>
+<span class="nc" id="L186">        } catch (IOException ex) {</span>
+<span class="nc" id="L187">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L188">        }</span>
+<span class="nc" id="L189">    }</span>
+
+    @FXML
+    private void mostrarBeneficios(ActionEvent event) {
+<span class="nc" id="L193">    }</span>
+
+    @FXML
+    private void volverVentanaAnterior(ActionEvent event) {
+        try {
+<span class="nc" id="L198">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L200">            Parent root = loader.load();</span>
+
+<span class="nc" id="L202">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L204">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L206">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L208">            stage.setScene(escena);</span>
+
+<span class="nc" id="L210">            stage.show();</span>
+
+<span class="nc" id="L212">            stage.setHeight(675);</span>
+
+<span class="nc" id="L214">            stage.setWidth(366);</span>
+
+<span class="nc" id="L216">            stage.setResizable(false);</span>
+
+<span class="nc" id="L218">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L220">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L222">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L223">            myStage.close();</span>
+<span class="nc" id="L224">        } catch (IOException ex) {</span>
+<span class="nc" id="L225">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L226">        }</span>
+<span class="nc" id="L227">    }</span>
+
+    @FXML
+    private void volverAInicio(ActionEvent event) {
+        try {
+<span class="nc" id="L232">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L234">            Parent root = loader.load();</span>
+
+<span class="nc" id="L236">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L238">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L240">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L242">            stage.setScene(escena);</span>
+
+<span class="nc" id="L244">            stage.show();</span>
+
+<span class="nc" id="L246">            stage.setHeight(675);</span>
+
+<span class="nc" id="L248">            stage.setWidth(366);</span>
+
+<span class="nc" id="L250">            stage.setResizable(false);</span>
+
+<span class="nc" id="L252">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L254">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L256">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L257">            myStage.close();</span>
+<span class="nc" id="L258">        } catch (IOException ex) {</span>
+<span class="nc" id="L259">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L260">        }</span>
+<span class="nc" id="L261">    }</span>
+
+    public void cerrarVentana() {
+        try {
+<span class="nc" id="L265">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L267">            Parent root = loader.load();</span>
+
+<span class="nc" id="L269">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L271">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L273">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L275">            stage.setScene(escena);</span>
+
+<span class="nc" id="L277">            stage.show();</span>
+
+<span class="nc" id="L279">            stage.setHeight(675);</span>
+
+<span class="nc" id="L281">            stage.setWidth(366);</span>
+
+<span class="nc" id="L283">            stage.setResizable(false);</span>
+
+<span class="nc" id="L285">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L287">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L289">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L290">            myStage.close();</span>
+<span class="nc" id="L291">        } catch (IOException ex) {</span>
+<span class="nc" id="L292">            Logger.getLogger(BeneficiosController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L293">        }</span>
+<span class="nc" id="L294">    }</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L297">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L301">        this.sistema = sistema;</span>
+<span class="nc" id="L302">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>SeleccionarEnvasePorProductoController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">SeleccionarEnvasePorProductoController.java</span></div><h1>SeleccionarEnvasePorProductoController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Envase;
+import dominio.Producto;
+import dominio.Sistema;
+import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L34">public class SeleccionarEnvasePorProductoController implements Initializable {</span>
+
+    @FXML
+    private VBox productoSeleccionado;
+    @FXML
+    private VBox listaDeEnvases;
+    @FXML
+    private JFXButton btnCarrito;
+    @FXML
+    private JFXButton btnAtras;
+    @FXML
+    private JFXButton btnVolver;
+
+    private Sistema sistema;
+
+    private Producto prod;
+
+    public Sistema getSistema() {
+<span class="nc" id="L52">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L56">        this.sistema = sistema;</span>
+<span class="nc" id="L57">    }</span>
+
+    public Producto getProd() {
+<span class="nc" id="L60">        return prod;</span>
+    }
+
+    public void setProd(Producto prod) {
+<span class="nc" id="L64">        this.prod = prod;</span>
+<span class="nc" id="L65">    }</span>
+
+    public void cargarProductos(Producto producto, Sistema sis, SeleccionarEnvasePorProductoController paraCargarPestañaCarrito) {
+
+        try {
+<span class="nc" id="L70">            this.setSistema(sis);</span>
+
+<span class="nc" id="L72">            this.productoSeleccionado.getChildren().clear();</span>
+
+            //Cargarart el objeto
+<span class="nc" id="L75">            FXMLLoader fxml = new FXMLLoader(getClass().getResource(&quot;ProductoParaSeleccionarEnvases.fxml&quot;));</span>
+
+<span class="nc" id="L77">            Parent nodo = fxml.load();</span>
+
+            //Carga los datos
+<span class="nc" id="L80">            ProductoParaSeleccionarEnvasesController controlador = fxml.getController();</span>
+
+<span class="nc" id="L82">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L84">            controlador.inicializarDatos(producto, sistema, paraCargarPestañaCarrito);</span>
+
+            //Cargo el nuevo objeto
+<span class="nc" id="L87">            this.productoSeleccionado.getChildren().add((Node) nodo);</span>
+<span class="nc" id="L88">        } catch (IOException ex) {</span>
+<span class="nc" id="L89">            Logger.getLogger(SeleccionarEnvasePorProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L90">        }</span>
+
+<span class="nc" id="L92">    }</span>
+
+    public void cargarProductos2(ArrayList&lt;Envase&gt; listaDeEnvases, Sistema sis, SeleccionarEnvasePorProductoController paraCargarPestañaCarrito, Producto producto) {
+
+<span class="nc" id="L96">        this.setSistema(sis);</span>
+
+<span class="nc" id="L98">        this.setProd(producto);</span>
+
+<span class="nc" id="L100">        this.listaDeEnvases.getChildren().clear();</span>
+
+<span class="nc" id="L102">        this.listaDeEnvases.setSpacing(10);</span>
+
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        for (int i = 0; i &lt; listaDeEnvases.size(); i++) {</span>
+            try {
+<span class="nc" id="L106">                Envase envase = listaDeEnvases.get(i);</span>
+
+<span class="nc" id="L108">                FXMLLoader fxml = new FXMLLoader(getClass().getResource(&quot;PresentacionEnvases.fxml&quot;));</span>
+
+<span class="nc" id="L110">                Parent nodo = fxml.load();</span>
+
+<span class="nc" id="L112">                PresentacionEnvasesController controlador = fxml.getController();</span>
+
+<span class="nc" id="L114">                controlador.inicializarDatos(envase, sistema, paraCargarPestañaCarrito, producto);</span>
+
+<span class="nc" id="L116">                controlador.setSistema(sistema);</span>
+
+                //Cargo el nuevo objeto
+<span class="nc" id="L119">                this.listaDeEnvases.getChildren().add((Node) nodo);</span>
+<span class="nc" id="L120">            } catch (IOException ex) {</span>
+<span class="nc" id="L121">                Logger.getLogger(SeleccionarEnvasePorProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L122">            }</span>
+
+        }
+
+<span class="nc" id="L126">    }</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+<span class="nc" id="L131">    }</span>
+
+    @FXML
+    private void irACarrito(ActionEvent event) {
+
+<span class="nc bnc" id="L136" title="All 2 branches missed.">        if (!this.getSistema().getEnvasesALlevarEnVenta().isEmpty()) {</span>
+            try {
+<span class="nc" id="L138">                FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Carrito.fxml&quot;));</span>
+
+<span class="nc" id="L140">                Parent root = loader.load();</span>
+
+<span class="nc" id="L142">                CarritoController controlador = loader.getController();</span>
+
+<span class="nc" id="L144">                Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L146">                Stage stage = new Stage();</span>
+
+<span class="nc" id="L148">                stage.setScene(escena);</span>
+
+<span class="nc" id="L150">                stage.show();</span>
+
+<span class="nc" id="L152">                stage.setHeight(675);</span>
+
+<span class="nc" id="L154">                stage.setWidth(366);</span>
+
+<span class="nc" id="L156">                stage.setResizable(false);</span>
+
+<span class="nc" id="L158">                controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L160">                controlador.cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());</span>
+
+<span class="nc" id="L162">                stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L164">                Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();</span>
+<span class="nc" id="L165">                myStage.close();</span>
+<span class="nc" id="L166">            } catch (IOException ex) {</span>
+<span class="nc" id="L167">                Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L168">            }</span>
+        } else {
+<span class="nc" id="L170">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L171">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L172">            alert.setHeaderText(&quot;Error: Seleccione almenos un envase&quot;);</span>
+<span class="nc" id="L173">            alert.setContentText(&quot;Agregue un envase, en el cual retirara el producto&quot;);</span>
+<span class="nc" id="L174">            alert.showAndWait();</span>
+        }
+
+<span class="nc" id="L177">    }</span>
+
+    @FXML
+    private void irAInicio(ActionEvent event) {
+
+<span class="nc bnc" id="L182" title="All 2 branches missed.">        if (!this.getSistema().getEnvasesALlevarEnVenta().isEmpty()) {</span>
+            try {
+<span class="nc" id="L184">                FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Cliente.fxml&quot;));</span>
+
+<span class="nc" id="L186">                Parent root = loader.load();</span>
+
+<span class="nc" id="L188">                ClienteController controlador = loader.getController();</span>
+
+<span class="nc" id="L190">                Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L192">                Stage stage = new Stage();</span>
+
+<span class="nc" id="L194">                stage.setScene(escena);</span>
+
+<span class="nc" id="L196">                stage.show();</span>
+
+<span class="nc" id="L198">                stage.setHeight(675);</span>
+
+<span class="nc" id="L200">                stage.setWidth(366);</span>
+
+<span class="nc" id="L202">                stage.setResizable(false);</span>
+
+<span class="nc" id="L204">                controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L206">                controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);</span>
+
+<span class="nc" id="L208">                stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L210">                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L211">                myStage.close();</span>
+<span class="nc" id="L212">            } catch (IOException ex) {</span>
+<span class="nc" id="L213">                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L214">            }</span>
+
+        } else {
+<span class="nc" id="L217">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L218">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L219">            alert.setHeaderText(&quot;Error: Seleccione almenos un envase&quot;);</span>
+<span class="nc" id="L220">            alert.setContentText(&quot;Agregue un envase, en el cual retirara el producto&quot;);</span>
+<span class="nc" id="L221">            alert.showAndWait();</span>
+        }
+<span class="nc" id="L223">    }</span>
+
+    @FXML
+    private void volverInicio(ActionEvent event) {
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        if (!this.getSistema().getEnvasesALlevarEnVenta().isEmpty()) {</span>
+            try {
+<span class="nc" id="L229">                FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Cliente.fxml&quot;));</span>
+
+<span class="nc" id="L231">                Parent root = loader.load();</span>
+
+<span class="nc" id="L233">                ClienteController controlador = loader.getController();</span>
+
+<span class="nc" id="L235">                Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L237">                Stage stage = new Stage();</span>
+
+<span class="nc" id="L239">                stage.setScene(escena);</span>
+
+<span class="nc" id="L241">                stage.show();</span>
+
+<span class="nc" id="L243">                stage.setHeight(675);</span>
+
+<span class="nc" id="L245">                stage.setWidth(366);</span>
+
+<span class="nc" id="L247">                stage.setResizable(false);</span>
+
+<span class="nc" id="L249">                controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L251">                controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);</span>
+
+<span class="nc" id="L253">                stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L255">                Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L256">                myStage.close();</span>
+<span class="nc" id="L257">            } catch (IOException ex) {</span>
+<span class="nc" id="L258">                Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L259">            }</span>
+        } else {
+<span class="nc" id="L261">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L262">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L263">            alert.setHeaderText(&quot;Error: Seleccione almenos un envase&quot;);</span>
+<span class="nc" id="L264">            alert.setContentText(&quot;Agregue un envase, en el cual retirara el producto&quot;);</span>
+<span class="nc" id="L265">            alert.showAndWait();</span>
+        }
+<span class="nc" id="L267">    }</span>
+
+    public void cerrarVentana() {
+
+        try {
+<span class="nc" id="L272">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Cliente.fxml&quot;));</span>
+
+<span class="nc" id="L274">            Parent root = loader.load();</span>
+
+<span class="nc" id="L276">            ClienteController controlador = loader.getController();</span>
+
+<span class="nc" id="L278">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L280">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L282">            stage.setScene(escena);</span>
+
+<span class="nc" id="L284">            stage.show();</span>
+
+<span class="nc" id="L286">            stage.setHeight(675);</span>
+
+<span class="nc" id="L288">            stage.setWidth(366);</span>
+
+<span class="nc" id="L290">            stage.setResizable(false);</span>
+
+<span class="nc" id="L292">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L294">            controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);</span>
+
+<span class="nc" id="L296">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L298">            Stage myStage = (Stage) this.btnAtras.getScene().getWindow();</span>
+<span class="nc" id="L299">            myStage.close();</span>
+<span class="nc" id="L300">        } catch (IOException ex) {</span>
+<span class="nc" id="L301">            Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L302">        }</span>
+
+<span class="nc" id="L304">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

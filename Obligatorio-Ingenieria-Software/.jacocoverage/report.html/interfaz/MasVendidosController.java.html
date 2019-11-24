@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MasVendidosController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">MasVendidosController.java</span></div><h1>MasVendidosController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Producto;
+import dominio.Sistema;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L22">public class MasVendidosController implements Initializable {</span>
+
+    @FXML
+    private ImageView imagenProducto;
+    @FXML
+    private Label nombreProd;
+    @FXML
+    private Label precioProducto;
+    @FXML
+    private Label descripcion;
+    @FXML
+    private Label identificador;
+    @FXML
+    private Label cantidadVendidos;
+    
+    private Sistema sistema; 
+    
+    //Gets and sets
+
+    public ImageView getImagenProducto() {
+<span class="nc" id="L42">        return imagenProducto;</span>
+    }
+
+    public void setImagenProducto(ImageView imagenProducto) {
+<span class="nc" id="L46">        this.imagenProducto = imagenProducto;</span>
+<span class="nc" id="L47">    }</span>
+
+    public Label getNombreProd() {
+<span class="nc" id="L50">        return nombreProd;</span>
+    }
+
+    public void setNombreProd(Label nombreProd) {
+<span class="nc" id="L54">        this.nombreProd = nombreProd;</span>
+<span class="nc" id="L55">    }</span>
+
+    public Label getPrecioProducto() {
+<span class="nc" id="L58">        return precioProducto;</span>
+    }
+
+    public void setPrecioProducto(Label precioProducto) {
+<span class="nc" id="L62">        this.precioProducto = precioProducto;</span>
+<span class="nc" id="L63">    }</span>
+
+    public Label getDescripcion() {
+<span class="nc" id="L66">        return descripcion;</span>
+    }
+
+    public void setDescripcion(Label descripcion) {
+<span class="nc" id="L70">        this.descripcion = descripcion;</span>
+<span class="nc" id="L71">    }</span>
+
+    public Label getIdentificador() {
+<span class="nc" id="L74">        return identificador;</span>
+    }
+
+    public void setIdentificador(Label identificador) {
+<span class="nc" id="L78">        this.identificador = identificador;</span>
+<span class="nc" id="L79">    }</span>
+
+    public Label getCantidadVendidos() {
+<span class="nc" id="L82">        return cantidadVendidos;</span>
+    }
+
+    public void setCantidadVendidos(Label cantidadVendidos) {
+<span class="nc" id="L86">        this.cantidadVendidos = cantidadVendidos;</span>
+<span class="nc" id="L87">    }</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L90">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L94">        this.sistema = sistema;</span>
+<span class="nc" id="L95">    }</span>
+    
+    
+    
+    
+    
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+<span class="nc" id="L106">    }    </span>
+    
+    
+    public void inicializarDatos(Producto producto, Sistema sistema){
+<span class="nc" id="L110">        this.setSistema(sistema);</span>
+<span class="nc" id="L111">        this.imagenProducto.setImage(producto.getImagenDelProducto());</span>
+<span class="nc" id="L112">        this.nombreProd.setText(producto.getNombre());</span>
+<span class="nc" id="L113">        this.precioProducto.setText(Double.toString(producto.getPrecio()));</span>
+<span class="nc" id="L114">        this.cantidadVendidos.setText(Integer.toString(producto.getCantidadVendidos()));</span>
+<span class="nc" id="L115">        this.descripcion.setText(producto.getDescripcionDelProducto());</span>
+<span class="nc" id="L116">        this.identificador.setText(Integer.toString(producto.getCodigoIdentificador()));</span>
+<span class="nc" id="L117">    }</span>
+    
+    
+    
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

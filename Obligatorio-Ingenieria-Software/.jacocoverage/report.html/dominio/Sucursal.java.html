@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Sucursal.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">dominio</a> &gt; <span class="el_source">Sucursal.java</span></div><h1>Sucursal.java</h1><pre class="source lang-java linenums">package dominio;
+
+<span class="pc bpc" id="L3" title="1 of 2 branches missed.">public class Sucursal {</span>
+
+    //Atributos
+    private int numeroSucursal;
+    private String direccion;
+    private long telefono;
+    
+    //Constructores
+<span class="nc" id="L11">    public Sucursal(int numeroSucursal, String direccion, long telefono) {</span>
+<span class="nc" id="L12">        this.setNumeroSucursal(numeroSucursal);</span>
+<span class="nc" id="L13">        this.setDireccion(direccion);</span>
+<span class="nc" id="L14">        this.setTelefono(telefono);</span>
+<span class="nc" id="L15">    }</span>
+
+<span class="fc" id="L17">    public Sucursal() {</span>
+<span class="fc" id="L18">        this.setNumeroSucursal(1);</span>
+<span class="fc" id="L19">        this.setDireccion(&quot;Direccion&quot;);</span>
+<span class="fc" id="L20">        this.setTelefono(1);</span>
+<span class="fc" id="L21">    }</span>
+    
+    //Getters &amp;&amp; Setters
+    public int getNumeroSucursal() {
+<span class="fc" id="L25">        return numeroSucursal;</span>
+    }
+
+    public void setNumeroSucursal(int numeroSucursal) {
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (numeroSucursal &gt;= 1) {</span>
+<span class="fc" id="L30">            this.numeroSucursal = numeroSucursal;</span>
+        } else {
+<span class="fc" id="L32">            throw new RuntimeException(&quot;numeroSucursalMayorA0&quot;);</span>
+        }
+<span class="fc" id="L34">    }</span>
+
+    public String getDireccion() {
+<span class="fc" id="L37">        return direccion;</span>
+    }
+
+    public void setDireccion(String direccion) {
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        if (!direccion.trim().equals(&quot;&quot;)) {</span>
+<span class="fc" id="L42">            this.direccion = direccion;</span>
+        } else {
+<span class="fc" id="L44">            throw new RuntimeException(&quot;direccionNoVacia&quot;);</span>
+        }
+<span class="fc" id="L46">    }</span>
+
+    public long getTelefono() {
+<span class="fc" id="L49">        return telefono;</span>
+    }
+
+    public void setTelefono(long telefono) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (telefono &gt;= 1) {</span>
+<span class="fc" id="L54">            this.telefono = telefono;</span>
+        } else {
+<span class="fc" id="L56">            throw new RuntimeException(&quot;telefonoMayorA0&quot;);</span>
+        }
+<span class="fc" id="L58">    }</span>
+    
+    //Metodos
+    @Override
+    public String toString() {
+<span class="nc" id="L63">        return &quot;Sucursal{&quot; </span>
+                + &quot;numeroSucursal=&quot; + numeroSucursal 
+                + &quot;, direccion=&quot; + direccion 
+                + &quot;, telefono=&quot; + telefono + '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+<span class="fc" id="L71">        boolean retorno = false;</span>
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (o instanceof Sucursal) {</span>
+<span class="fc" id="L73">            Sucursal s = (Sucursal) o;</span>
+<span class="fc" id="L74">            retorno = this.getNumeroSucursal()</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">                    == s.getNumeroSucursal();</span>
+        }
+<span class="fc" id="L77">        return retorno;</span>
+    }
+
+    public int hashCode() {
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        assert false : &quot;hashCode not designed&quot;;</span>
+<span class="nc" id="L82">        return 1;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

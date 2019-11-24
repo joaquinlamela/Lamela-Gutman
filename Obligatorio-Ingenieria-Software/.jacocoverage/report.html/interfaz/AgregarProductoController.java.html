@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AgregarProductoController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">AgregarProductoController.java</span></div><h1>AgregarProductoController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Envase;
+import dominio.Producto;
+import dominio.Sistema;
+import dominio.TipoMateriales;
+import dominio.TipoOrigen;
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L47">public class AgregarProductoController implements Initializable {</span>
+
+    @FXML
+    private JFXTextField txtFNombre;
+    @FXML
+    private JFXTextField txtFPeso;
+    @FXML
+    private JFXTextField txtFPrecio;
+    @FXML
+    private JFXComboBox&lt;String&gt; cmbOrigen;
+    @FXML
+    private JFXButton btnAgregar;
+    @FXML
+    private JFXButton btnVolverVendedor;
+    @FXML
+    private JFXButton btnInicio;
+    @FXML
+    private JFXRadioButton cmbPlastico;
+    @FXML
+    private JFXRadioButton cmbCarton;
+    @FXML
+    private JFXRadioButton cmbMetal;
+    @FXML
+    private JFXRadioButton cmbPapel;
+    @FXML
+    private JFXTextField txtFDescripcion;
+
+    /**
+     * Initializes the controller class.
+     */
+    private Sistema sistema;
+    @FXML
+    private TableView&lt;Envase&gt; tablaDeEnvases;
+    @FXML
+    private TableColumn&lt;Envase, String&gt; nombreEnvase;
+    @FXML
+    private TableColumn&lt;Envase, String&gt; idEnvase;
+    @FXML
+    private TableColumn&lt;Envase, Integer&gt; capacidadEnvase;
+
+    private ObservableList&lt;Envase&gt; listaDeEnvases;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L95">        ObservableList&lt;String&gt; valoresPosibles = FXCollections.observableArrayList(&quot;Vegetal&quot;, &quot;Mineral&quot;, &quot;Animal&quot;, &quot;Fosil&quot;, &quot;Indefinido&quot;);</span>
+<span class="nc" id="L96">        this.cmbOrigen.setItems(valoresPosibles);</span>
+<span class="nc" id="L97">        this.tablaDeEnvases.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);</span>
+<span class="nc" id="L98">        listaDeEnvases = FXCollections.observableArrayList();</span>
+<span class="nc" id="L99">    }</span>
+
+    @FXML
+    private void obtenerNombre(ActionEvent event) {
+
+<span class="nc" id="L104">    }</span>
+
+    @FXML
+    private void obtenerPeso(ActionEvent event) {
+<span class="nc" id="L108">    }</span>
+
+    @FXML
+    private void obtenerPrecio(ActionEvent event) {
+<span class="nc" id="L112">    }</span>
+
+    @FXML
+    private void obtenerOrigen(ActionEvent event) {
+<span class="nc" id="L116">    }</span>
+
+    public void cargarDatos(ArrayList&lt;Envase&gt; listaEnvases, Sistema sistema) {
+
+<span class="nc" id="L120">        this.setSistema(sistema);</span>
+
+<span class="nc bnc" id="L122" title="All 2 branches missed.">        if (this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().isEmpty()) {</span>
+<span class="nc" id="L123">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L124">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L125">            alert.setHeaderText(&quot;Error: no hay envases&quot;);</span>
+<span class="nc" id="L126">            alert.setContentText(&quot;¡No hay envases posibles para asociar!&quot;);</span>
+<span class="nc" id="L127">            alert.showAndWait();</span>
+<span class="nc" id="L128">        } else {</span>
+<span class="nc" id="L129">            this.nombreEnvase.setCellValueFactory(new PropertyValueFactory(&quot;nombre&quot;));</span>
+<span class="nc" id="L130">            this.idEnvase.setCellValueFactory(new PropertyValueFactory(&quot;idIdentificador&quot;));</span>
+<span class="nc" id="L131">            this.capacidadEnvase.setCellValueFactory(new PropertyValueFactory(&quot;pesoMaximoSoportado&quot;));</span>
+<span class="nc bnc" id="L132" title="All 2 branches missed.">            for (int i = 0; i &lt; this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().size(); i++) {</span>
+<span class="nc" id="L133">                listaDeEnvases.add(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().get(i));</span>
+            }
+<span class="nc" id="L135">            this.tablaDeEnvases.setItems(listaDeEnvases);</span>
+        }
+<span class="nc" id="L137">    }</span>
+
+    @FXML
+    private void agregarProductoCreado(ActionEvent event) {
+
+        //FALTA ACA VER EL TEMA DEL ORIGEN Y LA LISTA DE ELEMENTOS QUE HAY QUE TENER, Y QUEDAAAAA. 
+<span class="nc" id="L143">        boolean esValido = true;</span>
+
+<span class="nc" id="L145">        int precio = 1;</span>
+<span class="nc" id="L146">        int peso = 1;</span>
+
+<span class="nc" id="L148">        ArrayList&lt;Envase&gt; listaEnvases = new ArrayList&lt;&gt;();</span>
+
+        //Parte de nombre de producto
+<span class="nc" id="L151">        String nombre = txtFNombre.getText().trim();</span>
+
+<span class="nc bnc" id="L153" title="All 2 branches missed.">        if (nombre.length() == 0) {</span>
+<span class="nc" id="L154">            esValido = false;</span>
+<span class="nc" id="L155">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L156">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L157">            alert.setHeaderText(&quot;Error: campo vacio&quot;);</span>
+<span class="nc" id="L158">            alert.setContentText(&quot;El campo de nombre, se encuentra vacio!&quot;);</span>
+<span class="nc" id="L159">            alert.showAndWait();</span>
+        }
+
+        //Parte de peso
+        try {
+<span class="nc" id="L164">            String pesoString = txtFPeso.getText().trim();</span>
+<span class="nc bnc" id="L165" title="All 2 branches missed.">            if (pesoString.length() == 0) {</span>
+<span class="nc" id="L166">                esValido = false;</span>
+<span class="nc" id="L167">                Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L168">                alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L169">                alert.setHeaderText(&quot;Error: campo vacio&quot;);</span>
+<span class="nc" id="L170">                alert.setContentText(&quot;El campo de peso, se encuentra vacio!&quot;);</span>
+<span class="nc" id="L171">                alert.showAndWait();</span>
+<span class="nc" id="L172">            } else {</span>
+<span class="nc" id="L173">                peso = Integer.parseInt(pesoString);</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                if (peso &lt;= 0) {</span>
+<span class="nc" id="L175">                    esValido = false;</span>
+<span class="nc" id="L176">                    Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L177">                    alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L178">                    alert.setHeaderText(&quot;Error: no es un precio valido&quot;);</span>
+<span class="nc" id="L179">                    alert.setContentText(&quot;Ingrese un peso positivo y mayor a 0&quot;);</span>
+<span class="nc" id="L180">                    alert.showAndWait();</span>
+<span class="nc" id="L181">                } else {</span>
+<span class="nc bnc" id="L182" title="All 2 branches missed.">                    if (peso &gt; 100) {</span>
+<span class="nc" id="L183">                        esValido = false;</span>
+<span class="nc" id="L184">                        Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L185">                        alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L186">                        alert.setHeaderText(&quot;Error: no es un precio valido&quot;);</span>
+<span class="nc" id="L187">                        alert.setContentText(&quot;Ingrese un peso menor o igual a 100&quot;);</span>
+<span class="nc" id="L188">                        alert.showAndWait();</span>
+                    }
+                }
+            }
+<span class="nc" id="L192">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L193">            esValido = false;</span>
+<span class="nc" id="L194">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L195">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L196">            alert.setHeaderText(&quot;Error: no es un peso valido&quot;);</span>
+<span class="nc" id="L197">            alert.setContentText(&quot;Reingrese el valor del peso!&quot;);</span>
+<span class="nc" id="L198">            alert.showAndWait();</span>
+<span class="nc" id="L199">        }</span>
+
+        //Parte de precio
+        try {
+<span class="nc" id="L203">            String precioString = txtFPrecio.getText().trim();</span>
+<span class="nc bnc" id="L204" title="All 2 branches missed.">            if (precioString.length() == 0) {</span>
+<span class="nc" id="L205">                esValido = false;</span>
+<span class="nc" id="L206">                Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L207">                alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L208">                alert.setHeaderText(&quot;Error: campo vacio&quot;);</span>
+<span class="nc" id="L209">                alert.setContentText(&quot;El campo de precio, se encuentra vacio!&quot;);</span>
+<span class="nc" id="L210">                alert.showAndWait();</span>
+<span class="nc" id="L211">            } else {</span>
+<span class="nc" id="L212">                precio = Integer.parseInt(precioString);</span>
+<span class="nc bnc" id="L213" title="All 2 branches missed.">                if (precio &lt; 1) {</span>
+<span class="nc" id="L214">                    esValido = false;</span>
+<span class="nc" id="L215">                    Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L216">                    alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L217">                    alert.setHeaderText(&quot;Error: no es un precio valido&quot;);</span>
+<span class="nc" id="L218">                    alert.setContentText(&quot;Ingrese un precio positivo y mayor o igual a 1!&quot;);</span>
+<span class="nc" id="L219">                    alert.showAndWait();</span>
+                }
+            }
+<span class="nc" id="L222">        } catch (NumberFormatException e) {</span>
+<span class="nc" id="L223">            esValido = false;</span>
+<span class="nc" id="L224">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L225">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L226">            alert.setHeaderText(&quot;Error: no es un precio valido&quot;);</span>
+<span class="nc" id="L227">            alert.setContentText(&quot;Reingrese el valor del peso!&quot;);</span>
+<span class="nc" id="L228">            alert.showAndWait();</span>
+<span class="nc" id="L229">        }</span>
+        //Parte de tipo de origen
+<span class="nc" id="L231">        dominio.TipoOrigen origenReal = TipoOrigen.Indefinido;</span>
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        if (!cmbOrigen.getSelectionModel().isEmpty()) {</span>
+<span class="nc" id="L233">            String origen = this.cmbOrigen.getSelectionModel().getSelectedItem();</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            if (origen.length() == 0) {</span>
+<span class="nc" id="L235">                esValido = false;</span>
+<span class="nc" id="L236">                Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L237">                alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L238">                alert.setHeaderText(&quot;Error: no ha seleccionado ningun origen&quot;);</span>
+<span class="nc" id="L239">                alert.setContentText(&quot;!Seleccione un origen!&quot;);</span>
+<span class="nc" id="L240">                alert.showAndWait();</span>
+            }
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (origen.equals(&quot;Indefinido&quot;)) {</span>
+<span class="nc" id="L243">                origenReal = TipoOrigen.Indefinido;</span>
+            } else {
+<span class="nc bnc" id="L245" title="All 2 branches missed.">                if (origen.equals(&quot;Fosil&quot;)) {</span>
+<span class="nc" id="L246">                    origenReal = TipoOrigen.Fosil;</span>
+                } else {
+<span class="nc bnc" id="L248" title="All 2 branches missed.">                    if (origen.equals(&quot;Animal&quot;)) {</span>
+<span class="nc" id="L249">                        origenReal = TipoOrigen.Animal;</span>
+                    } else {
+<span class="nc bnc" id="L251" title="All 2 branches missed.">                        if (origen.equals(&quot;Mineral&quot;)) {</span>
+<span class="nc" id="L252">                            origenReal = TipoOrigen.Mineral;</span>
+                        } else {
+<span class="nc bnc" id="L254" title="All 2 branches missed.">                            if (origen.equals(&quot;Vegetal&quot;)) {</span>
+<span class="nc" id="L255">                                origenReal = TipoOrigen.Vegetal;</span>
+                            }
+                        }
+                    }
+                }
+            }
+<span class="nc" id="L261">        } else {</span>
+<span class="nc" id="L262">            esValido = false;</span>
+<span class="nc" id="L263">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L264">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L265">            alert.setHeaderText(&quot;Error: no ha seleccionado ningun origen&quot;);</span>
+<span class="nc" id="L266">            alert.setContentText(&quot;!Seleccione un origen!&quot;);</span>
+<span class="nc" id="L267">            alert.showAndWait();</span>
+        }
+        //Parte de descripcion
+<span class="nc" id="L270">        String descripcion = this.txtFDescripcion.getText().trim();</span>
+<span class="nc bnc" id="L271" title="All 2 branches missed.">        if (descripcion.length() &lt; 10) {</span>
+<span class="nc" id="L272">            esValido = false;</span>
+<span class="nc" id="L273">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L274">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L275">            alert.setHeaderText(&quot;Error: descripcion muy corta&quot;);</span>
+<span class="nc" id="L276">            alert.setContentText(&quot;El campo de descripcion debe contener mas caracteres !&quot;);</span>
+<span class="nc" id="L277">            alert.showAndWait();</span>
+        }
+
+        //Parte de tipos de materiales
+<span class="nc" id="L281">        ArrayList&lt;dominio.TipoMateriales&gt; array = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L282" title="All 2 branches missed.">        if (cmbPlastico.isSelected()) {</span>
+<span class="nc" id="L283">            array.add(TipoMateriales.Plastico);</span>
+        }
+
+<span class="nc bnc" id="L286" title="All 2 branches missed.">        if (cmbPapel.isSelected()) {</span>
+<span class="nc" id="L287">            array.add(TipoMateriales.Papel);</span>
+        }
+
+<span class="nc bnc" id="L290" title="All 2 branches missed.">        if (cmbMetal.isSelected()) {</span>
+<span class="nc" id="L291">            array.add(TipoMateriales.Metal);</span>
+        }
+
+<span class="nc bnc" id="L294" title="All 2 branches missed.">        if (cmbCarton.isSelected()) {</span>
+<span class="nc" id="L295">            array.add(TipoMateriales.Carton);</span>
+        }
+
+<span class="nc bnc" id="L298" title="All 2 branches missed.">        if (array.isEmpty()) {</span>
+<span class="nc" id="L299">            esValido = false;</span>
+<span class="nc" id="L300">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L301">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L302">            alert.setHeaderText(&quot;Error: no ha seleccionado los materiales&quot;);</span>
+<span class="nc" id="L303">            alert.setContentText(&quot;Debe seleccionar al menos un material !&quot;);</span>
+<span class="nc" id="L304">            alert.showAndWait();</span>
+        }
+        //Parte de envases
+<span class="nc bnc" id="L307" title="All 2 branches missed.">        if (tablaDeEnvases.getItems().isEmpty()) {</span>
+<span class="nc" id="L308">            esValido = false;</span>
+<span class="nc" id="L309">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L310">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L311">            alert.setHeaderText(&quot;Error: no hay envases&quot;);</span>
+<span class="nc" id="L312">            alert.setContentText(&quot;¡Debe ingresar envases al sistema!&quot;);</span>
+<span class="nc" id="L313">            alert.showAndWait();</span>
+<span class="nc" id="L314">        } else {</span>
+<span class="nc" id="L315">            ObservableList&lt;dominio.Envase&gt; lista = this.tablaDeEnvases.getSelectionModel().getSelectedItems();</span>
+<span class="nc bnc" id="L316" title="All 2 branches missed.">            if (lista.isEmpty()) {</span>
+<span class="nc" id="L317">                esValido = false;</span>
+<span class="nc" id="L318">                Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L319">                alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L320">                alert.setHeaderText(&quot;Error: no ha seleccionado los envases&quot;);</span>
+<span class="nc" id="L321">                alert.setContentText(&quot;¡Debe seleccionar envases para poder ingresar el producto!&quot;);</span>
+<span class="nc" id="L322">                alert.showAndWait();</span>
+            }
+<span class="nc bnc" id="L324" title="All 2 branches missed.">            for (int i = 0; i &lt; lista.size(); i++) {</span>
+<span class="nc" id="L325">                listaEnvases.add(lista.get(i));</span>
+            }
+
+        }
+
+<span class="nc" id="L330">        int pesoMaximo = 0;</span>
+<span class="nc bnc" id="L331" title="All 2 branches missed.">        for (int i = 0; i &lt; listaEnvases.size(); i++) {</span>
+<span class="nc bnc" id="L332" title="All 2 branches missed.">            if (pesoMaximo &lt; listaEnvases.get(i).getPesoMaximoSoportado()) {</span>
+<span class="nc" id="L333">                pesoMaximo = listaEnvases.get(i).getPesoMaximoSoportado();</span>
+            }
+        }
+
+<span class="nc bnc" id="L337" title="All 2 branches missed.">        if (peso &gt; pesoMaximo) {</span>
+<span class="nc" id="L338">            esValido = false;</span>
+<span class="nc" id="L339">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L340">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L341">            alert.setHeaderText(&quot;Error: El peso del producto no es soportador por los envases recomendados&quot;);</span>
+<span class="nc" id="L342">            alert.setContentText(&quot;¡El peso del producto debe ser menor a la suma de todos los pesos soportados por los envases!&quot;);</span>
+<span class="nc" id="L343">            alert.showAndWait();</span>
+        }
+
+        //Parte de codigo identificador
+<span class="nc" id="L347">        int codigoIdentificadorDelProducto = this.getSistema().ponerIdentificadorAProducto();</span>
+
+        //Parte de cantidad de vewndidos de ese producto
+<span class="nc" id="L350">        int cantVendidos = 0;</span>
+<span class="nc bnc" id="L351" title="All 2 branches missed.">        for (int i = 0; i &lt; this.sistema.getListaDeVentasDelSitema().size(); i++) {</span>
+<span class="nc bnc" id="L352" title="All 2 branches missed.">            if (this.sistema.getListaDeVentasDelSitema().get(i).equals(nombre)) {</span>
+<span class="nc" id="L353">                cantVendidos++;</span>
+            }
+        }
+
+        //Creacion del producto si los campso son validos
+<span class="nc bnc" id="L358" title="All 2 branches missed.">        if (esValido) {</span>
+<span class="nc" id="L359">            FileChooser fileChooser = new FileChooser();</span>
+<span class="nc" id="L360">            FileChooser.ExtensionFilter filter = new FileChooser.ExtensionFilter(&quot;Imagenes (*.png, *.jpg, *.jpeg)&quot;, &quot;*.png&quot;, &quot;*.jpeg&quot;, &quot;*.jpg&quot;);</span>
+<span class="nc" id="L361">            fileChooser.getExtensionFilters().add(filter);</span>
+
+<span class="nc" id="L363">            File selectedFile = fileChooser.showOpenDialog(new Stage());</span>
+<span class="nc bnc" id="L364" title="All 2 branches missed.">            if (selectedFile == null) {</span>
+<span class="nc" id="L365">                Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L366">                alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L367">                alert.setHeaderText(&quot;Error: seleccione una imagen&quot;);</span>
+<span class="nc" id="L368">                alert.setContentText(&quot;Debe seleccionar un imagen!&quot;);</span>
+<span class="nc" id="L369">                alert.showAndWait();</span>
+<span class="nc" id="L370">            } else {</span>
+<span class="nc" id="L371">                Image imagenProducto = new Image(selectedFile.toURI().toString());</span>
+<span class="nc" id="L372">                Producto productoACrear = new Producto(nombre, origenReal, descripcion, peso, precio, codigoIdentificadorDelProducto, listaEnvases, array, cantVendidos, imagenProducto);</span>
+<span class="nc" id="L373">                this.sistema.getEchoShop().agregarProducto(productoACrear);</span>
+<span class="nc" id="L374">                Alert alert = new Alert(Alert.AlertType.INFORMATION);</span>
+<span class="nc" id="L375">                alert.setTitle(&quot;Agregado de producto&quot;);</span>
+<span class="nc" id="L376">                alert.setHeaderText(&quot;Se ha agregado correctamente el producto&quot;);</span>
+<span class="nc" id="L377">                alert.showAndWait();</span>
+                
+            }
+
+        }
+<span class="nc" id="L382">    }</span>
+
+    @FXML
+    private void volverInicio(ActionEvent event) {
+
+        try {
+<span class="nc" id="L388">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L390">            Parent root = loader.load();</span>
+
+<span class="nc" id="L392">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L394">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L396">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L398">            stage.setScene(escena);</span>
+
+<span class="nc" id="L400">            stage.show();</span>
+
+<span class="nc" id="L402">            stage.setHeight(675);</span>
+
+<span class="nc" id="L404">            stage.setWidth(366);</span>
+
+<span class="nc" id="L406">            stage.setResizable(false);</span>
+
+<span class="nc" id="L408">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L410">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L412">            Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();</span>
+<span class="nc" id="L413">            myStage.close();</span>
+<span class="nc" id="L414">        } catch (IOException ex) {</span>
+<span class="nc" id="L415">            Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L416">        }</span>
+<span class="nc" id="L417">    }</span>
+
+    @FXML
+    private void irAInicio(ActionEvent event) {
+        try {
+<span class="nc" id="L422">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L424">            Parent root = loader.load();</span>
+
+<span class="nc" id="L426">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L428">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L430">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L432">            stage.setScene(escena);</span>
+
+<span class="nc" id="L434">            stage.show();</span>
+
+<span class="nc" id="L436">            stage.setHeight(675);</span>
+
+<span class="nc" id="L438">            stage.setWidth(366);</span>
+
+<span class="nc" id="L440">            stage.setResizable(false);</span>
+
+<span class="nc" id="L442">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L444">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L446">            Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();</span>
+<span class="nc" id="L447">            myStage.close();</span>
+<span class="nc" id="L448">        } catch (IOException ex) {</span>
+<span class="nc" id="L449">            Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L450">        }</span>
+<span class="nc" id="L451">    }</span>
+
+    public void cerrarVentana() {
+
+        try {
+<span class="nc" id="L456">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L458">            Parent root = loader.load();</span>
+
+<span class="nc" id="L460">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L462">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L464">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L466">            stage.setScene(escena);</span>
+
+<span class="nc" id="L468">            stage.show();</span>
+
+<span class="nc" id="L470">            stage.setHeight(675);</span>
+
+<span class="nc" id="L472">            stage.setWidth(366);</span>
+
+<span class="nc" id="L474">            stage.setResizable(false);</span>
+
+<span class="nc" id="L476">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L478">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L480">            Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();</span>
+<span class="nc" id="L481">            myStage.close();</span>
+
+<span class="nc" id="L483">        } catch (IOException ex) {</span>
+<span class="nc" id="L484">            Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L485">        }</span>
+<span class="nc" id="L486">    }</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L489">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L493">        this.sistema = sistema;</span>
+<span class="nc" id="L494">    }</span>
+
+    @FXML
+    private void obtenerDescripcion(ActionEvent event) {
+<span class="nc" id="L498">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>
