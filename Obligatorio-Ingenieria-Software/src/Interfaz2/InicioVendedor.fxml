@@ -12,6 +12,7 @@
             <Image url="@../Imagenes/continuar.png" />
          </image>
       </ImageView>
-      <JFXButton fx:id="btnContinuar" layoutX="24.0" layoutY="499.0" onAction="#continuar" prefHeight="44.0" prefWidth="329.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnContinuar" layoutX="17.0" layoutY="499.0" onAction="#continuar" prefHeight="44.0" prefWidth="341.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnInicio" layoutX="-2.0" layoutY="590.0" onAction="#volverInicio" prefHeight="52.0" prefWidth="367.0" text="&#10;&#10;" />
    </children>
 </Pane>

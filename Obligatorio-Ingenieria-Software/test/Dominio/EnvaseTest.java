@@ -513,4 +513,116 @@ public class EnvaseTest {
         //fail("The test case is a prototype.");
     }
     
+    @Test(expected = RuntimeException.class)
+    public void testGetIdentificadorDeEnvase1() {
+        //System.out.println("getPrecioDeEnvase");
+        Envase instance = new Envase();
+        instance.setIdIdentificador(0);
+        int expResult = 0;
+        int result = instance.getIdIdentificador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testGetIdentificadorDeEnvase2() {
+        //System.out.println("getPrecioDeEnvase");
+        Envase instance = new Envase();
+        instance.setIdIdentificador(-1);
+        int expResult = -1;
+        int result = instance.getIdIdentificador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testGetIdentificadorDeEnvase3() {
+        //System.out.println("getPrecioDeEnvase");
+        Envase instance = new Envase();
+        instance.setIdIdentificador(1);
+        int expResult = 1;
+        int result = instance.getIdIdentificador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testGetIdentificadorDeEnvase4() {
+        //System.out.println("getPrecioDeEnvase");
+        Envase instance = new Envase();
+        instance.setIdIdentificador(100);
+        int expResult = 100;
+        int result = instance.getIdIdentificador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testGetIdentificadorDeEnvase5() {
+        //System.out.println("getPrecioDeEnvase");
+        Envase instance = new Envase();
+        instance.setIdIdentificador(100000);
+        int expResult = 100000;
+        int result = instance.getIdIdentificador();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    /**
+     * Test of setPrecioDeEnvase method, of class Envase.
+     */
+    @Test(expected = RuntimeException.class)
+    public void testSetIdentificadorDeEnvase1() {
+        //System.out.println("setPrecioDeEnvase");
+        int identificadorDeEnvase = 0;
+        Envase instance = new Envase();
+        instance.setIdIdentificador(identificadorDeEnvase);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void testSetIdentificadorDeEnvase2() {
+        //System.out.println("setPrecioDeEnvase");
+        int identificadorDeEnvase = -8;
+        Envase instance = new Envase();
+        instance.setIdIdentificador(identificadorDeEnvase);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testSetIdentificadorDeEnvase3() {
+        //System.out.println("setPrecioDeEnvase");
+        int identificadorDeEnvase = 1;
+        Envase instance = new Envase();
+        instance.setIdIdentificador(identificadorDeEnvase);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testSetIdentificadorDeEnvase4() {
+        //System.out.println("setPrecioDeEnvase");
+        int identificadorDeEnvase = 100;
+        Envase instance = new Envase();
+        instance.setIdIdentificador(identificadorDeEnvase);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testSetIdentificadorDeEnvase5() {
+        //System.out.println("setPrecioDeEnvase");
+        int identificadorDeEnvase = 10000;
+        Envase instance = new Envase();
+        instance.setIdIdentificador(identificadorDeEnvase);
+        // TODO review the generated test code and remove the default call to fail.
+        //fail("The test case is a prototype.");
+    }
+    
 }

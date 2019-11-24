@@ -6,12 +6,17 @@
 package Interfaz2;
 
 import Dominio.Sistema;
+import Dominio.Tienda;
+import Dominio.Sucursal;
+import Dominio.tipoOrigen;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTimePicker;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 /**
@@ -31,7 +37,7 @@ import javafx.stage.Stage;
 public class AgregadoSucursalController implements Initializable {
 
     @FXML
-    private JFXComboBox<?> cmbNumeroSucursal;
+    private JFXComboBox<Integer> cmbNumeroSucursal;
     @FXML
     private JFXTextField txtFDireccion;
     @FXML
@@ -54,7 +60,10 @@ public class AgregadoSucursalController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        //En este caso lo que estamos haciendo es decir que el maximo de sucursales que va a haber por sistema en este caso van a ser 50, pero no todas estas son las que se mostraran en el mapa
+        for (int i = 1; i < 50; i++) {
+            cmbNumeroSucursal.getItems().add(i);
+        }
     }
 
     @FXML
@@ -71,6 +80,113 @@ public class AgregadoSucursalController implements Initializable {
 
     @FXML
     private void agregarSucursal(ActionEvent event) {
+
+        boolean esValido = true;
+
+        int telefon = 911;
+        int numeroSucursal = 1;
+
+        //Parte de sucursal
+        if (!this.cmbNumeroSucursal.getSelectionModel().isEmpty()) {
+            numeroSucursal = this.cmbNumeroSucursal.getSelectionModel().getSelectedItem();
+
+        } else {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no ha seleccionado ningun origen");
+            alert.setContentText("!Seleccione un origen!");
+            alert.showAndWait();
+        }
+
+        //Parte de direccion
+        String direccion = txtFDireccion.getText().trim();
+
+        if (direccion.length() == 0) {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: campo vacio");
+            alert.setContentText("El campo de direccion, se encuentra vacio!");
+            alert.showAndWait();
+        }
+
+        //Parte de telefono
+        try {
+            String telefono = txtFTelefono.getText().trim();
+            if (telefono.length() == 0) {
+                esValido = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: campo vacio");
+                alert.setContentText("El campo de peso, se encuentra vacio!");
+                alert.showAndWait();
+            } else {
+                if (telefono.length() > 9) {
+                    esValido = false;
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("¡Cuidado!");
+                    alert.setHeaderText("Error: numero invalido");
+                    alert.setContentText("No es un telefono valido en Uruguay!");
+                    alert.showAndWait();
+                } else {
+
+                    telefon = Integer.parseInt(telefono);
+                    if (telefon <= 0) {
+                        esValido = false;
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("¡Cuidado!");
+                        alert.setHeaderText("Error: no es un telefono valido");
+                        alert.setContentText("Ingrese un telefono valido");
+                        alert.showAndWait();
+                    }
+                }
+
+            }
+        } catch (NumberFormatException e) {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: no es un peso valido");
+            alert.setContentText("Reingrese el valor del peso!");
+            alert.showAndWait();
+        }
+
+        //Parte de hora de inicio 
+        
+        LocalTime horaInicio = this.dateInicio.getValue();
+
+        //Parte de hora de finalizacion
+        LocalTime horaFinalizacion = this.dateFinalizacion.getValue();
+
+        if (horaInicio.isAfter(horaFinalizacion)) {
+            esValido = false;
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("¡Cuidado!");
+            alert.setHeaderText("Error: horario no valido");
+            alert.setContentText("Reingrese la hora de inicio, de manera que sea valida!");
+            alert.showAndWait();
+        } else {
+            if (horaFinalizacion.isBefore(horaInicio)) {
+                esValido = false;
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("¡Cuidado!");
+                alert.setHeaderText("Error: horario no valido");
+                alert.setContentText("Reingrese la hora de finalizacion, de manera que sea valida!");
+                alert.showAndWait();
+            }
+        }
+
+        if (esValido) {
+            Sucursal sucursalAgregar = new Sucursal(numeroSucursal, direccion, telefon);
+            Tienda echoShop = this.sistema.getEchoShop();
+            echoShop.getSucursales().add(sucursalAgregar);
+            echoShop.setHoraInicio(horaInicio);
+            echoShop.setHoraFinalizacion(horaFinalizacion);
+        }
+
+        System.out.println(this.getSistema().getEchoShop().getSucursales().size());
+
     }
 
     @FXML
@@ -90,6 +206,12 @@ public class AgregadoSucursalController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
@@ -115,6 +237,12 @@ public class AgregadoSucursalController implements Initializable {
             stage.setScene(escena);
 
             stage.show();
+
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
             myStage.close();
@@ -149,6 +277,12 @@ public class AgregadoSucursalController implements Initializable {
 
             stage.show();
 
+            stage.setHeight(675);
+
+            stage.setWidth(366);
+
+            stage.setResizable(false);
+
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnAgregar.getScene().getWindow();
@@ -166,9 +300,5 @@ public class AgregadoSucursalController implements Initializable {
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-    
-    
-    
-    
 
 }

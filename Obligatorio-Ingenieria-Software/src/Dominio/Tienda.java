@@ -1,5 +1,6 @@
 package Dominio;
 
+import java.time.LocalTime;
 import java.util.*;
 
 public class Tienda {
@@ -8,45 +9,53 @@ public class Tienda {
     private int numeroSucursal;
     private ArrayList<Sucursal> sucursales;
     private long telefono;
-    private Date horario;
     private ArrayList<Producto> listaDeProductosEnStock;
-    private int [] stockDeProductoPorId; //tipo funcion hash;
-    private String paginaWeb;
+    private int[] stockDeProductoPorId; //tipo funcion hash;
+    private ArrayList<Envase> todosLosEnvasesDisponibles;
+    private LocalTime horaInicio;
+    private LocalTime horaFinalizacion;
 
-    public Tienda(int numeroSucursal, String direccion, ArrayList<Sucursal> sucursales, long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock, int [] stockDeProductoPorId, String paginaWeb) {
+    public Tienda(int numeroSucursal, String direccion, ArrayList<Sucursal> sucursales,
+            long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock,
+            int[] stockDeProductoPorId, String paginaWeb, LocalTime horaI,
+            LocalTime horaF, ArrayList<Envase> envases) {
         this.setNumeroSucursal(numeroSucursal);
         this.setDireccion(direccion);
         this.setSucursales(sucursales);
         this.setTelefono(telefono);
-        this.setHorario(horario);
+
         this.setListaDeProductosEnStock(listaDeProductosEnStock);
         this.setStockDeProductoPorId(stockDeProductoPorId);
-        this.setPaginaWeb(paginaWeb);
+        this.setTodosLosEnvasesDisponibles(envases);
+        this.setHoraInicio(horaI);
+        this.setHoraFinalizacion(horaF);
+
     }
 
     public Tienda() {
-        this.setNumeroSucursal(0);
-        this.setDireccion("");
+        this.setNumeroSucursal(1);
+        this.setDireccion("Direccion");
         this.setSucursales(new ArrayList<Sucursal>());
-        this.setTelefono(-1);
-        this.setHorario(new Date());
+        this.setTelefono(1);
+
         this.setListaDeProductosEnStock(new ArrayList<Producto>());
-        this.setStockDeProductoPorId(new int [10]);
-        this.setPaginaWeb("");
+        this.setStockDeProductoPorId(new int[10]);
+        this.setTodosLosEnvasesDisponibles(new ArrayList<Envase>());
+        this.setHoraInicio(LocalTime.parse("10:00"));
+        this.setHoraFinalizacion(LocalTime.parse("18:00"));
     }
 
     //Get´s && Set´s
-
     public String getDireccion() {
         return direccion;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public ArrayList<Sucursal> getNumeroLocal() {
-        return sucursales;
+        if (!direccion.trim().equals("")) {
+            this.direccion = direccion;
+        } else {
+            throw new RuntimeException("direccionNoVacia");
+        }
     }
 
     public void setSucursales(ArrayList<Sucursal> sucursales) {
@@ -58,15 +67,11 @@ public class Tienda {
     }
 
     public void setTelefono(long telefono) {
-        this.telefono = telefono;
-    }
-
-    public Date getHorario() {
-        return horario;
-    }
-
-    public void setHorario(Date horario) {
-        this.horario = horario;
+        if (telefono >= 1) {
+            this.telefono = telefono;
+        } else {
+            throw new RuntimeException("telefonoMayorA0");
+        }
     }
 
     public ArrayList<Producto> getListaDeProductosEnStock() {
@@ -77,20 +82,12 @@ public class Tienda {
         this.listaDeProductosEnStock = listaDeProductosEnStock;
     }
 
-    public int [] getStockDeProductoPorId() {
+    public int[] getStockDeProductoPorId() {
         return stockDeProductoPorId;
     }
 
-    public void setStockDeProductoPorId(int [] stockDeProductoPorId) {
+    public void setStockDeProductoPorId(int[] stockDeProductoPorId) {
         this.stockDeProductoPorId = stockDeProductoPorId;
-    }
-
-    public String getPaginaWeb() {
-        return paginaWeb;
-    }
-
-    public void setPaginaWeb(String paginaWeb) {
-        this.paginaWeb = paginaWeb;
     }
 
     public int getNumeroSucursal() {
@@ -105,58 +102,114 @@ public class Tienda {
         return sucursales;
     }
 
-    //Metodos:
-    public void agregarProducto(Producto producto){
-        this.listaDeProductosEnStock.add(producto);
-        this.getStockDeProductoPorId()[producto.getCodigoIdentificador()]++;
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
 
-    public void eliminarProducto(Producto producto){
-        if(this.getStockDeProductoPorId()[producto.getCodigoIdentificador()]==0){
+    public LocalTime getHoraFinalizacion() {
+        return horaFinalizacion;
+    }
+
+    public void setHoraFinalizacion(LocalTime horaFinalizacion) {
+        this.horaFinalizacion = horaFinalizacion;
+    }
+
+    public ArrayList<Envase> getTodosLosEnvasesDisponibles() {
+        return todosLosEnvasesDisponibles;
+    }
+
+    public void setTodosLosEnvasesDisponibles(ArrayList<Envase> todosLosEnvasesDisponibles) {
+        this.todosLosEnvasesDisponibles = todosLosEnvasesDisponibles;
+    }
+
+    //Metodos:
+    public void agregarProducto(Producto producto) {
+        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size()+1);
+        if (!this.listaDeProductosEnStock.contains(producto)) {
+
+            this.listaDeProductosEnStock.add(producto);
+        }
+        //this.getStockDeProductoPorId()[producto.getCodigoIdentificador()]++;
+    }
+
+    public void eliminarProducto(Producto producto) {
+        if (this.getStockDeProductoPorId()[producto.getCodigoIdentificador()] == 0) {
             this.listaDeProductosEnStock.remove(producto);
         }
     }
-    
+
+    public void eliminarProductoSinImportarStock(Producto prod) {
+        if (this.getListaDeProductosEnStock().contains(prod)) {
+            this.listaDeProductosEnStock.remove(prod);
+        }
+    }
+
+    public void agregarSucursal(Sucursal s) {
+        s.setNumeroSucursal(this.sucursales.size()+1);
+        if (!this.sucursales.contains(s)) {
+            this.sucursales.add(s);
+        }
+        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
+    }
+
+    public void eliminarSucursal(Sucursal s) {
+        if (this.sucursales.contains(s)) {
+            this.sucursales.remove(s);
+        }
+    }
+
+    public void agregarEnvase(Envase e) {
+        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size()+1);
+        if (!this.todosLosEnvasesDisponibles.contains(e)) {
+            this.todosLosEnvasesDisponibles.add(e);
+        }
+        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
+    }
+
+    public ArrayList<Producto> obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
+        int contador = 0;
+        int max = Integer.MIN_VALUE;
+        ArrayList<Producto> masVendidos = new ArrayList<Producto>();
+        ArrayList<Producto> copiaListaProd = listaProd;
+        Producto prodAgregar = new Producto();
+
+        for (int i = 0; i < copiaListaProd.size() || contador <= 5; i++) {
+
+            if (copiaListaProd.get(i).getCantidadVendidos() > max) {
+                prodAgregar = copiaListaProd.get(i);
+                copiaListaProd.remove(i);
+            }
+
+            if (!masVendidos.contains(prodAgregar)) {
+                masVendidos.add(prodAgregar);
+            }
+
+        }
+        return masVendidos;
+    }
+
     @Override
-    public boolean equals(Object o){
-        Tienda tienda= (Tienda)o;
-        return  this.getNumeroLocal()==tienda.getNumeroLocal();
+    public String toString() {
+        return "Tienda{" + "direccion=" + direccion + ", numeroSucursal=" 
+                + numeroSucursal + ", sucursales=" + sucursales +
+                ", telefono=" + telefono + ", listaDeProductosEnStock=" +
+                listaDeProductosEnStock + ", stockDeProductoPorId=" + stockDeProductoPorId +
+                ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles + 
+                ", horaInicio=" + horaInicio + ", horaFinalizacion=" +
+                horaFinalizacion + '}';
     }
+    
+    
+    
 
-
-    public class Sucursal{
-        private int numeroSucursal;
-        private String direccion;
-
-        public int getNumeroSucursal() {
-            return numeroSucursal;
-        }
-
-        public void setNumeroSucursal(int numeroSucursal) {
-            this.numeroSucursal = numeroSucursal;
-        }
-
-        public String getDireccion() {
-            return direccion;
-        }
-
-        public void setDireccion(String direccion) {
-            this.direccion = direccion;
-        }
-
-        public Sucursal(int numeroSucursal, String direccion) {
-            this.setNumeroSucursal(numeroSucursal);
-            this.setDireccion(direccion);
-        }
-
-        public Sucursal() {
-            this.setNumeroSucursal(0);
-            this.setDireccion("");
-        }
-
+    @Override
+    public boolean equals(Object o) {
+        Tienda tienda = (Tienda) o;
+        return this.getNumeroSucursal() == tienda.getNumeroSucursal();
     }
-
-
 
 }

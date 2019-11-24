@@ -1,44 +1,42 @@
 package Dominio;
 
 import java.util.*;
-
-enum tipoOrigen{
-    Vegetal,
-    Mineral,
-    Animal,
-    Fosil,
-    Indefinido
-}
-
-
+import javafx.scene.image.Image;
 
 public class Producto {
 
     //Atributos:
-    private ArrayList<tipoOrigen> listaDeOrigenes;
-    private String descripcionDelProducto;
-    private int pesoDelProducto;
-    private ArrayList<Envase> posiblesEnvasesRecomendados;
-    private double precio;
-    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales
-    private ArrayList<tipoMaterial> listaDeMateriales;
-    private int cantidadVendidos;
-    
-    //Constructores:
+    private String nombre; //Esta
+    private tipoOrigen origen; //Esta
+    private String descripcionDelProducto; //Esta
+    private int pesoDelProducto;  //Esta
+    private double precio; //Esta
+    private int codigoIdentificador; //Puede ser un int, si se quiere facilitar el sistema, pero me guie en productos reales //Se marca por backend
+    private ArrayList<Envase> posiblesEnvasesRecomendados; // Esta
+    private ArrayList<tipoMaterial> listaDeMateriales; //Falta
+    private int cantidadVendidos; //No se muestra a la hora de agregar productos
+    private Image imagenDelProducto;
 
+    //Constructores:
     public Producto() {
-        this.setListaDeOrigenes(new ArrayList<tipoOrigen>());
-        this.setDescripcionDelProducto("");
-        this.setPesoDelProducto(0);
+        this.setNombre("Nombre");
+        this.setOrigen(tipoOrigen.Indefinido);
+        this.setDescripcionDelProducto("Descripcion");
+        this.setPesoDelProducto(1);
         this.setPosiblesEnvasesRecomendados(new ArrayList<Envase>());
-        this.setPrecio(0);
-        this.setCodigoIdentificador(0);
+        this.setPrecio(2);
+        this.setCodigoIdentificador(1);
         this.setListaDeMateriales(new ArrayList<tipoMaterial>());
         this.setCantidadVendidos(0);
+//        this.setImagenDelProducto(new Image(""));
     }
 
-    public Producto(ArrayList<tipoOrigen> listaDeOrigenes, String descripcionDelProducto, int pesoDelProducto, ArrayList<Envase> posiblesEnvasesRecomendados, double precio, int codigoIdentificador, ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos) {
-        this.setListaDeOrigenes(listaDeOrigenes);
+    public Producto(String nombre, tipoOrigen origen, String descripcionDelProducto,
+            int pesoDelProducto, int precio, int codigoIdentificador,
+            ArrayList<Envase> posiblesEnvasesRecomendados,
+            ArrayList<tipoMaterial> listaDeMateriales, int cantVendidos, Image imagen) {
+        this.setNombre(nombre);
+        this.setOrigen(origen);
         this.setDescripcionDelProducto(descripcionDelProducto);
         this.setPesoDelProducto(pesoDelProducto);
         this.setPosiblesEnvasesRecomendados(posiblesEnvasesRecomendados);
@@ -46,16 +44,16 @@ public class Producto {
         this.setCodigoIdentificador(codigoIdentificador);
         this.setListaDeMateriales(listaDeMateriales);
         this.setCantidadVendidos(cantVendidos);
+        this.setImagenDelProducto(imagen);
     }
 
     //Get´s && Set´s
-
-    public ArrayList<tipoOrigen> getListaDeOrigenes() {
-        return listaDeOrigenes;
+    public tipoOrigen getOrigen() {
+        return origen;
     }
 
-    public void setListaDeOrigenes(ArrayList<tipoOrigen> listaDeOrigenes) {
-        this.listaDeOrigenes = listaDeOrigenes;
+    public void setOrigen(tipoOrigen origen) {
+        this.origen = origen;
     }
 
     public String getDescripcionDelProducto() {
@@ -63,7 +61,11 @@ public class Producto {
     }
 
     public void setDescripcionDelProducto(String descripcionDelProducto) {
-        this.descripcionDelProducto = descripcionDelProducto;
+        if (!descripcionDelProducto.trim().equals("")) {
+            this.descripcionDelProducto = descripcionDelProducto;
+        } else {
+            throw new RuntimeException("DescripcionNoVacia");
+        }
     }
 
     public int getPesoDelProducto() {
@@ -71,7 +73,11 @@ public class Producto {
     }
 
     public void setPesoDelProducto(int pesoDelProducto) {
-        this.pesoDelProducto = pesoDelProducto;
+        if (pesoDelProducto >= 1) {
+            this.pesoDelProducto = pesoDelProducto;
+        } else {
+            throw new RuntimeException("PesoMayorA0");
+        }
     }
 
     public ArrayList<Envase> getPosiblesEnvasesRecomendados() {
@@ -87,7 +93,11 @@ public class Producto {
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        if (precio >= 1) {
+            this.precio = precio;
+        } else {
+            throw new RuntimeException("PrecioMayorA0");
+        }
     }
 
     public int getCodigoIdentificador() {
@@ -95,7 +105,11 @@ public class Producto {
     }
 
     public void setCodigoIdentificador(int codigoIdentificador) {
-        this.codigoIdentificador = codigoIdentificador;
+        if (codigoIdentificador >= 1) {
+            this.codigoIdentificador = codigoIdentificador;
+        } else {
+            throw new RuntimeException("IdentificadorMayorA0");
+        }
     }
 
     public ArrayList<tipoMaterial> getListaDeMateriales() {
@@ -111,16 +125,72 @@ public class Producto {
     }
 
     public void setCantidadVendidos(int cantidadVendidos) {
-        this.cantidadVendidos = cantidadVendidos;
-    }
-    
-
-    
-@Override
-    public boolean equals(Object o){
-        Producto p= (Producto)o;
-        return  this.getCodigoIdentificador()== p.getCodigoIdentificador();
+        if (cantidadVendidos >= 0) {
+            this.cantidadVendidos = cantidadVendidos;
+        } else {
+            throw new RuntimeException("cantidadVendidosPositivo");
+        }
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        if (!nombre.trim().equals("")) {
+            this.nombre = nombre;
+        } else {
+            throw new RuntimeException("NombreNoVacio");
+        }
+    }
+
+    public Image getImagenDelProducto() {
+        return imagenDelProducto;
+    }
+
+    public void setImagenDelProducto(Image imagenDelProducto) {
+        this.imagenDelProducto = imagenDelProducto;
+    }
+
+    //Metodos aparte de los getter and setter
+    public void agregarEnvase(Envase e) {
+        if (!this.posiblesEnvasesRecomendados.contains(e)) {
+            this.posiblesEnvasesRecomendados.add(e);
+        }
+    }
+
+    public void eliminarEnvase(Envase e) {
+        if (this.posiblesEnvasesRecomendados.contains(e)) {
+            this.posiblesEnvasesRecomendados.remove(e);
+        }
+    }
+
+    public void agregarMateriales(tipoMaterial t) {
+        if (!this.listaDeMateriales.contains(t)) {
+            this.listaDeMateriales.add(t);
+        }
+    }
+
+    public void eliminarMaterial(tipoMaterial t) {
+        if (this.listaDeMateriales.contains(t)) {
+            this.listaDeMateriales.remove(t);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Producto p = (Producto) o;
+        return this.getCodigoIdentificador() == p.getCodigoIdentificador() && this.getNombre().equals(p.getNombre());
+    }
+
+    @Override
+    public String toString() {
+        return "Producto{" + "nombre=" + nombre + ", origen=" + origen
+                + ", descripcionDelProducto=" + descripcionDelProducto
+                + ", pesoDelProducto=" + pesoDelProducto + ", precio=" + precio
+                + ", codigoIdentificador=" + codigoIdentificador + ", posiblesEnvasesRecomendados="
+                + posiblesEnvasesRecomendados + ", listaDeMateriales=" + listaDeMateriales
+                + ", cantidadVendidos=" + cantidadVendidos + '}';
+    }
 
 }

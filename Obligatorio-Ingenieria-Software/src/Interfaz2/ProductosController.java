@@ -5,6 +5,8 @@
  */
 package Interfaz2;
 
+import Dominio.Producto;
+import Dominio.Sistema;
 import com.jfoenix.controls.JFXTextField;
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +26,7 @@ import javafx.scene.layout.Pane;
  *
  * @author user
  */
-public class ProductosController extends Pane {
+public class ProductosController implements Initializable {
 
     @FXML
     private ImageView imagen;
@@ -34,30 +36,26 @@ public class ProductosController extends Pane {
     private JFXTextField txtPrecio;
     @FXML
     private JFXTextField txtIdentificador;
+    
+    private Sistema sistema; 
 
     /**
      * Initializes the controller class.
      */
      
-
-    public ProductosController() {
-        super(); 
-        
-        try {
-            FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("Productos.fxml"));
-            fxmlLoader.setController(this);
-            this.getChildren().add((Node)fxmlLoader.load()); 
-        } catch (IOException ex) {
-            Logger.getLogger(ProductosController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-      
+   @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //To change body of generated methods, choose Tools | Templates.
+    }
     
+    public void inicializarDatos(Producto producto, Sistema sistema){
+        this.setSistema(sistema);
+        this.imagen.setImage(producto.getImagenDelProducto());
+        this.txtNombreProd.setText(producto.getNombre());
+        this.txtPrecio.setText(Double.toString(producto.getPrecio()));
+        this.txtIdentificador.setText(producto.getDescripcionDelProducto());
     }
 
-    @FXML
-    private void obtenerNombre(ActionEvent event) {
-    }
 
     @FXML
     private void obtenerPrecio(ActionEvent event) {
@@ -66,5 +64,30 @@ public class ProductosController extends Pane {
     @FXML
     private void obtenerIdentificador(ActionEvent event) {
     }
+
+    public void setImagen(ImageView imagen) {
+        this.imagen = imagen;
+    }
+
+    public void setTxtNombreProd(JFXTextField txtNombreProd) {
+        this.txtNombreProd = txtNombreProd;
+    }
+
+    public void setTxtPrecio(JFXTextField txtPrecio) {
+        this.txtPrecio = txtPrecio;
+    }
+
+    public void setTxtIdentificador(JFXTextField txtIdentificador) {
+        this.txtIdentificador = txtIdentificador;
+    }
+
+    public void setSistema(Sistema sistema) {
+        this.sistema = sistema;
+    }
+
+    
+    
+    
+    
     
 }

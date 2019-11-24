@@ -11,40 +11,39 @@ public class Venta {
     private int[] cantidadesPorProducto; //Para acceder a la posicion del producto le pasamos el codigo identificador;
     private Date fechaDeCompra;
     private Persona comprador; //En este caso seria la clase cliente, de manera que tiene clientes frecuentes
-    private tipoPago tipoDePago;  //Segun el numero que ponga la persona lo que vamos a hacer es mostrar las pantallas (ejemplo 1 tarjeta debito y ponemos una interfaz diferente para cada uno)
     private Tienda echoShop;
     private ArrayList<Envase> listaDeEnvasesUtilizados;
     private int codigoIdentificadorDeVenta;
     private String direccionAEnviar;
-    private int mes;
+  
 
     //Constructor:
-    public Venta(int mes, ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, tipoPago tipoDePago, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
+    public Venta( ArrayList<Producto> listaDeProductosAVender, int precioTotal, int[] cantidadesPorProducto, Date fechaDeCompra, Persona comprador, Tienda tienda, ArrayList<Envase> listaDeEnvases, int codigoIdentificador, String direccion) {
         this.setListaDeProductosAVender(listaDeProductosAVender);
         this.setPrecioTotal(precioTotal);
         this.setCantidadesPorProducto(cantidadesPorProducto);
         this.setFechaDeCompra(fechaDeCompra);
         this.setComprador(comprador);
-        this.setTipoDePago(tipoDePago);
+       
         this.setEchoShop(tienda);
         this.setListaDeEnvasesUtilizados(listaDeEnvases);
         this.setCodigoIdentificadorDeVenta(codigoIdentificador);
         this.setDireccionAEnviar(direccion);
-        this.setMes(mes);
+        
     }
 
     public Venta() {
         this.setListaDeProductosAVender(new ArrayList<Producto>());
-        this.setPrecioTotal(0);
+        this.setPrecioTotal(1);
         this.setCantidadesPorProducto(new int[10]);
         this.setFechaDeCompra(new Date());
         this.setComprador(new Persona());
-        this.setTipoDePago(tipoPago.Indefinido);
+      
         this.setEchoShop(new Tienda());
         this.setListaDeEnvasesUtilizados(new ArrayList<Envase>());
-        this.setCodigoIdentificadorDeVenta(0);
-        this.setDireccionAEnviar("");
-        this.setMes(0);
+        this.setCodigoIdentificadorDeVenta(1);
+        this.setDireccionAEnviar("Direccion");
+        
     }
 
     //Get´s && set´s
@@ -61,7 +60,11 @@ public class Venta {
     }
 
     public void setPrecioTotal(int precioTotal) {
-        this.precioTotal = precioTotal;
+        if (precioTotal >= 1) {
+            this.precioTotal = precioTotal;
+        } else {
+            throw new RuntimeException("PrecioMayorA0");
+        }
     }
 
     public int[] getCantidadesPorProducto() {
@@ -88,13 +91,7 @@ public class Venta {
         this.comprador = comprador;
     }
 
-    public tipoPago getTipoDePago() {
-        return tipoDePago;
-    }
-
-    public void setTipoDePago(tipoPago tipoDePago) {
-        this.tipoDePago = tipoDePago;
-    }
+  
 
     public Tienda getEchoShop() {
         return echoShop;
@@ -117,7 +114,11 @@ public class Venta {
     }
 
     public void setCodigoIdentificadorDeVenta(int codigoIdentificadorDeVenta) {
-        this.codigoIdentificadorDeVenta = codigoIdentificadorDeVenta;
+        if (codigoIdentificadorDeVenta >= 1) {
+            this.codigoIdentificadorDeVenta = codigoIdentificadorDeVenta;
+        } else {
+            throw new RuntimeException("IdentificadorMayorA1");
+        }
     }
 
     public String getDireccionAEnviar() {
@@ -125,45 +126,72 @@ public class Venta {
     }
 
     public void setDireccionAEnviar(String direccionAEnviar) {
-        this.direccionAEnviar = direccionAEnviar;
+        if (!direccionAEnviar.trim().equals("")) {
+            this.direccionAEnviar = direccionAEnviar;
+        } else {
+            throw new RuntimeException("direccionNoVacia");
+        }
     }
 
-    public int getMes() {
-        return mes;
-    }
-
-    public void setMes(int mes) {
-        this.mes = mes;
-    }
+   
 
     //Metodos
-    public void agregarProductosALaVenta(Producto producto) {
-        this.listaDeProductosAVender.add(producto);
-        int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
-        while (tamañoDeListaDeEnvases >= 0) {
-            Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
-            tamañoDeListaDeEnvases--;
-            this.getListaDeEnvasesUtilizados().add(envase);
+    public void agregarProducto(Producto producto) {
+        if (!this.listaDeProductosAVender.contains(producto)) {
+            this.listaDeProductosAVender.add(producto);
+            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
+            while (tamañoDeListaDeEnvases > 0) {
+                Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
+                tamañoDeListaDeEnvases--;
+                this.getListaDeEnvasesUtilizados().add(envase);
+            }
+            this.precioTotal += producto.getPrecio();
+
         }
-        this.precioTotal += producto.getPrecio();
         // TODO: 27/10/2019 HACER QUE CUANDO EN LA INTERFAZ AGREGUE CANTIDAD DE ELEMENTOS, SUME EN LA CANTIDAD DE PRODUCTOS
 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]+1;
-
+        //this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]+1;
     }
 
-    public void eliminarProductosDeLaVenta(Producto producto) {
-        this.listaDeProductosAVender.remove(producto);
-        int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
-        while (tamañoDeListaDeEnvases >= 0) {
-            Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
-            tamañoDeListaDeEnvases--;
-            this.getListaDeEnvasesUtilizados().remove(envase);
+    public void eliminarProducto(Producto producto) {
+        if (this.listaDeProductosAVender.contains(producto)) {
+            this.listaDeProductosAVender.remove(producto);
+            int tamañoDeListaDeEnvases = producto.getPosiblesEnvasesRecomendados().size();
+            while (tamañoDeListaDeEnvases > 0) {
+                Envase envase = producto.getPosiblesEnvasesRecomendados().get(tamañoDeListaDeEnvases);
+                tamañoDeListaDeEnvases--;
+                this.getListaDeEnvasesUtilizados().remove(envase);
+            }
+            this.precioTotal -= producto.getPrecio();
+            // TODO: 27/10/2019  ACTUALIZAR EN EL GET LA CANTIDAD DE ELEMENTOS 
+            //this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]-1;
+
         }
-        this.precioTotal -= producto.getPrecio();
-        // TODO: 27/10/2019  ACTUALIZAR EN EL GET LA CANTIDAD DE ELEMENTOS 
-        this.getCantidadesPorProducto()[producto.getCodigoIdentificador()] = this.getCantidadesPorProducto()[producto.getCodigoIdentificador()]-1;
-
     }
+
+    @Override
+    public String toString() {
+        return "Venta{" + "listaDeProductosAVender=" + listaDeProductosAVender +
+                ", precioTotal=" + precioTotal + ", cantidadesPorProducto=" +
+                cantidadesPorProducto + ", fechaDeCompra=" + fechaDeCompra +
+                ", comprador=" + comprador +  
+                ", echoShop=" + echoShop + ", listaDeEnvasesUtilizados=" + 
+                listaDeEnvasesUtilizados + ", codigoIdentificadorDeVenta=" + 
+                codigoIdentificadorDeVenta + ", direccionAEnviar=" + 
+                direccionAEnviar + '}';
+    }
+    
+    public void agregarEnvase(Envase e){
+        if (!this.listaDeEnvasesUtilizados.contains(e)) {
+            this.listaDeEnvasesUtilizados.add(e);
+        }
+    }
+    
+    public void eliminarEnvase(Envase e){
+        if (this.listaDeEnvasesUtilizados.contains(e)) {
+            this.listaDeEnvasesUtilizados.remove(e);
+        }
+    }
+    
 
 }
