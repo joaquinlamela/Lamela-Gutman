@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.PreVentaController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/Pre-venta.png" />
+         </image>
+      </ImageView>
+      <ScrollPane layoutX="-2.0" layoutY="154.0" prefHeight="383.0" prefWidth="360.0">
+         <content>
+            <VBox fx:id="listaDeProductos" prefHeight="361.0" prefWidth="357.0" style="-fx-background-color: transparent; -fx-background: white;" />
+         </content>
+      </ScrollPane>
+      <ImageView fitHeight="45.0" fitWidth="164.0" layoutX="188.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/BotonConfirmarPreVenta.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="45.0" fitWidth="164.0" layoutX="7.0" layoutY="544.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/CancelarPreVenta.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnConfirmar" layoutX="183.0" layoutY="543.0" onAction="#confirmarPreVenta" prefHeight="45.0" prefWidth="171.0" text="&#10;&#10;" />
+      <JFXButton fx:id="btnCancelar" layoutX="2.0" layoutY="543.0" onAction="#cancelarPreVenta" prefHeight="45.0" prefWidth="171.0" style="-fx-background-radius: 18 18 18 18; -fx-border-radius: 18 18 18 18;" text="&#10;&#10;&#10;" />
+      <JFXButton fx:id="btnAtras" layoutX="9.0" layoutY="30.0" onAction="#volverAInicio" prefHeight="55.0" prefWidth="57.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;&#10;" />
+      <JFXButton fx:id="btnInicio" layoutX="-2.0" layoutY="595.0" onAction="#volverAInicio" prefHeight="45.0" prefWidth="367.0" text="&#10;&#10;" />
+   </children>
+</Pane>
