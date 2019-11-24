@@ -448,13 +448,22 @@ public class EnvaseTest {
     
     //Equals
     @Test
-    public void equals() {
+    public void equals1() {
         Envase instance = new Envase();
         instance.setIdIdentificador(100000);
         Envase e = new Envase();
         e.setIdIdentificador(100000);
         boolean result = instance.equals(e);
         assertEquals(true, result);
+    }
+    
+    @Test
+    public void equals2() {
+        Envase instance = new Envase();
+        instance.setIdIdentificador(100000);
+        Producto e = new Producto();
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
     }
     
 }

@@ -62,12 +62,22 @@ public class ConfirmacionCompraController implements Initializable {
     @FXML
     private Label precioTotal;
 
+    private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
     }
 
     @Override
@@ -110,8 +120,8 @@ public class ConfirmacionCompraController implements Initializable {
             alert.setContentText("!Seleccione una fecha de retiro!");
             alert.showAndWait();
         } else {
-            LocalDate hoy= LocalDate.now(); 
-            if (fechaDeRetiro.compareTo(hoy)<1) {
+            LocalDate hoy = LocalDate.now();
+            if (fechaDeRetiro.compareTo(hoy) < 1) {
                 esValido = false;
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("¡Cuidado!");
@@ -122,12 +132,7 @@ public class ConfirmacionCompraController implements Initializable {
         }
 
         if (esValido) {
-            Persona cliente = new Persona();
-            for (int i = 0; i < this.getSistema().getListaCliente().size(); i++) {
-                if (this.nombreCliente.getText().equalsIgnoreCase(this.getSistema().getListaCliente().get(i).getNombre())) {
-                    cliente = this.getSistema().getListaCliente().get(i);
-                }
-            }
+            Persona cliente = this.getCliente(); 
             int precio = Integer.parseInt(this.precioTotal.getText());
 
             this.getSistema().getEchoShop().setDireccion(this.direccionSucursal.getText());
@@ -150,18 +155,27 @@ public class ConfirmacionCompraController implements Initializable {
                 this.getSistema().agregarGananciaPreVenta(preventaAgregar);
             }
 
+            this.getSistema().getProductosPreVentaSesionActiva().clear();
+
+
+            /*
             for (int i = 0; i < this.getSistema().getProductosPreVentaSesionActiva().size(); i++) {
                 Producto p = this.getSistema().getProductosPreVentaSesionActiva().get(i);
                 this.getSistema().getProductosPreVentaSesionActiva().remove(p);
             }
+             */
             for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
                 this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
             }
+
+            this.getSistema().getEnvasesALlevarEnPreVenta().clear();
+
+            /*
             for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
                 Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
                 this.getSistema().getEnvasesALlevarEnPreVenta().remove(envase);
             }
-
+             */
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -185,6 +199,8 @@ public class ConfirmacionCompraController implements Initializable {
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -199,21 +215,19 @@ public class ConfirmacionCompraController implements Initializable {
 
     @FXML
     private void volverInicio(ActionEvent event) {
-        
-        
-        
+
     }
 
     public void cargarProductos(ArrayList<Envase> lista, Sistema sis, ConfirmacionCompraController paraCargarPestañaCarrito) {
 
         this.setSistema(sis);
 
-        this.nombreCliente.setText(this.getSistema().getListaCliente().get(this.getSistema().getListaCliente().size() - 1).getNombre());
+        this.nombreCliente.setText(this.getCliente().getNombre());
 
-        for (int i = 0; i < this.getSistema().getEchoShop().getSucursales().size(); i++) {
+        for (int i = 1; i < this.getSistema().getEchoShop().getSucursales().size() + 1; i++) {
             ArrayList<Sucursal> sucursales = this.getSistema().getEchoShop().getSucursales();
 
-            this.numeroSucursal.getItems().add(sucursales.get(i).getNumeroSucursal());
+            this.numeroSucursal.getItems().add(i);
 
         }
 
@@ -284,6 +298,8 @@ public class ConfirmacionCompraController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            controlador.setCliente(this.getCliente());
+
             controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -297,7 +313,7 @@ public class ConfirmacionCompraController implements Initializable {
 
     @FXML
     private void setearDireccion(ActionEvent event) {
-        int numeroDeSucursal=0; 
+        int numeroDeSucursal = 0;
         if (!this.numeroSucursal.getSelectionModel().isEmpty()) {
             numeroDeSucursal = this.numeroSucursal.getSelectionModel().getSelectedItem();
             for (int i = 0; i < this.getSistema().getEchoShop().getSucursales().size(); i++) {
@@ -306,8 +322,8 @@ public class ConfirmacionCompraController implements Initializable {
                     this.direccionSucursal.setText(sucursal.getDireccion());
                 }
             }
-        } 
-        
+        }
+
     }
 
 }

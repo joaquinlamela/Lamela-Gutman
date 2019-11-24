@@ -10,6 +10,7 @@ import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -55,6 +56,8 @@ public class PresentacionProductosController implements Initializable {
     private CarritoController controlador;
 
     private int codigoIdentificador;
+
+    private Persona cliente;
 
     @FXML
     private Label identificador;
@@ -149,6 +152,14 @@ public class PresentacionProductosController implements Initializable {
         this.codigoIdentificador = codigoIdentificador;
     }
 
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
+    }
+
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -204,6 +215,8 @@ public class PresentacionProductosController implements Initializable {
 
                 controlado.setSistema(sistema);
 
+                controlado.setCliente(this.getCliente());
+
                 Producto p = new Producto();
 
                 for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
@@ -225,54 +238,30 @@ public class PresentacionProductosController implements Initializable {
             }
         }
 
-        if (esValido && !this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
-            int codigoIdentifi = Integer.parseInt(this.getIdentificador().getText());
-
-            ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
-            for (int i = 0; i < listaProductos.size(); i++) {
-                if (codigoIdentifi == listaProductos.get(i).getCodigoIdentificador()) {
-                    Producto p = listaProductos.get(i);
-                    this.getSistema().agregarProductosALaListaPreVenta(p);
-                    this.getSistema().getCantidadPorIdDePreVenta()[this.getCodigoIdentificador()] = cantProductos;
-                }
-            }
-
-        }else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ya se ha agregado el producto a la preventa");
-            alert.setHeaderText("El producto ya se encuentra en la preventa");
-            alert.setContentText("¡Ya ha agregado el producto en preventa!");
-
-            alert.showAndWait();
-        }
-
-        /*
-
         if (esValido) {
+            if (!this.getSistema().getProductosPreVentaSesionActiva().contains(producto)) {
+                int codigoIdentifi = Integer.parseInt(this.getIdentificador().getText());
 
-            
-
-            ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
-
-            for (int i = 0; i < listaProductos.size(); i++) {
-                if (this.getCodigoIdentificador()== listaProductos.get(i).getCodigoIdentificador()) {
-                    Producto p = listaProductos.get(i);
-                    this.getSistema().agregarProductosALaListaPreVenta(p);
-                    this.getSistema().getCantidadPorIdDePreVenta()[this.getCodigoIdentificador()] = cantProductos;
-
-                    ArrayList<Envase> listaDeEnvasePorProducto = p.getPosiblesEnvasesRecomendados();
-                    for (int j = 0; j < listaDeEnvasePorProducto.size(); j++) {
-                        if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(listaDeEnvasePorProducto.get(j))) {
-                            this.getSistema().getEnvasesALlevarEnPreVenta().add(listaDeEnvasePorProducto.get(j));
-
-                        }
-
+                ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+                for (int i = 0; i < listaProductos.size(); i++) {
+                    if (codigoIdentifi == listaProductos.get(i).getCodigoIdentificador()) {
+                        Producto p = listaProductos.get(i);
+                        this.getSistema().agregarProductosALaListaPreVenta(p);
+                        this.getSistema().getCantidadPorIdDePreVenta()[this.getCodigoIdentificador()] = cantProductos;
                     }
                 }
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Ya se ha agregado el producto a la preventa");
+                alert.setHeaderText("El producto ya se encuentra en la preventa");
+                alert.setContentText("¡Ya ha agregado el producto en preventa!");
+
+                alert.showAndWait();
             }
 
         }
-         */
+
+       
     }
 
     @FXML
@@ -324,6 +313,8 @@ public class PresentacionProductosController implements Initializable {
 
                 controlado.setSistema(sistema);
 
+                controlado.setCliente(this.getCliente());
+
                 Producto p = new Producto();
 
                 for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
@@ -345,25 +336,27 @@ public class PresentacionProductosController implements Initializable {
             }
         }
 
-        if (esValido && !this.getSistema().getProductosAVenderEnSesionActiva().contains(producto)) {
-            int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
+        if (esValido) {
+            if (!this.getSistema().getProductosAVenderEnSesionActiva().contains(producto)) {
+                int codigoIdentificador = Integer.parseInt(this.getIdentificador().getText());
 
-            ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
-            for (int i = 0; i < listaProductos.size(); i++) {
-                if (codigoIdentificador == listaProductos.get(i).getCodigoIdentificador()) {
-                    Producto p = listaProductos.get(i);
-                    this.getSistema().agregarProductosALaListaDeProductosSesionActiva(p);
-                    this.getSistema().getCantidadPorIdDeProd()[codigoIdentificador] = cantProductos;
+                ArrayList<Producto> listaProductos = this.getSistema().getEchoShop().getListaDeProductosEnStock();
+                for (int i = 0; i < listaProductos.size(); i++) {
+                    if (codigoIdentificador == listaProductos.get(i).getCodigoIdentificador()) {
+                        Producto p = listaProductos.get(i);
+                        this.getSistema().agregarProductosALaListaDeProductosSesionActiva(p);
+                        this.getSistema().getCantidadPorIdDeProd()[codigoIdentificador] = cantProductos;
+                    }
                 }
+            } else {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Ya se ha agregado el producto al carrito");
+                alert.setHeaderText("El producto ya se encuentra en el carrito");
+                alert.setContentText("¡Ya ha agregado el producto al carrito!");
+
+                alert.showAndWait();
             }
 
-        } else {
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Ya se ha agregado el producto al carrito");
-            alert.setHeaderText("El producto ya se encuentra en el carrito");
-            alert.setContentText("¡Ya ha agregado el producto al carrito!");
-
-            alert.showAndWait();
         }
 
     }

@@ -308,7 +308,7 @@ public class PersonaTest {
     
     //Equals
     @Test
-    public void equals() {
+    public void equals1() {
         Persona instance = new Persona();
         instance.setDomicilio("Cuareim");
         instance.setEdad(10);
@@ -321,4 +321,89 @@ public class PersonaTest {
         assertEquals(true, result);
     }
     
+    @Test
+    public void equals2() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Producto e = new Producto();
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
+    
+    @Test
+    public void equals3() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Persona e = new Persona();
+        e.setDomicilio("Cuareim");
+        //e.setEdad(10);
+        //e.setNombre("Diego");
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
+    
+    @Test
+    public void equals4() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Persona e = new Persona();
+        //e.setDomicilio("Cuareim");
+        e.setEdad(10);
+        //e.setNombre("Diego");
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
+    
+    @Test
+    public void equals5() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Persona e = new Persona();
+        //e.setDomicilio("Cuareim");
+        //e.setEdad(10);
+        e.setNombre("Diego");
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
+    
+    @Test
+    public void equals6() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Persona e = new Persona();
+        //e.setDomicilio("Cuareim");
+        e.setEdad(10);
+        e.setNombre("Diego");
+        e.setRutComprador("CompradorNuevo");
+        
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
+    
+    @Test
+    public void equals7() {
+        Persona instance = new Persona();
+        instance.setDomicilio("Cuareim");
+        instance.setEdad(10);
+        instance.setNombre("Diego");
+        Persona e = new Persona();
+        
+        e.setDomicilio("Cuareim");
+        e.setEdad(10);
+        e.setNombre("Diego");
+        e.setRutComprador("CompradorNuevo");
+        
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
 }

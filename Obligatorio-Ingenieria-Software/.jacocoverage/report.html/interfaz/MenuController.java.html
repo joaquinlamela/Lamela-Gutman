@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MenuController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">MenuController.java</span></div><h1>MenuController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Producto;
+import dominio.Sistema;
+import com.jfoenix.controls.JFXButton;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L31">public class MenuController implements Initializable {</span>
+
+    @FXML
+    private JFXButton btnAgregarProducto;
+    @FXML
+    private JFXButton btnAgregarSucursal;
+    @FXML
+    private JFXButton btnAgregarEnvase;
+    @FXML
+    private JFXButton btnEliminarProducto;
+    @FXML
+    private JFXButton btnVolverAVendedor;
+    @FXML
+    private JFXButton btnAgregarProducto1;
+
+    private Sistema sistema;
+
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+<span class="nc" id="L54">    }</span>
+
+    @FXML
+    private void agregarProducto(ActionEvent event) {
+
+        try {
+<span class="nc" id="L60">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;AgregarProducto.fxml&quot;));</span>
+
+<span class="nc" id="L62">            Parent root = loader.load();</span>
+
+<span class="nc" id="L64">            AgregarProductoController controlador = loader.getController();</span>
+
+<span class="nc" id="L66">            controlador.cargarDatos(this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles(), this.sistema);</span>
+
+<span class="nc" id="L68">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L70">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L72">            stage.setScene(escena);</span>
+
+<span class="nc" id="L74">            stage.show();</span>
+
+<span class="nc" id="L76">            stage.setHeight(675);</span>
+
+<span class="nc" id="L78">            stage.setWidth(366);</span>
+
+<span class="nc" id="L80">            stage.setResizable(false);</span>
+
+<span class="nc" id="L82">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L84">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L86">            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();</span>
+<span class="nc" id="L87">            myStage.close();</span>
+<span class="nc" id="L88">        } catch (IOException ex) {</span>
+<span class="nc" id="L89">            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L90">        }</span>
+
+<span class="nc" id="L92">    }</span>
+
+    @FXML
+    private void agregarSucursal(ActionEvent event) {
+        
+        try {
+<span class="nc" id="L98">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;AgregadoSucursal.fxml&quot;));</span>
+
+<span class="nc" id="L100">            Parent root = loader.load();</span>
+
+<span class="nc" id="L102">            AgregadoSucursalController controlador = loader.getController();</span>
+
+<span class="nc" id="L104">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L106">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L108">            stage.setScene(escena);</span>
+
+<span class="nc" id="L110">            stage.show();</span>
+
+<span class="nc" id="L112">            stage.setHeight(675);</span>
+
+<span class="nc" id="L114">            stage.setWidth(366);</span>
+
+<span class="nc" id="L116">            stage.setResizable(false);</span>
+
+<span class="nc" id="L118">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L120">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L122">            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();</span>
+<span class="nc" id="L123">            myStage.close();</span>
+<span class="nc" id="L124">        } catch (IOException ex) {</span>
+<span class="nc" id="L125">            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L126">        }</span>
+       
+<span class="nc" id="L128">    }</span>
+
+    @FXML
+    private void agregarEnvase(ActionEvent event) {
+        
+        try {
+<span class="nc" id="L134">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;AgregarEnvase.fxml&quot;));</span>
+
+<span class="nc" id="L136">            Parent root = loader.load();</span>
+
+<span class="nc" id="L138">            AgregarEnvaseController controlador = loader.getController();</span>
+
+<span class="nc" id="L140">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L142">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L144">            stage.setScene(escena);</span>
+
+<span class="nc" id="L146">            stage.show();</span>
+
+<span class="nc" id="L148">            stage.setHeight(675);</span>
+
+<span class="nc" id="L150">            stage.setWidth(366);</span>
+
+<span class="nc" id="L152">            stage.setResizable(false);</span>
+
+<span class="nc" id="L154">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L156">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L158">            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();</span>
+<span class="nc" id="L159">            myStage.close();</span>
+<span class="nc" id="L160">        } catch (IOException ex) {</span>
+<span class="nc" id="L161">            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L162">        }</span>
+      
+
+<span class="nc" id="L165">    }</span>
+
+    @FXML
+    private void eliminarProducto(ActionEvent event) {
+<span class="nc bnc" id="L169" title="All 2 branches missed.">         if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {</span>
+            
+             try {
+<span class="nc" id="L172">                 FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;EliminarProducto.fxml&quot;));</span>
+                 
+<span class="nc" id="L174">                 Parent root = loader.load();</span>
+                 
+<span class="nc" id="L176">                 EliminarProductoController controlador = loader.getController();</span>
+                 
+<span class="nc" id="L178">                 ArrayList&lt;Producto&gt; listaProd = this.getSistema().getEchoShop().getListaDeProductosEnStock();</span>
+                 
+<span class="nc" id="L180">                 controlador.cargarArticulos(listaProd, controlador, sistema);</span>
+                 
+<span class="nc" id="L182">                 Scene escena = new Scene(root);</span>
+                 
+<span class="nc" id="L184">                 Stage stage = new Stage();</span>
+                 
+<span class="nc" id="L186">                 stage.setScene(escena);</span>
+                 
+<span class="nc" id="L188">                 stage.show();</span>
+                 
+<span class="nc" id="L190">                 stage.setHeight(675);</span>
+                 
+<span class="nc" id="L192">                 stage.setWidth(366);</span>
+                 
+<span class="nc" id="L194">                 stage.setResizable(false);</span>
+                 
+<span class="nc" id="L196">                 controlador.setSistema(sistema);</span>
+                 
+<span class="nc" id="L198">                 stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+                 
+<span class="nc" id="L200">                 Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();</span>
+<span class="nc" id="L201">                 myStage.close();</span>
+<span class="nc" id="L202">             } catch (IOException ex) {</span>
+<span class="nc" id="L203">                 Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L204">             }</span>
+          
+        } else {
+<span class="nc" id="L207">            Alert alert = new Alert(Alert.AlertType.ERROR);</span>
+<span class="nc" id="L208">            alert.setTitle(&quot;¡Cuidado!&quot;);</span>
+<span class="nc" id="L209">            alert.setHeaderText(&quot;Error: no hay envases&quot;);</span>
+<span class="nc" id="L210">            alert.setContentText(&quot;¡No hay productos en el sistema para eliminar!&quot;);</span>
+<span class="nc" id="L211">            alert.showAndWait();</span>
+        }
+
+<span class="nc" id="L214">    }</span>
+
+    @FXML
+    private void volverInicio(ActionEvent event) {
+        
+        try {
+<span class="nc" id="L220">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Vendedor.fxml&quot;));</span>
+
+<span class="nc" id="L222">            Parent root = loader.load();</span>
+
+<span class="nc" id="L224">            VendedorController controlador = loader.getController();</span>
+
+<span class="nc" id="L226">            Scene escena = new Scene(root);</span>
+
+<span class="nc" id="L228">            Stage stage = new Stage();</span>
+
+<span class="nc" id="L230">            stage.setScene(escena);</span>
+
+<span class="nc" id="L232">            stage.show();</span>
+
+<span class="nc" id="L234">            stage.setHeight(675);</span>
+
+<span class="nc" id="L236">            stage.setWidth(366);</span>
+
+<span class="nc" id="L238">            stage.setResizable(false);</span>
+
+<span class="nc" id="L240">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L242">            stage.setOnCloseRequest(e -&gt; controlador.cerrarVentana());</span>
+
+<span class="nc" id="L244">            Stage myStage = (Stage) this.btnAgregarEnvase.getScene().getWindow();</span>
+<span class="nc" id="L245">            myStage.close();</span>
+<span class="nc" id="L246">        } catch (IOException ex) {</span>
+<span class="nc" id="L247">            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L248">        }</span>
+
+        
+
+<span class="nc" id="L252">    }</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L255">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L259">        this.sistema = sistema;</span>
+<span class="nc" id="L260">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

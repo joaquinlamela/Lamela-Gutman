@@ -7,6 +7,7 @@ package interfaz;
 
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -19,19 +20,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import dominio.Producto;
-import java.nio.file.Paths;
-import java.util.Collections;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.web.WebView;
 
 /**
  * FXML Controller class
@@ -61,6 +55,16 @@ public class ClienteController implements Initializable {
     private Label txtCarrito;
     @FXML
     private Label txtPreventa;
+
+    private Persona cliente;
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
+    }
 
     /**
      * Initializes the controller class.
@@ -95,6 +99,8 @@ public class ClienteController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
 
@@ -133,6 +139,8 @@ public class ClienteController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            controlador.setCliente(this.getCliente());
+
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
             Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
@@ -168,6 +176,8 @@ public class ClienteController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
 
@@ -209,6 +219,8 @@ public class ClienteController implements Initializable {
                 stage.setResizable(false);
 
                 controlador.setSistema(sistema);
+
+                controlador.setCliente(this.getCliente());
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana2());
 
@@ -256,6 +268,22 @@ public class ClienteController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            this.getSistema().getProductosAVenderEnSesionActiva().clear();
+
+            for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
+                this.getSistema().getCantidadPorIdDeProd()[i] = 0;
+            }
+
+            this.getSistema().getEnvasesALlevarEnVenta().clear();
+
+            this.getSistema().getProductosPreVentaSesionActiva().clear();
+
+            for (int i = 0; i < this.getSistema().getCantidadPorIdDePreVenta().length; i++) {
+                this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
+            }
+
+            this.getSistema().getEnvasesALlevarEnPreVenta().clear();
+
             Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -288,6 +316,22 @@ public class ClienteController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            this.getSistema().getProductosAVenderEnSesionActiva().clear();
+
+            for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
+                this.getSistema().getCantidadPorIdDeProd()[i] = 0;
+            }
+
+            this.getSistema().getEnvasesALlevarEnVenta().clear();
+
+            this.getSistema().getProductosPreVentaSesionActiva().clear();
+
+            for (int i = 0; i < this.getSistema().getCantidadPorIdDePreVenta().length; i++) {
+                this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
+            }
+
+            this.getSistema().getEnvasesALlevarEnPreVenta().clear();
+
             Stage myStage = (Stage) this.btnCarrito.getScene().getWindow();
             myStage.close();
         } catch (IOException ex) {
@@ -306,12 +350,12 @@ public class ClienteController implements Initializable {
     public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
 
         this.setSistema(sis);
-        
-        this.txtCarrito.setText(this.getSistema().getProductosAVenderEnSesionActiva().size()+""); 
-        
-        this.txtPreventa.setText(this.getSistema().getProductosPreVentaSesionActiva().size()+""); 
-        
-        this.vBox.getChildren().clear(); 
+
+        this.txtCarrito.setText(this.getSistema().getProductosAVenderEnSesionActiva().size() + "");
+
+        this.txtPreventa.setText(this.getSistema().getProductosPreVentaSesionActiva().size() + "");
+
+        this.vBox.getChildren().clear();
 
         this.vBox.setSpacing(10);
 
@@ -331,6 +375,8 @@ public class ClienteController implements Initializable {
                 controlador.inicializarDatos(producto, sistema);
 
                 controlador.setSistema(sistema);
+
+                controlador.setCliente(this.getCliente());
 
                 //Cargo el nuevo objeto
                 vBox.getChildren().add((Node) nodo);

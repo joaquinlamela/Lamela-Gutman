@@ -9,6 +9,7 @@ import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -49,6 +50,8 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
     private Producto producto;
 
+    private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
@@ -63,6 +66,14 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
     }
 
     /**
@@ -100,6 +111,8 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
                 stage.setResizable(false);
 
                 controlador.setSistema(sistema);
+
+                controlador.setCliente(this.getCliente());
 
                 controlador.cargarProductos(this.getSistema().getProductosPreVentaSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDePreVenta());
 
@@ -148,6 +161,8 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -194,6 +209,8 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -236,7 +253,7 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
             //Cargo el nuevo objeto
             this.productoSeleccionado.getChildren().add((Node) nodo);
         } catch (IOException ex) {
-            Logger.getLogger(SeleccionarEnvasePorProductoController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(SeleccionarEnvasePorProductoPreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -262,9 +279,9 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
 
                 PresentacionEnvasesPreVentaController controlador = fxml.getController();
 
-                controlador.setSistema(sistema);
-
                 controlador.inicializarDatos(envase, sistema, paraCargarPestañaCarrito, producto);
+
+                controlador.setSistema(sistema);
 
                 //Cargo el nuevo objeto
                 this.listaDeEnvases.getChildren().add((Node) nodo);
@@ -301,6 +318,8 @@ public class SeleccionarEnvasePorProductoPreVentaController implements Initializ
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 

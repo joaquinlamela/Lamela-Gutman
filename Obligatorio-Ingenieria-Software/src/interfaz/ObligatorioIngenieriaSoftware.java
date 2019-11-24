@@ -72,21 +72,25 @@ public class ObligatorioIngenieriaSoftware extends Application {
             Sucursal s1= new Sucursal();
             s1.setDireccion("Cuareim 1451, esquina Mercedes");
             s1.setTelefono(29021505);
+            s1.setNumeroSucursal(1);
             sistema.agregarSucursal(s1);
             
             Sucursal s2= new Sucursal();
             s2.setDireccion("Rambla República del Perú 1413");
             s2.setTelefono(21234567);
+            s2.setNumeroSucursal(2);
             sistema.agregarSucursal(s2);
             
             Sucursal s3= new Sucursal();
             s3.setDireccion("Dr. Alfredo Navarro 3068");
             s3.setTelefono(27876543);
+            s3.setNumeroSucursal(3);
             sistema.agregarSucursal(s3);
             
             Sucursal s4= new Sucursal();
             s4.setDireccion("Av. Gral. Rivera 4901");
             s4.setTelefono(26008998);
+            s4.setNumeroSucursal(4);
             sistema.agregarSucursal(s4);
             
             //Se inicializan los envases

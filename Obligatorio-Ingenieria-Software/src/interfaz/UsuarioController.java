@@ -156,6 +156,8 @@ public class UsuarioController implements Initializable {
                 stage.setResizable(false);
 
                 controlador.setSistema(sistema);
+                
+                controlador.setCliente(cliente);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
 
