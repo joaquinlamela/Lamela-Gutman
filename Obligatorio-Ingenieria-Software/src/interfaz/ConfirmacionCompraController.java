@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Persona;
 import dominio.PreVenta;
@@ -33,12 +34,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class ConfirmacionCompraController implements Initializable {
+
     @FXML
     private JFXButton btnConfirmar;
     @FXML
@@ -57,22 +60,28 @@ public class ConfirmacionCompraController implements Initializable {
     @FXML
     private Label precioTotal;
     private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void confirmarVenta(ActionEvent event) {
         boolean esValido = true;
@@ -114,7 +123,7 @@ public class ConfirmacionCompraController implements Initializable {
             }
         }
         if (esValido) {
-            Persona cliente = this.getCliente(); 
+            Persona cliente = this.getCliente();
             int precio = Integer.parseInt(this.precioTotal.getText());
             this.getSistema().getEchoShop().setDireccion(this.direccionSucursal.getText());
             this.getSistema().getEchoShop().setNumeroSucursal(numeroDeSucursal);
@@ -174,9 +183,11 @@ public class ConfirmacionCompraController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverInicio(ActionEvent event) {
     }
+
     public void cargarProductos(ArrayList<Envase> lista, Sistema sis, ConfirmacionCompraController paraCargarPestañaCarrito) {
         this.setSistema(sis);
         this.nombreCliente.setText(this.getCliente().getNombre());
@@ -210,6 +221,7 @@ public class ConfirmacionCompraController implements Initializable {
             }
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PreVenta.fxml"));
@@ -232,6 +244,7 @@ public class ConfirmacionCompraController implements Initializable {
             Logger.getLogger(PreVentaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void setearDireccion(ActionEvent event) {
         int numeroDeSucursal = 0;

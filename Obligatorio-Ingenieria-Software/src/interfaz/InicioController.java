@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
@@ -18,12 +19,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class InicioController implements Initializable {
+
     @FXML
     private JFXButton btnVendedor;
     @FXML
@@ -31,6 +34,7 @@ public class InicioController implements Initializable {
     private Sistema sistema;
     @FXML
     private JFXButton btnCliente;
+
     /**
      * Initializes the controller class.
      */
@@ -38,6 +42,7 @@ public class InicioController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void tocoBotonVendedor(ActionEvent event) {
         try {
@@ -59,6 +64,7 @@ public class InicioController implements Initializable {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void tocoBotonCliente(ActionEvent event) {
         try {
@@ -80,12 +86,15 @@ public class InicioController implements Initializable {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void tocoBotonInicio(ActionEvent event) {
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema s) {
         this.sistema = s;
     }

@@ -3,50 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/BeneficiosController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/MenuController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/TopVentasController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/GraficaDeVentaXMesController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/InicioVendedorController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/SeleccionarClienteController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/TiendaTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/VendedorController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/MapaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/CarritoController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/InicioClienteController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/PreVentaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/PresentacionProductosController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/UsuarioController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ProductoParaSeleccionarEnvasesController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/SeleccionarEnvasePorProductoController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ClienteController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ProductosAEliminarController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/SucursalTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ProductosPreVentaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/EnvaseTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/PruebaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/PreVentaTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/SeleccionarEnvasePorProductoPreVentaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/AgregadoSucursalController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/EliminarProductoController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ProductosController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/PresentacionEnvasesController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/VentaTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ProductosCarritoController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/VentaPorMesController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/PresentacionEnvasesPreVentaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/AgregarProductoController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/EnvasesReutilizadosController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ObligatorioIngenieriaSoftware.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/AgregarEnvaseController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/TopVentasClienteController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/MasVendidosController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/SistemaTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/EnvasesParaConfirmacionDePreventaController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/InicioController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/test/dominio/PersonaTest.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ConfirmacionCompraController.java</file>
-            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/EstadisticasController.java</file>
+            <file>file:/C:/Users/user/Desktop/Obl-Ingenieria-Software/Obl-Ingenieria-Software/Obligatorio-Ingenieria-Software/src/interfaz/ObligatorioIngenieriaSoftware.java</file>
         </group>
     </open-files>
 </project-private>

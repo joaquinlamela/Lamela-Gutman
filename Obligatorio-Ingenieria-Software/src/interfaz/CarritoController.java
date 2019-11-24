@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Persona;
 import dominio.Producto;
@@ -29,12 +30,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class CarritoController implements Initializable {
+
     @FXML
     private JFXButton btnAtras;
     @FXML
@@ -47,42 +50,54 @@ public class CarritoController implements Initializable {
     @FXML
     private JFXButton btnConfirmar;
     private Persona cliente;
+
     //Gets and sets
     public JFXButton getBtnAtras() {
         return btnAtras;
     }
+
     public void setBtnAtras(JFXButton btnAtras) {
         this.btnAtras = btnAtras;
     }
+
     public JFXButton getBtnInicio() {
         return btnInicio;
     }
+
     public void setBtnInicio(JFXButton btnInicio) {
         this.btnInicio = btnInicio;
     }
+
     public VBox getListaProductos() {
         return listaProductos;
     }
+
     public void setListaProductos(VBox listaProductos) {
         this.listaProductos = listaProductos;
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.listaProductos.getChildren().clear();
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -105,6 +120,7 @@ public class CarritoController implements Initializable {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cargarProductos(ArrayList<Producto> lista, Sistema sis, CarritoController paraCargarPestañaCarrito, int[] cantidadPorId) {
         this.setSistema(sis);
         this.listaProductos.getChildren().clear();
@@ -126,6 +142,7 @@ public class CarritoController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -149,6 +166,7 @@ public class CarritoController implements Initializable {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void cancelarVenta(ActionEvent event) {
         this.getSistema().getProductosAVenderEnSesionActiva().clear();
@@ -177,6 +195,7 @@ public class CarritoController implements Initializable {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void confirmarVenta(ActionEvent event) {
         if (!this.getSistema().getProductosAVenderEnSesionActiva().isEmpty()) {

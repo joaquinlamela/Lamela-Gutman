@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Sistema;
 import dominio.Venta;
@@ -30,12 +31,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class VentaPorMesController implements Initializable {
+
     @FXML
     private JFXButton btnInicio;
     @FXML
@@ -54,6 +57,7 @@ public class VentaPorMesController implements Initializable {
     @FXML
     private TableColumn<Venta, Date> columnaFecha;
     private ObservableList<Venta> listaDeVenta;
+
     /**
      * Initializes the controller class.
      */
@@ -62,6 +66,7 @@ public class VentaPorMesController implements Initializable {
         this.fechaSeleccionada.setValue(LocalDate.now());
         listaDeVenta = FXCollections.observableArrayList();
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -82,6 +87,7 @@ public class VentaPorMesController implements Initializable {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -102,9 +108,11 @@ public class VentaPorMesController implements Initializable {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void productosPorFecha(SortEvent<?> event) {
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -125,12 +133,15 @@ public class VentaPorMesController implements Initializable {
             Logger.getLogger(VentaPorMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     @FXML
     private void seleccionoFecha(ActionEvent event) {
         if (this.getSistema().getListaDeVentasDelSitema().isEmpty()) {

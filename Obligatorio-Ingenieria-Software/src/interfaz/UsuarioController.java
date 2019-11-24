@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Persona;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -23,12 +24,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class UsuarioController implements Initializable {
+
     @FXML
     private JFXTextField txtFnombreUsuario;
     @FXML
@@ -42,6 +45,7 @@ public class UsuarioController implements Initializable {
     @FXML
     private JFXButton btnInicio;
     private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
@@ -51,6 +55,7 @@ public class UsuarioController implements Initializable {
             cmbEdad.getItems().add(i);
         }
     }
+
     @FXML
     private void confirmarDatos(ActionEvent event) {
         boolean esValido = true;
@@ -139,6 +144,7 @@ public class UsuarioController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverInicio(ActionEvent event) {
         try {
@@ -160,6 +166,7 @@ public class UsuarioController implements Initializable {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
@@ -180,9 +187,11 @@ public class UsuarioController implements Initializable {
                     .getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }

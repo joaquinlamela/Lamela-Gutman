@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -23,12 +24,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class TopVentasController implements Initializable {
+
     @FXML
     private JFXButton btnAtras;
     @FXML
@@ -36,6 +39,7 @@ public class TopVentasController implements Initializable {
     private Sistema sistema;
     @FXML
     private VBox productosMasVendidos;
+
     /**
      * Initializes the controller class.
      */
@@ -43,6 +47,7 @@ public class TopVentasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -64,6 +69,7 @@ public class TopVentasController implements Initializable {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverInicio(ActionEvent event) {
         try {
@@ -85,6 +91,7 @@ public class TopVentasController implements Initializable {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -105,6 +112,7 @@ public class TopVentasController implements Initializable {
             Logger.getLogger(TopVentasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana2() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -126,12 +134,15 @@ public class TopVentasController implements Initializable {
             Logger.getLogger(CarritoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
         this.setSistema(sis);
         this.productosMasVendidos.getChildren().clear();

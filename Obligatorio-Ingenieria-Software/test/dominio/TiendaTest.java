@@ -1,4 +1,5 @@
 package dominio;
+
 import dominio.Sucursal;
 import dominio.Producto;
 import dominio.Tienda;
@@ -14,18 +15,23 @@ public class TiendaTest {
 
     public TiendaTest() {
     }
+
     @BeforeClass
     public static void setUpClass() {
     }
+
     @AfterClass
     public static void tearDownClass() {
     }
+
     @Before
     public void setUp() {
     }
+
     @After
     public void tearDown() {
     }
+
     //Direccion
     @Test
     public void testGetDireccion1() {
@@ -35,6 +41,7 @@ public class TiendaTest {
         String result = instance.getDireccion();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetDireccion2() {
         Tienda instance = new Tienda();
@@ -43,6 +50,7 @@ public class TiendaTest {
         String result = instance.getDireccion();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetDireccion3() {
         Tienda instance = new Tienda();
@@ -51,6 +59,7 @@ public class TiendaTest {
         String result = instance.getDireccion();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetDireccion4() {
         Tienda instance = new Tienda();
@@ -59,24 +68,28 @@ public class TiendaTest {
         String result = instance.getDireccion();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetDireccion1() {
         String dir = "Tienda1";
         Tienda instance = new Tienda();
         instance.setDireccion(dir);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetDireccion2() {
         String dir = "";
         Tienda instance = new Tienda();
         instance.setDireccion(dir);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetDireccion3() {
         String dir = "   ";
         Tienda instance = new Tienda();
         instance.setDireccion(dir);
     }
+
     //Telefono
     @Test(expected = RuntimeException.class)
     public void testGetTelefono1() {
@@ -86,6 +99,7 @@ public class TiendaTest {
         int result = (int) instance.getTelefono();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetTelefono2() {
         Tienda instance = new Tienda();
@@ -94,6 +108,7 @@ public class TiendaTest {
         int result = (int) instance.getTelefono();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetTelefono3() {
         Tienda instance = new Tienda();
@@ -102,6 +117,7 @@ public class TiendaTest {
         int result = (int) instance.getTelefono();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetTelefono4() {
         Tienda instance = new Tienda();
@@ -110,6 +126,7 @@ public class TiendaTest {
         int result = (int) instance.getTelefono();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetTelefono5() {
         Tienda instance = new Tienda();
@@ -118,36 +135,42 @@ public class TiendaTest {
         int result = (int) instance.getTelefono();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetTelefono1() {
         int precioDeTienda = 0;
         Tienda instance = new Tienda();
         instance.setTelefono(precioDeTienda);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetTelefono2() {
         int precioDeTienda = -8;
         Tienda instance = new Tienda();
         instance.setTelefono(precioDeTienda);
     }
+
     @Test
     public void testSetTelefono3() {
         int precioDeTienda = 1;
         Tienda instance = new Tienda();
         instance.setTelefono(precioDeTienda);
     }
+
     @Test
     public void testSetTelefono4() {
         int precioDeTienda = 100;
         Tienda instance = new Tienda();
         instance.setTelefono(precioDeTienda);
     }
+
     @Test
     public void testSetTelefono5() {
         int precioDeTienda = 10000;
         Tienda instance = new Tienda();
         instance.setTelefono(precioDeTienda);
     }
+
     //Stock por Id   
     @Test
     public void testGetstockPorId1() {
@@ -158,6 +181,7 @@ public class TiendaTest {
         int[] result = instance.getStockDeProductoPorId();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetstockPorId2() {
         Tienda instance = new Tienda();
@@ -167,6 +191,7 @@ public class TiendaTest {
         int[] result = instance.getStockDeProductoPorId();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetstockPorId3() {
         Tienda instance = new Tienda();
@@ -176,6 +201,7 @@ public class TiendaTest {
         int[] result = instance.getStockDeProductoPorId();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetStockPorId4() {
         Tienda instance = new Tienda();
@@ -185,6 +211,7 @@ public class TiendaTest {
         int[] result = instance.getStockDeProductoPorId();
         assertArrayEquals(expResult, result);
     }
+
     @Test
     public void testGetStockPorId5() {
         Tienda instance = new Tienda();
@@ -194,18 +221,21 @@ public class TiendaTest {
         int[] result = instance.getStockDeProductoPorId();
         assertArrayEquals(expResult, result);
     }
+
     @Test
     public void testSetStockDeProductoPorId1() {
         int[] stockDeProductoPorId = new int[15];
         Tienda instance = new Tienda();
         instance.setStockDeProductoPorId(stockDeProductoPorId);
     }
+
     @Test
     public void testSetStockDeProductoPorId2() {
         int[] stockDeProductoPorId = new int[0];
         Tienda instance = new Tienda();
         instance.setStockDeProductoPorId(stockDeProductoPorId);
     }
+
     //Productos
     @Test
     public void testGetProductos1() {
@@ -223,6 +253,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos2() {
         Tienda instance = new Tienda();
@@ -240,6 +271,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos3() {
         Tienda instance = new Tienda();
@@ -258,6 +290,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos4() {
         Tienda instance = new Tienda();
@@ -278,6 +311,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos5() {
         Tienda instance = new Tienda();
@@ -297,6 +331,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos6() {
         Tienda instance = new Tienda();
@@ -319,6 +354,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetProductos7() {
         Tienda instance = new Tienda();
@@ -339,6 +375,7 @@ public class TiendaTest {
         ArrayList<Producto> result = instance.getListaDeProductosEnStock();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetProductos1() {
         ArrayList<Producto> sucursales = new ArrayList<>();
@@ -352,6 +389,7 @@ public class TiendaTest {
         instance.agregarProducto(s1);
         instance.setListaDeProductosEnStock(sucursales);
     }
+
     @Test
     public void testSetProductos2() {
         ArrayList<Producto> sucursales = new ArrayList<>();
@@ -366,6 +404,7 @@ public class TiendaTest {
         instance.agregarProducto(s2);
         instance.setListaDeProductosEnStock(sucursales);
     }
+
     @Test
     public void testSetProductos3() {
         ArrayList<Producto> sucursales = new ArrayList<>();
@@ -381,6 +420,7 @@ public class TiendaTest {
         instance.agregarProducto(s3);
         instance.setListaDeProductosEnStock(sucursales);
     }
+
     @Test
     public void testSetProductos4() {
         ArrayList<Producto> sucursales = new ArrayList<>();
@@ -393,6 +433,7 @@ public class TiendaTest {
         s3.setCodigoIdentificador(3);
         instance.setListaDeProductosEnStock(sucursales);
     }
+
     //Sucursales
     @Test
     public void testGetSucursales1() {
@@ -407,6 +448,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales2() {
         Tienda instance = new Tienda();
@@ -421,6 +463,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales3() {
         Tienda instance = new Tienda();
@@ -436,6 +479,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales4() {
         Tienda instance = new Tienda();
@@ -453,6 +497,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales5() {
         Tienda instance = new Tienda();
@@ -468,6 +513,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales6() {
         Tienda instance = new Tienda();
@@ -487,6 +533,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetSucursales7() {
         Tienda instance = new Tienda();
@@ -504,6 +551,7 @@ public class TiendaTest {
         ArrayList<Sucursal> result = instance.getSucursales();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetSucursales1() {
         ArrayList<Sucursal> sucursales = new ArrayList<>();
@@ -514,6 +562,7 @@ public class TiendaTest {
         instance.agregarSucursal(s1);
         instance.setSucursales(sucursales);
     }
+
     @Test
     public void testSetSucursales2() {
         ArrayList<Sucursal> sucursales = new ArrayList<>();
@@ -525,6 +574,7 @@ public class TiendaTest {
         instance.agregarSucursal(s2);
         instance.setSucursales(sucursales);
     }
+
     @Test
     public void testSetSucursales3() {
         ArrayList<Sucursal> sucursales = new ArrayList<>();
@@ -537,6 +587,7 @@ public class TiendaTest {
         instance.agregarSucursal(s3);
         instance.setSucursales(sucursales);
     }
+
     @Test
     public void testSetSucursales4() {
         ArrayList<Sucursal> sucursales = new ArrayList<>();

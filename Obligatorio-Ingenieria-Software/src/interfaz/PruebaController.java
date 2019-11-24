@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -24,12 +25,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class PruebaController implements Initializable {
+
     @FXML
     private JFXButton btnCarro;
     @FXML
@@ -54,36 +57,43 @@ public class PruebaController implements Initializable {
     private TableColumn coluPrecio;
     private ObservableList<Producto> productos;
     private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       // this.cargarTabla();
+        // this.cargarTabla();
     }
-    public void cargarTabla(){
+
+    public void cargarTabla() {
         productos = FXCollections.observableArrayList();
         this.coluNombre.setCellFactory(new PropertyValueFactory("nombre"));
         this.coluIdentifica.setCellFactory(new PropertyValueFactory("codigoIdentificador"));
         this.coluCant.setCellFactory(new PropertyValueFactory("cantidadVendidos"));
         this.coluPrecio.setCellFactory(new PropertyValueFactory("precio"));
         for (int i = 0; i < this.getSistema().getEchoShop().getListaDeProductosEnStock().size(); i++) {
-            productos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i)); 
+            productos.add(this.getSistema().getEchoShop().getListaDeProductosEnStock().get(i));
         }
         this.tbProductos.setItems(productos);
     }
+
     @FXML
     private void irAlCarrito(ActionEvent event) {
     }
+
     @FXML
     private void irAlMapa(ActionEvent event) {
     }
+
     @FXML
     private void irAlMercado(ActionEvent event) {
     }
+
     @FXML
     private void topVentas(ActionEvent event) {
     }
+
     @FXML
     private void inicio(ActionEvent event) {
         try {
@@ -104,6 +114,7 @@ public class PruebaController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void irAtras(ActionEvent event) {
         try {
@@ -124,12 +135,15 @@ public class PruebaController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));

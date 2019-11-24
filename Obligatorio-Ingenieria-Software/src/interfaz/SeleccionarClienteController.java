@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import com.jfoenix.controls.JFXButton;
 import dominio.Persona;
 import dominio.Sistema;
@@ -20,12 +21,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class SeleccionarClienteController implements Initializable {
+
     @FXML
     private JFXButton btnClientePorDefecto;
     @FXML
@@ -33,12 +36,15 @@ public class SeleccionarClienteController implements Initializable {
     @FXML
     private JFXButton btnVolverInicio;
     private Sistema sistema;
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     /**
      * Initializes the controller class.
      */
@@ -46,9 +52,10 @@ public class SeleccionarClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void tocoBotonPorDefecto(ActionEvent event) {
-        Persona clientePorDefecto= new Persona("Ricardo Montaner", 45, "Cassinoni 1190 esquina Charrua", "ABCD8569" );
+        Persona clientePorDefecto = new Persona("Ricardo Montaner", 45, "Cassinoni 1190 esquina Charrua", "ABCD8569");
         this.getSistema().agregarCliente(clientePorDefecto);
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("InicioCliente.fxml"));
@@ -62,7 +69,7 @@ public class SeleccionarClienteController implements Initializable {
             stage.setWidth(366);
             stage.setResizable(false);
             controlador.setSistema(sistema);
-            controlador.setCliente(clientePorDefecto); 
+            controlador.setCliente(clientePorDefecto);
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
             Stage myStage = (Stage) this.btnClienteConDatos.getScene().getWindow();
             myStage.close();
@@ -70,6 +77,7 @@ public class SeleccionarClienteController implements Initializable {
             Logger.getLogger(SeleccionarClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void tocoBotonClienteConDatos(ActionEvent event) {
         try {
@@ -91,6 +99,7 @@ public class SeleccionarClienteController implements Initializable {
             Logger.getLogger(SeleccionarClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
@@ -110,6 +119,7 @@ public class SeleccionarClienteController implements Initializable {
             Logger.getLogger(SeleccionarClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void tocoBotonInicio(ActionEvent event) {
         try {

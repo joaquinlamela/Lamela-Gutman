@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -28,12 +29,14 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class PresentacionProductosController implements Initializable {
+
     @FXML
     private JFXButton btnPreventa;
     @FXML
@@ -54,85 +57,111 @@ public class PresentacionProductosController implements Initializable {
     private Persona cliente;
     @FXML
     private Label identificador;
+
     //Gets ands sets: 
     public Sistema getSistema() {
         return sistema;
         // TODO
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public JFXButton getBtnPreventa() {
         return btnPreventa;
     }
+
     public void setBtnPreventa(JFXButton btnPreventa) {
         this.btnPreventa = btnPreventa;
     }
+
     public JFXButton getCarrito() {
         return carrito;
     }
+
     public void setCarrito(JFXButton carrito) {
         this.carrito = carrito;
     }
+
     public ImageView getImagenProducto() {
         return imagenProducto;
     }
+
     public void setImagenProducto(ImageView imagenProducto) {
         this.imagenProducto = imagenProducto;
     }
+
     public Label getNombreProd() {
         return nombreProd;
     }
+
     public void setNombreProd(Label nombreProd) {
         this.nombreProd = nombreProd;
     }
+
     public Label getPrecioProducto() {
         return precioProducto;
     }
+
     public void setPrecioProducto(Label precioProducto) {
         this.precioProducto = precioProducto;
     }
+
     public Label getDescripcion() {
         return descripcion;
     }
+
     public void setDescripcion(Label descripcion) {
         this.descripcion = descripcion;
     }
+
     public JFXComboBox<Integer> getCantidadProductos() {
         return cantidadProductos;
     }
+
     public void setCantidadProductos(JFXComboBox<Integer> cantidadProductos) {
         this.cantidadProductos = cantidadProductos;
     }
+
     public Label getIdentificador() {
         return identificador;
     }
+
     public void setIdentificador(Label identificador) {
         this.identificador = identificador;
     }
+
     public CarritoController getControlador() {
         return controlador;
     }
+
     public void setControlador(CarritoController controlador) {
         this.controlador = controlador;
     }
+
     public int getCodigoIdentificador() {
         return codigoIdentificador;
     }
+
     public void setCodigoIdentificador(int codigoIdentificador) {
         this.codigoIdentificador = codigoIdentificador;
     }
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     //Metodos: 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void agregarPreventa(ActionEvent event) {
         boolean esValido = true;
@@ -202,6 +231,7 @@ public class PresentacionProductosController implements Initializable {
             }
         }
     }
+
     @FXML
     private void agregarCarrito(ActionEvent event) {
         boolean esValido = true;
@@ -271,6 +301,7 @@ public class PresentacionProductosController implements Initializable {
             }
         }
     }
+
     public void inicializarDatos(Producto producto, Sistema sistema) {
         this.setSistema(sistema);
         this.setCodigoIdentificador(producto.getCodigoIdentificador());

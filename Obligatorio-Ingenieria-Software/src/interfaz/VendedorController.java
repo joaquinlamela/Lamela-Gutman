@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -24,12 +25,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class VendedorController implements Initializable {
+
     @FXML
     private JFXButton btnAgregarProducto;
     @FXML
@@ -49,6 +52,7 @@ public class VendedorController implements Initializable {
     @FXML
     private JFXButton btnInicio;
     private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
@@ -56,6 +60,7 @@ public class VendedorController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void agregarProducto(ActionEvent event) {
         try {
@@ -78,6 +83,7 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void agregarTienda(ActionEvent event) {
         try {
@@ -100,6 +106,7 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void agregarEnvase(ActionEvent event) {
         try {
@@ -121,6 +128,7 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void eliminarProducto(ActionEvent event) {
         if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
@@ -152,6 +160,7 @@ public class VendedorController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void topVentas(ActionEvent event) {
         if (!this.getSistema().getEchoShop().getListaDeProductosEnStock().isEmpty()) {
@@ -191,6 +200,7 @@ public class VendedorController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void ventasPorMes(ActionEvent event) {
         if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
@@ -220,6 +230,7 @@ public class VendedorController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void obtenerEstadisticas(ActionEvent event) {
         if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
@@ -316,6 +327,7 @@ public class VendedorController implements Initializable {
             }
         }
     }
+
     @FXML
     private void irAMenu(ActionEvent event) {
         try {
@@ -336,6 +348,7 @@ public class VendedorController implements Initializable {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void tocoBotonInicio(ActionEvent event) {
         try {
@@ -356,6 +369,7 @@ public class VendedorController implements Initializable {
             Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
@@ -375,9 +389,11 @@ public class VendedorController implements Initializable {
             Logger.getLogger(VendedorController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
