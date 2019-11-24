@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -25,12 +26,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class EnvasesReutilizadosController implements Initializable {
+
     @FXML
     private JFXButton btnMasVendidos;
     @FXML
@@ -50,6 +53,7 @@ public class EnvasesReutilizadosController implements Initializable {
     @FXML
     private JFXButton btnInicio;
     private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
@@ -57,18 +61,20 @@ public class EnvasesReutilizadosController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     public void cargarGraficaEnvases(Sistema sistema) {
         this.setSistema(sistema);
         XYChart.Series set1 = new XYChart.Series<>();
         ArrayList<Envase> listaDeEnvases = this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles();
-        int cantidadDeVeces=0; 
+        int cantidadDeVeces = 0;
         for (int i = 0; i < listaDeEnvases.size(); i++) {
             String nombreEnvase = listaDeEnvases.get(i).getNombre();
-            cantidadDeVeces= this.getSistema().getEnvasesUtilizadosPorId()[listaDeEnvases.get(i).getIdIdentificador()]; 
+            cantidadDeVeces = this.getSistema().getEnvasesUtilizadosPorId()[listaDeEnvases.get(i).getIdIdentificador()];
             set1.getData().add(new XYChart.Data(nombreEnvase, cantidadDeVeces));
         }
         graficaEnvases.getData().add(set1);
     }
+
     @FXML
     private void mostrarMasVendidos(ActionEvent event) {
         try {
@@ -91,9 +97,11 @@ public class EnvasesReutilizadosController implements Initializable {
             Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void envasesUtilizados(ActionEvent event) {
     }
+
     @FXML
     private void ventasPorMes(ActionEvent event) {
         try {
@@ -116,6 +124,7 @@ public class EnvasesReutilizadosController implements Initializable {
             Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
         try {
@@ -138,6 +147,7 @@ public class EnvasesReutilizadosController implements Initializable {
             Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -159,6 +169,7 @@ public class EnvasesReutilizadosController implements Initializable {
             Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -180,12 +191,15 @@ public class EnvasesReutilizadosController implements Initializable {
             Logger.getLogger(EnvasesReutilizadosController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));

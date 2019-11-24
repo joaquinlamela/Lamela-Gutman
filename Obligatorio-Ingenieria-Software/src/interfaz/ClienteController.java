@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import dominio.Persona;
@@ -25,12 +26,14 @@ import dominio.Producto;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class ClienteController implements Initializable {
+
     @FXML
     private VBox vBox;
     @FXML
@@ -51,18 +54,22 @@ public class ClienteController implements Initializable {
     @FXML
     private Label txtPreventa;
     private Persona cliente;
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     @FXML
     private void irAlCarrito(ActionEvent event) {
         try {
@@ -86,6 +93,7 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void irAlMapa(ActionEvent event) {
         try {
@@ -108,6 +116,7 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void irAlMercado(ActionEvent event) {
         try {
@@ -131,6 +140,7 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void topVentas(ActionEvent event) {
         if (!this.getSistema().getListaDeVentasDelSitema().isEmpty()) {
@@ -163,9 +173,11 @@ public class ClienteController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void irAlMenu(ActionEvent event) {
     }
+
     @FXML
     private void irAInicio(ActionEvent event) {
         try {
@@ -196,6 +208,7 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Inicio.fxml"));
@@ -225,12 +238,15 @@ public class ClienteController implements Initializable {
             Logger.getLogger(ClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
         this.setSistema(sis);
         this.txtCarrito.setText(this.getSistema().getProductosAVenderEnSesionActiva().size() + "");

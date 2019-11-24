@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
@@ -37,12 +38,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class AgregarProductoController implements Initializable {
+
     @FXML
     private JFXTextField txtFNombre;
     @FXML
@@ -80,6 +83,7 @@ public class AgregarProductoController implements Initializable {
     @FXML
     private TableColumn<Envase, Integer> capacidadEnvase;
     private ObservableList<Envase> listaDeEnvases;
+
     /**
      * Initializes the controller class.
      */
@@ -90,18 +94,23 @@ public class AgregarProductoController implements Initializable {
         this.tablaDeEnvases.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         listaDeEnvases = FXCollections.observableArrayList();
     }
+
     @FXML
     private void obtenerNombre(ActionEvent event) {
     }
+
     @FXML
     private void obtenerPeso(ActionEvent event) {
     }
+
     @FXML
     private void obtenerPrecio(ActionEvent event) {
     }
+
     @FXML
     private void obtenerOrigen(ActionEvent event) {
     }
+
     public void cargarDatos(ArrayList<Envase> listaEnvases, Sistema sistema) {
         this.setSistema(sistema);
         if (this.getSistema().getEchoShop().getTodosLosEnvasesDisponibles().isEmpty()) {
@@ -120,6 +129,7 @@ public class AgregarProductoController implements Initializable {
             this.tablaDeEnvases.setItems(listaDeEnvases);
         }
     }
+
     @FXML
     private void agregarProductoCreado(ActionEvent event) {
         //FALTA ACA VER EL TEMA DEL ORIGEN Y LA LISTA DE ELEMENTOS QUE HAY QUE TENER, Y QUEDAAAAA. 
@@ -343,6 +353,7 @@ public class AgregarProductoController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverInicio(ActionEvent event) {
         try {
@@ -364,6 +375,7 @@ public class AgregarProductoController implements Initializable {
             Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void irAInicio(ActionEvent event) {
         try {
@@ -385,6 +397,7 @@ public class AgregarProductoController implements Initializable {
             Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -405,12 +418,15 @@ public class AgregarProductoController implements Initializable {
             Logger.getLogger(AgregarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     @FXML
     private void obtenerDescripcion(ActionEvent event) {
     }

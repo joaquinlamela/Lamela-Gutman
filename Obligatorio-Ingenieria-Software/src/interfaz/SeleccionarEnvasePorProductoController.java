@@ -124,7 +124,7 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.setContadorDeEnvasesSeleccionados(0);
-        
+
     }
 
     @FXML

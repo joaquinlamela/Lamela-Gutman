@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -30,12 +31,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class EliminarProductoController implements Initializable {
+
     @FXML
     private JFXButton btnAtras;
     @FXML
@@ -43,12 +46,14 @@ public class EliminarProductoController implements Initializable {
     private Sistema sistema;
     @FXML
     private VBox listaProductos;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
+
     public void cargarArticulos(ArrayList<Producto> lista, EliminarProductoController paraCargarDevuelta, Sistema sis) {
         this.setSistema(sis);
         this.listaProductos.getChildren().clear();
@@ -70,6 +75,7 @@ public class EliminarProductoController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -83,7 +89,7 @@ public class EliminarProductoController implements Initializable {
             stage.setHeight(675);
             stage.setWidth(366);
             stage.setResizable(false);
-           controlador.setSistema(sistema);
+            controlador.setSistema(sistema);
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
             Stage myStage = (Stage) this.btnAtras.getScene().getWindow();
             myStage.close();
@@ -91,6 +97,7 @@ public class EliminarProductoController implements Initializable {
             Logger.getLogger(EliminarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -111,9 +118,11 @@ public class EliminarProductoController implements Initializable {
             Logger.getLogger(EliminarProductoController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }

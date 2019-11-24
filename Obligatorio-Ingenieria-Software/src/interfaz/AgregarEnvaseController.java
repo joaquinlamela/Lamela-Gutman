@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Sistema;
 import dominio.TipoMateriales;
@@ -29,12 +30,14 @@ import javafx.scene.image.Image;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class AgregarEnvaseController implements Initializable {
+
     @FXML
     private JFXTextField txtFPesoSoportado;
     @FXML
@@ -54,6 +57,7 @@ public class AgregarEnvaseController implements Initializable {
     private JFXRadioButton rbPapel;
     @FXML
     private JFXRadioButton rbMetal;
+
     /**
      * Initializes the controller class.
      */
@@ -61,12 +65,15 @@ public class AgregarEnvaseController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void obtenerPesoSoportado(ActionEvent event) {
     }
+
     @FXML
     private void obtenerNombreEnvase(ActionEvent event) {
     }
+
     @FXML
     private void agregarEnvase(ActionEvent event) {
         boolean esValido = true;
@@ -166,6 +173,7 @@ public class AgregarEnvaseController implements Initializable {
             }
         }
     }
+
     @FXML
     private void volverAtras(ActionEvent event) {
         try {
@@ -187,6 +195,7 @@ public class AgregarEnvaseController implements Initializable {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -208,6 +217,7 @@ public class AgregarEnvaseController implements Initializable {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -228,9 +238,11 @@ public class AgregarEnvaseController implements Initializable {
             Logger.getLogger(AgregarEnvaseController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }

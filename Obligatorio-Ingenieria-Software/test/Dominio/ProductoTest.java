@@ -374,7 +374,7 @@ public class ProductoTest {
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
         e3.setIdIdentificador(3);
-        
+
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -401,7 +401,7 @@ public class ProductoTest {
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
         e3.setIdIdentificador(3);
-        
+
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -428,7 +428,7 @@ public class ProductoTest {
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
         e3.setIdIdentificador(3);
-        
+
         instance.agregarEnvase(e);
         instance.agregarEnvase(e2);
         instance.agregarEnvase(e3);
@@ -437,10 +437,10 @@ public class ProductoTest {
 
         instance.eliminarEnvase(e3);
         instance.eliminarEnvase(e2);
-        
+
         //Se intenta eliminar un envase que no esta
         instance.eliminarEnvase(e2);
-        
+
         ArrayList<Envase> a = new ArrayList<>();
         a.add(e);
         ArrayList<Envase> expResult = a;
@@ -458,8 +458,9 @@ public class ProductoTest {
         Envase e2 = new Envase();
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
-        e3.setIdIdentificador(3);ArrayList<Envase> a = new ArrayList<>();
-        
+        e3.setIdIdentificador(3);
+        ArrayList<Envase> a = new ArrayList<>();
+
         a.add(e);
         a.add(e2);
         a.add(e3);
@@ -477,7 +478,7 @@ public class ProductoTest {
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
         e3.setIdIdentificador(3);
-        
+
         ArrayList<Envase> a = new ArrayList<>();
         a.add(e);
         instance.setPosiblesEnvasesRecomendados(a);
@@ -493,7 +494,7 @@ public class ProductoTest {
         e2.setIdIdentificador(2);
         Envase e3 = new Envase();
         e3.setIdIdentificador(3);
-        
+
         ArrayList<Envase> a = new ArrayList<>();
         instance.setPosiblesEnvasesRecomendados(a);
 
@@ -1041,7 +1042,7 @@ public class ProductoTest {
         instance.setCantidadVendidos(precioDeProducto);
 
     }
-    
+
     //Equals
     @Test
     public void equals1() {
@@ -1052,7 +1053,7 @@ public class ProductoTest {
         boolean result = instance.equals(e);
         assertEquals(true, result);
     }
-    
+
     @Test
     public void equals2() {
         Producto instance = new Producto();

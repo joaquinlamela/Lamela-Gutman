@@ -1,10 +1,9 @@
 package dominio;
 
-public enum  TipoOrigen {
+public enum TipoOrigen {
     Vegetal,
     Mineral,
     Animal,
     Fosil,
     Indefinido
 }
-

@@ -1,4 +1,5 @@
 package dominio;
+
 import dominio.Venta;
 import dominio.Persona;
 import dominio.Envase;
@@ -17,18 +18,23 @@ public class VentaTest {
 
     public VentaTest() {
     }
+
     @BeforeClass
     public static void setUpClass() {
     }
+
     @AfterClass
     public static void tearDownClass() {
     }
+
     @Before
     public void setUp() {
     }
+
     @After
     public void tearDown() {
     }
+
     //Lista de Productos
     @Test
     public void testGetListaDeProductos1() {
@@ -36,7 +42,8 @@ public class VentaTest {
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);p.setCodigoIdentificador(18);
+        p.agregarEnvase(e);
+        p.setCodigoIdentificador(18);
         Producto f = new Producto();
         instance.agregarProducto(f);
         instance.agregarProducto(p);
@@ -46,13 +53,15 @@ public class VentaTest {
         ArrayList<Producto> result = instance.getListaDeProductosAVender();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeProductos2() {
         Envase e = new Envase();
         Venta instance = new Venta();
         ArrayList<Producto> a = new ArrayList<>();
         Producto p = new Producto();
-        p.agregarEnvase(e);p.setCodigoIdentificador(18);
+        p.agregarEnvase(e);
+        p.setCodigoIdentificador(18);
         Producto f = new Producto();
         Producto g = new Producto();
         f = g;
@@ -65,6 +74,7 @@ public class VentaTest {
         ArrayList<Producto> result = instance.getListaDeProductosAVender();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeProductos3() {
         Envase e = new Envase();
@@ -85,6 +95,7 @@ public class VentaTest {
         ArrayList<Producto> result = instance.getListaDeProductosAVender();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeProductos4() {
         Envase e = new Envase();
@@ -107,12 +118,14 @@ public class VentaTest {
         ArrayList<Producto> result = instance.getListaDeProductosAVender();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetListaDeProductos() {
         ArrayList<Producto> listaDeProductos = null;
         Venta instance = new Venta();
         instance.setListaDeProductosAVender(listaDeProductos);
     }
+
     //Precio
     @Test(expected = RuntimeException.class)
     public void testGetPrecioDeVenta1() {
@@ -123,6 +136,7 @@ public class VentaTest {
         assertEquals(expResult, result);
         fail("The test case is a prototype.");
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetPrecioDeVenta2() {
         Venta instance = new Venta();
@@ -131,6 +145,7 @@ public class VentaTest {
         int result = instance.getPrecioTotal();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetPrecioDeVenta3() {
         Venta instance = new Venta();
@@ -139,6 +154,7 @@ public class VentaTest {
         int result = instance.getPrecioTotal();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetPrecioDeVenta4() {
         Venta instance = new Venta();
@@ -147,6 +163,7 @@ public class VentaTest {
         int result = instance.getPrecioTotal();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetPrecioDeVenta5() {
         Venta instance = new Venta();
@@ -155,36 +172,42 @@ public class VentaTest {
         int result = instance.getPrecioTotal();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetPrecioDeVenta1() {
         int precioDeVenta = 0;
         Venta instance = new Venta();
         instance.setPrecioTotal(precioDeVenta);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetPrecioDeVenta2() {
         int precioDeVenta = -8;
         Venta instance = new Venta();
         instance.setPrecioTotal(precioDeVenta);
     }
+
     @Test
     public void testSetPrecioDeVenta3() {
         int precioDeVenta = 1;
         Venta instance = new Venta();
         instance.setPrecioTotal(precioDeVenta);
     }
+
     @Test
     public void testSetPrecioDeVenta4() {
         int precioDeVenta = 100;
         Venta instance = new Venta();
         instance.setPrecioTotal(precioDeVenta);
     }
+
     @Test
     public void testSetPrecioDeVenta5() {
         int precioDeVenta = 10000;
         Venta instance = new Venta();
         instance.setPrecioTotal(precioDeVenta);
     }
+
     //Fecha de compra
     @Test
     public void testGetFechaDeCompra() {
@@ -195,12 +218,14 @@ public class VentaTest {
         Date result = instance.getFechaDeCompra();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetFechaDeCompra() {
         Date fechaDeCompra = null;
         Venta instance = new Venta();
         instance.setFechaDeCompra(fechaDeCompra);
     }
+
     //Comprador
     @Test
     public void testGetComprador1() {
@@ -211,6 +236,7 @@ public class VentaTest {
         Persona result = instance.getComprador();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetComprador2() {
         Venta instance = new Venta();
@@ -220,18 +246,21 @@ public class VentaTest {
         Persona result = instance.getComprador();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetComprador1() {
         Persona comprador = new Persona();
         Venta instance = new Venta();
         instance.setComprador(comprador);
     }
+
     @Test
     public void testSetComprador2() {
         Persona comprador = new Persona("Martin", 19, "Mercedes", "Rut2");
         Venta instance = new Venta();
         instance.setComprador(comprador);
     }
+
     //Echo Shop
     @Test
     public void testGetEchoShop() {
@@ -242,6 +271,7 @@ public class VentaTest {
         Tienda result = instance.getEchoShop();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetEchoShop() {
         Tienda t = new Tienda();
@@ -249,6 +279,7 @@ public class VentaTest {
         Venta instance = new Venta();
         instance.setEchoShop(echoShop);
     }
+
     //Lista de envases
     @Test
     public void testGetListaDeEnvase1() {
@@ -259,6 +290,7 @@ public class VentaTest {
         ArrayList<Envase> result = instance.getListaDeEnvasesUtilizados();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeEnvase2() {
         Venta instance = new Venta();
@@ -276,6 +308,7 @@ public class VentaTest {
         ArrayList<Envase> result = instance.getListaDeEnvasesUtilizados();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeEnvase3() {
         Venta instance = new Venta();
@@ -296,6 +329,7 @@ public class VentaTest {
         ArrayList<Envase> result = instance.getListaDeEnvasesUtilizados();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeEnvase4() {
         Venta instance = new Venta();
@@ -316,6 +350,7 @@ public class VentaTest {
         ArrayList<Envase> result = instance.getListaDeEnvasesUtilizados();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeEnvase5() {
         Venta instance = new Venta();
@@ -336,6 +371,7 @@ public class VentaTest {
         ArrayList<Envase> result = instance.getListaDeEnvasesUtilizados();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetEnvases1() {
         Venta instance = new Venta();
@@ -348,6 +384,7 @@ public class VentaTest {
         a.add(e3);
         instance.setListaDeEnvasesUtilizados(a);
     }
+
     @Test
     public void testSetEnvases2() {
         Venta instance = new Venta();
@@ -358,6 +395,7 @@ public class VentaTest {
         a.add(e);
         instance.setListaDeEnvasesUtilizados(a);
     }
+
     public void testSetEnvases3() {
         Venta instance = new Venta();
         Envase e = new Envase();
@@ -366,6 +404,7 @@ public class VentaTest {
         ArrayList<Envase> a = new ArrayList<>();
         instance.setListaDeEnvasesUtilizados(a);
     }
+
     //Identificador
     @Test(expected = RuntimeException.class)
     public void testGetIdentificadorDeVenta1() {
@@ -375,6 +414,7 @@ public class VentaTest {
         int result = instance.getCodigoIdentificadorDeVenta();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetIdentificadorDeVenta2() {
         Venta instance = new Venta();
@@ -383,6 +423,7 @@ public class VentaTest {
         int result = instance.getCodigoIdentificadorDeVenta();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetIdentificadorDeVenta3() {
         Venta instance = new Venta();
@@ -391,6 +432,7 @@ public class VentaTest {
         int result = instance.getCodigoIdentificadorDeVenta();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetIdentificadorDeVenta4() {
         Venta instance = new Venta();
@@ -399,6 +441,7 @@ public class VentaTest {
         int result = instance.getCodigoIdentificadorDeVenta();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetIdentificadorDeVenta5() {
         Venta instance = new Venta();
@@ -407,36 +450,42 @@ public class VentaTest {
         int result = instance.getCodigoIdentificadorDeVenta();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetIdentificadorDeVenta1() {
         int identificadorDeVenta = 0;
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(identificadorDeVenta);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetIdentificadorDeVenta2() {
         int identificadorDeVenta = -8;
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(identificadorDeVenta);
     }
+
     @Test
     public void testSetIdentificadorDeVenta3() {
         int identificadorDeVenta = 1;
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(identificadorDeVenta);
     }
+
     @Test
     public void testSetIdentificadorDeVenta4() {
         int identificadorDeVenta = 100;
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(identificadorDeVenta);
     }
+
     @Test
     public void testSetIdentificadorDeVenta5() {
         int identificadorDeVenta = 10000;
         Venta instance = new Venta();
         instance.setCodigoIdentificadorDeVenta(identificadorDeVenta);
     }
+
     //Direccion
     @Test
     public void testGetDireccion1() {
@@ -446,6 +495,7 @@ public class VentaTest {
         String result = instance.getDireccionAEnviar();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetDireccion2() {
         Venta instance = new Venta();
@@ -454,6 +504,7 @@ public class VentaTest {
         String result = instance.getDireccionAEnviar();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetDireccion3() {
         Venta instance = new Venta();
@@ -462,6 +513,7 @@ public class VentaTest {
         String result = instance.getDireccionAEnviar();
         assertEquals(expResult, result);
     }
+
     @Test(expected = RuntimeException.class)
     public void testGetDireccion4() {
         Venta instance = new Venta();
@@ -470,24 +522,28 @@ public class VentaTest {
         String result = instance.getDireccionAEnviar();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetDireccion1() {
         String dir = "Venta1";
         Venta instance = new Venta();
         instance.setDireccionAEnviar(dir);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetDireccion2() {
         String dir = "";
         Venta instance = new Venta();
         instance.setDireccionAEnviar(dir);
     }
+
     @Test(expected = RuntimeException.class)
     public void testSetDireccion3() {
         String dir = "   ";
         Venta instance = new Venta();
         instance.setDireccionAEnviar(dir);
     }
+
     //Equals
     @Test
     public void equals1() {
@@ -498,6 +554,7 @@ public class VentaTest {
         boolean result = instance.equals(e);
         assertEquals(true, result);
     }
+
     @Test
     public void equals2() {
         Venta instance = new Venta();

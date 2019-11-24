@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -27,12 +28,14 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class EstadisticasController implements Initializable {
+
     @FXML
     private JFXButton btnInicio;
     @FXML
@@ -52,6 +55,7 @@ public class EstadisticasController implements Initializable {
     private NumberAxis y;
     @FXML
     private CategoryAxis x;
+
     /**
      * Initializes the controller class.
      */
@@ -68,6 +72,7 @@ public class EstadisticasController implements Initializable {
         }
          */
     }
+
     public void cargarGraficas(Sistema sistema) {
         this.setSistema(sistema);
         XYChart.Series set1 = new XYChart.Series<>();
@@ -83,8 +88,8 @@ public class EstadisticasController implements Initializable {
             }
         }
         Collections.reverse(los5MasVendidosInversa); 
-        */ 
-        ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos(); 
+         */
+        ArrayList<Producto> los5MasVendidosInversa = this.getSistema().getEchoShop().obtenerLos5MasVendidos();
         for (int i = 0; i < los5MasVendidosInversa.size(); i++) {
             String nombreProd = los5MasVendidosInversa.get(i).getNombre();
             int cantVendidos = los5MasVendidosInversa.get(i).getCantidadVendidos();
@@ -92,6 +97,7 @@ public class EstadisticasController implements Initializable {
         }
         graficaMasVendidos.getData().add(set1);
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -113,6 +119,7 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -134,6 +141,7 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -154,15 +162,19 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     @FXML
     private void mostrarMasVendidos(ActionEvent event) {
     }
+
     @FXML
     private void envasesUtilizados(ActionEvent event) {
         try {
@@ -185,6 +197,7 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void ventasPorMes(ActionEvent event) {
         try {
@@ -207,6 +220,7 @@ public class EstadisticasController implements Initializable {
             Logger.getLogger(EstadisticasController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
         try {

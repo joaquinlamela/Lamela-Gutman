@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Envase;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
@@ -24,12 +25,14 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class GraficaDeVentaXMesController implements Initializable {
+
     @FXML
     private JFXButton btnMasVendidos;
     @FXML
@@ -49,17 +52,21 @@ public class GraficaDeVentaXMesController implements Initializable {
     @FXML
     private JFXButton btnInicio;
     private Sistema sistema;
+
     //Get and set de sistema: 
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+
     @FXML
     private void mostrarMasVendidos(ActionEvent event) {
         try {
@@ -82,6 +89,7 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void envasesUtilizados(ActionEvent event) {
         try {
@@ -104,9 +112,11 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void ventasPorMes(ActionEvent event) {
     }
+
     @FXML
     private void mostrarBeneficios(ActionEvent event) {
         try {
@@ -129,6 +139,7 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -150,6 +161,7 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverAInicio(ActionEvent event) {
         try {
@@ -171,6 +183,7 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -191,12 +204,13 @@ public class GraficaDeVentaXMesController implements Initializable {
             Logger.getLogger(GraficaDeVentaXMesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void cargarGraficaDeVentas(Sistema sistema) {
         this.setSistema(sistema);
         XYChart.Series set1 = new XYChart.Series<>();
         int cantidadDeVentas = 0;
         for (int i = 1; i <= 12; i++) {
-            cantidadDeVentas = this.getSistema().getVentasPorMes()[i-1];
+            cantidadDeVentas = this.getSistema().getVentasPorMes()[i - 1];
             set1.getData().add(new XYChart.Data(Integer.toString(i), cantidadDeVentas));
         }
         this.graficaVentas.getData().add(set1);

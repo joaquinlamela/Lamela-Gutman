@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
 import dominio.Persona;
@@ -23,12 +24,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class MapaController implements Initializable {
+
     @FXML
     private JFXButton btnAtras;
     @FXML
@@ -37,18 +40,23 @@ public class MapaController implements Initializable {
     private VBox vBox;
     private Sistema sistema;
     private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
+
     public Persona getCliente() {
         return cliente;
     }
+
     public void setCliente(Persona cliente) {
         this.cliente = cliente;
     }
+
     /**
      * Initializes the controller class.
      */
@@ -58,6 +66,7 @@ public class MapaController implements Initializable {
         webView.getEngine().load("file:" + Paths.get("").toAbsolutePath().toString() + "/src/CarpetaMapa/MapaNuevo.html");
         vBox.getChildren().add((Node) webView);
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -80,6 +89,7 @@ public class MapaController implements Initializable {
             Logger.getLogger(MapaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -103,6 +113,7 @@ public class MapaController implements Initializable {
             Logger.getLogger(MapaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverInicio(ActionEvent event) {
         try {

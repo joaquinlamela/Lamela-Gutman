@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package interfaz;
+
 import dominio.Sistema;
 import dominio.Tienda;
 import dominio.Sucursal;
@@ -28,12 +29,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
+
 /**
  * FXML Controller class
  *
  * @author user
  */
 public class AgregadoSucursalController implements Initializable {
+
     @FXML
     private JFXComboBox<Integer> cmbNumeroSucursal;
     @FXML
@@ -51,6 +54,7 @@ public class AgregadoSucursalController implements Initializable {
     @FXML
     private JFXTimePicker dateFinalizacion;
     private Sistema sistema;
+
     /**
      * Initializes the controller class.
      */
@@ -60,6 +64,7 @@ public class AgregadoSucursalController implements Initializable {
         this.dateInicio.setValue(LocalTime.now());
         this.dateFinalizacion.setValue(LocalTime.now());
     }
+
     public void cargarProductos(Sistema sis) {
         this.setSistema(sis);
         this.getSistema().getEchoShop().getSucursales();
@@ -68,15 +73,19 @@ public class AgregadoSucursalController implements Initializable {
         }
         this.cmbNumeroSucursal.setValue(this.getSistema().getEchoShop().getSucursales().size() + 1);
     }
+
     @FXML
     private void obtenerNumeroSucursal(ActionEvent event) {
     }
+
     @FXML
     private void obtenerDireccion(ActionEvent event) {
     }
+
     @FXML
     private void obtenerTelefono(ActionEvent event) {
     }
+
     @FXML
     private void agregarSucursal(ActionEvent event) {
         boolean esValido = true;
@@ -191,6 +200,7 @@ public class AgregadoSucursalController implements Initializable {
             alert.showAndWait();
         }
     }
+
     @FXML
     private void volverAVendedor(ActionEvent event) {
         try {
@@ -212,6 +222,7 @@ public class AgregadoSucursalController implements Initializable {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
         try {
@@ -233,12 +244,15 @@ public class AgregadoSucursalController implements Initializable {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     @FXML
     private void obtenerHoraInicio(ActionEvent event) {
     }
+
     @FXML
     private void obtenerHoraFinalizacion(ActionEvent event) {
     }
+
     public void cerrarVentana() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Vendedor.fxml"));
@@ -259,9 +273,11 @@ public class AgregadoSucursalController implements Initializable {
             Logger.getLogger(AgregadoSucursalController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public Sistema getSistema() {
         return sistema;
     }
+
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }

@@ -1,4 +1,5 @@
 package dominio;
+
 import dominio.PreVenta;
 import dominio.Sistema;
 import dominio.Venta;
@@ -15,18 +16,23 @@ public class SistemaTest {
 
     public SistemaTest() {
     }
+
     @BeforeClass
     public static void setUpClass() {
     }
+
     @AfterClass
     public static void tearDownClass() {
     }
+
     @Before
     public void setUp() {
     }
+
     @After
     public void tearDown() {
     }
+
     //Lista de ventas
     @Test
     public void testGetListaDeVentasDelSitema1() {
@@ -44,6 +50,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema2() {
         Sistema instance = new Sistema();
@@ -62,6 +69,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema3() {
         Sistema instance = new Sistema();
@@ -81,6 +89,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema4() {
         Sistema instance = new Sistema();
@@ -99,6 +108,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema5() {
         Sistema instance = new Sistema();
@@ -119,6 +129,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema6() {
         Sistema instance = new Sistema();
@@ -137,6 +148,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema7() {
         Sistema instance = new Sistema();
@@ -157,6 +169,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema8() {
         Sistema instance = new Sistema();
@@ -177,6 +190,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDeVentasDelSitema9() {
         Sistema instance = new Sistema();
@@ -199,6 +213,7 @@ public class SistemaTest {
         ArrayList<Venta> result = instance.getListaDeVentasDelSitema();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetListaDeVentasDelSitema1() {
         Sistema instance = new Sistema();
@@ -214,6 +229,7 @@ public class SistemaTest {
         ArrayList<Venta> listaDeVentasDelSitema = a;
         instance.setListaDeVentasDelSitema(listaDeVentasDelSitema);
     }
+
     @Test
     public void testSetListaDeVentasDelSitema2() {
         Sistema instance = new Sistema();
@@ -230,6 +246,7 @@ public class SistemaTest {
         ArrayList<Venta> listaDeVentasDelSitema = a;
         instance.setListaDeVentasDelSitema(listaDeVentasDelSitema);
     }
+
     @Test
     public void testSetListaDeVentasDelSitema3() {
         Sistema instance = new Sistema();
@@ -247,6 +264,7 @@ public class SistemaTest {
         ArrayList<Venta> listaDeVentasDelSitema = a;
         instance.setListaDeVentasDelSitema(listaDeVentasDelSitema);
     }
+
     @Test
     public void testSetListaDeVentasDelSitema4() {
         Sistema instance = new Sistema();
@@ -261,6 +279,7 @@ public class SistemaTest {
         ArrayList<Venta> listaDeVentasDelSitema = a;
         instance.setListaDeVentasDelSitema(listaDeVentasDelSitema);
     }
+
     //Lista de Preventas
     @Test
     public void testGetListaDePreVentas1() {
@@ -275,6 +294,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas2() {
         Sistema instance = new Sistema();
@@ -293,6 +313,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas3() {
         Sistema instance = new Sistema();
@@ -311,6 +332,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas4() {
         Sistema instance = new Sistema();
@@ -329,6 +351,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas5() {
         Sistema instance = new Sistema();
@@ -349,6 +372,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas6() {
         Sistema instance = new Sistema();
@@ -367,6 +391,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas7() {
         Sistema instance = new Sistema();
@@ -385,6 +410,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas8() {
         Sistema instance = new Sistema();
@@ -405,6 +431,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testGetListaDePreVentas9() {
         Sistema instance = new Sistema();
@@ -425,6 +452,7 @@ public class SistemaTest {
         ArrayList<PreVenta> result = instance.getListaDePreventas();
         assertEquals(expResult, result);
     }
+
     @Test
     public void testSetListaDePreVentas1() {
         Sistema instance = new Sistema();
@@ -437,6 +465,7 @@ public class SistemaTest {
         ArrayList<PreVenta> listaDePreVentasDelSitema = a;
         instance.setListaDePreventas(listaDePreVentasDelSitema);
     }
+
     @Test
     public void testSetListaDePreVentas2() {
         Sistema instance = new Sistema();
@@ -450,6 +479,7 @@ public class SistemaTest {
         ArrayList<PreVenta> listaDePreVentasDelSitema = a;
         instance.setListaDePreventas(listaDePreVentasDelSitema);
     }
+
     @Test
     public void testSetListaDePreVentas3() {
         Sistema instance = new Sistema();
@@ -464,6 +494,7 @@ public class SistemaTest {
         ArrayList<PreVenta> listaDePreVentasDelSitema = a;
         instance.setListaDePreventas(listaDePreVentasDelSitema);
     }
+
     @Test
     public void testSetListaDePreVentas4() {
         Sistema instance = new Sistema();
@@ -475,6 +506,7 @@ public class SistemaTest {
         ArrayList<PreVenta> listaDePreVentasDelSitema = a;
         instance.setListaDePreventas(listaDePreVentasDelSitema);
     }
+
     //Echo Shop
     @Test
     public void testSetEchToShop() {
