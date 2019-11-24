@@ -402,6 +402,10 @@ public class TiendaTest {
         instance.agregarProducto(s3);
         instance.eliminarProducto(s1);
 
+        //Elimino un producto que ya no esta
+        
+        instance.eliminarProducto(s1);
+        
         ArrayList<Producto> a = new ArrayList<>();
         a.add(s2);
         a.add(s3);
@@ -610,7 +614,10 @@ public class TiendaTest {
         instance.agregarSucursal(s2);
         instance.agregarSucursal(s3);
         instance.eliminarSucursal(s1);
-
+        
+        //Intento eliminar una sucursal que ya no esta
+        instance.eliminarSucursal(s1);
+        
         ArrayList<Sucursal> a = new ArrayList<>();
         a.add(s2);
         a.add(s3);

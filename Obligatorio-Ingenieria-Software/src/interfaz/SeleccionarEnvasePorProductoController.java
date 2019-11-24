@@ -9,6 +9,7 @@ import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,6 +49,8 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
 
     private Producto prod;
 
+    private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
@@ -62,6 +65,14 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
 
     public void setProd(Producto prod) {
         this.prod = prod;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
     }
 
     public void cargarProductos(Producto producto, Sistema sis, SeleccionarEnvasePorProductoController paraCargarPestañaCarrito) {
@@ -157,6 +168,8 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -203,6 +216,8 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -248,6 +263,8 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -290,6 +307,8 @@ public class SeleccionarEnvasePorProductoController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 

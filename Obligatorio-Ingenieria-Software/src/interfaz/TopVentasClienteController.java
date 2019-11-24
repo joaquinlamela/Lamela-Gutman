@@ -6,6 +6,7 @@
 package interfaz;
 
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import dominio.Producto;
 import dominio.Sistema;
 import java.io.IOException;
@@ -37,8 +38,10 @@ public class TopVentasClienteController implements Initializable {
     private JFXButton btnInicio;
     @FXML
     private VBox productosMasVendidos;
-    
-    private Sistema sistema; 
+
+    private Sistema sistema;
+
+    private Persona cliente;
 
     public Sistema getSistema() {
         return sistema;
@@ -47,9 +50,14 @@ public class TopVentasClienteController implements Initializable {
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
     }
-    
-    
-    
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
+    }
 
     /**
      * Initializes the controller class.
@@ -57,11 +65,11 @@ public class TopVentasClienteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -85,6 +93,8 @@ public class TopVentasClienteController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            controlador.setCliente(this.getCliente());
+
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -94,13 +104,12 @@ public class TopVentasClienteController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(TopVentasClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     @FXML
     private void volverInicio(ActionEvent event) {
-         
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -123,6 +132,8 @@ public class TopVentasClienteController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
@@ -133,14 +144,10 @@ public class TopVentasClienteController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(TopVentasClienteController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
     }
-    
-    
-    
-     public void cerrarVentana2() {
+
+    public void cerrarVentana2() {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -164,6 +171,8 @@ public class TopVentasClienteController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
@@ -176,12 +185,10 @@ public class TopVentasClienteController implements Initializable {
         }
 
     }
-     
-     
-     
-     public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
+
+    public void cargarProductos(ArrayList<Producto> listaProductos, Sistema sis) {
         this.setSistema(sis);
-        
+
         this.productosMasVendidos.getChildren().clear();
 
         this.productosMasVendidos.setSpacing(10);
@@ -213,6 +220,5 @@ public class TopVentasClienteController implements Initializable {
         }
 
     }
-    
-    
+
 }

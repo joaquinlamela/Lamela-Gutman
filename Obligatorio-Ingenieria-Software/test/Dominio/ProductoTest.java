@@ -437,6 +437,10 @@ public class ProductoTest {
 
         instance.eliminarEnvase(e3);
         instance.eliminarEnvase(e2);
+        
+        //Se intenta eliminar un envase que no esta
+        instance.eliminarEnvase(e2);
+        
         ArrayList<Envase> a = new ArrayList<>();
         a.add(e);
         ArrayList<Envase> expResult = a;
@@ -1040,12 +1044,21 @@ public class ProductoTest {
     
     //Equals
     @Test
-    public void equals() {
+    public void equals1() {
         Producto instance = new Producto();
         instance.setCodigoIdentificador(100000);
         Producto e = new Producto();
         e.setCodigoIdentificador(100000);
         boolean result = instance.equals(e);
         assertEquals(true, result);
+    }
+    
+    @Test
+    public void equals2() {
+        Producto instance = new Producto();
+        instance.setCodigoIdentificador(100000);
+        Venta e = new Venta();
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
     }
 }

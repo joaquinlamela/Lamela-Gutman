@@ -37,7 +37,24 @@ public class InicioClienteController implements Initializable {
     private Sistema sistema;
     @FXML
     private JFXButton btnInicio;
+    
+    private Persona cliente; 
 
+    
+    
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
+    }
+
+    
+    
+    
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -74,6 +91,8 @@ public class InicioClienteController implements Initializable {
                 stage.setResizable(false);
 
                 controlador.setSistema(sistema);
+                
+                controlador.setCliente(this.getCliente()); 
 
                 controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 

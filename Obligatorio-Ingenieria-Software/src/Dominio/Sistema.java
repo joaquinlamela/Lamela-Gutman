@@ -192,11 +192,10 @@ public class Sistema {
 
     public void agregarPreVenta(PreVenta preCompra) {
 
-        if (!this.listaDePreventas.contains(preCompra)) {
-            this.setCantPreVentas(this.getCantPreVentas() + 1);
-            preCompra.setIdentificadorDePreventa(this.getCantPreVentas());
-            this.listaDePreventas.add(preCompra);
-        }
+        int id = this.getListaDePreventas().size() + 1;
+        preCompra.setIdentificadorDePreventa(id);
+        this.listaDePreventas.add(preCompra);
+        this.setCantPreVentas(this.getCantPreVentas() + 1);
     }
 
     public void cancelarPreVenta(PreVenta preCompra) {

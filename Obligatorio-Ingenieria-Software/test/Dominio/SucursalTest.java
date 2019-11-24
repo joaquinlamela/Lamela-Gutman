@@ -303,4 +303,22 @@ public class SucursalTest {
 
     }
 
+    //Equals
+    @Test
+    public void equals1() {
+        Sucursal instance = new Sucursal();
+        instance.setNumeroSucursal(2);
+        Sucursal e = new Sucursal();
+        e.setNumeroSucursal(2);
+        boolean result = instance.equals(e);
+        assertEquals(true, result);
+    }
+
+    @Test
+    public void equals2() {
+        Sucursal instance = new Sucursal();
+        Producto e = new Producto();
+        boolean result = instance.equals(e);
+        assertEquals(false, result);
+    }
 }

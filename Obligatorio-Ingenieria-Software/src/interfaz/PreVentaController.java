@@ -9,6 +9,7 @@ import dominio.Envase;
 import dominio.Producto;
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class PreVentaController implements Initializable {
 
     private Sistema sistema;
 
+    private Persona cliente;
+
     //Gets && sets: 
     public Sistema getSistema() {
         return sistema;
@@ -53,6 +56,14 @@ public class PreVentaController implements Initializable {
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
     }
 
     public void cargarProductos(ArrayList<Producto> lista, Sistema sis, PreVentaController paraCargarPestañaCarrito, int[] cantidadPorId) {
@@ -116,6 +127,8 @@ public class PreVentaController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            controlador.setCliente(this.getCliente());
+
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -161,6 +174,9 @@ public class PreVentaController implements Initializable {
 
                 controlador.setSistema(sistema);
 
+                controlador.setCliente(this.getCliente());
+
+
                 /*
                 ArrayList<Envase> listaDeEnvasesALlevar = new ArrayList<>();
 
@@ -173,7 +189,6 @@ public class PreVentaController implements Initializable {
 
                 }
                  */
-                
                 controlador.cargarProductos(this.getSistema().getEnvasesALlevarEnPreVenta(), sistema, controlador);
 
                 stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -203,10 +218,10 @@ public class PreVentaController implements Initializable {
         for (int i = 0; i < this.getSistema().getCantidadPorIdDeProd().length; i++) {
             this.getSistema().getCantidadPorIdDePreVenta()[i] = 0;
         }
-         for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
-                Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
-                this.getSistema().getEnvasesALlevarEnPreVenta().remove(envase);
-            }
+        for (int i = 0; i < this.getSistema().getEnvasesALlevarEnPreVenta().size(); i++) {
+            Envase envase = this.getSistema().getEnvasesALlevarEnPreVenta().get(i);
+            this.getSistema().getEnvasesALlevarEnPreVenta().remove(envase);
+        }
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
@@ -230,6 +245,8 @@ public class PreVentaController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
@@ -267,6 +284,8 @@ public class PreVentaController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 

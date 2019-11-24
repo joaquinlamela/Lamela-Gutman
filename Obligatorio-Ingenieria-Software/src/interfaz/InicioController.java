@@ -30,11 +30,12 @@ public class InicioController implements Initializable {
     @FXML
     private JFXButton btnVendedor;
     @FXML
-    private JFXButton btnCliente;
-    @FXML
     private JFXButton btnVolverInicio;
 
     private Sistema sistema;
+   
+    @FXML
+    private JFXButton btnCliente;
 
     /**
      * Initializes the controller class.
@@ -87,11 +88,11 @@ public class InicioController implements Initializable {
     private void tocoBotonCliente(ActionEvent event) {
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Usuario.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("SeleccionarCliente.fxml"));
 
             Parent root = loader.load();
 
-            UsuarioController controlador = loader.getController();
+            SeleccionarClienteController controlador = loader.getController();
 
             Scene escena = new Scene(root);
 
@@ -134,5 +135,7 @@ public class InicioController implements Initializable {
     public void setSistema(Sistema s) {
         this.sistema = s;
     }
+
+ 
 
 }

@@ -7,6 +7,7 @@ package interfaz;
 
 import dominio.Sistema;
 import com.jfoenix.controls.JFXButton;
+import dominio.Persona;
 import java.io.IOException;
 import java.net.URL;
 import java.nio.file.Paths;
@@ -40,12 +41,22 @@ public class MapaController implements Initializable {
 
     private Sistema sistema;
 
+    private Persona cliente;
+
     public Sistema getSistema() {
         return sistema;
     }
 
     public void setSistema(Sistema sistema) {
         this.sistema = sistema;
+    }
+
+    public Persona getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Persona cliente) {
+        this.cliente = cliente;
     }
 
     /**
@@ -55,13 +66,11 @@ public class MapaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         WebView webView = new WebView();
         webView.getEngine().load("file:" + Paths.get("").toAbsolutePath().toString() + "/src/CarpetaMapa/MapaNuevo.html");
-        vBox.getChildren().add((Node) webView); 
+        vBox.getChildren().add((Node) webView);
     }
-    
-    
+
     public void cerrarVentana() {
 
-       
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Cliente.fxml"));
 
@@ -85,6 +94,8 @@ public class MapaController implements Initializable {
 
             controlador.setSistema(sistema);
 
+            controlador.setCliente(this.getCliente());
+
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
             stage.setOnCloseRequest(e -> controlador.cerrarVentana());
@@ -94,11 +105,8 @@ public class MapaController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(MapaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
 
     }
-    
-    
 
     @FXML
     private void volverVentanaAnterior(ActionEvent event) {
@@ -125,6 +133,8 @@ public class MapaController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 
@@ -162,6 +172,8 @@ public class MapaController implements Initializable {
             stage.setResizable(false);
 
             controlador.setSistema(sistema);
+
+            controlador.setCliente(this.getCliente());
 
             controlador.cargarProductos(this.getSistema().getEchoShop().getListaDeProductosEnStock(), sistema);
 

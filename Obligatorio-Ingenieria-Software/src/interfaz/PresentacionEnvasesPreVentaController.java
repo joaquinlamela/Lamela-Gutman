@@ -95,9 +95,25 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
         // TODO
     }
     
+    
+     public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
+        this.setSistema(sistema);
+        this.setControlador(controlador);
+        this.setCodigoIdentificador(envase.getIdIdentificador());
+        this.setProducto(producto);
+        this.imagenEnvase.setImage(envase.getImagenDelProducto());
+        this.nombreEnvase.setText(envase.getNombre());
+        this.pesoEnvase.setText(Integer.toString(envase.getPesoMaximoSoportado()));
+        for (int i = 0; i < envase.getTiposDeMateriales().size(); i++) {
+            this.materialesEnvase.getItems().add(envase.getTiposDeMateriales().get(i)+""); 
+        }
+
+    }
+    
 
     @FXML
     private void agregarListaEnvase(ActionEvent event) {
+        
         int codigoIdentificad = this.getCodigoIdentificador();
 
         ArrayList<Envase> listaEnvases = this.getProducto().getPosiblesEnvasesRecomendados();
@@ -115,11 +131,19 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
                 Envase e = copiaDeListaDeEnvases.get(i);
                 if (!this.getSistema().getEnvasesALlevarEnPreVenta().contains(e)) {
                     this.getSistema().getEnvasesALlevarEnPreVenta().add(e);
+                    copiaDeListaDeEnvases.remove(e);
+                }else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("¡Cuidado!");
+                    alert.setHeaderText("Error: El peso del envase es menor al peso del producto");
+                    alert.setContentText("!Seleccione un envase correspondiente al peso del producto!");
+                    alert.showAndWait();
                 }
-                copiaDeListaDeEnvases.remove(e);
+                
             }
-            controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
+            
         }
+        controlador.cargarProductos2(copiaDeListaDeEnvases, sistema, controlador, this.getProducto());
 
     }
     
@@ -165,18 +189,6 @@ public class PresentacionEnvasesPreVentaController implements Initializable {
 */ 
     
 
-    public void inicializarDatos(Envase envase, Sistema sistema, SeleccionarEnvasePorProductoPreVentaController controlador, Producto producto) {
-        this.setSistema(sistema);
-        this.setControlador(controlador);
-        this.setCodigoIdentificador(envase.getIdIdentificador());
-        this.setProducto(producto);
-        this.imagenEnvase.setImage(envase.getImagenDelProducto());
-        this.nombreEnvase.setText(envase.getNombre());
-        this.pesoEnvase.setText(Integer.toString(envase.getPesoMaximoSoportado()));
-        for (int i = 0; i < envase.getTiposDeMateriales().size(); i++) {
-            this.materialesEnvase.getItems().add(envase.getTiposDeMateriales().get(i)+""); 
-        }
-
-    }
+   
 
 }
