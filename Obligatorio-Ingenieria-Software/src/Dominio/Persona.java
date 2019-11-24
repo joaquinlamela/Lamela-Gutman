@@ -1,6 +1,4 @@
-package Dominio;
-
-import java.util.Objects;
+package dominio;
 
 public class Persona {
     //Atributos:
@@ -11,14 +9,11 @@ public class Persona {
 
     //Constructor
     public Persona(){
-        //Cuando se crea una persona sin parametros lo que hacemos es capturar la excepcion NULL pointer exception asi no rompe el obligatorio
         this.setDomicilio("Domicilio");
         this.setEdad(1);
         this.setNombre("Nombre");
         this.setRutComprador("Rut");
     }
-
-
 
     public Persona(String nombre, int edad, String domicilio, String rutComprador) {
         this.setDomicilio(domicilio);
@@ -27,8 +22,7 @@ public class Persona {
         this.setRutComprador(rutComprador);
     }
 
-    //Get´s && Set´s
-
+    //Getters && Setters
     public String getNombre() {
         return nombre;
     }
@@ -79,27 +73,28 @@ public class Persona {
         
     }
 
-    //Metodos si tiene:
-
+    //Metodos:
     @Override
     public String toString() {
         return "Persona{" + "nombre=" + nombre + ", edad=" + edad + ", domicilio=" + domicilio + ", rutComprador=" + rutComprador + '}';
     }
-    
-    
+        
     @Override
     public boolean equals(Object o) {
-        Persona persona = (Persona) o;
-        return this.getNombre().equalsIgnoreCase(persona.getNombre()) && 
-                this.getEdad()==persona.getEdad()&& 
-                this.getDomicilio().equalsIgnoreCase(persona.getDomicilio());
+        boolean retorno = false;
+        if (o instanceof Persona) {
+            Persona p = (Persona) o;
+            retorno = this.getNombre().equals(p.getNombre())&&
+                    this.getEdad() == p.getEdad()&&
+                    this.getDomicilio().equals(p.getDomicilio())&&
+                    this.getRutComprador().equals(p.getRutComprador());
+        }
+        return retorno;
     }
-
-   
     
-    
-
-    
-
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
+    }
 
 }

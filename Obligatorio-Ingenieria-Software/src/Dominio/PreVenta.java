@@ -1,5 +1,6 @@
-package Dominio;
+package dominio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class PreVenta {
@@ -9,21 +10,19 @@ public class PreVenta {
     private int precioDePreVenta;
     private ArrayList<Producto> listaDeProductos;
     private Tienda lugarARetirar;
-    
+    private LocalDate fechaDeCompra;
     private ArrayList<Envase> listaDeEnvase;
     private int identificadorDePreventa;
 
-
     //Constructor:
-
     public PreVenta(Persona comprador, int precioDePreVenta, ArrayList<Producto>
             listaDeProductos, Tienda lugarARetirar, 
-            ArrayList<Envase> listaDeEnvase, int id) {
+            ArrayList<Envase> listaDeEnvase, int id, LocalDate fechaDeCompra) {
         this.setComprador(comprador);
         this.setPrecioDePreVenta(precioDePreVenta);
         this.setListaDeProductos(listaDeProductos);
         this.setLugarARetirar(lugarARetirar);
-       
+        this.setFechaDeCompra(fechaDeCompra);
         this.setListaDeEnvase(listaDeEnvase);
         this.setIdentificadorDePreventa(id);
     }
@@ -33,12 +32,13 @@ public class PreVenta {
         this.setPrecioDePreVenta(1);
         this.setListaDeProductos(new ArrayList<Producto>());
         this.setLugarARetirar(new Tienda());
-        
         this.setListaDeEnvase(new ArrayList<Envase>());
         this.setIdentificadorDePreventa(1);
+        LocalDate fechaAhora= LocalDate.now(); 
+        this.setFechaDeCompra(fechaAhora);
     }
 
-    //Get´s && Set´s
+    //Getters && Setters
     public Persona getComprador() {
         return comprador;
     }
@@ -75,8 +75,14 @@ public class PreVenta {
         this.lugarARetirar = lugarARetirar;
     }
 
-   
+    public LocalDate getFechaDeCompra() {
+        return fechaDeCompra;
+    }
 
+    public void setFechaDeCompra(LocalDate fechaDeCompra) {
+        this.fechaDeCompra = fechaDeCompra;
+    }
+    
     public ArrayList<Envase> getListaDeEnvase() {
         return listaDeEnvase;
     }
@@ -121,14 +127,31 @@ public class PreVenta {
         }
     }
 
+    //Metodos
     @Override
     public String toString() {
-        return "PreVenta{" + "comprador=" + comprador + ", precioDePreVenta=" + precioDePreVenta + 
-                ", listaDeProductos=" + listaDeProductos + ", lugarARetirar=" + lugarARetirar + 
-                ", listaDeEnvase=" + listaDeEnvase + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+        return "PreVenta{" + "comprador=" + comprador 
+                + ", precioDePreVenta=" + precioDePreVenta 
+                + ", listaDeProductos=" + listaDeProductos 
+                + ", lugarARetirar=" + lugarARetirar 
+                + ", listaDeEnvase=" + listaDeEnvase  
+                + ", identificadorDePreventa=" + identificadorDePreventa + '}';
+    }
+   
+    @Override
+    public boolean equals(Object o) {
+        boolean retorno = false;
+        if (o instanceof PreVenta) {
+            PreVenta preVenta = (PreVenta) o;
+            retorno = this.getIdentificadorDePreventa()
+                    == preVenta.getIdentificadorDePreventa();
+        }
+        return retorno;
+    }
+
+    public int hashCode() {
+        assert false : "hashCode not designed";
+        return 1;
     }
     
-    
-    
-
 }

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ObligatorioIngenieriaSoftware.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">ObligatorioIngenieriaSoftware.java</span></div><h1>ObligatorioIngenieriaSoftware.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Envase;
+import dominio.Persona;
+import dominio.PreVenta;
+import dominio.Producto;
+import dominio.Sistema;
+import dominio.Sucursal;
+import dominio.Tienda;
+import dominio.Venta;
+import dominio.TipoMateriales;
+import dominio.TipoOrigen;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+/**
+ *
+ * @author user
+ */
+<span class="nc" id="L35">public class ObligatorioIngenieriaSoftware extends Application {</span>
+
+    @Override
+    public void start(Stage stage) throws Exception {
+
+        
+        //Poner imagenes a los productos
+        
+        try {
+            
+<span class="nc" id="L45">            Sistema sistema = new Sistema();</span>
+
+<span class="nc" id="L47">            FXMLLoader loader = new FXMLLoader(getClass().getResource(&quot;Inicio.fxml&quot;));</span>
+
+<span class="nc" id="L49">            Parent root = loader.load();</span>
+
+<span class="nc" id="L51">            InicioController controlador = loader.getController();</span>
+
+<span class="nc" id="L53">            Scene escena = new Scene(root);</span>
+            
+<span class="nc" id="L55">            stage.setScene(escena);</span>
+
+<span class="nc" id="L57">            stage.show();</span>
+            
+<span class="nc" id="L59">            stage.setHeight(675);</span>
+            
+<span class="nc" id="L61">            stage.setWidth(366);</span>
+            
+<span class="nc" id="L63">            stage.setResizable(false);</span>
+            
+            //Se inicializa la tienda y las sucursales
+<span class="nc" id="L66">            Tienda t = new Tienda();</span>
+<span class="nc" id="L67">            t.setDireccion(&quot;Cuareim 1451, esquina Mercedes&quot;);</span>
+            
+<span class="nc" id="L69">            sistema.setEchToShop(t);</span>
+            
+            //Se inicializan las sucursales
+<span class="nc" id="L72">            Sucursal s1= new Sucursal();</span>
+<span class="nc" id="L73">            s1.setDireccion(&quot;Cuareim 1451, esquina Mercedes&quot;);</span>
+<span class="nc" id="L74">            s1.setTelefono(29021505);</span>
+<span class="nc" id="L75">            sistema.agregarSucursal(s1);</span>
+            
+<span class="nc" id="L77">            Sucursal s2= new Sucursal();</span>
+<span class="nc" id="L78">            s2.setDireccion(&quot;Rambla República del Perú 1413&quot;);</span>
+<span class="nc" id="L79">            s2.setTelefono(21234567);</span>
+<span class="nc" id="L80">            sistema.agregarSucursal(s2);</span>
+            
+<span class="nc" id="L82">            Sucursal s3= new Sucursal();</span>
+<span class="nc" id="L83">            s3.setDireccion(&quot;Dr. Alfredo Navarro 3068&quot;);</span>
+<span class="nc" id="L84">            s3.setTelefono(27876543);</span>
+<span class="nc" id="L85">            sistema.agregarSucursal(s3);</span>
+            
+<span class="nc" id="L87">            Sucursal s4= new Sucursal();</span>
+<span class="nc" id="L88">            s4.setDireccion(&quot;Av. Gral. Rivera 4901&quot;);</span>
+<span class="nc" id="L89">            s4.setTelefono(26008998);</span>
+<span class="nc" id="L90">            sistema.agregarSucursal(s4);</span>
+            
+            //Se inicializan los envases
+<span class="nc" id="L93">            Envase envasePlantas = new Envase();</span>
+            
+<span class="nc" id="L95">            File fi1 = new File(&quot;src/Imagenes/EnvasePlanta.jpg&quot;);     </span>
+<span class="nc" id="L96">            Image e1 = new Image(fi1.toURI().toString());</span>
+            
+<span class="nc" id="L98">            envasePlantas.setNombre(&quot;Envase Plantas&quot;);</span>
+<span class="nc" id="L99">            envasePlantas.setPesoMaximoSoportado(20);</span>
+<span class="nc" id="L100">            ArrayList&lt;TipoMateriales&gt; materiales1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L101">            materiales1.add(TipoMateriales.Carton);</span>
+<span class="nc" id="L102">            envasePlantas.setTiposDeMateriales(materiales1);</span>
+<span class="nc" id="L103">            envasePlantas.setImagenDelProducto(e1);</span>
+            
+<span class="nc" id="L105">            sistema.getEchoShop().agregarEnvase(envasePlantas);</span>
+            
+<span class="nc" id="L107">            Envase envaseAlimentos = new Envase();</span>
+            
+<span class="nc" id="L109">            File fi2 = new File(&quot;src/Imagenes/EnvaseAlimentos.jpg&quot;);     </span>
+<span class="nc" id="L110">            Image e2 = new Image(fi2.toURI().toString());</span>
+            
+<span class="nc" id="L112">            envaseAlimentos.setNombre(&quot;Envase Alimentos&quot;);</span>
+<span class="nc" id="L113">            envaseAlimentos.setPesoMaximoSoportado(30);</span>
+<span class="nc" id="L114">            ArrayList&lt;TipoMateriales&gt; materiales2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L115">            materiales2.add(TipoMateriales.Plastico);</span>
+<span class="nc" id="L116">            envaseAlimentos.setTiposDeMateriales(materiales2);</span>
+<span class="nc" id="L117">            envaseAlimentos.setImagenDelProducto(e2);</span>
+            
+<span class="nc" id="L119">            sistema.getEchoShop().agregarEnvase(envaseAlimentos);</span>
+            
+<span class="nc" id="L121">            Envase envaseSemillas = new Envase();</span>
+            
+<span class="nc" id="L123">            File fi3 = new File(&quot;src/Imagenes/EnvaseSemilla.jpg&quot;);     </span>
+<span class="nc" id="L124">            Image e3 = new Image(fi3.toURI().toString());</span>
+            
+<span class="nc" id="L126">            envaseSemillas.setNombre(&quot;Envase Semillas&quot;);</span>
+<span class="nc" id="L127">            envaseSemillas.setPesoMaximoSoportado(15);</span>
+<span class="nc" id="L128">            ArrayList&lt;TipoMateriales&gt; materiales3 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L129">            materiales3.add(TipoMateriales.Carton);</span>
+<span class="nc" id="L130">            envaseSemillas.setTiposDeMateriales(materiales3);</span>
+<span class="nc" id="L131">            envaseSemillas.setImagenDelProducto(e3);</span>
+            
+<span class="nc" id="L133">            sistema.getEchoShop().agregarEnvase(envaseSemillas);</span>
+            
+<span class="nc" id="L135">            Envase envaseElectrodomesticos = new Envase();</span>
+            
+<span class="nc" id="L137">            File fi4 = new File(&quot;src/Imagenes/EnvaseSemilla.jpg&quot;);     </span>
+<span class="nc" id="L138">            Image e4 = new Image(fi4.toURI().toString());</span>
+            
+<span class="nc" id="L140">            envaseElectrodomesticos.setNombre(&quot;Envase Electrodomesticos&quot;);</span>
+<span class="nc" id="L141">            envaseElectrodomesticos.setPesoMaximoSoportado(50);</span>
+<span class="nc" id="L142">            ArrayList&lt;TipoMateriales&gt; materiales4 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L143">            materiales4.add(TipoMateriales.Metal);</span>
+<span class="nc" id="L144">            envaseElectrodomesticos.setTiposDeMateriales(materiales4);</span>
+<span class="nc" id="L145">            envaseElectrodomesticos.setImagenDelProducto(e4);</span>
+            
+<span class="nc" id="L147">            sistema.getEchoShop().agregarEnvase(envaseElectrodomesticos);</span>
+            
+            //Se inicializan los productos
+            
+<span class="nc" id="L151">            ArrayList&lt;TipoMateriales&gt; tipoProductos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L152">            tipoProductos.add(TipoMateriales.Indefinido);</span>
+            
+            // Producto: Menta
+<span class="nc" id="L155">            File f1 = new File(&quot;src/Imagenes/menta.jpg&quot;);     </span>
+<span class="nc" id="L156">            Image i1 = new Image(f1.toURI().toString());</span>
+            
+<span class="nc" id="L158">            ArrayList&lt;Envase&gt; envasesRecomendados1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L159">            envasesRecomendados1.add(envasePlantas);</span>
+<span class="nc" id="L160">            Producto menta = new Producto(&quot;Menta&quot;, TipoOrigen.Vegetal, </span>
+                    &quot;Planta de menta, deliciciosos sabor y olor&quot;, 1, 10, 1, 
+                    envasesRecomendados1, tipoProductos,0, i1);
+<span class="nc" id="L163">            sistema.getEchoShop().agregarProducto(menta);</span>
+            
+            
+            // Producto: Semillas de cacao
+<span class="nc" id="L167">            File f2 = new File(&quot;src/Imagenes/semillasCacao.jpg&quot;);     </span>
+<span class="nc" id="L168">            Image i2 = new Image(f2.toURI().toString());</span>
+            
+<span class="nc" id="L170">            ArrayList&lt;Envase&gt; envasesRecomendados2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L171">            envasesRecomendados2.add(envaseSemillas);</span>
+<span class="nc" id="L172">            envasesRecomendados2.add(envaseAlimentos);</span>
+<span class="nc" id="L173">            Producto cacao = new Producto(&quot;Cacao&quot;, TipoOrigen.Vegetal, </span>
+                    &quot;Semillas de cacao, para plantar y condimentar&quot;, 1, 5, 2, 
+                       envasesRecomendados2, tipoProductos,0, i2);
+<span class="nc" id="L176">            sistema.getEchoShop().agregarProducto(cacao);</span>
+            
+            // Producto: Pastafrola
+<span class="nc" id="L179">            File f3 = new File(&quot;src/Imagenes/pastafrola.jpg&quot;);     </span>
+<span class="nc" id="L180">            Image i3 = new Image(f3.toURI().toString());</span>
+            
+<span class="nc" id="L182">            ArrayList&lt;Envase&gt; envasesRecomendados3 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L183">            envasesRecomendados3.add(envaseAlimentos);</span>
+<span class="nc" id="L184">            Producto pastafrola = new Producto(&quot;Pastafrola&quot;, TipoOrigen.Vegetal, </span>
+                    &quot;Tarta de pastafrola, gustos a eleccion&quot;, 5, 50, 3, 
+                       envasesRecomendados3, tipoProductos,0, i3);
+<span class="nc" id="L187">            sistema.getEchoShop().agregarProducto(pastafrola);</span>
+            
+            //Producto: Mandarinas
+<span class="nc" id="L190">            File f4 = new File(&quot;src/Imagenes/mandarinas.jpg&quot;);     </span>
+<span class="nc" id="L191">            Image i4 = new Image(f4.toURI().toString());</span>
+            
+<span class="nc" id="L193">            ArrayList&lt;Envase&gt; envasesRecomendados4 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L194">            envasesRecomendados4.add(envasePlantas);</span>
+<span class="nc" id="L195">            Producto mandarinas = new Producto(&quot;Mandarina&quot;, TipoOrigen.Vegetal, </span>
+                    &quot;Delicosas mandarinas, jugosas.&quot;, 2, 5, 4, 
+                    envasesRecomendados4, tipoProductos,0, i4);
+<span class="nc" id="L198">            sistema.getEchoShop().agregarProducto(mandarinas);</span>
+            
+           //Producto: Frijoles 
+<span class="nc" id="L201">            File f5 = new File(&quot;src/Imagenes/Frijoles.jpg&quot;);     </span>
+<span class="nc" id="L202">            Image i5 = new Image(f5.toURI().toString());</span>
+            
+<span class="nc" id="L204">            ArrayList&lt;Envase&gt; envasesRecomendados5 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L205">            envasesRecomendados5.add(envaseSemillas);</span>
+<span class="nc" id="L206">            Producto frijoles = new Producto(&quot;Frijoles&quot;, TipoOrigen.Vegetal, </span>
+                    &quot;Para el guiso del domingo &quot;, 5, 15, 5, 
+                    envasesRecomendados5, tipoProductos,0, i5);
+<span class="nc" id="L209">            sistema.getEchoShop().agregarProducto(frijoles);</span>
+            
+            //Producto: Pizza
+<span class="nc" id="L212">            File f6 = new File(&quot;src/Imagenes/Pizza.jpg&quot;);     </span>
+<span class="nc" id="L213">            Image i6 = new Image(f6.toURI().toString());</span>
+            
+<span class="nc" id="L215">            ArrayList&lt;Envase&gt; envasesRecomendados6 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L216">            envasesRecomendados6.add(envaseAlimentos);</span>
+<span class="nc" id="L217">            Producto pizza = new Producto(&quot;Pizza para llevar&quot;, TipoOrigen.Indefinido, </span>
+                    &quot;Pizza recien hecha, deliciosa &quot;, 1, 100, 6, 
+                    envasesRecomendados6, tipoProductos,0, i6);
+<span class="nc" id="L220">            sistema.getEchoShop().agregarProducto(pizza);</span>
+            
+            
+            //Se inicializan las ventas en el sistema
+            //Venta 1
+<span class="nc" id="L225">            ArrayList&lt;Producto&gt; listaDeProductos1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L226">            listaDeProductos1.add(menta);</span>
+<span class="nc" id="L227">            listaDeProductos1.add(pizza);</span>
+<span class="nc" id="L228">            listaDeProductos1.add(pastafrola);</span>
+<span class="nc" id="L229">            sistema.setProductosAVenderEnSesionActiva(listaDeProductos1);</span>
+<span class="nc" id="L230">            int[] cantidadesPorId = {0, 10,0, 2, 0, 0, 4};</span>
+<span class="nc" id="L231">            sistema.setCantidadPorIdDeProd(cantidadesPorId);</span>
+            
+<span class="nc" id="L233">            int precioTotal = 0;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">            for (int i = 0; i &lt; listaDeProductos1.size(); i++) {</span>
+<span class="nc" id="L235">                sistema.getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(</span>
+<span class="nc" id="L236">                        sistema.getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()</span>
+<span class="nc" id="L237">                        + sistema.getCantidadPorIdDeProd()[listaDeProductos1.get(i).getCodigoIdentificador()]);</span>
+<span class="nc" id="L238">                precioTotal += (listaDeProductos1.get(i).getPrecio() * sistema.getCantidadPorIdDeProd()[listaDeProductos1.get(i).getCodigoIdentificador()]);</span>
+            }
+            
+<span class="nc" id="L241">            ArrayList&lt;Envase&gt; uti1 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L242">            uti1.add(envaseAlimentos);</span>
+<span class="nc" id="L243">            Date fecha = new Date();</span>
+<span class="nc" id="L244">            fecha.setMonth(7);</span>
+<span class="nc" id="L245">            Persona comprador = new Persona();</span>
+<span class="nc" id="L246">            Tienda tienda = sistema.getEchoShop();</span>
+<span class="nc" id="L247">            ArrayList&lt;Envase&gt; listaDeEnvasesUtilizados = uti1;</span>
+<span class="nc" id="L248">            int codigoIdentificador = 1;</span>
+<span class="nc" id="L249">            String direccionComprador = comprador.getDomicilio();</span>
+<span class="nc" id="L250">            Venta ventaAgregar1 = new Venta(listaDeProductos1, precioTotal, cantidadesPorId,</span>
+                    fecha, comprador, tienda, listaDeEnvasesUtilizados, codigoIdentificador,
+                    direccionComprador);
+<span class="nc" id="L253">            sistema.agregarVenta(ventaAgregar1);</span>
+            
+<span class="nc" id="L255">            sistema.agregarUnaVentaAlArray(ventaAgregar1);</span>
+<span class="nc" id="L256">            sistema.agregarGananciaEnVenta(ventaAgregar1);</span>
+            
+<span class="nc bnc" id="L258" title="All 2 branches missed.">            for (int i = 0; i &lt; listaDeEnvasesUtilizados.size(); i++) {</span>
+<span class="nc" id="L259">                sistema.getEnvasesUtilizadosPorId()[listaDeEnvasesUtilizados.get(i).getIdIdentificador()]++; </span>
+            }
+            
+            //Venta 2
+<span class="nc" id="L263">            ArrayList&lt;Producto&gt; listaDeProductos = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L264">            listaDeProductos.add(frijoles);</span>
+<span class="nc" id="L265">            listaDeProductos.add(mandarinas);</span>
+<span class="nc" id="L266">            listaDeProductos.add(cacao);</span>
+<span class="nc" id="L267">            sistema.setProductosAVenderEnSesionActiva(listaDeProductos);</span>
+<span class="nc" id="L268">            int[] cantidadesPorId2 = {0, 0,9, 0, 15, 2, 0};</span>
+<span class="nc" id="L269">            sistema.setCantidadPorIdDeProd(cantidadesPorId2);</span>
+            
+<span class="nc" id="L271">            int precioTotal2 = 0;</span>
+<span class="nc bnc" id="L272" title="All 2 branches missed.">            for (int i = 0; i &lt; listaDeProductos.size(); i++) {</span>
+<span class="nc" id="L273">                sistema.getProductosAVenderEnSesionActiva().get(i).setCantidadVendidos(</span>
+<span class="nc" id="L274">                        sistema.getProductosAVenderEnSesionActiva().get(i).getCantidadVendidos()</span>
+<span class="nc" id="L275">                        + sistema.getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);</span>
+<span class="nc" id="L276">                precioTotal2 += (listaDeProductos.get(i).getPrecio() * sistema.getCantidadPorIdDeProd()[listaDeProductos.get(i).getCodigoIdentificador()]);</span>
+            }
+            
+<span class="nc" id="L279">            ArrayList&lt;Envase&gt; uti2 = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L280">            uti2.add(envasePlantas);</span>
+<span class="nc" id="L281">            uti2.add(envaseAlimentos);</span>
+<span class="nc" id="L282">            uti2.add(envaseSemillas);</span>
+<span class="nc" id="L283">            Date fecha2 = new Date();</span>
+<span class="nc" id="L284">            fecha2.setMonth(4);</span>
+<span class="nc" id="L285">            Persona comprador2 = new Persona();</span>
+<span class="nc" id="L286">            Tienda tienda2 = sistema.getEchoShop();</span>
+<span class="nc" id="L287">            ArrayList&lt;Envase&gt; listaDeEnvasesUtilizados2 = uti2;</span>
+<span class="nc" id="L288">            int codigoIdentificador2 = 2;</span>
+<span class="nc" id="L289">            String direccionComprador2 = comprador2.getDomicilio();</span>
+<span class="nc" id="L290">            Venta ventaAgregar2 = new Venta(listaDeProductos, precioTotal2, cantidadesPorId2,</span>
+                    fecha2, comprador2, tienda2, listaDeEnvasesUtilizados2, codigoIdentificador2,
+                    direccionComprador2);
+<span class="nc" id="L293">            sistema.agregarVenta(ventaAgregar2);</span>
+            
+<span class="nc" id="L295">            sistema.agregarUnaVentaAlArray(ventaAgregar2);</span>
+<span class="nc" id="L296">            sistema.agregarGananciaEnVenta(ventaAgregar2);</span>
+            
+<span class="nc bnc" id="L298" title="All 2 branches missed.">            for (int i = 0; i &lt; listaDeEnvasesUtilizados2.size(); i++) {</span>
+<span class="nc" id="L299">                sistema.getEnvasesUtilizadosPorId()[listaDeEnvasesUtilizados2.get(i).getIdIdentificador()]++; </span>
+            }
+            
+<span class="nc" id="L302">            sistema.getProductosAVenderEnSesionActiva().clear();</span>
+            
+<span class="nc bnc" id="L304" title="All 2 branches missed.">            for (int i = 0; i &lt; sistema.getCantidadPorIdDeProd().length; i++) {</span>
+<span class="nc" id="L305">                sistema.getCantidadPorIdDeProd()[i] = 0;</span>
+            }
+            
+<span class="nc" id="L308">            sistema.getEnvasesALlevarEnVenta().clear();</span>
+            
+            
+            //Se setea el sistema en la interface
+<span class="nc" id="L312">            controlador.setSistema(sistema);</span>
+
+<span class="nc" id="L314">        } catch (IOException ex) {</span>
+<span class="nc" id="L315">            Logger.getLogger(InicioController.class.getName()).log(Level.SEVERE, null, ex);</span>
+<span class="nc" id="L316">        }</span>
+<span class="nc" id="L317">    }</span>
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+       
+<span class="nc" id="L324">        launch(args);</span>
+<span class="nc" id="L325">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="interfaz.VendedorController">
+   <children>
+      <ImageView fitHeight="640.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/Estadistica1.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnAgregarProducto" layoutX="22.0" layoutY="352.0" onAction="#agregarProducto" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnAgregarTienda" layoutX="100.0" layoutY="352.0" onAction="#agregarTienda" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnAgregarEnvase" layoutX="180.0" layoutY="352.0" onAction="#agregarEnvase" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnEliminarProducto" layoutX="258.0" layoutY="352.0" onAction="#eliminarProducto" prefHeight="78.0" prefWidth="78.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnTopVentas" layoutX="16.0" layoutY="484.0" onAction="#topVentas" prefHeight="78.0" prefWidth="103.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnVentasPorMes" layoutX="127.0" layoutY="484.0" onAction="#ventasPorMes" prefHeight="78.0" prefWidth="103.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnEstadisticas" layoutX="233.0" layoutY="484.0" onAction="#obtenerEstadisticas" prefHeight="78.0" prefWidth="103.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <JFXButton fx:id="btnMenu" layoutX="16.0" layoutY="30.0" onAction="#irAMenu" prefHeight="7.0" prefWidth="25.0" style="-fx-background-radius: 18 18 18 18;" text="&#10;" />
+      <Pane layoutX="-5.0" layoutY="66.0" prefHeight="190.0" prefWidth="366.0" style="-fx-background-color: #00b300; -fx-background-radius: 0 0 18 18;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="233.0" layoutX="112.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/logo_for_echo_y_handmade_natural_goods_shop_by_wildgica_d7mxn9l-fullview.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="148.0" layoutY="155.0" prefHeight="21.0" prefWidth="70.0" text="EchoShop" />
+         </children>
+      </Pane>
+      <JFXButton fx:id="btnInicio" layoutX="-4.0" layoutY="597.0" onAction="#tocoBotonInicio" prefHeight="45.0" prefWidth="366.0" text="&#10;" />
+   </children>
+</Pane>

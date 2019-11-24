@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ProductosCarritoController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">JaCoCoverage analysis of project &quot;Obligatorio-Ingenieria-Software&quot; (powered by JaCoCo from EclEmma)</a> &gt; <a href="index.source.html" class="el_package">interfaz</a> &gt; <span class="el_source">ProductosCarritoController.java</span></div><h1>ProductosCarritoController.java</h1><pre class="source lang-java linenums">/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package interfaz;
+
+import dominio.Producto;
+import dominio.Sistema;
+import com.jfoenix.controls.JFXButton;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+
+/**
+ * FXML Controller class
+ *
+ * @author user
+ */
+<span class="nc" id="L26">public class ProductosCarritoController implements Initializable {</span>
+
+    @FXML
+    private Label nombreProducto;
+    @FXML
+    private Label cantidad;
+
+    private Sistema sistema;
+
+    private CarritoController controlador;
+
+    @FXML
+    private ImageView imagenProducto;
+    @FXML
+    private JFXButton btnAgregar;
+    @FXML
+    private JFXButton btnBajarCant;
+    @FXML
+    private Label precioTotal;
+
+    private int identificador;
+
+    @FXML
+    private JFXButton btnEliminar;
+
+    //Gets and sets: 
+    public Label getNombreProducto() {
+<span class="nc" id="L53">        return nombreProducto;</span>
+        // TODO
+    }
+
+    public void setNombreProducto(Label nombreProducto) {
+<span class="nc" id="L58">        this.nombreProducto = nombreProducto;</span>
+<span class="nc" id="L59">    }</span>
+
+    public Label getCantidad() {
+<span class="nc" id="L62">        return cantidad;</span>
+    }
+
+    public void setCantidad(Label cantidad) {
+<span class="nc" id="L66">        this.cantidad = cantidad;</span>
+<span class="nc" id="L67">    }</span>
+
+    public Sistema getSistema() {
+<span class="nc" id="L70">        return sistema;</span>
+    }
+
+    public void setSistema(Sistema sistema) {
+<span class="nc" id="L74">        this.sistema = sistema;</span>
+<span class="nc" id="L75">    }</span>
+
+    public CarritoController getControlador() {
+<span class="nc" id="L78">        return controlador;</span>
+    }
+
+    public void setControlador(CarritoController controlador) {
+<span class="nc" id="L82">        this.controlador = controlador;</span>
+<span class="nc" id="L83">    }</span>
+
+    public ImageView getImagenProducto() {
+<span class="nc" id="L86">        return imagenProducto;</span>
+    }
+
+    public void setImagenProducto(ImageView imagenProducto) {
+<span class="nc" id="L90">        this.imagenProducto = imagenProducto;</span>
+<span class="nc" id="L91">    }</span>
+
+    public JFXButton getBtnAgregar() {
+<span class="nc" id="L94">        return btnAgregar;</span>
+    }
+
+    public void setBtnAgregar(JFXButton btnAgregar) {
+<span class="nc" id="L98">        this.btnAgregar = btnAgregar;</span>
+<span class="nc" id="L99">    }</span>
+
+    public JFXButton getBtnBajarCant() {
+<span class="nc" id="L102">        return btnBajarCant;</span>
+    }
+
+    public void setBtnBajarCant(JFXButton btnBajarCant) {
+<span class="nc" id="L106">        this.btnBajarCant = btnBajarCant;</span>
+<span class="nc" id="L107">    }</span>
+
+    public int getIdentificador() {
+<span class="nc" id="L110">        return identificador;</span>
+    }
+
+    public void setIdentificador(int identificador) {
+<span class="nc" id="L114">        this.identificador = identificador;</span>
+<span class="nc" id="L115">    }</span>
+
+    //Metodos: 
+    public void inicializarDatos(Producto producto, Sistema sistema, CarritoController controlador, int[] cantidadPorId) {
+<span class="nc" id="L119">        this.setSistema(sistema);</span>
+<span class="nc" id="L120">        this.setIdentificador(producto.getCodigoIdentificador());</span>
+<span class="nc" id="L121">        this.setControlador(controlador);</span>
+<span class="nc" id="L122">        this.imagenProducto.setImage(producto.getImagenDelProducto());</span>
+<span class="nc" id="L123">        this.nombreProducto.setText(producto.getNombre());</span>
+<span class="nc" id="L124">        int cant = cantidadPorId[producto.getCodigoIdentificador()];</span>
+<span class="nc" id="L125">        this.cantidad.setText(Integer.toString(cant));</span>
+<span class="nc" id="L126">        this.precioTotal.setText(Double.toString(cant * producto.getPrecio()));</span>
+<span class="nc" id="L127">    }</span>
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+<span class="nc" id="L132">    }</span>
+
+    @FXML
+    private void agregarCantidad(ActionEvent event) {
+
+<span class="nc" id="L137">        int cantidadActual = Integer.parseInt(this.getCantidad().getText());</span>
+<span class="nc bnc" id="L138" title="All 2 branches missed.">        if (cantidadActual &lt; 99) {</span>
+<span class="nc" id="L139">            this.cantidad.setText(Integer.toString(cantidadActual + 1));</span>
+<span class="nc" id="L140">            this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual + 1)));</span>
+<span class="nc" id="L141">            this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = cantidadActual + 1;</span>
+            
+        }
+
+<span class="nc" id="L145">    }</span>
+
+    @FXML
+    private void bajarCantidad(ActionEvent event) {
+        //Ver cuando es 0 la cantidad 
+<span class="nc" id="L150">        int cantidadActual = Integer.parseInt(this.getCantidad().getText());</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">        if (cantidadActual &gt; 1) {</span>
+<span class="nc" id="L152">            this.cantidad.setText(Integer.toString(cantidadActual - 1));</span>
+<span class="nc" id="L153">            this.precioTotal.setText(Double.toString((this.obtenerProducto().getPrecio()) * (cantidadActual - 1)));</span>
+<span class="nc" id="L154">            this.getSistema().getCantidadPorIdDeProd()[this.getIdentificador()] = (cantidadActual - 1);</span>
+        }
+
+<span class="nc" id="L157">    }</span>
+
+    public Producto obtenerProducto() {
+<span class="nc" id="L160">        Producto p = new Producto();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">        for (int i = 0; i &lt; this.getSistema().getProductosAVenderEnSesionActiva().size(); i++) {</span>
+<span class="nc bnc" id="L162" title="All 2 branches missed.">            if (this.getIdentificador() == this.getSistema().getProductosAVenderEnSesionActiva().get(i).getCodigoIdentificador()) {</span>
+<span class="nc" id="L163">                p = this.getSistema().getProductosAVenderEnSesionActiva().get(i);</span>
+            }
+        }
+<span class="nc" id="L166">        return p;</span>
+    }
+
+    @FXML
+    private void eliminarProducto(ActionEvent event) {
+<span class="nc" id="L171">        Producto p = this.obtenerProducto();</span>
+
+<span class="nc bnc" id="L173" title="All 2 branches missed.">        if (this.getSistema().getProductosAVenderEnSesionActiva().contains(p)) {</span>
+<span class="nc" id="L174">            this.getSistema().getCantidadPorIdDeProd()[p.getCodigoIdentificador()] = 0;</span>
+<span class="nc" id="L175">            this.getSistema().getProductosAVenderEnSesionActiva().remove(p);</span>
+
+        }
+<span class="nc" id="L178">        this.getControlador().cargarProductos(this.getSistema().getProductosAVenderEnSesionActiva(), sistema, controlador, this.getSistema().getCantidadPorIdDeProd());</span>
+<span class="nc" id="L179">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

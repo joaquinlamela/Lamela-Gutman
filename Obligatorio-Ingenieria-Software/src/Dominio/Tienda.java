@@ -1,20 +1,22 @@
-package Dominio;
+package dominio;
 
 import java.time.LocalTime;
 import java.util.*;
 
 public class Tienda {
 
+    //Atributos
     private String direccion;
     private int numeroSucursal;
     private ArrayList<Sucursal> sucursales;
     private long telefono;
     private ArrayList<Producto> listaDeProductosEnStock;
-    private int[] stockDeProductoPorId; //tipo funcion hash;
+    private int[] stockDeProductoPorId;
     private ArrayList<Envase> todosLosEnvasesDisponibles;
     private LocalTime horaInicio;
     private LocalTime horaFinalizacion;
 
+    //Constructores
     public Tienda(int numeroSucursal, String direccion, ArrayList<Sucursal> sucursales,
             long telefono, Date horario, ArrayList<Producto> listaDeProductosEnStock,
             int[] stockDeProductoPorId, String paginaWeb, LocalTime horaI,
@@ -23,13 +25,11 @@ public class Tienda {
         this.setDireccion(direccion);
         this.setSucursales(sucursales);
         this.setTelefono(telefono);
-
         this.setListaDeProductosEnStock(listaDeProductosEnStock);
         this.setStockDeProductoPorId(stockDeProductoPorId);
         this.setTodosLosEnvasesDisponibles(envases);
         this.setHoraInicio(horaI);
         this.setHoraFinalizacion(horaF);
-
     }
 
     public Tienda() {
@@ -37,7 +37,6 @@ public class Tienda {
         this.setDireccion("Direccion");
         this.setSucursales(new ArrayList<Sucursal>());
         this.setTelefono(1);
-
         this.setListaDeProductosEnStock(new ArrayList<Producto>());
         this.setStockDeProductoPorId(new int[10]);
         this.setTodosLosEnvasesDisponibles(new ArrayList<Envase>());
@@ -45,7 +44,7 @@ public class Tienda {
         this.setHoraFinalizacion(LocalTime.parse("18:00"));
     }
 
-    //Get´s && Set´s
+    //Getters && Setters
     public String getDireccion() {
         return direccion;
     }
@@ -128,12 +127,10 @@ public class Tienda {
 
     //Metodos:
     public void agregarProducto(Producto producto) {
-        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size()+1);
+        producto.setCodigoIdentificador(this.listaDeProductosEnStock.size() + 1);
         if (!this.listaDeProductosEnStock.contains(producto)) {
-
             this.listaDeProductosEnStock.add(producto);
         }
-        //this.getStockDeProductoPorId()[producto.getCodigoIdentificador()]++;
     }
 
     public void eliminarProducto(Producto producto) {
@@ -149,13 +146,13 @@ public class Tienda {
     }
 
     public void agregarSucursal(Sucursal s) {
-        s.setNumeroSucursal(this.sucursales.size()+1);
+        s.setNumeroSucursal(this.sucursales.size() + 1);
         if (!this.sucursales.contains(s)) {
             this.sucursales.add(s);
         }
-        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
     }
 
+    //No se cambia el id, porque no se accede a el desde frontend
     public void eliminarSucursal(Sucursal s) {
         if (this.sucursales.contains(s)) {
             this.sucursales.remove(s);
@@ -163,53 +160,56 @@ public class Tienda {
     }
 
     public void agregarEnvase(Envase e) {
-        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size()+1);
+        e.setIdIdentificador(this.todosLosEnvasesDisponibles.size() + 1);
         if (!this.todosLosEnvasesDisponibles.contains(e)) {
             this.todosLosEnvasesDisponibles.add(e);
         }
-        //this.getStockDeSucursalPorId()[producto.getCodigoIdentificador()]++;
     }
 
-    public ArrayList<Producto> obtenerLos5MasVendidos(ArrayList<Producto> listaProd) {
-        int contador = 0;
+    public Producto obtenerElMasVendidos(ArrayList<Producto> listaProd) {
         int max = Integer.MIN_VALUE;
-        ArrayList<Producto> masVendidos = new ArrayList<Producto>();
-        ArrayList<Producto> copiaListaProd = listaProd;
-        Producto prodAgregar = new Producto();
-
-        for (int i = 0; i < copiaListaProd.size() || contador <= 5; i++) {
-
-            if (copiaListaProd.get(i).getCantidadVendidos() > max) {
-                prodAgregar = copiaListaProd.get(i);
-                copiaListaProd.remove(i);
+        Producto producto = new Producto();
+        for (int i = 0; i < listaProd.size(); i++) {
+            if (listaProd.get(i).getCantidadVendidos() > max) {
+                producto = listaProd.get(i);
+                max = listaProd.get(i).getCantidadVendidos();
             }
-
-            if (!masVendidos.contains(prodAgregar)) {
-                masVendidos.add(prodAgregar);
-            }
-
         }
-        return masVendidos;
+        listaProd.remove(producto);
+        return producto;
+    }
+
+    public ArrayList<Producto> obtenerLos5MasVendidos() {
+        ArrayList<Producto> todosLosProductosDelSistema = this.getListaDeProductosEnStock();
+        ArrayList<Producto> copiaDeTodosLosProductosDelSistema = new ArrayList();
+        for (int i = 0; i < todosLosProductosDelSistema.size(); i++) {
+            if (!copiaDeTodosLosProductosDelSistema.contains(todosLosProductosDelSistema.get(i))) {
+                copiaDeTodosLosProductosDelSistema.add(todosLosProductosDelSistema.get(i));
+            }
+        }
+        ArrayList<Producto> los5MasVendidosInversa = new ArrayList<>();
+        Producto producto;
+        for (int i = 0; i < 5; i++) {
+            Producto prodANoAgregar = new Producto();
+            producto = this.obtenerElMasVendidos(copiaDeTodosLosProductosDelSistema);
+            if (!(producto.getCodigoIdentificador() == prodANoAgregar.getCodigoIdentificador() && producto.getNombre().equals(prodANoAgregar.getNombre()))) {
+                los5MasVendidosInversa.add(producto);
+            }
+        }
+        Collections.reverse(los5MasVendidosInversa);
+        return los5MasVendidosInversa; 
     }
 
     @Override
     public String toString() {
-        return "Tienda{" + "direccion=" + direccion + ", numeroSucursal=" 
-                + numeroSucursal + ", sucursales=" + sucursales +
-                ", telefono=" + telefono + ", listaDeProductosEnStock=" +
-                listaDeProductosEnStock + ", stockDeProductoPorId=" + stockDeProductoPorId +
-                ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles + 
-                ", horaInicio=" + horaInicio + ", horaFinalizacion=" +
-                horaFinalizacion + '}';
+        return "Tienda{" + "direccion=" + direccion 
+                + ", numeroSucursal=" + numeroSucursal + ", sucursales=" + sucursales
+                + ", telefono=" + telefono 
+                + ", listaDeProductosEnStock="+ listaDeProductosEnStock 
+                + ", stockDeProductoPorId=" + Arrays.toString(stockDeProductoPorId)
+                + ", todosLosEnvasesDisponibles=" + todosLosEnvasesDisponibles
+                + ", horaInicio=" + horaInicio 
+                + ", horaFinalizacion=" + horaFinalizacion + '}';
     }
     
-    
-    
-
-    @Override
-    public boolean equals(Object o) {
-        Tienda tienda = (Tienda) o;
-        return this.getNumeroSucursal() == tienda.getNumeroSucursal();
-    }
-
 }
