@@ -28,9 +28,11 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+
+//AUTORES: JOAQUIN LAMELA Y MARTIN GUTMAN
 /**
  *
- * @author user
+ * @author Joaquin Lamela y Martin Gutman 
  */
 public class ObligatorioIngenieriaSoftware extends Application {
 
